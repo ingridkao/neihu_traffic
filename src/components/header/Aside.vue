@@ -2,7 +2,7 @@
     <div id="slideContainer" class="buttonBox">
         <button id="slideBtn" @click="showAside = !showAside">
             <img v-if="showAside" :src="Close" alt="關閉" />
-            <img v-else :src="Logo" alt="本文內容" class="svg_scroll"/>
+            <img v-else :src="Logo" alt="本文內容" class="svg_scroll" />
         </button>
 
         <aside :class="{active: showAside}">
@@ -37,7 +37,7 @@ export default {
             handler(val, oldVal){
                 if(this.secActive) return
                 if(val == 1){
-                    this.secActive = 'content1'
+                    this.secActive = 'chapter1'
                 }
             }
         }
@@ -48,10 +48,9 @@ export default {
             Logo,
             Close,
             article: {
-                "content1": "章節1",
-                "content2": "章節2",
-                "content3": "章節3",
-                "content4": "章節4",
+                "chapter1": "內湖交通改善計畫：先了解大內科園區",
+                "chapter2": "大內科的工作人口從哪來？士林、松山、汐止佔多數",
+                "chapter3": "哪一區的通勤人口最少使用大眾運輸？"
             },
             secActive: null
         }
@@ -63,9 +62,8 @@ export default {
             if(!target) return
 
             const offsetTarget = target.getBoundingClientRect()
-            const targetTop = offsetTarget.top + window.pageYOffset
             window.scrollTo({
-                top: targetTop
+                top: (offsetTarget.top + window.pageYOffset)
             })
         }
     }
@@ -89,18 +87,19 @@ export default {
         height: 2rem;
         margin: .5rem 1rem;
         z-index: 2;
+        background-color: transparent;
         img{
             width: 100%;
-            height: 100%;
         }
     }
     aside{
         position: absolute;
         @extend %whiteCardShadow;
-        width: $asideWidth;
+        @extend %contentPadding;
+        width: $mapGifWidth;
         height: 100vh;
         top: 0;
-        right: #{-$asideWidth};
+        right: #{-$mapGifWidth};
         transition: right 0.5s ease;
         &.active{
             right: 0;

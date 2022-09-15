@@ -65,12 +65,11 @@ export default {
     mounted() {
         this.player = videojs(this.$refs.videoPlayer, this.options)
         this.player.on('ready', () => {
-            // console.log('onPlayerReady')
             this.isLoad = false
             this.$emit('toggle', true)
         })
     },
-    beforeDestroy() {
+    beforeUnmount() {
         if (this.player) {
             this.isLoad = true
             this.player.dispose()

@@ -4,6 +4,8 @@ import App from './App.vue'
 import { createI18n } from 'vue-i18n'
 import { en, zh } from './assets/js/lang.js'
 
+import VueApexCharts from "vue3-apexcharts"
+
 const Locale = localStorage.getItem("locale")
 const i18n = createI18n({
     // legacy: false,
@@ -17,4 +19,5 @@ const i18n = createI18n({
 
 const app  = createApp(App)
 app.use(i18n)
+app.use(VueApexCharts)
 app.mount('#app')

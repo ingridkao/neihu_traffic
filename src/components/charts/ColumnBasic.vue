@@ -1,11 +1,10 @@
 <template>
     <div class="apexChartContainer">
-        <apexchart height="350" :options="chartOptions" :series="series"/>
+        <apexchart :options="chartOptions" :series="series"/>
     </div>
 </template>
 
 <script>
-import VueApexCharts from "vue3-apexcharts"
 const seriesData = [{
     name: 'Net Profit',
     data: [44, 55, 57, 56, 61, 58, 63, 60, 66]
@@ -14,16 +13,13 @@ const seriesData = [{
     data: [76, 85, 101, 98, 87, 105, 91, 114, 94]
 }]
 export default {
-    components:{
-		apexchart: VueApexCharts
-	},
     data(){
         return {    
             series: [],
             chartOptions: {
                 chart: {
                     type: 'bar',
-                    height: 350
+                    height: 400
                 },
                 plotOptions: {
                     bar: {

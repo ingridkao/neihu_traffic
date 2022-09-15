@@ -1,38 +1,30 @@
 <template>
-	<header id="HeaderPage" ref="headerPage">
-		<!-- <keep-alive>
-			<VideoPlayer id="videoWapper" v-if="!mobildDevice" :video-start="videoStart" @toggle="toggleVideoStatus"/>
-		</keep-alive> -->
-		<div id="contextWrapper">
+	<div id="headerActionWrapper">
+		<div></div>
+		<div>
+			<a :href="copyUrl" id="logoBox"><img :src="LOGO" alt="TUIC"></a>
 			<div>
-				<a :href="copyUrl" id="logoBox"><img :src="LOGO" alt="TUIC"></a>
-				<div>
-					<h1>{{$t('mainTitle')}}</h1>
-					<h2>{{$t('subTitle')}}</h2>
-				</div>
+				<h1>{{$t('mainTitle')}}</h1>
+				<h2>{{$t('subTitle')}}</h2>
 			</div>
-			<p v-if="mobildDevice">{{$t('suggest')}}</p>
-
-			
-
-			<div id="actionBox" class="buttonBox">
-				<input type="hidden" id="webURL" :value="copyUrl">
-				<button class="fbBtn" @click="shareToFb($event)"/>
-				<button class="linkBtn" @click="copyURL($event)"/>
-				<!-- <button v-if="step == 0 && !mobildDevice" :class="['videoBtn',videoStart? 'videoPause': 'videoStart']" @click="videoStart = !videoStart"/> -->
-				<button id="translateToggle" :title="$t('langTranslate')" @click="toggleLocaleLang">{{$t('langZh')}}</button>
-			</div>
-
-			<footer>
-				<ScrollButton/>
-			</footer>
 		</div>
-	</header>
+		<p v-if="mobildDevice">{{$t('suggest')}}</p>
+		<div id="actionBox" class="buttonBox">
+			<input type="hidden" id="webURL" :value="copyUrl">
+			<button class="fbBtn" @click="shareToFb($event)"/>
+			<button class="linkBtn" @click="copyURL($event)"/>
+			<!-- <button v-if="step == 0 && !mobildDevice" :class="['videoBtn',videoStart? 'videoPause': 'videoStart']" @click="videoStart = !videoStart"/> -->
+			<button id="translateToggle" :title="$t('langTranslate')" @click="toggleLocaleLang">{{$t('langZh')}}</button>
+		</div>
+
+		<footer>
+			<ScrollButton/>
+		</footer>
+	</div>
 </template>
 
 <script>
 import LOGO from '@/assets/TUIC.svg'
-import VideoPlayer from "@/components/VideoPlayer.vue"
 import ScrollButton from "@/components/header/ScrollButton.vue"
 import MobileDetect from 'mobile-detect'
 const mobileDetect = new MobileDetect(window.navigator.userAgent)
@@ -42,22 +34,25 @@ export default {
 		step: {
             type: String,
             default: '0'
+        },
+		videoStart: {
+            type: Boolean,
+            default: false
         }
 	},
 	components: {
-		VideoPlayer, ScrollButton
+		ScrollButton
 	},
 	data() {
 		return {
 			LOGO,
 			timeout: null,
-			videoStart: false,
 			copyUrl: '#',
 			mobildDevice: mobileDetect.phone()? true: false,
 			showSlide: false
 		}
 	},
-	beforeDestroy(){
+	beforeUnmount(){
 		if(this.timeout){
 			clearTimeout(this.timeout)
 		}
@@ -67,15 +62,6 @@ export default {
 	},
 	mounted(){
 		this.copyUrl = window.location.href
-	},
-	watch:{
-		step(val, oldVal){
-			if(val > 0 && this.videoStart){
-				this.toggleVideoStatus(false)
-			}else if(val == 0 && !this.videoStart){
-				this.toggleVideoStatus(true)
-			}
-		}
 	},
     methods: {
         shareToFb(e){
@@ -101,9 +87,6 @@ export default {
 				.then(() => console.log('Successful share'))
 				.catch((error) => console.log('Error sharing', error));
 			}
-        },
-        toggleVideoStatus(boolen){
-            this.videoStart = boolen
         },
 		getCookie(name) {
 			const value = `; ${document.cookie}`;
@@ -134,76 +117,38 @@ export default {
 <style lang="scss" scoped>
 @import '@/assets/scss/main.scss';
 $mainColor: darken($whiteColor, 25);
-#HeaderPage{
-	position: relative;
-	box-sizing: border-box;
-    width: 100vw;
-	height: 100vh;
-	background-color: $blackColor;
-	background-size: cover;
-	background-position: center;
-	// background-image: url('../assets/video/videoPoster.png');
-	background-image: url('../assets/img/cover.png');
-	>div{
-		position: absolute;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        overflow: hidden;
-		&#videoWapper{
-			z-index: 0;
-		}
-		&#contextWrapper{
-			box-sizing: border-box;
-			padding: 2rem;
-			color: $mainColor;
-			background-color: transparent;
-			display: flex;
-			flex-direction: column;
-			align-items: self-start;
-			justify-content: space-around;
-			z-index: 1;
-			h1, h2{
-				color: $blackColor;
-			}
-			footer{
-				width: 100%;
-				text-align: center;
-			}
-		}
+#headerActionWrapper{
+	display: flex;
+	flex-direction: column;
+	align-items: self-start;
+	justify-content: space-between;
+	z-index: 1;
+	padding: 3rem;
+	h1, h2{
+		color: $blackColor;
+	}
+	footer{
+		width: 100%;
+		text-align: center;
 	}
 }
+
 #logoBox{
 	display: inline-block;
 	text-align: left;
 	height: 3rem;
     margin: 0.5rem;
-	img{
-		// filter: invert(1);
-	}
-}
-.buttonBox{
-	button{
-		width: 1.5rem;
-		height: 1.5rem;
-		padding: 0;
-		margin: 0 .25rem;
-		background-color: $blackColor;
-		border-radius: 50%;
-	}
 }
 
-#slideContainer{
-
-}
 #actionBox{
 	position: fixed;
 	z-index: 100;
 	top: .75rem;
-	right: 3.5rem;
+	right: 1rem;
+    width: 11rem;
+    height: 1.5rem;
+
 	display: inline-flex;
-	// @media screen and (min-width:1920px){}
 	.fbBtn{
 		background-image: url('../assets/icon/fb.svg');
 	}
@@ -233,5 +178,4 @@ $mainColor: darken($whiteColor, 25);
 		}
 	}
 }
-
 </style>

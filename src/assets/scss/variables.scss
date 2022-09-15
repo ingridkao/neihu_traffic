@@ -11,20 +11,31 @@ $defaultColor: #eccbcb;
 $textSubColor: lighten($blackColor, 5);
 
 %whiteCardShadow {
-    width: 100%;
-    height: 100%;
     box-shadow: 0px 2px 2px 2px rgba($blackColor, 0.1);
     background: lighten($whiteColor, 5);
 }
 
+%contentPadding {
+    padding: 2rem;
+    @media screen and (max-width:501px){
+        padding: 1rem;
+    }
+}
+
+%verticalCenter {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 $mapAsideWidth : 30em;
 $mapGifWidth: 20rem;
-$asideWidth: 15rem;
 
 @mixin scrollbar_style {
-    scrollbar-face-color: lighten($grayColor, 25);
+    scrollbar-face-color: rgba($grayColor,0.1);
     scrollbar-track-color: $grayColor;
-    scrollbar-arrow-color: lighten($grayColor, 35);
+    scrollbar-arrow-color: rgba($grayColor,0.1);
     -webkit-overflow-scrolling: touch;
     &::-webkit-scrollbar {
         width: 0.5rem;
@@ -33,14 +44,14 @@ $asideWidth: 15rem;
     &::-webkit-scrollbar-thumb {
         cursor: pointer;
         border-radius: 0.25rem;
-        background: rgba($grayColor,0.4);
+        background: rgba($grayColor,0.1);
         &:hover{
-            background: rgba($grayColor,0.8);
+            background: rgba($grayColor,0.2);
         }
     }
     &::-webkit-scrollbar-track {
         border-radius: 0.25rem;
-        background: rgba($grayColor,0.03);
+        background: rgba($grayColor,0.1);
     }
     &::-webkit-scrollbar-corner{
         background: transparent;

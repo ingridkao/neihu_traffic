@@ -1,5 +1,11 @@
 # neihu_traffic
 [demo](https://ingridkao.github.io/neihu_traffic/)
+內科交通問題研究專案
+
+
+# Table of Contents
+* [Project setup](#project-setup)
+* [開發碰到的問題](#開發碰到的問題)
 
 
 ## Project setup
@@ -117,3 +123,6 @@
         npm install --save apexcharts vue3-apexcharts
         ```
     2. 用法可以參考[實作](https://github.com/ingridkao/neihu_traffic/blob/main/src/components/charts/ColumnBasic.vue)
+
+
+tags: `Vue` `apexcharts` `mapbox`
