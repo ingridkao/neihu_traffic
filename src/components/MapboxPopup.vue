@@ -19,9 +19,6 @@
     button{
         width: 2rem;
         font-size: 1.5rem;
-        &:focus{
-            outline: none;
-        }
     }
 }
 .popupHeader{

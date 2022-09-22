@@ -57,3 +57,18 @@ $mapGifWidth: 20rem;
         background: transparent;
     }
 }
+
+%underLineBtn{
+	display: inline-block;
+    border-bottom: 2px solid rgba($blackColor, 0.8);
+    word-break: keep-all;
+    padding: .25rem .5rem;
+    margin: .5rem;
+    &:hover{
+        border-bottom-color: $blackColor;
+    }
+    &:disabled{
+        border-bottom-color: lighten($blackColor, 75);
+        cursor: not-allowed;
+    }
+}

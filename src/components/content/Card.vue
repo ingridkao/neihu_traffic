@@ -26,22 +26,3 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-@import '@/assets/scss/variables.scss';
-.textbox{
-	@extend %verticalCenter;
-	>div{
-		width: 30em;
-		height: auto;
-		@media screen and (max-width:501px){
-			width: 80%;
-		}
-		@extend %whiteCardShadow;
-		@extend %contentPadding;
-		border-radius: .25rem;
-		border: 1px solid rgba($blackColor, 0.3);
-		background-color: rgba($whiteColor, 0.8);
-	}
-}
-</style>
-

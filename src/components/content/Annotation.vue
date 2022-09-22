@@ -1,17 +1,19 @@
 <template>
 	<span class="annotationBox">
-        <span class="annotationText">
+        <button @click="dropdown = !dropdown" class="annotationBtn">
             {{text}}
-            <button @click="dropdown = !dropdown" class="annotationBtn">註{{dropdown? '▲': '▼'}}</button>
-        </span>
+            <span>
+                {{dropdown? '▲': '▼註'}}
+            </span>
+        </button>
 		<div :class="{open: dropdown}" class="annotationDropdown">
-			<p class="annotationContent">{{content}}</p>
+			<p class="annotationContent" v-html="content"/>
 		</div>
 	</span>
 </template>
 
 <script>
-const includeEl = ["annotationBox", "annotationText", "annotationBtn", "annotationDropdown", "annotationContent"]
+const includeEl = ["annotationBox", "annotationBtn", "annotationDropdown", "annotationContent"]
 export default {
 	props:{ 
 		text: {
@@ -48,33 +50,41 @@ export default {
 @import '@/assets/scss/variables.scss';
 .annotationBox{
     position: relative;
-    .annotationText{
-        font-weight: bold;
+    .annotationBtn{
+        border-bottom: 1px solid #999;
         padding: 0;
-        .annotationBtn{
-            cursor: pointer;
-            padding: 0;
+        outline: none;
+        cursor: pointer;
+        span{
+            margin: .1rem;
+            opacity: 0.5;
+            font-size: .5rem;
+            pointer-events: none;
         }
     }
 	.annotationDropdown{
+        display: none;
         position: absolute;
-        top: 1.5em;
+        top: .25em;
         left: 0;
-        width: 50vw;
+        width: 100%;
         height: 0;
         background-color: $whiteColor;
         transition: height 0.5s ease;
+        font-size: .8rem;
         .annotationContent{
             display: none;
             margin: 0;
         }
         &.open{
+            display: block;
             height: auto;
             border-radius: .25rem;
-            border: 1px solid rgba($blackColor, 0.3);
-            padding: .5rem;
+            border: 1px dashed rgba($blackColor, 0.3);
+            padding: .25rem;
             .annotationContent{
                 display: block;
+                margin-bottom: 0 !important;
             }
         }
 	}

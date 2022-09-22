@@ -9,10 +9,11 @@
 	const mobildDevice = mobileDetect.phone()? true: false
 </script>
 
+		<!-- <HomeMobile v-if="mobildDevice"/>
+		<Home v-else/> -->
 <template v-cloak>
 	<keep-alive>
-		<HomeMobile v-if="mobildDevice"/>
-		<Home v-else/>
+		<Home/>
 	</keep-alive>
 	<Footer/>
 </template>

@@ -9,140 +9,29 @@
 		</div>
 		<HeadCover v-if="currStep <= 2" :step="currStep" :video-start="videoStart" @toggle="toggleVideoStatus" />
 		<div ref="scrollama_container" id="main_scrollama">
-			<Header data-step-no="0" :video-start="videoStart" />
-			<Card data-step-no="1" :direction="'center'" :content="'內湖的塞車問題不僅是通勤族的夢靨，也是台北市政府長久以來的施政痛點。儘管市府已經針對交通壅塞提出短、中、長期計畫，依序包括：增加捷運與公車班次，道路拓寬，以及捷運環狀線規劃等，交通改善仍然有限。臺北大數據中心於2020年中主動與交通局合作，以全觀的區域視角，理解車流與人流如何進到內湖，並將鄰近內湖的大直、士林、松山、汐止納入研究，嘗試提供不同的政策思考。'"/>
-
-			<div 
-				data-step-no="2"
-				id="chapter1"
-				class="contextbox rowBox"
-			>
-				<div
-					data-aos="fade-up"
-					data-aos-duration="3000"
-					data-aos-offset="500"
-				>
-					<h6>內湖交通改善計畫：先了解大內科園區</h6>
-					<p>內湖的交通壅塞熱點，主要集中在以內湖科技園區及大彎南段工業區組成的「大內湖科技園區」(以下簡稱大內科)。大內科總面積2.8km²，  其中多為工商業用地，住宅用地次之，西邊則為美麗華商業區。</p>
-				</div>
-				<div class="imgBox"
-					:class="{
-						fixedbox: (currStep == 2 && currStepProgress > 0.25) || (currStep >= 3 && currStep < 6)
-					}"
-				>
-					<div class="bg-map1" :class="{
-						active: currStep <= 2,
-						activeOpacity: (currStep == 2 && currStepProgress >= 0.3)
-					}"/>
-					<div class="bg-map2 " :class="{
-						active: currStep == 3,
-						activeOpacity: (currStep == 2 && currStepProgress >= 0.3)
-					}"/>
-					<div class="bg-map3" :class="{
-                        activeOpacity: (currStep == 3 && currStepProgress > 0.25),
-						active: (currStep == 3 && currStepProgress >= 0.75) || currStep == 4 
-                    }"/>
-				</div>
-			</div>
-
-            <div 
-                data-step-no="3"
-                class="contextbox rowBox"
-            >
-                <div
-                    data-aos="fade-up"
-                    data-aos-duration="3000"
-                    data-aos-offset="500"
-                >
-                    <p>大內科區域聚集6,000家以上企業，包含許多大型企業的營運總部，扮演「北台灣技產業軸帶」的關鍵性角色。園區以研發設計、行銷、服務知識經濟產業鏈為主，也包括資訊通訊、數位內容、生技等高附加價值的產業。</p>
-                </div>
-            </div>
-
-			<div 
-				data-step-no="4"
-				class="contextbox rowBox"
-			>
-				<div
-					data-aos="fade-up"
-					data-aos-duration="3000"
-					data-aos-offset="500"
-				>
-					<h6>13萬的工作人口，居住當地不到4成</h6>
-					<p>本次研究，透過
-						<Annotation :text="'電信資料'" :content="'電信業者將手機通訊資料去識別化後，能推估出一定空間範圍內的人口變化。這能幫助我們更精確掌握如上下班通勤的時段性人潮、居住與就業地分佈等資訊。'"/>
-						推估大內科的人口特性。大內科工作人口為133,500人，居住人口為22,800人。由此可知，多數人口透過通勤前往至此工作。此外，對比全台北市的人口密度，大內科區域的的居住人口密度為台北的0.5倍、工作人口密度為2.5倍。
-					</p>
-				</div>
-			</div>
-
-			<div 
-				data-step-no="5"
-				id="chapter2"
-				class="contextbox full carouselContainer"
-			>
-				<header>
-					<h6>大內科的工作人口從哪來？士林、松山、汐止佔多數</h6>
-					<p>運用電信數據除了能掌握區域內的工作人口數量外，更可以進一步了解工作人口的實際居住地。由下圖可知，大內科的工作人口，有37.6%居住在內湖區，其次為汐止區6.2%、士林區5.6%，松山區、大安區及中山區各佔4%。</p>
-					<p>大內科A、B、C三區域的工作人口居住地分布上有其差異，A區有捷運站服務，因此工作人口涵蓋範圍覆蓋雙北甚至到基隆，B、C區主要之工作人口較多來自內湖及鄰近行政區(汐止、南港、信義、松山)。</p>
-				</header>
-				<Carousel/>
-			</div>
-
-			<div 
-				data-step-no="6"
-				id="chapter3"
-				class="contextbox columnBox"
-			>
-				<div>
-					<h6>哪一區的通勤人口最少使用大眾運輸？</h6>
-					<p>為了理解哪一通勤地區，可以優先增設大眾運輸節點，或是加以檢視推廣，我們將大眾運輸通勤者的上車地點分類加總，並以通勤人口的實際居住地做分析。數據顯示，內湖區當地未使用大眾運輸通勤的人口數量最多，而除內湖區外，汐止、士林、北投、文山為目前大眾運輸使用比例低且人數較高的區域。。 *(汽車+機車+步行)</p>
-				</div>
-				<ColumnBasic :load="columnBasicLoad"/>
-			</div>
+			<HeaderAction data-step-no="0" :video-start="videoStart" />
+			<Step1 data-step-no="1"/>
+			<Step2 data-step-no="2" :curr-step="currStep" :curr-step-progress="currStepProgress"/>
+			<Step3 data-step-no="3" :curr-step="currStep" :curr-step-progress="currStepProgress"/>
+			<Step4 data-step-no="4" :curr-step="currStep" :curr-step-progress="currStepProgress"/>
+			<Step5 data-step-no="5" />
+			<Step6 data-step-no="6" :curr-step="currStep" :curr-step-progress="currStepProgress"/>
 
 			<div 
 				data-step-no="7" 
-				class="full"
+				class="contextbox"
 			>
-				<div 
+				<header 
 					class="contextbox columnBox"
 					data-aos="fade-up"
 					data-aos-duration="3000"
 					data-aos-offset="500"
 				>
-					<div>
-						<h6>{{$t('scrollama2.title')}}</h6>
-						<div class="imgBox">
-							<img :src="ratioImg" :alt="$t('scrollama2.imgAlt')">
-						</div>
-						<p v-html="$t('scrollama2.p')"/>
-						<div class="source">{{$t('scrollama1.source')}}</div>
-					</div>
-					<div class="chartBox">
-						<RadialsBasic :load="radialsbarLoad"/>
-					</div>
-				</div>
+					<h6>住哪區的通勤族，最少使用大眾運輸？</h6>
+					<p>為了理解哪一通勤地區，可以優先檢討其大眾運輸往返大內科的狀況，我們將大眾運輸通勤者的上車地點做分類。數據顯示，住在內湖當地的 58,742位工作人口，僅兩成使用大眾運輸， 有八成通勤者選擇使用私人運具（汽車、機車、或步行）。另外，住在汐止、士林、北投的工作者，也偏好以私人運具上下班。至於有沒有辦法讓住最近的內湖工作者，改變通勤方式，還有賴相關單位進一步討論。</p>
+				</header>
+				<ColumnBasic :load="columnBasicLoad"/>
 			</div>
-			
-
-			<div 
-				data-step-no="8"
-				class="full" 
-			>
-				<div class="contextbox columnBox">
-					<div class="">
-						<h6>{{$t('scrollama3.title1')}}</h6>
-						<p v-html="$t('scrollama3.p1')"/>
-						<div class="source">{{$t('scrollama1.source')}}</div>
-					</div>
-					<div>
-						<h6>{{$t('scrollama3.title2')}}</h6>
-						<p v-html="$t('scrollama3.p2')"/>
-						<div class="source">{{$t('scrollama3.source')}}</div>
-					</div>
-				</div>
-			</div>
-			
 
 			<div 
 				data-step-no="9"
@@ -250,12 +139,17 @@ import scrollama from "scrollama"
 import AOS from "aos";
 import "aos/dist/aos.css";
 
-import Header from '@/views/Header.vue'
 import AsideBox from "@/components/header/Aside.vue"
+import HeaderAction from "@/components/header/Action.vue"
 import HeadCover from "@/components/header/Cover.vue"
 import Card from "@/components/content/Card.vue"
+import Step1 from "@/components/content/Step1.vue"
+import Step2 from "@/components/content/Step2.vue"
+import Step3 from "@/components/content/Step3.vue"
+import Step4 from "@/components/content/Step4.vue"
+import Step5 from "@/components/content/Step5.vue"
+import Step6 from "@/components/content/Step6.vue"
 import Annotation from "@/components/content/Annotation.vue"
-import Carousel from "@/components/content/Carousel.vue"
 
 import MapBox from '@/components/maps/MapBox.vue'
 
@@ -295,12 +189,11 @@ export default {
 			
 			scrollValue: 0,
 			columnBasicLoad: false,
-			radialsbarLoad: false,
 			donutBasicLoad: false
 		}
 	},
 	components:{
-		MapBox, Header, HeadCover, Card, Annotation, Carousel, AsideBox, ColumnBasic, RadialsBasic, DonutBasic
+		MapBox, HeaderAction, HeadCover, Step1, Step2, Step3, Step4, Step5, Step6, Card, Annotation, AsideBox, ColumnBasic, RadialsBasic, DonutBasic
 	},
 	computed: {
 		langZh(){
@@ -341,14 +234,14 @@ export default {
 			.setup(this.opts)
 			.onStepProgress(resp => {
 				const {progress} = resp	
-				this.currStepProgress = (Math.floor(progress*100)/100)/2
+				// console.log(progress);
+				this.currStepProgress = (Math.floor(progress*10000)/100)
 			})
 			.onStepEnter(resp => {
 				const {element} = resp
 				this.currStep = element.dataset.stepNo
-				this.columnBasicLoad = this.currStep == 1
-				this.radialsbarLoad = this.currStep == 2
-				this.donutBasicLoad = this.currStep == 4
+				this.columnBasicLoad = this.currStep == 7
+				// this.donutBasicLoad = this.currStep == 4
 			})
 			// .onStepExit(resp => {
 			// 	const {element} = resp
@@ -373,7 +266,9 @@ export default {
 </script>
 
 <style lang="scss">
+@import '@/assets/scss/variables.scss';
 @import '@/assets/scss/home.scss';
+
 .svg_scroll{
 	animation: rotate 1s linear infinite;
 	animation-play-state: paused;

@@ -5,7 +5,6 @@
 	overflow: hidden;
 	*{
 		box-sizing: border-box;
-		position: relative;
 	}
 	&.langEn{
 		h6{
@@ -15,48 +14,50 @@
 	}
 }
 
+// main_scrollama - start
 #main_scrollama{
 	z-index: 1;
-	>* {
+	.block_scrollama {
+		position: relative;
 		height: 100vh;
 		color: $textSubColor;
-		@media screen and (max-width:501px){
-			width: 80%;
-		}
-
-		&.textbox{
-			@extend %whiteCardShadow;
-			background-color: transparent;
-		}
-
-		&.contextbox{
-			background-color: $whiteColor;
-			>*{
-				@extend %verticalCenter;
-				@extend %contentPadding;
-			}
-			&.half{
-				width: $mapAsideWidth;
-			}
-			&.full{
-				z-index: 1;
-				// .imgBox{
-				// 	height: 20em;
-				// 	margin-bottom: 1rem;
-				// 	padding: 0;
-				// 	text-align: left;
-				// }
-				// .chartbox > *{
-				// 	width: 100%;
-				// }
-			}
-		}
+		// @media screen and (max-width:501px){
+		// 	width: 80%;
+		// }
 	}
 	h6, p{
 		width: 100%;
 		text-align: left;
+		margin-bottom: 1rem;
 	}
 }
+
+.textbox{
+	@extend %verticalCenter;
+	>div{
+		width: 32em;
+		height: auto;
+		@media screen and (max-width:501px){
+			width: 90%;
+		}
+		@extend %whiteCardShadow;
+		@extend %contentPadding;
+		border-radius: .25rem;
+		border: 1px solid rgba($blackColor, 0.3);
+		background-color: rgba($whiteColor, 0.8);
+	}
+}
+.infoBox{
+	display: inline-flex;
+	align-items: flex-end;
+	button{
+		@extend %underLineBtn;
+	}
+}
+.underLineBtn{
+	@extend %underLineBtn;
+}
+// main_scrollama - end
 
 #map_container{
 	position: fixed;

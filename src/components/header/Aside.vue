@@ -49,8 +49,8 @@ export default {
             Close,
             article: {
                 "chapter1": "內湖交通改善計畫：先了解大內科園區",
-                "chapter2": "大內科的工作人口從哪來？士林、松山、汐止佔多數",
-                "chapter3": "哪一區的通勤人口最少使用大眾運輸？"
+                "chapter2": "13萬的工作人口，居住內湖不到4成",
+                "chapter3": "大內科通勤族，僅有3成選擇大眾運輸"
             },
             secActive: null
         }
@@ -63,7 +63,8 @@ export default {
 
             const offsetTarget = target.getBoundingClientRect()
             window.scrollTo({
-                top: (offsetTarget.top + window.pageYOffset)
+                top: (offsetTarget.top + window.pageYOffset),
+                behavior: 'smooth'
             })
         }
     }
