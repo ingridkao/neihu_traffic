@@ -3,17 +3,22 @@
         <button @click="dropdown = !dropdown" class="annotationBtn">
             {{text}}
             <span>
-                {{dropdown? '▲': '▼註'}}
+                {{dropdown? '▲': '▼'}}註
             </span>
         </button>
 		<div :class="{open: dropdown}" class="annotationDropdown">
 			<p class="annotationContent" v-html="content"/>
+            <img 
+                v-if="contentImg !== ''" 
+                class="annotationImage"
+                :src="require(`@/assets/img/${contentImg}`)" :alt="text"
+            />
 		</div>
 	</span>
 </template>
 
 <script>
-const includeEl = ["annotationBox", "annotationBtn", "annotationDropdown", "annotationContent"]
+const includeEl = ["annotationBox", "annotationBtn", "annotationDropdown", "annotationContent", "annotationImage"]
 export default {
 	props:{ 
 		text: {
@@ -21,6 +26,10 @@ export default {
             default: 'center'
         },
 		content: {
+            type: String,
+            default: ''
+        },
+        contentImg: {
             type: String,
             default: ''
         }
@@ -49,32 +58,38 @@ export default {
 <style lang="scss" scoped>
 @import '@/assets/scss/variables.scss';
 .annotationBox{
-    position: relative;
+    // position: relative;
+    // width: 100%;
     .annotationBtn{
         border-bottom: 1px solid #999;
-        padding: 0;
+        padding: 0 .25rem;
+        font-size: 0.9rem;
         outline: none;
         cursor: pointer;
         span{
-            margin: .1rem;
             opacity: 0.5;
-            font-size: .5rem;
+            font-size: 50%;
             pointer-events: none;
         }
     }
 	.annotationDropdown{
         display: none;
         position: absolute;
-        top: .25em;
+        top: 2rem;
         left: 0;
         width: 100%;
         height: 0;
+        z-index: 1;
         background-color: $whiteColor;
         transition: height 0.5s ease;
         font-size: .8rem;
         .annotationContent{
             display: none;
             margin: 0;
+        }
+        .annotationImage{
+            width: 100%;
+            padding: .5rem;
         }
         &.open{
             display: block;

@@ -1,5 +1,5 @@
 <template>
-    <div class="apexChartContainer">
+    <div class="apexChartContainer radialsBasic">
         <apexchart 
             type= "radialBar"
             height="300" 
@@ -60,7 +60,7 @@ export default {
                     floating: true,
                     position: 'left',
                     horizontalAlign: 'left',
-                    offsetX: 120,
+                    offsetX: 90,
                     offsetY: 5,
                     labels: {
                         useSeriesColors: true,
@@ -94,10 +94,12 @@ export default {
 
 <style lang="scss">
 .apexChartContainer{
-    .apexcharts-legend-series{
-        height: auto;
-        line-height: .8rem;
-        margin-bottom: 0 !important;
+    &.radialsBasic{
+        .apexcharts-legend-series{
+            height: auto;
+            line-height: .8rem;
+            margin-bottom: 0 !important;
+        }
     }
 }
 </style>

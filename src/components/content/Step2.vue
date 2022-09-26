@@ -32,32 +32,56 @@
             </p>
 		</div>
 
-        <div class="imgBox"
-            :class="{
+        <div :class="[
+            'imgBox',
+            {
                 fixedbox: imgBoxShow || (currStep == 3 && currStepProgress <= 25)
-            }"
-        >
-            <div class="bg-map1" :class="{
-                active: currStep == 1 || (currStep == 2 && currStepProgress <= 50),
-            }"/>
+            }
+        ]">
             <div
-                :class="{
-                    'activeOpacity': (currStep == 2 && currStepProgress >= 45 && currStepProgress < 50),
-                    'active': (currStep == 2 && currStepProgress >= 50),
-                    'bg-map2': lowSpeed,
-                    'bg-map3': !lowSpeed
+                :style="{
+                    backgroundImage: `url(${MapImg1})`
                 }"
+                :class="[
+                    'bgBlock',
+                    {
+                        active: currStep == 1 || (currStep == 2 && currStepProgress <= 60),
+                    }
+                ]"
             />
-            <div class="bg-map4"
-                :class="{
-                    activeOpacity: (currStep == 2 && currStepProgress > 80) || (currStep == 3 && currStepProgress <= 10)
+            <div
+               :style="{
+                    backgroundImage: `url(${lowSpeed? MapImg2: MapImg3})`
                 }"
+                :class="[
+                    'bgBlock',
+                    {
+                        'activeOpacity': (currStep == 2 && currStepProgress >= 45 && currStepProgress <= 60),
+                        'active': (currStep == 2 && currStepProgress > 60)
+                    }
+                ]"
+            />
+            <div 
+                :style="{
+                    backgroundImage: `url(${MapImg4})`
+                }"
+                :class="[
+                    'bgBlock',
+                    {
+                        activeOpacity: (currStep == 2 && currStepProgress > 90) || (currStep == 3 && currStepProgress <= 10)
+                    }
+                ]"
             />
         </div>
 	</div>
 </template>
 
 <script>
+import MapImg1 from '@/assets/img/map/1.jpg'
+import MapImg2 from '@/assets/img/map/2.jpg'
+import MapImg3 from '@/assets/img/map/3.jpg'
+import MapImg4 from '@/assets/img/map/4.jpg'
+
 import SpeedLabel from "@/components/box/SpeedLabel.vue"
 export default {
     components:{
@@ -78,7 +102,11 @@ export default {
     },
     data(){
         return {
-            lowSpeed: false
+            lowSpeed: false,
+            MapImg1,
+            MapImg2,
+            MapImg3,
+            MapImg4
         }
     }
 }

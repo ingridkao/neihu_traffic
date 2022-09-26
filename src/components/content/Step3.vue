@@ -14,20 +14,44 @@
                 fixedbox: currStep == 3 || (currStep == 4 && currStepProgress <= 10) 
             }"
         >
-            <div class="bg-map4 active"/>
-            <div class="bg-map5" :class="{
-                activeOpacity: currStep == 3 && currStepProgress >= 20 && currStepProgress < 50,
-                active: (currStep == 3 && currStepProgress >= 50 && currStepProgress < 75),
-            }"/>
-            <div class="bg-map6" :class="{
-                activeOpacity: currStep == 3 && currStepProgress >= 75 && currStepProgress < 80,
-                active: currStep == 3 && currStepProgress >= 80
-            }"/>
+            <div
+                :style="{
+                    backgroundImage: `url(${MapImg4})`
+                }"
+                class="bgBlock active"
+            />
+            <div
+                :style="{
+                    backgroundImage: `url(${MapImg5})`
+                }"
+                :class="[
+                    'bgBlock',
+                    {
+                        activeOpacity: currStep == 3 && currStepProgress >= 20 && currStepProgress < 50,
+                        active: (currStep == 3 && currStepProgress >= 50 && currStepProgress < 75),
+                    }
+                ]"
+            />
+            <div
+                :style="{
+                    backgroundImage: `url(${MapImg6})`
+                }"
+                :class="[
+                    'bgBlock',
+                    {
+                        activeOpacity: currStep == 3 && currStepProgress >= 75 && currStepProgress < 80,
+                        active: currStep == 3 && currStepProgress >= 80
+                    }
+                ]"
+            />
         </div>
 	</div>
 </template>
 
 <script>
+import MapImg4 from '@/assets/img/map/4.jpg'
+import MapImg5 from '@/assets/img/map/5.jpg'
+import MapImg6 from '@/assets/img/map/6.jpg'
 export default {
     props: {
         currStep: {
@@ -35,6 +59,13 @@ export default {
         },
         currStepProgress: {
             type: Number
+        }
+    },
+    data(){
+        return {
+            MapImg4,
+            MapImg5,
+            MapImg6
         }
     }
 }

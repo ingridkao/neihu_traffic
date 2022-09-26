@@ -3,34 +3,34 @@
 		<div class="carousel-header">
 			<div class="carousel-btn">
 				<button
-					v-for="(slide, index) in tab" 
-					:key="index"
-					@click="selectPage(slide)"
+					v-for="(slide) in tab" 
+					:key="slide.index"
+					@click="selectPage(slide.index)"
 					:class="{
-						'slideActive': (currentTab === slide)
+						'slideActive': (currentTab === slide.index)
 					}"
 				>
-					{{slide}}
+					{{slide.name}}
 				</button>
 			</div>
-			<ChartLabel :text="'工作人口數量'" :gradient="['#e3c5c7', '#cf181b']"/>
 		</div>
 		<div class="carousel-image">
 			<div 
-				v-for="(slide, index) in tab" 
-				:key="index"
-				:style="slideSelect(index)"
+				v-for="(slide) in tab" 
+				:key="slide.index"
+				:style="slideSelect(slide.index)"
 				:class="{
-					'slideActive': (currentTab === slide)
+					'slideActive': (currentTab === slide.index)
 				}"
 			>
 				<div 
 					class="imgContainer"
 					:style="{
-						'background-image': `url(/img/tab/tab${index}.png)`,
+						'background-image': 'url('+ require(`@/assets/img/tab/${slide.index}.jpg`)+')',
 					}"
 				/>
 			</div>
+			<ChartLabel :text="'工作人口數量'" :gradient="['#e3c5c7', '#cf181b']"/>
 		</div>
 	</div>
 </template>
@@ -45,9 +45,12 @@ export default {
 	data(){
 		return {
 			tab: [
-				"全區", "A區", "B區", "C區"
+				{index: 'All', name: '全區'},
+				{index: 'A', name: 'A區'},
+				{index: 'B', name: 'B區'},
+				{index: 'C', name: 'C區'},
 			],
-			currentTab: "全區"
+			currentTab: "All"
 		}
 	},
 	methods: {
@@ -55,10 +58,10 @@ export default {
 			this.currentTab = val
 		},
 		slideSelect(index) {
-			// const selectIndex = this.tab.findIndex( item => item == this.currentTab)
-			// return {
-			// 	left : `${(index-selectIndex)*100}%`
-			// }
+			const selectIndex = this.tab.findIndex( item => item == this.currentTab)
+			return {
+				left : `${(index-selectIndex)*100}%`
+			}
 		}
 	}
 }
@@ -66,14 +69,12 @@ export default {
 
 <style lang="scss" scoped>
 .carousel{
-	.carousel-image .imgContainer{
-		height: 60vw;
-		background-position-x: center;
-		background-position-y: top;
-		background-size: contain;
-    	@media screen and (max-width:641px){
-			height: 100%;
-			background-size: cover;
+	.carousel-image{
+		.imgContainer{
+			height: 80vh;
+			background-size: contain;
+			background-position-x: center;
+			background-position-y: top;
 		}
 	}
 }

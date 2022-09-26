@@ -1,5 +1,5 @@
 <template>
-	<div class="block_scrollama textbox">
+	<div class="block_scrollama cardbox">
 		<div 
 			data-aos="fade-up"			
 			data-aos-duration="1000"

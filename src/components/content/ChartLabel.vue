@@ -27,7 +27,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .chartLabel{
-	width: 12rem;
+	width: 12rem !important;
 	display: flex;
 	flex-direction: row;
 	justify-content: space-around;

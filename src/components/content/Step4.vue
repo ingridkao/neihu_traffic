@@ -15,26 +15,53 @@
                 <span>推估大內科的人口特性。大內科工作人口為 133,500 人，居住在內湖的比例為37.6%，由此可知，多數人無法就近前往大內科工作。</span>
             </p>
             <p>此外，對比全台北市，大內科的居住人口密度為台北居住人口密度的 0.5 倍、工作人口密度則為 2.5 倍。</p>
+            <p
+                v-if="(currStep == 4 && currStepProgress >= 10) || currStep == 5"
+                class="infoBox"
+                data-aos="fade-up"			
+                data-aos-duration="3000"
+            >
+                <TelLabel/>
+            </p>
         </div>
         <div class="imgBox"
             :class="{
                 fixedbox: currStep == 4 && currStepProgress <= 50
             }"
         >
-            <div class="bg-map6 active"/>
-            <div class="bg-map7" :class="{
-                activeOpacity: currStep == 4 && currStepProgress >= 10 && currStepProgress < 30,
-                active: (currStep == 4 && currStepProgress > 30),
-            }"/>
+            <div
+                :style="{
+                    backgroundImage: `url(${MapImg6})`
+                }"
+                class="bgBlock active"
+            />
+            <div
+                :style="{
+                    backgroundImage: `url(${MapImg7})`
+                }"
+                :class="[
+                    'bgBlock',
+                    {
+                        activeOpacity: currStep == 4 && currStepProgress >= 10 && currStepProgress <= 30,
+                        active: (currStep == 4 && currStepProgress > 30) || currStep == 5,
+                    }
+                ]"
+            />
         </div>
 	</div>
 </template>
 
 <script>
+import MapImg6 from '@/assets/img/map/6.jpg'
+import MapImg7 from '@/assets/img/map/7.jpg'
+
 import Annotation from "@/components/content/Annotation.vue"
+import TelLabel from "@/components/box/TelLabel.vue"
+
 export default {
     components:{
-		Annotation
+		Annotation,
+        TelLabel
 	},
     props: {
         currStep: {
@@ -42,6 +69,12 @@ export default {
         },
         currStepProgress: {
             type: Number
+        }
+    },
+    data(){
+        return {
+            MapImg6,
+            MapImg7
         }
     }
 }

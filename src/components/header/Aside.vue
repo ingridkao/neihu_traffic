@@ -50,7 +50,8 @@ export default {
             article: {
                 "chapter1": "內湖交通改善計畫：先了解大內科園區",
                 "chapter2": "13萬的工作人口，居住內湖不到4成",
-                "chapter3": "大內科通勤族，僅有3成選擇大眾運輸"
+                "chapter3": "大內科通勤族，僅有3成選擇大眾運輸",
+                "chapter4": "從大眾運輸使用方式，分析通勤族的困境"
             },
             secActive: null
         }
@@ -128,5 +129,26 @@ export default {
             }
         }
     }
+}
+.svg_scroll{
+	animation: rotate 1s linear infinite;
+	animation-play-state: paused;
+	animation-delay: calc(var(--scroll) * -1s);
+
+	animation-iteration-count: 1;
+	animation-fill-mode: both;
+	&.svgImg{
+		position: fixed;
+		z-index: 1000;
+		top: 50%;
+		left: 50%;
+		margin-top: -50px;
+		margin-left: -50px;
+	}
+}
+@keyframes rotate {
+  to {
+    transform: rotate(360deg);
+  }
 }
 </style>

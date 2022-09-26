@@ -1,76 +1,71 @@
 <template>
-    <div class="apexChartContainer">
-        <apexchart :options="chartOptions" :series="series"/>
+    <div class="apexChartContainer donut">
+        <apexchart 
+            type= "donut"
+            height="200" 
+            :options="chartOptions" 
+            :series="series"
+        />
     </div>
 </template>
 
 <script>
-const seriesData = [{
-    name: 'Net Profit',
-    data: [44, 55, 57, 56, 61, 58, 63, 60, 66]
-}, {
-    name: 'Revenue',
-    data: [76, 85, 101, 98, 87, 105, 91, 114, 94]
-}]
+const chartDatas = [59, 16, 25]
+const chartLabels = ['A區', 'B區', 'C區']
+const chartColors = ['rgb(203, 15, 15)','rgb(229, 135, 135)', 'rgb(238, 180, 180)']
 export default {
     data(){
-        return {    
-            series: [],
+        return {
+            series: chartDatas,
             chartOptions: {
-                chart: {
-                    type: 'bar',
-                    height: 350
-                },
-                plotOptions: {
-                    bar: {
-                        horizontal: false,
-                        columnWidth: '55%',
-                        endingShape: 'rounded'
-                    },
+                colors: chartColors,
+                labels: chartLabels,
+                legend: {
+                    show: false,
+                    // position: 'bottom'
                 },
                 dataLabels: {
+                    enabled: true,
+                    formatter: (val) => {
+                        const dataIndex = chartDatas.findIndex(item => item === val)
+                        return `${chartLabels[dataIndex]} ${val}%`
+                    },
+                    style: {
+                        colors: ['#fff'],
+                        fontWeight: 'normal',
+                    },
+                    background: {
+                        enabled: true,
+                        foreColor: '#000',
+                        borderColor: '#666',
+                        borderWidth: 1
+                    }
+                },
+                tooltip:{
                     enabled: false
                 },
-                stroke: {
-                    show: true,
-                    width: 2,
-                    colors: ['transparent']
-                },
-                xaxis: {
-                    categories: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
-                },
-                yaxis: {
-                    title: {
-                        text: '$ (thousands)'
-                    }
-                },
-                fill: {
-                    opacity: 1
-                },
-                tooltip: {
-                    y: {
-                        formatter: function (val) {
-                            return "$ " + val + " thousands"
+                responsive: [{
+                    breakpoint: 380,
+                    options: {
+                        legend: {
+                            show: false
                         }
                     }
-                }
-            }
-        }
-    },
-    props: {
-        load: {
-            type: Boolean,
-            default: false
-        }
-    },
-    watch:{
-		load(newVal, oldVal){
-            if(newVal){
-                this.series = seriesData
-            }else{
-                this.series = []
+                }]
             }
         }
     }
 }
 </script>
+
+<style lang="scss">
+.apexChartContainer{
+    &.donut{
+        .apexcharts-legend-series{
+            height: auto;
+            line-height: .8rem;
+            margin-bottom: 0 !important;
+        }
+    }
+}
+</style>

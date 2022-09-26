@@ -44,24 +44,8 @@ export default {
     }
 }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
     .mapLabelBox{
-        width: 11rem;
-        height: 11.5rem;
-        border: 2px solid #ddd;
-        border-radius: 0.3rem;
-        h6{
-            font-size: 1rem;
-            font-weight: 500;
-        }
-        p{
-            font-size: 0.7rem;
-            line-height: 1;
-        }
-        h6, p{
-            margin-bottom: 0 !important;
-            text-align: center !important;
-        }
         >div{
             width: 10rem;
             height: 1rem;

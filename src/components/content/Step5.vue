@@ -33,4 +33,9 @@ export default {
 	}
 }
 </script>
+<style lang="scss" scoped>
+.carouselContainer>header{
+    max-width: 60rem;
+}
+</style>
 

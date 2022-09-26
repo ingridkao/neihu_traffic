@@ -24,35 +24,47 @@
 		// @media screen and (max-width:501px){
 		// 	width: 80%;
 		// }
+		&.autoH{
+			height: auto;
+		}
 	}
 	h6, p{
+		position: relative;
 		width: 100%;
 		text-align: left;
 		margin-bottom: 1rem;
 	}
 }
 
-.textbox{
-	@extend %verticalCenter;
-	>div{
-		width: 32em;
-		height: auto;
-		@media screen and (max-width:501px){
-			width: 90%;
-		}
-		@extend %whiteCardShadow;
-		@extend %contentPadding;
-		border-radius: .25rem;
-		border: 1px solid rgba($blackColor, 0.3);
-		background-color: rgba($whiteColor, 0.8);
-	}
+.apexChartContainer{
+	width: $mapAsideWidth;
 }
+
 .infoBox{
 	display: inline-flex;
 	align-items: flex-end;
 	button{
 		@extend %underLineBtn;
 	}
+}
+.mapLabelBox{
+	width: 11rem;
+	height: 11.5rem;
+	border: 2px solid #ddd;
+	border-radius: 0.3rem;
+	h6{
+		font-size: 1rem;
+		font-weight: 500;
+	}
+	p{
+		font-size: 0.7rem;
+		line-height: 1;
+	}
+	h6, p{
+		margin-bottom: 0 !important;
+		text-align: center !important;
+	}
+
 }
 .underLineBtn{
 	@extend %underLineBtn;

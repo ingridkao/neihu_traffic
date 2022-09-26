@@ -56,6 +56,7 @@ export default {
 
             chartValue: [],
             chartOptions: {
+                colors: ['rgb(244, 70, 70)', 'rgb(120, 198, 121)'],
                 chart:{
                     stacked: false,
                     stackType: 'normal',
@@ -159,7 +160,6 @@ export default {
             //     // return a[targetKey] - b[targetKey] //從小到大
             // })
             const clearData = this.sortType == 0? PrivateT: PublicT
-            console.log(clearData);
             //是否顯示內湖資料：內湖都在第一筆
             this.transData = this.neiHuShow? clearData.slice(0, 20): clearData.slice(1, 21)
             
