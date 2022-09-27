@@ -14,13 +14,7 @@
 			<Step5 data-step-no="5" />
 			<Step6 data-step-no="6" :curr-step="currStep" :curr-step-progress="currStepProgress"/>
 			<Step7 data-step-no="7" :load="currStep == 7" />
-			<div 
-				data-step-no="8"
-				class="block_scrollama contextbox"
-				style="background-color: #252527;"
-			>
-				Mapbox
-			</div>
+			<StepMap data-step-no="8" />
 			<Step9 data-step-no="9" />
 			<Step10 data-step-no="10" :curr-step="currStep" :curr-step-progress="currStepProgress"/>
 			<Step11 data-step-no="11" :curr-step="currStep" :curr-step-progress="currStepProgress"/>
@@ -30,23 +24,14 @@
 			<Step15 data-step-no="15" />
 		</div>
 		<AsideBox v-if="currStep > 0" :step="currStep"/>
-		<!-- <div id="map_container">
-			<MapBox 
-				:curr-step='currStep' 
-				:progress="currStepProgress" 
-				:update-center="mapCenterData"
-				:hail-layer='hailLayer'
-				:hail-nonstation-layer='hailNonstationLayer'
-			/>
-		</div> -->
 	</main>
 </template>
 
 <script>
 import "intersection-observer"
 import scrollama from "scrollama"
-import AOS from "aos";
-import "aos/dist/aos.css";
+import AOS from "aos"
+import "aos/dist/aos.css"
 
 import AsideBox from "@/components/header/Aside.vue"
 import HeaderAction from "@/components/header/Action.vue"
@@ -66,9 +51,7 @@ import Step13 from "@/components/content/Step13.vue"
 import Step14 from "@/components/content/Step14.vue"
 import Step15 from "@/components/content/Step15.vue"
 
-import MapBox from '@/components/maps/MapBox.vue'
-
-import {hotspot} from '@/assets/js/topspot.js'
+import StepMap from '@/components/content/StepMap.vue'
 
 export default {
 	name: "HomePage",
@@ -86,20 +69,15 @@ export default {
 	data() {
 		return {
 			videoStart: false,
-
 			currStep: 0,
-			currStepProgress: 0,
-
-			mapCenterData: {},
-			hailLayer: true,
-			hailNonstationLayer: true,
-			
+			currStepProgress: 0,			
 			scrollValue: 0
 		}
 	},
 	components:{
-		MapBox, HeaderAction, HeadCover, Step1, Step2, Step3, Step4, Step5, Step6, Step7, Step9, Step10, Step11, Step12, Step13, Step14, Step15,
-		AsideBox
+		AsideBox, HeaderAction, HeadCover, 
+		Step1, Step2, Step3, Step4, Step5, Step6, Step7, Step9, Step10, Step11, Step12, Step13, Step14, Step15,
+		StepMap
 	},
 	computed: {
 		langZh(){
@@ -147,16 +125,7 @@ export default {
 			window.addEventListener('resize', () => {
 				this._scroller.resize()
 			})
-		},
-		// mapSetCenter(e){
-		// 	if(hotspot[e] && hotspot[e]['center']){
-		// 		const hotspotData = hotspot[e]
-		// 		this.mapCenterData = {
-		// 			target: hotspotData['序號'],
-		// 			pos: hotspotData['center']
-		// 		}
-		// 	}
-		// }
+		}
 	}
 }
 </script>
