@@ -1,88 +1,105 @@
 <template>
 	<div id="map_container" class="block_scrollama contextbox">
        <aside>
-           <MapSelect :location="location" @trigger="clickLocation"/>
-           <TownSelect :town="town" @trigger="clickTown"
-                :style="{
-                    visibility: location === '臺北市'? 'visible': 'hidden'
-                }"
-           />
-           <div class="chartContainer">
-               
-           </div>
+           <p>
+               此外，我們也將上述的大眾運輸通勤佔比，以空間網格的方式做互動呈現，利於相關單位針對不同區域做深入查詢研究。
+           </p>
+            <MapChart 
+                v-if="load" 
+                :location="location" 
+                :tpTown="tpTown" 
+                :ntpTown="ntpTown"
+            />
+            <MapSelect 
+                :location="location" 
+                @trigger="clickLocation"
+            />
+            <!-- :style="{visibility: (location.index === 'taipei_city')? 'visible': 'hidden'}" -->
+            <div class="townBox">
+                <TownSelect 
+                    v-if="location.index === 'taipei_city'"
+                    :town="tpTown" 
+                    @trigger="clickTpTown"
+                />
+                <TownSelectNewTaipei 
+                    v-if="location.index === 'new_taipei_city'" 
+                    :town="ntpTown" 
+                    @trigger="clickNTpTown"
+                />
+            </div>
        </aside>
        <main>
-
+            <MapBox 
+                :location="location"
+                :tp-town-id="tpTown && tpTown.id? tpTown.id: ''"
+                :ntp-town-id="ntpTown && ntpTown.id? ntpTown.id: ''"
+            /> 
        </main>
-       <!-- 			
-           <MapBox 
-				:update-center="mapCenterData"
-			/> 
-        -->
 	</div>
 </template>
 
 <script>
 import MapSelect from "@/components/maps/MapSelect.vue"
 import TownSelect from "@/components/maps/TownSelect.vue"
-// import MapBox from "@/components/maps/MapBox.vue"
-// import {hotspot} from '@/assets/js/topspot.js'
-
+import TownSelectNewTaipei from "@/components/maps/TownSelectNewTaipei.vue"
+import MapChart from "@/components/maps/Chart.vue"
+import MapBox from "@/components/maps/MapBox.vue"
 export default {
 	data() {
 		return {
-            mapCenterData: {},
-            location: '',
-            town: '',
+            location: {},
+            tpTown: {},
+            ntpTown: {},
 		}
 	},
+    computed: {
+        load() {
+			return this.$store.state.step >= 7 && this.$store.state.step <= 9
+		}
+    },
 	components:{
-        // MapBox
         MapSelect,
-        TownSelect
+        TownSelect,
+        TownSelectNewTaipei,
+        MapChart,
+        MapBox
 	},
     methods: {
         clickLocation(target){
-            this.location = target
-            if(target === ''){
-                 this.town = target
-            }
+            this.location = target? target: {}
+            this.tpTown = {}
+            this.ntpTown = {}
         },
-        clickTown(target){
-            this.town = target
+        clickTpTown(targetObj){
+            this.tpTown = targetObj
+        },
+        clickNTpTown(targetObj){
+            this.ntpTown = targetObj
         }
-        // mapSetCenter(e){
-			// if(hotspot[e] && hotspot[e]['center']){
-		// 		const hotspotData = hotspot[e]
-		// 		this.mapCenterData = {
-		// 			target: hotspotData['序號'],
-		// 			pos: hotspotData['center']
-		// 		}
-		// 	}
-		// } 
     }
-
 }
 </script>
 
 <style lang="scss" scoped>
 @import '@/assets/scss/variables.scss';
 #map_container{
+    @extend %horizontalCenter;
     width: 100vw;
-    display: flex;
-    flex-direction: row;
     >aside{
         flex-basis: $mapAsideWidth;
         padding: 1rem;
         .chartContainer{
             width: 100%;
             height: calc(100vh - 27rem);
-            // background: #999;
+        }
+        .townBox{
+            height: 19rem;
         }
     }
     >main{
         flex: 1 1 calc(100% - #{$mapAsideWidth});
         background-color: #999;
+        padding: 0;
     }
 }
 </style>

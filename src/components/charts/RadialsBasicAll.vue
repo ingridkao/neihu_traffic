@@ -12,7 +12,7 @@
 <script>
 const chartDatas = [68.2, 19.8, 10.2, 1.9]
 const chartLabels = ['非大眾運輸','公車', '捷運', 'Youbike']
-const chartColors = ['#e4a37b','#6b9a80','#72be95', '#8bc08b']
+const chartColors = ['#cf181b','#6b9a80','#72be95', '#8bc08b']
 export default {
     data(){
         return {
@@ -44,9 +44,7 @@ export default {
                                 fontSize: '12px',
                                 color: '#373d3f',
                                 label: '總工作人口',
-                                formatter: (w) => {
-                                    return "133,500人"
-                                }
+                                formatter: (w) => ("133,500人")
                             }
                         }
                     }
@@ -59,8 +57,8 @@ export default {
                     floating: true,
                     position: 'left',
                     horizontalAlign: 'left',
-                    offsetX: 10,
-                    offsetY: 50,
+                    offsetX: 60,
+                    offsetY: -2.5,
                     labels: {
                         useSeriesColors: true,
                     },

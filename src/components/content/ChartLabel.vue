@@ -26,12 +26,12 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+@import '@/assets/scss/variables.scss';
 .chartLabel{
-	width: 12rem !important;
-	display: flex;
-	flex-direction: row;
+    @extend %horizontalCenter;
 	justify-content: space-around;
 	align-items: center;
+	width: 12rem !important;
 	font-size: 0.5rem;
 	color: #999;
 	>div{
@@ -39,7 +39,7 @@ export default {
 		height: 1rem;
 		line-height: 1rem;
 		text-align: center;
-		color: #fff;
+		color: $whiteColor;
 	} 
 }
 </style>

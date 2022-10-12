@@ -12,66 +12,43 @@ export const colors = {
     nepal: '#92acb8'
 }
 
-export const mainColorConfig = {
-    tooltipText: colors.black,
-    plotOptionsText: colors.nepal
-}
+// export const pieColor = [
+//     colors.gold, 
+//     colors.nepal, 
+//     colors.hoki
+// ]
 
-export const pieColor = [
-    colors.gold, 
-    colors.nepal, 
-    colors.hoki
-]
+// export const DistrictCount = {
+//     max: pieColor[0],
+//     min: pieColor[2]
+// }
 
-export const DistrictCount = {
-    max: pieColor[0],
-    min: pieColor[2]
-}
+// export const heatmapColor = {
+//     hail : [0.3,"hsl(190, 50%, 90%)", 0.6,"hsl(205, 55%, 70%)",1,"hsl(220, 60%, 70%)"],
+//     app : [0.3,"hsl(53, 90%, 60%)", 0.6,"hsl(28, 70%, 80%)",1,"hsl(32, 75%, 65%)"],
+//     nonStation : [0.3,"hsl(9, 100%, 96%)", 0.6,"hsl(9, 97%, 85%)",1,"hsl(9, 100%, 64%)"],
+// }
 
-export const heatmapColor = {
-    hail : [0.3,"hsl(190, 50%, 90%)", 0.6,"hsl(205, 55%, 70%)",1,"hsl(220, 60%, 70%)"],
-    app : [0.3,"hsl(53, 90%, 60%)", 0.6,"hsl(28, 70%, 80%)",1,"hsl(32, 75%, 65%)"],
-    nonStation : [0.3,"hsl(9, 100%, 96%)", 0.6,"hsl(9, 97%, 85%)",1,"hsl(9, 100%, 64%)"],
-}
+// export const topSpot = {
+//     min: colors.yellowKhaki,
+//     max: colors.indianRed
+// }
 
-export const topSpot = {
-    min: colors.yellowKhaki,
-    max: colors.indianRed
-}
-
-export const top100FillStyle = {
-    id: 'top100hotspot',
-    source: 'top100hotspot',
-    type: 'fill',
-    layout : { visibility: 'none' },
-    paint: {
-        "fill-color": [
-            "interpolate",
-            ["linear"],
-            ["get", "NUMPOINTS"],
-            67,topSpot.min,
-            837,topSpot.max
-        ]
-    }
-}
-
-export const taiwanFillStyle = {
-    id: 'taiwan_city',
-    source: 'taiwan_city',
-    type: 'fill',
-    layout : { 
-        "visibility": "none"
-    },
-    paint: {
-        "fill-color": [
-            'interpolate',['linear'],['get', 'taxicount'],
-            0,colors.white,
-            800,DistrictCount.min,
-            32000,DistrictCount.max
-        ],
-        "fill-opacity": 0.7
-    }
-}
+// export const top100FillStyle = {
+//     id: 'top100hotspot',
+//     source: 'top100hotspot',
+//     type: 'fill',
+//     layout : { visibility: 'none' },
+//     paint: {
+//         "fill-color": [
+//             "interpolate",
+//             ["linear"],
+//             ["get", "NUMPOINTS"],
+//             67,topSpot.min,
+//             837,topSpot.max
+//         ]
+//     }
+// }
 
 export const taiwanLineStyle = {
     id: 'taiwan_city_line',
@@ -82,8 +59,8 @@ export const taiwanLineStyle = {
         "line-join": "round"
     },
     paint:{
-        "line-color": colors.white,
-        "line-width": 1
+        "line-color": colors.nepal,
+        "line-width": 2
     }
 }
 
@@ -100,15 +77,15 @@ export const taiwanSymbolStyle = (zh) =>{
                 ["get", Name], {
                     "font-scale": 0.9
                 },
-                "\n", {},
-                ["get", "percentage"],{
-                    "text-font": ["literal", ["DIN Offc Pro Italic"]],
-                    "font-scale": 0.8
-                },
-                "%",{
-                    "text-font": ["literal", ["DIN Offc Pro Italic"]],
-                    "font-scale": 0.8
-                }
+                // "\n", {},
+                // ["get", "percentage"],{
+                //     "text-font": ["literal", ["DIN Offc Pro Italic"]],
+                //     "font-scale": 0.8
+                // },
+                // "%",{
+                //     "text-font": ["literal", ["DIN Offc Pro Italic"]],
+                //     "font-scale": 0.8
+                // }
             ]
         },
         paint:{
@@ -121,59 +98,42 @@ export const taiwanSymbolStyle = (zh) =>{
     }
 }
 
-export const taxiAPPHeatConfig = {
-    type: 'heatmap',
+export const PopWorkStyle = {
+    id: 'pop_work_fill',
+    source: 'pop_work',
+    type: 'fill-extrusion',
+    filter: [
+        "all", 
+        ["has", 'pop_work_min'], 
+        [">=", ['get', 'pop_work_min'], 5]
+    ],
     paint: {
-        'heatmap-color': [
-            "step",
-            ["heatmap-density"],
-            "hsla(0, 0%, 0%, 0)",
-            ...heatmapColor.app
-        ]
-    }
-}
-
-export const taxiHailNonStationStyle = {
-    id: 'taxi_hail_Nonstation',
-    source: 'taxi_hail_Nonstation',
-    type: 'heatmap',
-    layout : { visibility: 'none' },
-    paint: {
-        'heatmap-color': [
-            "step",
-            ["heatmap-density"],
-            "hsla(0, 0%, 0%, 0)",
-            ...heatmapColor.nonStation
-        ]
-    }
-}
-
-export const taxiStationPointStyle = {
-    id: 'taxistation',
-    source: 'taxistation',
-    type: 'circle',
-    layout : { visibility: 'none' },
-    paint: {
-        'circle-color': colors.indianRed,
-        'circle-radius': [
-            "interpolate",
-            ["linear"],
-            ["zoom"],
-            11.99, 0,
-            12,1,
-            15,3
-        ]
-    }
-}
-
-export const taxiStationBufferStyle = {
-    id: 'taxistationBuffer',
-    source: 'taxistationBuffer',
-    type: 'fill',
-    layout : { visibility: 'none' },
-    paint: {
-        'fill-color': colors.lightGrayishRed,
-        'fill-opacity': 0.5
+        "fill-extrusion-color": [
+            'interpolate',['linear'],['get', 'transport_rate'],
+            0, '#d63436',
+            0.3, '#e7d0d1',
+            0.31, '#d4dfd8',
+            1, '#4da66e'
+        ],   
+        'fill-extrusion-height': [
+            'interpolate',
+            ['linear'],
+            ['zoom'],
+            15,
+            0,
+            15.05,
+            ['get', 'pop_work_min']
+        ],
+        // 'fill-extrusion-base': [
+        //     'interpolate',
+        //     ['linear'],
+        //     ['zoom'],
+        //     15,
+        //     0,
+        //     15.05,
+        //     ['get', 'min_height']
+        // ],
+        'fill-extrusion-opacity': 0.6
     }
 }
 

@@ -20,22 +20,13 @@
                         :content-img="'visMethods.jpeg'"
                     />
                     <span>
-                        呈現捷運、公車以及 YouBike 的使用熱點；並進一步推論，透過大眾運輸通勤大內科的主要方式可能為：搭乘捷運至鄰近大內科的捷運西湖、港墘、或是松山站下車，再以公車或 YouBike 進入大內科園區。由於大部分的捷運線前往西湖、港墘站，都需多次轉乘，導致使用意願不高。以住在捷運士林站的通勤族為例，捷運加公車，至少需轉乘三次，相當耗費時間與精神。
+                        ，呈現捷運、公車以及 YouBike 的使用熱點；並進一步推論出，透過大眾運輸抵達大內科的主要方式可能為：搭乘捷運至鄰近大內科的捷運西湖、港墘或是松山站下車後，再以公車或 YouBike 進入大內科園區。由於大部分的捷運線前往西湖、港墘站，都需多次轉乘，導致使用意願不高。以住在捷運士林站的通勤族為例，捷運加公車，至少需轉乘三次，相當耗費時間與精神。
                     </span>
                 </p>
             </div>
         </header>
 	</div>
 </template>
-
-<script>
-import Annotation from "@/components/content/Annotation.vue"
-export default {
-	components:{
-		Annotation
-	}
-}
-</script>
 
 <style lang="scss" scoped>
 .autoH{

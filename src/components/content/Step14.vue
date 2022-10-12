@@ -2,7 +2,7 @@
 	<div 
         class="block_scrollama contextbox rowBox"
     >
-		<div >
+		<div class="articalBox">
             <h6>發展區域南移，未來將湧入更多人口</h6>
             <p
                 v-if="imgBoxShow"
@@ -21,7 +21,7 @@
         <div class="imgBox">
             <div
                 :style="{
-                    backgroundImage: `url(${require('@/assets/img/map/9.png')})`,
+                    backgroundImage: `url(${require('@/assets/img/zone.png')})`,
                     backgroundSize: 'contain'
                 }"
                 class="bgBlock active"
@@ -41,15 +41,13 @@ export default {
     components:{
 		DonutBasic
 	},
-    props: {
-        currStep: {
-            type: Number || String
-        },
-        currStepProgress: {
-            type: Number
-        },
-    },
     computed: {
+        currStep() {
+			return this.$store.state.step
+		},
+		currStepProgress() {
+			return this.$store.state.progres
+		},
         imgBoxShow(){
             return this.currStep == 14 && this.currStepProgress > 20
         },

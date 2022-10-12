@@ -3,23 +3,24 @@
         id="chapter2"
         class="block_scrollama contextbox rowBox"
     >
-        <div
+        <div class="articalBox"
             data-aos="fade-up"
-            data-aos-duration="3000"
-            data-aos-offset="500"
+            data-aos-duration="1600"
         >
-            <h6>13 萬的工作人口，居住內湖不到 4 成</h6>
-            <p>
+            <h6>13萬的工作人口，居住內湖不到4成</h6>
+            <p v-if="textShow1">
                 <span>本次研究，透過</span>
-                <Annotation :text="'電信資料'" :content="'電信業者將手機通訊資料去識別化後，能推估出一定空間範圍內的人口變化。這能幫助我們更精確掌握如上下班通勤的時段性人潮、居住與就業地分佈等資訊。'"/>
-                <span>推估大內科的人口特性。大內科工作人口為 133,500 人，居住在內湖的比例為37.6%，由此可知，多數人無法就近前往大內科工作。</span>
+                <Annotation :text="'電信資料'" :content="'電信業者透過手機訊號，推估空間範圍內的人口變化。這能幫助我們更精確掌握如上下班通勤的實際流動、居住與就業地分佈等資訊。'"/>
+                <span>推估大內科的人口特性。大內科工作人口為 13 萬 3500 人，居住在內湖的比例為37.6 % 。由此可知，多數人無法就近前往大內科工作，而需要較長距離的通勤。</span>
             </p>
-            <p>此外，對比全台北市，大內科的居住人口密度為台北居住人口密度的 0.5 倍、工作人口密度則為 2.5 倍。</p>
+            <p v-if="textShow2">
+                此外，對比全台北市，大內科的居住人口密度為台北居住人口密度的一半、但工作人口密度卻為 2.5 倍。而未來大內科南區進駐更多企業後，可預見將帶來更大的交通壓力。
+            </p>
             <p
-                v-if="(currStep == 4 && currStepProgress >= 10) || currStep == 5"
+                v-if="textShow3"
                 class="infoBox"
                 data-aos="fade-up"			
-                data-aos-duration="3000"
+                data-aos-duration="1600"
             >
                 <TelLabel/>
             </p>
@@ -29,54 +30,54 @@
                 fixedbox: currStep == 4 && currStepProgress <= 50
             }"
         >
-            <div
-                :style="{
-                    backgroundImage: `url(${MapImg6})`
+            <div class="bgBlock bg1 active"/>
+            <div class="bgBlock bg2"
+                :class="{
+                    activeOpacity: currStep == 4 && currStepProgress >= 10 && currStepProgress <= 30,
+                    active: (currStep == 4 && currStepProgress > 30) || currStep == 5,
                 }"
-                class="bgBlock active"
-            />
-            <div
-                :style="{
-                    backgroundImage: `url(${MapImg7})`
-                }"
-                :class="[
-                    'bgBlock',
-                    {
-                        activeOpacity: currStep == 4 && currStepProgress >= 10 && currStepProgress <= 30,
-                        active: (currStep == 4 && currStepProgress > 30) || currStep == 5,
-                    }
-                ]"
             />
         </div>
 	</div>
 </template>
 
 <script>
-import MapImg6 from '@/assets/img/map/6.jpg'
-import MapImg7 from '@/assets/img/map/7.jpg'
-
-import Annotation from "@/components/content/Annotation.vue"
 import TelLabel from "@/components/box/TelLabel.vue"
-
 export default {
     components:{
-		Annotation,
         TelLabel
 	},
-    props: {
-        currStep: {
-            type: Number || String
+    computed: {
+        mobildDevice(){
+            return this.$store.state.mobildDevice
         },
-        currStepProgress: {
-            type: Number
-        }
-    },
-    data(){
-        return {
-            MapImg6,
-            MapImg7
-        }
+        currStep() {
+			return this.$store.state.step
+		},
+		currStepProgress() {
+			return this.$store.state.progres
+		},
+        textShow1(){
+            if(this.mobildDevice) return !(this.currStep == 4 && this.currStepProgress >= 25)
+            return true
+        },
+        textShow2(){
+            if(this.currStep != 4) return false
+            if(this.mobildDevice) return this.currStep == 4 && this.currStepProgress >= 25
+            return true
+        },
+        textShow3(){
+            if(this.mobildDevice) return false
+            return (this.currStep == 4 && this.currStepProgress >= 10) || this.currStep == 5
+        },
+
     }
 }
 </script>
+<style lang="scss" scoped>
+.bgBlock{
+    &.bg1{ background-image: url('../../assets/img/map/6.jpg'); }
+    &.bg2{ background-image: url('../../assets/img/map/7.jpg'); }
+}
+</style>
 

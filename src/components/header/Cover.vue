@@ -12,15 +12,16 @@ import VideoPlayer from "@/components/VideoPlayer.vue"
 export default {
 	name: "HeaderCover",
 	props:{ 
-		step: {
-            type: String,
-            default: '0'
-        },
 		videoStart: {
             type: Boolean,
             default: false
         }
 	},
+	computed: {
+        step() {
+			return this.$store.state.step
+		}
+    },
 	components: {
 		VideoPlayer
 	},

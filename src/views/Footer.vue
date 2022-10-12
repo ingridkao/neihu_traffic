@@ -14,21 +14,21 @@
 		<div>
 			<h6>{{$t('footer.title1')}}</h6>
 			<p>
-				<a target="_blank" href="https://www-ws.gov.taipei/Download.ashx?u=LzAwMS9VcGxvYWQvMzkwL3JlbGZpbGUvMTk2OTQvODI1MzIzOC80ZWJlODkzMC1hM2JkLTQ0YjItYTgyNi1jZTNlMGQwYjE0N2MucGRm&n=MTA5MDkyNeS6pOmAmuacg%2bWgseacg%2bitsOizh%2baWmV8xMDnlubTnrKw55qyh5Lqk6YCa5pyD5aCx5pyD6K2w6LOH5paZdjEucGRm&icon=.pdf" :title="$t('linkTo')">{{$t('footer.linkTitle1')}}</a>{{$t('footer.linkDesc1')}}
+				<a target="_blank" href="https://invest.taipei/pages/NeihuTechnologyPark.html?1653362761" :title="$t('linkTo')">台北投資服務辦公室</a>
 			</p>
 			<p>
-				<a target="_blank" href="https://www.motc.gov.tw/uploaddowndoc?file=survey/202011040929120.pdf&filedisplay=202011040929120.pdf&flag=doc" :title="$t('linkTo')">{{$t('footer.linkTitle2')}}</a>{{$t('footer.linkDesc2')}}
+				台北市政府交通局 108年度臺北市運輸走廊整合道路交通與電信資訊應用服務案
 			</p>
 			<p>
-				<a target="_blank" href="https://data.gov.tw/dataset/134597" :title="$t('linkTo')">{{$t('footer.linkTitle3')}}</a>{{$t('footer.linkDesc3')}}
+				<a target="_blank" href="https://spectrum.ieee.org/mining-traffic-data-for-insights-about-the-pandemic" :title="$t('linkTo')">Mining Traffic Data for Insights About The Pandemic</a>
 			</p>
 			<h6>{{$t('footer.title2')}}</h6>
-			<p>
-				<a target="_blank" href="https://news.ltn.com.tw/news/Taipei/paper/1427502" :title="$t('linkTo')">{{$t('footer.linkTitle4')}}</a>
-			</p>
-			<p>
-				<a target="_blank" href="https://news.pts.org.tw/article/510220" :title="$t('linkTo')">{{$t('footer.linkTitle5')}}</a>
-			</p>
+			<p>Tom Tom Traffic stats 2019/04</p>
+			<p>信令工作人口與居住人口推估</p>
+			<p>信令工作人口居住地推估</p>
+			<p>捷運每日分時各站OD流量統計資料</p>
+			<p>公車上下車刷卡交易資料</p>
+			<p>Youbike借還車刷卡交易資料</p>
 		</div>
 	</footer>
 </template>

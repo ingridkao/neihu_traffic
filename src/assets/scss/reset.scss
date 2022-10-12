@@ -30,9 +30,12 @@ h6{
     font-weight: 600;
     color: $titleColor;
 }
-p{
+p, li{
 	font-size: 0.9rem;
 	line-height: 2;
+}
+ol{
+    margin-left: 1rem;
 }
 a{
     display: inline-block;
@@ -40,7 +43,6 @@ a{
     text-decoration: underline;
     color: $blackColor;
 }
-
 button{
     box-sizing: border-box;
 	cursor: pointer;
@@ -54,7 +56,6 @@ button{
         box-shadow: none;
     }
 }
-
 img{
 	height: 100%;
 }

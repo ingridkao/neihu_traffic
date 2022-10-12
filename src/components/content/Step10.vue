@@ -1,43 +1,53 @@
 <template>
-    <div 
-        class="block_scrollama contextbox"
-    >
-        <div class="imgBox">
-            <div
-                :style="{
-                    backgroundImage: `url(${require('@/assets/img/zoom/1.jpeg')})`
-                }"
-                class="bgBlock imgCenter active"
-            />
+    <div class="block_scrollama contextbox fullContainer">
+        <div class="imgBox"
+            :class="{
+                fixedbox: blockFixed,
+                blockBottom: blockBottom
+            }"
+        >
+            <div class="bgBlock imgCenter bg1" :class="{active: article === 1}"/>
+            <div class="bgBlock imgCenter bg2" :class="{active: article === 2}"/>
+            <div class="bgBlock imgCenter bg3" :class="{active: article === 3}"/>
+            <div class="bgBlock imgCenter bg4" :class="{active: article === 4 || article === 5}"/>
         </div>
-        <div class="cardBox">
+        <div class="cardBox"
+            :class="{
+                blockFixed: cardBlockFixed,
+            }"
+        >
             <div class="top left title">
                 <h6>捷運的通勤熱區在哪</h6>
-                <p>- 上下班時段的起訖熱門區域-</p>
+                <p>- 上下班時段的起訖熱門區域 -</p>
             </div>
             <div class="middle right content">
-                <div>
+                <div
+                    v-if="article == 1"
+                    data-aos="fade-down"			
+                    data-aos-duration="1600"
+                >
                     1. 主要的捷運通勤族皆來自文湖線站點周邊。
                 </div>
                 <div
-                    v-if="currStep == 10 && currStepProgress > 15"
-                    data-aos="fade-up"			
-                    data-aos-duration="3000"
+                    v-if="article == 2"
+                    data-aos="fade-down"			
+                    data-aos-duration="1600"
                 >
-                    2. 在轉乘的部分最多的人次來自板南線、其次為松山線，其餘路線較少有通勤人口使用。</div>
+                    2. 在轉乘的部分最多的人次來自板南線、其次為松山新店線與中和新蘆線。
+                </div>
                 <div
-                    v-if="currStep == 10 && currStepProgress > 30"
-                    data-aos="fade-up"			
-                    data-aos-duration="3000"
+                    v-if="article == 3"
+                    data-aos="fade-down"			
+                    data-aos-duration="1600"
                 >
                     3. 士林北投區域的工作人口佔9.2%但使用捷運通勤人數相當少數。
                 </div>
                 <div
-                    v-if="currStep == 10 && currStepProgress > 45"
-                    data-aos="fade-up"			
-                    data-aos-duration="3000"
+                    v-if="article >= 4"
+                    data-aos="fade-down"			
+                    data-aos-duration="1600"
                 >
-                    4. 不管上班或下班，南港展覽館為進出人次最高的站，推測其周邊居住人口/搭乘台鐵人口至此轉乘文湖線的需求大。
+                    4. 不管上班或下班，南港展覽館為進出人次最高的站，推測其周邊汐止區居住人口至此搭乘至內科工作。
                 </div>
             </div>
         </div>
@@ -46,14 +56,59 @@
 
 <script>
 export default {
-    props: {
-        currStep: {
-            type: Number || String
+    computed: {
+        currStep() {
+			return this.$store.state.step
+		},
+		currStepProgress() {
+			return this.$store.state.progres
+		},
+        cardBlockFixed(){
+            return  this.currStep == 10 && this.currStepProgress >= 15 && this.currStepProgress < 90
         },
-        currStepProgress: {
-            type: Number
+        blockFixed(){
+            return  this.currStep == 10 && this.currStepProgress >= 15 && this.currStepProgress < 90
+        },
+        blockBottom(){
+            return  (this.currStep == 10 && this.currStepProgress >= 90) || this.currStep == 11
+        },
+        article(){
+            if(this.blockBottom){
+                return 5
+            }else if(this.currStep == 10 && this.currStepProgress >= 75){
+                return 4
+            }else if(this.currStep == 10 && this.currStepProgress >= 50){
+                return 3
+            }else if(this.currStep == 10 && this.currStepProgress >= 25){
+                return 2
+            }else{
+                return 1
+            }
         }
     }
 }
 </script>
+<style lang="scss">
+    .fullContainer{
+        height: 200vh !important;
+        .imgBox{
+            height: 100vh;
+            &.blockTop{}
+            &.blockBottom{position: absolute;bottom: 0;z-index: 0;}
+        }
+        .cardBox{
+            &.blockFixed{
+                position: fixed;
+                height: 100vh;
+                z-index: 2;
+            }
+        }
+        .bgBlock{
+            &.bg1{ background-image: url('../../assets/img/zoom/MRT-02.jpg'); }
+            &.bg2{ background-image: url('../../assets/img/zoom/MRT-03.jpg'); }
+            &.bg3{ background-image: url('../../assets/img/zoom/MRT-04.jpg'); }
+            &.bg4{ background-image: url('../../assets/img/zoom/MRT-05.jpg'); }
+        }
+    }
+</style>
 

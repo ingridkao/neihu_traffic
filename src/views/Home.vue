@@ -4,26 +4,26 @@
 			{{currStep}}
 			{{currStepProgress}}
 		</div>
-		<HeadCover v-if="currStep <= 2" :step="currStep" :video-start="videoStart" @toggle="toggleVideoStatus" />
+		<HeadCover v-if="currStep <= 2" :video-start="videoStart" @toggle="toggleVideoStatus" />
 		<div ref="scrollama_container" id="main_scrollama">
 			<HeaderAction data-step-no="0" :video-start="videoStart" />
 			<Step1 data-step-no="1"/>
-			<Step2 data-step-no="2" :curr-step="currStep" :curr-step-progress="currStepProgress"/>
-			<Step3 data-step-no="3" :curr-step="currStep" :curr-step-progress="currStepProgress"/>
-			<Step4 data-step-no="4" :curr-step="currStep" :curr-step-progress="currStepProgress"/>
+			<Step2 data-step-no="2"/>
+			<Step3 data-step-no="3"/>
+			<Step4 data-step-no="4"/>
 			<Step5 data-step-no="5" />
-			<Step6 data-step-no="6" :curr-step="currStep" :curr-step-progress="currStepProgress"/>
-			<Step7 data-step-no="7" :load="currStep == 7" />
-			<StepMap data-step-no="8" />
+			<Step6 data-step-no="6"/>
+			<Step7 data-step-no="7"/>
+			<div data-step-no="8" style="height: 100vh;">8</div>
 			<Step9 data-step-no="9" />
-			<Step10 data-step-no="10" :curr-step="currStep" :curr-step-progress="currStepProgress"/>
-			<Step11 data-step-no="11" :curr-step="currStep" :curr-step-progress="currStepProgress"/>
-			<Step12 data-step-no="12" :curr-step="currStep" :curr-step-progress="currStepProgress"/>
-			<Step13 data-step-no="13" />
-			<Step14 data-step-no="14" :curr-step="currStep" :curr-step-progress="currStepProgress"/>
-			<Step15 data-step-no="15" />
+			<Step10 data-step-no="10"/>
+			<Step11 data-step-no="11"/>
+			<Step12 data-step-no="12"/>
+			<Step13 data-step-no="13"/>
 		</div>
-		<AsideBox v-if="currStep > 0" :step="currStep"/>
+		<AsideBox v-if="currStep > 0"/>
+			<!-- <Step14 data-step-no="14"/> -->
+			<!-- <StepMap data-step-no="8"/> -->
 	</main>
 </template>
 
@@ -48,8 +48,7 @@ import Step10 from "@/components/content/Step10.vue"
 import Step11 from "@/components/content/Step11.vue"
 import Step12 from "@/components/content/Step12.vue"
 import Step13 from "@/components/content/Step13.vue"
-import Step14 from "@/components/content/Step14.vue"
-import Step15 from "@/components/content/Step15.vue"
+// import Step14 from "@/components/content/Step14.vue"
 
 import StepMap from '@/components/content/StepMap.vue'
 
@@ -69,15 +68,17 @@ export default {
 	data() {
 		return {
 			videoStart: false,
-			currStep: 0,
-			currStepProgress: 0,			
+			// currStep: 0,
+			// currStepProgress: 0,			
 			scrollValue: 0
 		}
 	},
 	components:{
 		AsideBox, HeaderAction, HeadCover, 
-		Step1, Step2, Step3, Step4, Step5, Step6, Step7, Step9, Step10, Step11, Step12, Step13, Step14, Step15,
-		StepMap
+		Step1, Step2, Step3, Step4, Step5, Step6, Step7, 
+		StepMap, Step9, Step10, 
+		Step11, Step12, Step13, 
+		// Step14
 	},
 	computed: {
 		langZh(){
@@ -96,6 +97,12 @@ export default {
 			return {
 				'--scroll': this.scrollValue
 			}
+		},
+		currStep() {
+			return this.$store.state.step
+		},
+		currStepProgress() {
+			return this.$store.state.progres
 		}
 	},
 	methods: {
@@ -112,11 +119,13 @@ export default {
 			.setup(this.opts)
 			.onStepProgress(resp => {
 				const {progress} = resp	
-				this.currStepProgress = (Math.floor(progress*10000)/100)
+				this.$store.commit('updateProgres', (Math.floor(progress*10000)/100))
+				// this.currStepProgress = (Math.floor(progress*10000)/100)
 			})
 			.onStepEnter(resp => {
 				const {element} = resp
-				this.currStep = element.dataset.stepNo
+				this.$store.commit('updateStep', element.dataset.stepNo)
+				// this.currStep = element.dataset.stepNo
 			})
 			// .onStepExit(resp => {
 			// 	const {element} = resp

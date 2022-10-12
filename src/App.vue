@@ -1,20 +1,17 @@
 <script setup>
+	import { useStore } from 'vuex'
 	import MobileDetect from 'mobile-detect'
 
 	import Home from '@/views/Home.vue'
-	import HomeMobile from '@/views/HomeMobile.vue'
 	import Footer from '@/views/Footer.vue'
 
+	const store = useStore()
 	const mobileDetect = new MobileDetect(window.navigator.userAgent)
-	const mobildDevice = mobileDetect.phone()? true: false
+	const isMpbile = mobileDetect.phone() || document.body.clientWidth <= 600
+	store.commit('updateMobildDevice', isMpbile? true: false)
 </script>
-
-		<!-- <HomeMobile v-if="mobildDevice"/>
-		<Home v-else/> -->
 <template v-cloak>
-	<keep-alive>
-		<Home/>
-	</keep-alive>
+	<Home/>
 	<Footer/>
 </template>
 

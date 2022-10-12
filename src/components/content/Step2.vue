@@ -3,27 +3,27 @@
         id="chapter1"
         class="block_scrollama contextbox rowBox"
     >
-		<div >
+		<div class="articalBox">
             <h6>內湖交通改善計畫：先了解大內科園區</h6>
             <p
-                v-if="(currStep == 2 && currStepProgress > 25)"
+                v-if="imgBoxShow1"
                 data-aos="fade-up"			
-                data-aos-duration="3000"
+                data-aos-duration="1600"
             >
-                根據 2019 年交通流量資料，內湖的交通壅塞熱點，主要集中在以內湖科技園區及大彎南段工業區組成的「大內湖科技園區」(以下簡稱大內科)。大內科總面積2.8km²，  其中多為工商業用地，住宅用地次之，西邊則為美麗華商業區。
+                根據 2019 年交通流量資料，內湖的交通壅塞熱點，主要集中在以內湖科技園區及大彎南段工業區組成的「大內湖科技園區」(以下簡稱大內科)。大內科總面積2.8km²，其中多為工商業用地，住宅用地次之。
             </p>
             <p
-                v-if="imgBoxShow"
+                v-if="imgBoxShow2"
                 data-aos="fade-up"			
-                data-aos-duration="3000"
+                data-aos-duration="1600"
             >
-                內科周邊的主要道路除了至內科工作的人使用外，同時也要負擔其他區域的過境車流，在通勤時段從其他區域進入內科的車流為42.5%，過境內科的車流為57.5%。
+                大內科周邊的主要道路，除了供大內科工作的人使用外，同時也要負擔其他區域的過境車流。據交通局委託民間業者的分析報告指出，在通勤時段從其他區域進入大內科的車流為42.5%，過境大內科的車流為57.5%。.5%，過境內科的車流為57.5%。
             </p>
             <p 
-                v-if="imgBoxShow" 
+                v-if="imgBoxShow3" 
                 class="infoBox"
                 data-aos="fade-up"			
-                data-aos-duration="3000"
+                data-aos-duration="1600"
             >
                 <SpeedLabel :low-speed="lowSpeed"/>
                 <button @click="lowSpeed = !lowSpeed">
@@ -35,7 +35,7 @@
         <div :class="[
             'imgBox',
             {
-                fixedbox: imgBoxShow || (currStep == 3 && currStepProgress <= 25)
+                fixedbox: imgBoxShow3 || (currStep == 3 && currStepProgress <= 25)
             }
         ]">
             <div
@@ -83,22 +83,33 @@ import MapImg3 from '@/assets/img/map/3.jpg'
 import MapImg4 from '@/assets/img/map/4.jpg'
 
 import SpeedLabel from "@/components/box/SpeedLabel.vue"
+
 export default {
     components:{
 		SpeedLabel
 	},
-    props: {
-        currStep: {
-            type: Number || String
-        },
-        currStepProgress: {
-            type: Number
-        },
-    },
     computed: {
-        imgBoxShow(){
+        mobildDevice(){
+            return this.$store.state.mobildDevice
+        },
+        currStep() {
+			return this.$store.state.step
+		},
+		currStepProgress() {
+			return this.$store.state.progres
+		},
+        imgBoxShow1(){
+            if(this.mobildDevice) return !(this.currStep == 2 && this.currStepProgress >= 25)
+            return this.currStep == 2 && this.currStepProgress > 25
+        },
+        imgBoxShow2(){
+            if(this.mobildDevice) return this.currStep == 2 && this.currStepProgress >= 25
+            return this.currStep == 2 &&  this.currStepProgress >= 50
+        },
+        imgBoxShow3(){
+            if(this.mobildDevice) return false
             return this.currStep == 2 && this.currStepProgress >= 50
-        }
+        },
     },
     data(){
         return {

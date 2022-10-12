@@ -1,27 +1,25 @@
 <template>
     <div class="chartActionBox">
         <div>
-            <span>排序方式</span> : 
+            <span>排序方式: </span>
             <button class="underLineBtn" :disabled="sortType == 1" @click="sortTypeToggle(1)">私人運具</button>
             <button class="underLineBtn" :disabled="sortType == 0" @click="sortTypeToggle(0)">大眾運輸</button>
-            |
         </div>
         <div>
-            <span>內湖數據顯示</span> : 
+            <span>內湖數據顯示: </span>
             <button class="underLineBtn" :disabled="!neiHuShow" @click="neiHuShowToggle(false)">ON</button>
             <button class="underLineBtn" :disabled="neiHuShow" @click="neiHuShowToggle(true)">OFF</button>
-            |
         </div>
         <div>
-            <span>呈現方式</span> : 
+            <span>呈現方式: </span>
             <button class="underLineBtn" :disabled="!stackedChart" @click="stackedChartToggle(false)">類型比較</button>
             <button class="underLineBtn" :disabled="stackedChart" @click="stackedChartToggle(true)">運輸佔比</button>
         </div>
     </div>
-    <div v-if="chartReload" class="apexChartContainer">
+    <div v-if="chartReload" class="apexChartContainer basic">
         <apexchart 
             type='bar'
-            height='60%'
+            height='100%'
             :options="chartOptions" 
             :series="chartValue"/>
     </div>
@@ -54,58 +52,7 @@ export default {
             categories: [],
             seriesData: [],
 
-            chartValue: [],
-            chartOptions: {
-                colors: ['rgb(244, 70, 70)', 'rgb(120, 198, 121)'],
-                chart:{
-                    stacked: false,
-                    stackType: 'normal',
-                    // stacked: true,
-                    // stackType: '100%',
-                },
-                plotOptions: {
-                    bar: {
-                        horizontal: false,
-                        dataLabels: {
-                            position: 'top'
-                        }
-                    },
-                },
-                dataLabels: {
-                    enabled: true,
-                    style: {
-                        fontSize: '8px',
-                        fontWeight: 'normal',
-                        colors: ['#666']
-                    },
-                    offsetY: -20,
-                    formatter: (val, opts) => {
-                        return (val%1 === 0)? val: `${parseFloat(val.toFixed(1))}%`
-                    },
-                },
-                stroke: {
-                    show: true,
-                    width: 2,
-                    colors: ['transparent']
-                },
-                xaxis: {
-                    categories: []
-                },
-                fill: {
-                    opacity: 1
-                },
-                legend: {
-                    position: 'top',
-                    horizontalAlign: 'right'
-                },
-                // tooltip: {
-                //     y: {
-                //         formatter: function (val) {
-                //             return "$ " + val + " thousands"
-                //         }
-                //     }
-                // }
-            }
+            chartValue: []
         }
     },
     props: {
@@ -114,14 +61,68 @@ export default {
             default: false
         }
     },
-    watch:{
-		load(newVal, oldVal){
-            // if(newVal){
-            //     this.chartValue = this.seriesData
-            // }else{
-            //     this.chartValue = []
-            // }
+    computed:{
+        chartOptions(){
+            const Option = {
+                colors: ['rgb(244, 70, 70)', 'rgb(120, 198, 121)'],
+                chart:{
+                    stacked: (this.stackedChart)? true: false,
+                    stackType: (this.stackedChart)? '100%': 'normal'
+                },
+                plotOptions: {
+                    bar: {
+                        horizontal: false,
+                        dataLabels: {
+                            position: 'top'
+                        }
+                    }
+                },
+                xaxis: {
+                    categories: this.categories
+                },
+                yaxis: {
+                    labels: {
+                        maxWidth: 40
+                    },
+                    max: (e)=>{
+                        return e
+                    }
+                }
+            }
+            if(this.$store.state.mobildDevice){
+                return {
+                    ...Option,
+                    dataLabels: {
+                        enabled: false,
+                    },
+                    legend: {
+                        position: 'top',
+                        horizontalAlign: 'left'
+                    }
+                }
+            }else{
+                return {
+                    ...Option,
+                    dataLabels: {
+                        enabled: true,
+                        style: {
+                            fontSize: '8px',
+                            fontWeight: 'normal',
+                            colors: ['#666']
+                        },
+                        offsetY: -20,
+                        formatter: (val, opts) => {
+                            return (val%1 === 0)? val: `${parseFloat(val.toFixed(1))}%`
+                        },
+                    },
+                    legend: {
+                        position: 'top',
+                        horizontalAlign: 'right'
+                    }
+                }
+            }
         }
+
     },
     methods:{
         sortTypeToggle(val){
@@ -134,20 +135,6 @@ export default {
         },
         stackedChartToggle(boolen){
             this.stackedChart = boolen
-            this.chartOptions = {
-                ...this.chartOptions,
-                chart: {
-                    ...this.chartOptions.chart,
-                    stacked: (this.stackedChart)? true: false,
-                    stackType: (this.stackedChart)? '100%': 'normal'
-                },
-                yaxis: {
-                    ...this.chartOptions.yaxis,
-                    max: (e)=>{
-                        return e
-                    }
-                }
-            }
         },
         updateChart(){
             this.chartReload = false
@@ -164,7 +151,6 @@ export default {
             this.transData = this.neiHuShow? clearData.slice(0, 20): clearData.slice(1, 21)
             
             // 依據大眾運輸｜私人運具顯示
-            
             Object.keys(this.seriesType).map(key=>{
                 const {name, index} = this.seriesType[key]
                 this.seriesData.push({
@@ -174,13 +160,6 @@ export default {
             })
             this.categories = this.transData.map(item => item['TOWNNAME'])
             this.chartValue = this.seriesData
-            this.chartOptions= {
-                ...this.chartOptions,
-                xaxis: {
-                    ...this.chartOptions.xaxis,
-                    categories: this.categories
-                }  
-            }
             this.chartReload = true
         }
     },
@@ -191,13 +170,21 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '@/assets/scss/variables.scss';
 .chartActionBox{
-    width: 100%;
-    flex-direction: row;
+    @extend %horizontalCenter;
     align-items: flex-start;
+    width: 100%;
     padding: 0;
     >div{
+        @media screen and (max-width:501px){
+            display: flex;
+            flex-direction: column;
+        }
         padding-right: 1rem;
+        button{
+            height: 2rem;
+        }
     }
     input{
         margin: 0 .25rem 0 .75rem;
@@ -206,11 +193,11 @@ export default {
 .apexChartContainer{
     display: block;
     width: 100%;
-    height: calc(100vh - 10rem);
+    height: calc(100vh - 20rem);
 }
 </style>
 <style lang="scss"> 
-.apexChartContainer .vue-apexcharts{ 
+.apexChartContainer.basic .vue-apexcharts{ 
     width: 100%;
     .apexcharts-legend{
         overflow: hidden;

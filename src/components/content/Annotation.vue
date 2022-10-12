@@ -58,8 +58,6 @@ export default {
 <style lang="scss" scoped>
 @import '@/assets/scss/variables.scss';
 .annotationBox{
-    // position: relative;
-    // width: 100%;
     .annotationBtn{
         border-bottom: 1px solid #999;
         padding: 0 .25rem;

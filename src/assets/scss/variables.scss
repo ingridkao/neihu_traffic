@@ -1,4 +1,4 @@
-$whiteColor: rgb(249, 249, 249);
+$whiteColor: #f9f9f9;
 $grayColor: #ddd;
 $titleColor: #000;
 $blackColor: #262626;
@@ -6,13 +6,17 @@ $blueColor: #85a3e0;
 $yellowColor: #f5df3d;
 $redColor: #ff6347;
 $defaultColor: #eccbcb;
-
-
 $textSubColor: lighten($blackColor, 5);
 
 %whiteCardShadow {
     box-shadow: 0px 2px 2px 2px rgba($blackColor, 0.1);
     background: lighten($whiteColor, 5);
+}
+
+%titleCardShadow {
+    background-color: $whiteColor;
+    border: 2px solid lighten($blackColor, 2);
+    box-shadow: 5px 5px 0 rgba($blackColor, 0.2);
 }
 
 %contentPadding {
@@ -29,7 +33,17 @@ $textSubColor: lighten($blackColor, 5);
     align-items: center;
 }
 
-$mapAsideWidth : 26rem;
+%horizontalCenter {
+    display: flex;
+    flex-direction: row;
+}
+
+%imgCommom{
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+$mapAsideWidth : 27.5rem;
 $mapGifWidth: 20rem;
 
 @mixin scrollbar_style {

@@ -25,12 +25,11 @@ import Logo from '@/assets/TUIC.svg'
 import Close from '@/assets/icon/close.svg'
 
 export default {
-	props:{ 
-		step: {
-            type: String,
-            default: '0'
-        }
-	},
+	computed: {
+        step() {
+			return this.$store.state.step
+		}
+    },
 	watch:{
 		step: {
             immediate: true,
@@ -51,7 +50,8 @@ export default {
                 "chapter1": "內湖交通改善計畫：先了解大內科園區",
                 "chapter2": "13萬的工作人口，居住內湖不到4成",
                 "chapter3": "大內科通勤族，僅有3成選擇大眾運輸",
-                "chapter4": "從大眾運輸使用方式，分析通勤族的困境"
+                "chapter4": "從大眾運輸使用方式，分析通勤族的困境",
+                "chapter5": "解決大內科交通問題，我們有哪些機會？"
             },
             secActive: null
         }
