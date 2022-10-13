@@ -15,7 +15,7 @@
 			<button class="fbBtn" @click="shareToFb($event)"/>
 			<button class="linkBtn" @click="copyURL($event)"/>
 			<!-- <button v-if="step == 0 && !mobildDevice" :class="['videoBtn',videoStart? 'videoPause': 'videoStart']" @click="videoStart = !videoStart"/> -->
-			<button id="translateToggle" :title="$t('langTranslate')" @click="toggleLocaleLang">{{$t('langZh')}}</button>
+			<!-- <button id="translateToggle" :title="$t('langTranslate')" @click="toggleLocaleLang">{{$t('langZh')}}</button> -->
 		</div>
 		<footer>
 			<ScrollButton/>
@@ -122,7 +122,7 @@ $mainColor: darken($whiteColor, 25);
 	flex-direction: column;
 	align-items: self-start;
 	justify-content: space-between;
-	z-index: 1;
+	z-index: 3;
 	padding: 3rem;
 	h1, h2, h3{
 		color: $blackColor;
@@ -145,7 +145,8 @@ $mainColor: darken($whiteColor, 25);
 	z-index: 100;
 	top: .75rem;
 	right: 1rem;
-    width: 11rem;
+    // width: 11rem;
+    width: 6.5rem;
     height: 1.5rem;
 
 	display: inline-flex;

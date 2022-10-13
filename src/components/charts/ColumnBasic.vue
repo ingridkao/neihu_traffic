@@ -71,10 +71,7 @@ export default {
                 },
                 plotOptions: {
                     bar: {
-                        horizontal: false,
-                        dataLabels: {
-                            position: 'top'
-                        }
+                        horizontal: false
                     }
                 },
                 xaxis: {

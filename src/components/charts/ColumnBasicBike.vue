@@ -21,11 +21,20 @@ export default {
     data(){
         return {
             seriesData: [{
-                name: 'Youbike通勤前10熱區',
+                name: '前10熱區',
                 data: ClearData.map(item => item['ubike_avg'])
             }],
             chartOptions: {
                 colors: ['#5b955b'],
+                title: {
+                    text: 'Youbike通勤前10熱區',
+                    margin: 0,
+                    offsetX: -10,
+                    offsetY: 5,
+                    style: {
+                        fontSize: '10px'
+                    }
+                },
                 annotations: {
                     yaxis: [{
                         y: avg,
@@ -33,7 +42,7 @@ export default {
                         label: {
                             style: {
                                 color: '#fff',
-                                background: '#00E396',
+                                background: '#567888',
                             },
                             text: `前10平均線:${avg}`,
                         }
@@ -42,10 +51,7 @@ export default {
                 plotOptions: {
                     bar: {
                         horizontal: false,
-                        dataLabels: {
-                            position: 'top'
-                        },
-                        columnWidth: '60%',
+                        columnWidth: '60%'
                     },
                 },
                 xaxis: {
@@ -68,16 +74,7 @@ export default {
                     }
                 },
                 dataLabels: {
-                    enabled: false,
-                    // style: {
-                    //     fontSize: '8px',
-                    //     fontWeight: 'normal',
-                    //     colors: ['#666']
-                    // },
-                    // offsetY: -20,
-                    // formatter: (val, opts) => {
-                    //     return (val%1 === 0)? val: `${parseFloat(val.toFixed(1))}%`
-                    // },
+                    enabled: false
                 }
             }
         }
@@ -88,7 +85,7 @@ export default {
 <style lang="scss"> 
 .apexChartContainer.columnBike{
     width: 100%;
-    height: 15rem;
+    height: 13rem;
     overflow: hidden;
 }
 </style>

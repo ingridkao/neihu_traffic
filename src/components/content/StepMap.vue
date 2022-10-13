@@ -31,8 +31,8 @@
        <main>
             <MapBox 
                 :location="location"
-                :tp-town-id="tpTown && tpTown.id? tpTown.id: ''"
-                :ntp-town-id="ntpTown && ntpTown.id? ntpTown.id: ''"
+                :tp-town="tpTown"
+                :ntp-town="ntpTown"
             /> 
        </main>
 	</div>

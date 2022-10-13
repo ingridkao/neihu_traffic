@@ -134,6 +134,175 @@ export const TranData = [
   {"TOWNNAME":"萬里區","bus_avg":0,"mrt_avg":0,"ubike_avg":0},
   {"TOWNNAME":"鶯歌區","bus_avg":0,"mrt_avg":0,"ubike_avg":0}
 ]
+//https://docs.google.com/spreadsheets/d/17cUkjdCLuNWg3ut0OAMt4WJkudUiZcw7EvQzzuEgph8/edit?usp=sharing
+//'#975f19'木柵線
+//'#007ffd'板南線
+//'#ff9800'中和線
+//'#f44336'淡水線
+//'#4caf50'新店線
+
+export const MrtData = [
+  {
+    "name": "台北車站",
+    "work": 483,
+    "leave": 634,
+    "avg": 559,
+    "type": "板南線",
+    "mrt_type": "台鐵、高鐵、淡水信義線"
+  },
+  {
+    "name": "新埔",
+    "work": 598,
+    "leave": 435,
+    "avg": 517,
+    "type": "板南線",
+    "mrt_type": ""
+  },
+  {
+    "name": "板橋",
+    "work": 444,
+    "leave": 400,
+    "avg": 422,
+    "type": "板南線",
+    "mrt_type": "台鐵、高鐵"
+  },
+  {
+    "name": "南港",
+    "work": 399,
+    "leave": 427,
+    "avg": 413,
+    "type": "板南線",
+    "mrt_type": "台鐵、高鐵"
+  },
+  {
+    "name": "府中",
+    "work": 412,
+    "leave": 270,
+    "avg": 341,
+    "type": "板南線",
+    "mrt_type": ""
+  },
+  {
+    "name": "頂溪",
+    "work": 387,
+    "leave": 278,
+    "avg": 333,
+    "type": "中和新蘆線",
+    "mrt_type": ""
+  },
+  {
+    "name": "江子翠",
+    "work": 394,
+    "leave": 262,
+    "avg": 328,
+    "type": "板南線",
+    "mrt_type": ""
+  },
+  {
+    "name": "西門",
+    "work": 315,
+    "leave": 334,
+    "avg": 325,
+    "type": "板南線",
+    "mrt_type": "松山新店線"
+  },
+  {
+    "name": "亞東醫院",
+    "work": 411,
+    "leave": 224,
+    "avg": 318,
+    "type": "板南線",
+    "mrt_type": ""
+  },
+  {
+    "name": "海山",
+    "work": 376,
+    "leave": 236,
+    "avg": 306,
+    "type": "板南線",
+    "mrt_type": ""
+  },
+  {
+    "name": "永安市場",
+    "work": 346,
+    "leave": 237,
+    "avg": 292,
+    "type": "中和新蘆線",
+    "mrt_type": ""
+  },
+  {
+    "name": "景安",
+    "work": 344,
+    "leave": 213,
+    "avg": 279,
+    "type": "中和新蘆線",
+    "mrt_type": "環狀線"
+  },
+  {
+    "name": "南勢角",
+    "work": 339,
+    "leave": 183,
+    "avg": 261,
+    "type": "中和新蘆線",
+    "mrt_type": ""
+  },
+  {
+    "name": "龍山寺",
+    "work": 290,
+    "leave": 227,
+    "avg": 259,
+    "type": "板南線",
+    "mrt_type": ""
+  },
+  {
+    "name": "後山埤",
+    "work": 229,
+    "leave": 176,
+    "avg": 203,
+    "type": "板南線",
+    "mrt_type": ""
+  },
+  {
+    "name": "永春",
+    "work": 168,
+    "leave": 173,
+    "avg": 171,
+    "type": "板南線",
+    "mrt_type": ""
+  },
+  {
+    "name": "市政府",
+    "work": 63,
+    "leave": 252,
+    "avg": 158,
+    "type": "板南線",
+    "mrt_type": ""
+  },
+  {
+    "name": "中山",
+    "work": 83,
+    "leave": 203,
+    "avg": 143,
+    "type": "淡水信義線",
+    "mrt_type": "松山新店線"
+  },
+  {
+    "name": "蘆洲",
+    "work": 173,
+    "leave": 97,
+    "avg": 135,
+    "type": "中和新蘆線",
+    "mrt_type": ""
+  },
+  {
+    "name": "古亭",
+    "work": 134,
+    "leave": 131,
+    "avg": 133,
+    "type": "中和新蘆線",
+    "mrt_type": "松山新店線"
+  }
+]
 
 export default [
     {

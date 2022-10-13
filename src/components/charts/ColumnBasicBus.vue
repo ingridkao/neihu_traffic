@@ -15,38 +15,42 @@ const ClearData = TranData.sort((a, b)=> b['bus_avg'] - a['bus_avg']).slice(0, 1
 // const values = ClearData.map(item => item['ubike_avg'])
 // let sum = values.reduce((previous, current) => current += previous);
 // let avg = sum / values.length;
-// console.log(avg);
 const avg = 179.9
-
 export default {
     data(){
         return {
             seriesData: [{
-                name: '公車通勤前15熱區',
+                name: '前15熱區',
                 data: ClearData.map(item => item['bus_avg'])
             }],
             chartOptions: {
                 colors: ['#5b955b'],
+                title: {
+                    text: '公車通勤前15熱區',
+                    margin: 0,
+                    offsetX: -10,
+                    offsetY: 5,
+                    style: {
+                        fontSize: '10px'
+                    }
+                },
                 annotations: {
                     yaxis: [{
                         y: avg,
                         borderColor: '#00E396',
                         label: {
                             style: {
-                                fontSize: '8px',
+                                fontSize: '10px',
                                 color: '#fff',
-                                background: '#00E396',
+                                background: '#567888',
                             },
-                            text: `前15平均線:${avg}`,
+                            text: `前15區平均線:${avg}`,
                         }
                     }]
                 },
                 plotOptions: {
                     bar: {
                         horizontal: false,
-                        dataLabels: {
-                            position: 'top'
-                        },
                         columnWidth: '60%',
                     },
                 },
@@ -70,17 +74,7 @@ export default {
                     }
                 },
                 dataLabels: {
-                    enabled: false,
-                //     enabled: true,
-                //     style: {
-                //         fontSize: '8px',
-                //         fontWeight: 'normal',
-                //         colors: ['#666']
-                //     },
-                //     offsetY: -20,
-                //     formatter: (val, opts) => {
-                //         return (val%1 === 0)? val: `${parseFloat(val.toFixed(1))}%`
-                //     },
+                    enabled: false
                 }
             }
         }
@@ -91,7 +85,7 @@ export default {
 <style lang="scss"> 
 .apexChartContainer.columnBus{
     width: 100%;
-    height: 15rem;
+    height: 13rem;
     overflow: hidden;
 }
 </style>

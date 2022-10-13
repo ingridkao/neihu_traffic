@@ -17,23 +17,6 @@
 // main_scrollama - start
 #main_scrollama{
 	z-index: 1;
-	.block_scrollama {
-		position: relative;
-		height: 100vh;
-		color: $textSubColor;
-		// @media screen and (max-width:501px){
-		// 	width: 80%;
-		// }
-		&.autoH{
-			height: auto;
-		}
-	}
-	h6, p{
-		position: relative;
-		width: 100%;
-		text-align: left;
-		margin-bottom: 1rem;
-	}
 }
 
 .apexChartContainer{

@@ -6,14 +6,14 @@
                 blockBottom: blockBottom
             }"
         >
-            <div class="bgBlock imgCenter bg1" :class="{active: article === 1}"/>
+            <div class="bgBlock imgCenter bg1 active"/>
             <div class="bgBlock imgCenter bg2" :class="{active: article === 2}"/>
             <div class="bgBlock imgCenter bg3" :class="{active: article === 3}"/>
-            <div class="bgBlock imgCenter bg4" :class="{active: article === 4 || article === 5}"/>
+            <div class="bgBlock imgCenter bg4" :class="{active: article === 4}"/>
         </div>
         <div class="cardBox"
             :class="{
-                blockFixed: cardBlockFixed,
+                blockFixed: blockFixed,
             }"
         >
             <div class="top left title">
@@ -34,6 +34,7 @@
                     data-aos-duration="1600"
                 >
                     2. 在轉乘的部分最多的人次來自板南線、其次為松山新店線與中和新蘆線。
+                    <ColumnBasicMrt />
                 </div>
                 <div
                     v-if="article == 3"
@@ -55,7 +56,11 @@
 </template>
 
 <script>
+import ColumnBasicMrt from '@/components/charts/ColumnBasicMrt.vue';
 export default {
+	components:{
+		ColumnBasicMrt,
+	},
     computed: {
         currStep() {
 			return this.$store.state.step
@@ -63,9 +68,6 @@ export default {
 		currStepProgress() {
 			return this.$store.state.progres
 		},
-        cardBlockFixed(){
-            return  this.currStep == 10 && this.currStepProgress >= 15 && this.currStepProgress < 90
-        },
         blockFixed(){
             return  this.currStep == 10 && this.currStepProgress >= 15 && this.currStepProgress < 90
         },
@@ -73,9 +75,7 @@ export default {
             return  (this.currStep == 10 && this.currStepProgress >= 90) || this.currStep == 11
         },
         article(){
-            if(this.blockBottom){
-                return 5
-            }else if(this.currStep == 10 && this.currStepProgress >= 75){
+            if(this.currStep == 11 || (this.currStep == 10 && this.currStepProgress >= 75)){
                 return 4
             }else if(this.currStep == 10 && this.currStepProgress >= 50){
                 return 3
@@ -88,27 +88,12 @@ export default {
     }
 }
 </script>
-<style lang="scss">
-    .fullContainer{
-        height: 200vh !important;
-        .imgBox{
-            height: 100vh;
-            &.blockTop{}
-            &.blockBottom{position: absolute;bottom: 0;z-index: 0;}
-        }
-        .cardBox{
-            &.blockFixed{
-                position: fixed;
-                height: 100vh;
-                z-index: 2;
-            }
-        }
-        .bgBlock{
-            &.bg1{ background-image: url('../../assets/img/zoom/MRT-02.jpg'); }
-            &.bg2{ background-image: url('../../assets/img/zoom/MRT-03.jpg'); }
-            &.bg3{ background-image: url('../../assets/img/zoom/MRT-04.jpg'); }
-            &.bg4{ background-image: url('../../assets/img/zoom/MRT-05.jpg'); }
-        }
-    }
+<style lang="scss" scoped>
+.bgBlock{
+    &.bg1{ background-image: url('../../assets/img/zoom/MRT-02.jpg'); }
+    &.bg2{ background-image: url('../../assets/img/zoom/MRT-03.jpg'); }
+    &.bg3{ background-image: url('../../assets/img/zoom/MRT-04.jpg'); }
+    &.bg4{ background-image: url('../../assets/img/zoom/MRT-05.jpg'); }
+}
 </style>
 

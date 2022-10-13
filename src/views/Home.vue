@@ -1,9 +1,6 @@
 <template>
 	<main id="homePage" ref="home_container" :class="{langEn: !langZh}" :style="scrollBind">
-		<div style="position: fixed ;z-index: 1000; width:5rem;height:1rem; color: red;">
-			{{currStep}}
-			{{currStepProgress}}
-		</div>
+		<!-- <div style="position: fixed ;z-index: 1000; width:5rem;height:1rem; color: red;">{{currStep}}{{currStepProgress}}</div> -->
 		<HeadCover v-if="currStep <= 2" :video-start="videoStart" @toggle="toggleVideoStatus" />
 		<div ref="scrollama_container" id="main_scrollama">
 			<HeaderAction data-step-no="0" :video-start="videoStart" />
@@ -14,7 +11,7 @@
 			<Step5 data-step-no="5" />
 			<Step6 data-step-no="6"/>
 			<Step7 data-step-no="7"/>
-			<div data-step-no="8" style="height: 100vh;">8</div>
+			<StepMap data-step-no="8"/>
 			<Step9 data-step-no="9" />
 			<Step10 data-step-no="10"/>
 			<Step11 data-step-no="11"/>
@@ -22,8 +19,8 @@
 			<Step13 data-step-no="13"/>
 		</div>
 		<AsideBox v-if="currStep > 0"/>
+			<!-- <div data-step-no="8" style="height: 100vh;">8</div> -->
 			<!-- <Step14 data-step-no="14"/> -->
-			<!-- <StepMap data-step-no="8"/> -->
 	</main>
 </template>
 

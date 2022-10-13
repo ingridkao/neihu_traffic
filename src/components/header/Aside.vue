@@ -80,7 +80,7 @@ export default {
     height: 3rem;
     top: 0;
     right: 0;
-    z-index: 1;
+    z-index: 4;
     #slideBtn{
         position: absolute;
         top: 0;
@@ -88,7 +88,7 @@ export default {
         width: 2rem;
         height: 2rem;
         margin: .5rem 1rem;
-        z-index: 2;
+        z-index: 5;
         background-color: transparent;
         img{
             width: 100%;

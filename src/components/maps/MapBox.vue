@@ -1,6 +1,6 @@
 <template>
     <div id="mapbox_container" class="mapboxBox"/>
-    <!-- <Loading :load-start="mapLoading"/> -->
+    <Loading :load-start="mapLoading"/>
 </template>
 <script>
 import { createApp, defineComponent, nextTick } from 'vue'
@@ -14,7 +14,7 @@ import MapboxPopup from '@/components/MapboxPopup.vue'
 
 import { PopWorkStyle, taiwanFillStyle, taiwanSymbolStyle, taiwanLineStyle, mapboxBuildings } from '@/assets/config/mapbox-style.js'
 import { locationsCenter, initZoom, maxBound, durationConfig} from '@/assets/config/map-config.js'
-import {hotspot} from '@/assets/js/topspot.js'
+// import {hotspot} from '@/assets/js/topspot.js'
 const BASE_URL = process.env.NODE_ENV === 'production'? process.env.VUE_APP_BASE_URL: '../..'
 const MAPBOXTOKEN = process.env.VUE_APP_MAPBOXTOKEN
 
@@ -24,30 +24,30 @@ export default {
         location: {
             type: Object
         },
-        tpTownId: {
-            type: String
+        tpTown: {
+            type: Object
         },
-        ntpTownId: {
-            type: String
+        ntpTown: {
+            type: Object
         }
     },
     data(){
         return {
+            mapLoading: false,
             MapBoxObject: null,
             MapBoxPopup: null,
-            mapLoading: false,
             timeout: null,
             countyCode: null,
-            townCode: '',
+            townCode: null,
             langObj : {
                 COUNTYNAME: '縣市',
                 TOWNNAME: '區',
                 //COUNTYCODE - location.id
-                //TOWNID - tpTownId || ntpTownId
+                //TOWNID - tpTown.id || ntpTown.id
                 transport_rate: '大眾運輸比例',
                 bus_avg: '公車轉乘',
                 mrt_avg: '捷運轉乘',
-                ubike_avg: 'ubike轉乘',
+                ubike_avg: '腳踏車轉乘',
                 untransport: '私人運具',
                 // ROADNAME: this.$t('hotmap.name'),
             }
@@ -70,16 +70,17 @@ export default {
     },
     watch: {
         'location.index'(){
-            this.setViewToCenter()
+            this.filterLocation()
         },
-        'tpTownId'(){
-            this.townCode = this.tpTownId? this.tpTownId: null
-
-            this.filterTown(initZoom.taipei)
+        'tpTown.id'(){
+            if(Object.keys(this.tpTown).length === 0) return
+            this.townCode = this.tpTown.id? this.tpTown.id: null
+            this.filterTown(initZoom.taipei + 1.5, this.tpTown.center, 15)
         },
-        'ntpTownId'(){
-            this.townCode = this.ntpTownId? this.ntpTownId: null
-            this.filterTown(initZoom.new_taipei)
+        'ntpTown.id'(){
+            if(Object.keys(this.ntpTown).length === 0) return
+            this.townCode = this.ntpTown.id? this.ntpTown.id: null
+            this.filterTown(initZoom.new_taipei + 3, this.ntpTown.center, -15)
         }
     },
     methods: {
@@ -109,7 +110,7 @@ export default {
             }
 
             this.MapBoxObject.on("load", () => {
-                this.mapLoading = true
+                // this.mapLoading = true
                 // console.log(this.MapBoxObject.getStyle().layers);
                 this.MapBoxObject.addLayer(mapboxBuildings)
                 this.MapBoxObject.setLayoutProperty('settlement-label', 'visibility', 'none')
@@ -117,7 +118,7 @@ export default {
             })
             this.MapBoxObject.on("click", (e) => {
                 // console.log( this.MapBoxObject.getBounds())
-                console.log( this.MapBoxObject.getCenter())
+                // console.log( this.MapBoxObject.getCenter())
                 // console.log( this.MapBoxObject.getBearing())
                 // console.log( this.MapBoxObject.getPitch())
                 // console.log( this.MapBoxObject.getZoom())
@@ -164,10 +165,10 @@ export default {
                 //         this.openMapboxPopup(featuresData, LngLat)
                 //     })
                 // }
-                this.mapLoading = false
+                // this.mapLoading = false
             })
         },
-        parseBound(){
+        parseLocationBound(){
             if(!(this.location && this.location.index)) return maxBound.northArea
             const target = this.location.index 
             if(target === 'taoyuan_country') return maxBound.taoyuan
@@ -175,8 +176,17 @@ export default {
             if(target === 'taipei_city') return maxBound.taipei
             if(target === 'new_taipei_city') return maxBound.new_taipei
         },
-        setViewToCenter(){
-            const LocBound = this.parseBound()
+        parseTown(){
+            if(!(this.townCode )) return
+            const target = this.location.index 
+            if(target === 'taipei_city') return maxBound.taipei
+            if(target === 'new_taipei_city') return maxBound.new_taipei
+            this.townCode = null
+            if(target === 'taoyuan_country') return maxBound.taoyuan
+            if(target === 'keelung_city') return maxBound.keelung
+        },
+        filterLocation(){
+            const LocBound = this.parseLocationBound()
             if(!(LocBound && Array.isArray(LocBound))) return
             this.MapBoxObject.fitBounds(LocBound, {
                 duration: durationConfig,
@@ -187,6 +197,21 @@ export default {
             if(this.MapBoxObject.getLayer('pop_work_fill')){ 
                 this.MapBoxObject.setFilter('pop_work_fill', this.updateFilter() )  
             }
+        },
+        filterTown(zoom, center, bearing){
+            if(!center)return
+            if(this.MapBoxObject.getLayer('pop_work_fill')){
+                this.MapBoxObject.setFilter('pop_work_fill', this.updateFilter() )  
+            }
+            this.MapBoxObject.easeTo({
+                center: center,
+                zoom: zoom,
+                speed: 0.5,
+                curve: 1,
+                pitch: 60,
+                bearing: bearing,
+                duration: durationConfig
+            })
         },
         updateFilter(){
             const FilterRule = [
@@ -201,18 +226,6 @@ export default {
                 FilterRule.push(["==", ['get', 'TOWNID'],this.townCode])
             }
             return FilterRule
-        },
-        filterTown(zoom){
-            if(this.MapBoxObject.getLayer('pop_work_fill')){
-                this.MapBoxObject.setFilter('pop_work_fill', this.updateFilter() )  
-            }
-            this.MapBoxObject.easeTo({
-                // center: [0, 0],
-                zoom: zoom + 1,
-                speed: 0.2,
-                curve: 1,
-                duration: durationConfig
-            })
         },
         openMapboxPopup(featuresData, LngLat){
             const LangObj = this.langObj
@@ -239,5 +252,12 @@ export default {
 }
 .loadingBox{
     height: 100vh;
+}
+.mapboxgl-ctrl-top-right{
+    left: 0;
+    right: auto;
+    .mapboxgl-ctrl{
+        margin-left: 10px;
+    }
 }
 </style>
