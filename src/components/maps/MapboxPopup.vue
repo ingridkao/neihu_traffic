@@ -1,10 +1,10 @@
 <template>
     <div class="popupBox">
         <div v-for="(feature, i) in featuresData" :key="i" class="featuresDataBox">
-            <div v-for="(item, j) in feature.properties" :key="j" v-show="j != 'Timestamp'">
-                <div v-if="j === '百大熱點排序' || j === 'ROADNAME' || j === '敘述'|| j === 'NUMPOINTS' || j === '路寬' || j === '路段名稱' || j === '熱點時間'">
-                    <span>{{LangObj[j]?LangObj[j]: j}}</span>
-                    <b>{{item}}</b>
+            <div v-for="(featureItem, featureKey) in feature" :key="featureKey">
+                <div>
+                    <span>{{featureKey}}</span>
+                    <b>{{featureItem}}</b>
                 </div>
             </div>
         </div>
@@ -14,8 +14,9 @@
 <style lang="scss" >
 @import '@/assets/scss/variables.scss';
 .mapboxgl-popup-content {
-    width: 22rem;
+    width: 11rem;
     font-size: 0.9rem;
+    padding: 1rem 0 0 .5rem;
     button{
         width: 2rem;
         font-size: 1.5rem;
@@ -34,10 +35,13 @@
 .featuresDataBox{
     display: inline-block;
     word-wrap:break-word;
+    width: 10rem;
     >div{
         margin-bottom: .25rem;
     }
     span{
+        display: inline-block;
+        width: 6rem;
         padding-right: .5rem;
     }
 }

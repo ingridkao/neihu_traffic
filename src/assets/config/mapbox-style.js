@@ -12,44 +12,6 @@ export const colors = {
     nepal: '#92acb8'
 }
 
-// export const pieColor = [
-//     colors.gold, 
-//     colors.nepal, 
-//     colors.hoki
-// ]
-
-// export const DistrictCount = {
-//     max: pieColor[0],
-//     min: pieColor[2]
-// }
-
-// export const heatmapColor = {
-//     hail : [0.3,"hsl(190, 50%, 90%)", 0.6,"hsl(205, 55%, 70%)",1,"hsl(220, 60%, 70%)"],
-//     app : [0.3,"hsl(53, 90%, 60%)", 0.6,"hsl(28, 70%, 80%)",1,"hsl(32, 75%, 65%)"],
-//     nonStation : [0.3,"hsl(9, 100%, 96%)", 0.6,"hsl(9, 97%, 85%)",1,"hsl(9, 100%, 64%)"],
-// }
-
-// export const topSpot = {
-//     min: colors.yellowKhaki,
-//     max: colors.indianRed
-// }
-
-// export const top100FillStyle = {
-//     id: 'top100hotspot',
-//     source: 'top100hotspot',
-//     type: 'fill',
-//     layout : { visibility: 'none' },
-//     paint: {
-//         "fill-color": [
-//             "interpolate",
-//             ["linear"],
-//             ["get", "NUMPOINTS"],
-//             67,topSpot.min,
-//             837,topSpot.max
-//         ]
-//     }
-// }
-
 export const taiwanLineStyle = {
     id: 'taiwan_city_line',
     source: 'taiwan_city',
@@ -116,24 +78,12 @@ export const PopWorkStyle = {
             1, '#4da66e'
         ],   
         'fill-extrusion-height': [
-            'interpolate',
-            ['linear'],
-            ['zoom'],
-            15,
-            0,
-            15.05,
-            ['get', 'pop_work_min']
+            'interpolate',['linear'],['get', 'pop_work_min'],
+            0, 0,
+            100, 500,
+            5000, 5000
         ],
-        // 'fill-extrusion-base': [
-        //     'interpolate',
-        //     ['linear'],
-        //     ['zoom'],
-        //     15,
-        //     0,
-        //     15.05,
-        //     ['get', 'min_height']
-        // ],
-        'fill-extrusion-opacity': 0.6
+        'fill-extrusion-opacity': 0.8
     }
 }
 

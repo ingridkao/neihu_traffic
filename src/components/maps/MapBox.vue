@@ -10,11 +10,10 @@ import axios from 'axios'
 import 'mapbox-gl/dist/mapbox-gl.css'
 
 import Loading from '@/components/Loading.vue'
-import MapboxPopup from '@/components/MapboxPopup.vue'
+import MapboxPopupComponent from '@/components/maps/MapboxPopup.vue'
 
 import { PopWorkStyle, taiwanFillStyle, taiwanSymbolStyle, taiwanLineStyle, mapboxBuildings } from '@/assets/config/mapbox-style.js'
 import { locationsCenter, initZoom, maxBound, durationConfig} from '@/assets/config/map-config.js'
-// import {hotspot} from '@/assets/js/topspot.js'
 const BASE_URL = process.env.NODE_ENV === 'production'? process.env.VUE_APP_BASE_URL: '../..'
 const MAPBOXTOKEN = process.env.VUE_APP_MAPBOXTOKEN
 
@@ -49,6 +48,7 @@ export default {
                 mrt_avg: '捷運轉乘',
                 ubike_avg: '腳踏車轉乘',
                 untransport: '私人運具',
+                pop_work_min: '?'
                 // ROADNAME: this.$t('hotmap.name'),
             }
         }
@@ -61,7 +61,7 @@ export default {
         clearInterval(this.timeout)
     },
 	components:{
-		Loading, MapboxPopup
+		Loading
 	},
     computed: {
         langZh(){
@@ -70,6 +70,7 @@ export default {
     },
     watch: {
         'location.index'(){
+            this.townCode = null
             this.filterLocation()
         },
         'tpTown.id'(){
@@ -110,11 +111,11 @@ export default {
             }
 
             this.MapBoxObject.on("load", () => {
-                // this.mapLoading = true
-                // console.log(this.MapBoxObject.getStyle().layers);
+                this.mapLoading = true
                 this.MapBoxObject.addLayer(mapboxBuildings)
                 this.MapBoxObject.setLayoutProperty('settlement-label', 'visibility', 'none')
                 this.loadDataToMapbox()
+                // console.log(this.MapBoxObject.getStyle().layers);
             })
             this.MapBoxObject.on("click", (e) => {
                 // console.log( this.MapBoxObject.getBounds())
@@ -126,49 +127,32 @@ export default {
             })
         },
         loadDataToMapbox(){
-            const requestArray = [
-                // axios.get(`${BASE_URL}/data/taiwan_cities.geojson`),//台灣縣市界線
-                axios.get(`${BASE_URL}/data/neihu_pop.geojson`),//內湖的數值
-            ]
-            const TaiwanSymbol = taiwanSymbolStyle(this.langZh)
-
-            axios.all(requestArray).then(axios.spread((res1) => {
-                // this.MapBoxObject.addSource('taiwan_city', { 
-                //     type: 'geojson', 
-                //     data: res0.data 
-                // }).addLayer(TaiwanSymbol).addLayer(taiwanLineStyle)
-
-                const popData = res1.data
-                // let rr_crds = []
-                // for(let i=0; i<popData.features.length; i++){
-                //     if(popData.features[i].geometry.coordinates){
-                //         let point = turf.point(popData.features[i].geometry.coordinates)
-                //         let mileBuffer = turf.buffer(point, 80, {units: 'meters'})
-                //         rr_crds.push(mileBuffer)
-                //     }
-                // }
+            axios.get(`${BASE_URL}/data/neihu_pop.geojson`).then((res) => {
+                const popData = res.data
                 this.MapBoxObject.addSource('pop_work', { 
                     type: 'geojson', 
                     data: popData 
                 }).addLayer(PopWorkStyle)
-            })).finally(()=>{
-                // if(this.MapBoxObject.getLayer('top100hotspot')){
-                //     this.MapBoxObject.on('click', 'top100hotspot', (e) => {
-                //         this.MapBoxObject.getCanvas().style.cursor = 'pointer'
-                //         const LngLat = e.lngLat
-                //         const featuresData = e.features
-                //         const properties = featuresData[0]['properties']
-                //         // this.parseCenter({
-                //         //     target: properties['序號'],
-                //         //     pos: LngLat
-                //         // })
-                //         this.openMapboxPopup(featuresData, LngLat)
-                //     })
-                // }
-                // this.mapLoading = false
+
+                if(!this.MapBoxObject.getLayer('pop_work_fill'))return
+                this.MapBoxObject.on('click', 'pop_work_fill', (e) => {
+                    this.MapBoxObject.getCanvas().style.cursor = 'pointer'
+                    const LngLat = e.lngLat
+                    const featuresData = e.features
+                    this.clearPopUp()
+                    this.openMapboxPopup(featuresData, LngLat)
+                })
+            }).finally(()=>{
+                this.mapLoading = false
             })
         },
+        clearPopUp(){
+            if(this.MapBoxPopup){
+                this.MapBoxPopup.remove()
+            }
+        },
         parseLocationBound(){
+            this.clearPopUp()
             if(!(this.location && this.location.index)) return maxBound.northArea
             const target = this.location.index 
             if(target === 'taoyuan_country') return maxBound.taoyuan
@@ -177,6 +161,7 @@ export default {
             if(target === 'new_taipei_city') return maxBound.new_taipei
         },
         parseTown(){
+            this.clearPopUp()
             if(!(this.townCode )) return
             const target = this.location.index 
             if(target === 'taipei_city') return maxBound.taipei
@@ -228,18 +213,34 @@ export default {
             return FilterRule
         },
         openMapboxPopup(featuresData, LngLat){
-            const LangObj = this.langObj
-            const defindPopup = defineComponent({
-                extends: MapboxPopup,
-                setup() {
-                    return { featuresData, LangObj}
+            this.MapBoxPopup = new mapboxgl.Popup().setLngLat(LngLat).setHTML('<div id="popup-content"></div>').addTo(this.MapBoxObject)
+            // const LangObj = this.langObj
+            const NewFeatures = featuresData.map(features => {
+                const Propertie = features.properties
+                if(Propertie){
+                    const NewProp = {}
+                    Object.keys(this.langObj).map(langKey => {
+                        if(langKey === 'transport_rate'){
+                            NewProp[this.langObj[langKey]] = `${(Propertie[langKey]*100).toFixed(1)}%`
+                        }else{
+                            NewProp[this.langObj[langKey]] = Propertie[langKey]
+                        }
+                    })
+                    return NewProp
                 }
             })
-            if(this.MapBoxPopup){
-                this.MapBoxPopup.remove()
-            }
-            this.MapBoxPopup = new mapboxgl.Popup().setLngLat(LngLat).setHTML('<div id="popup-content"></div>').addTo(this.MapBoxObject)
+            const defindPopup = defineComponent({
+                extends: MapboxPopupComponent,
+                setup() {
+                    return { 
+                        featuresData: NewFeatures
+                    }
+                }
+            })
             nextTick(() => { createApp(defindPopup).mount("#popup-content") })
+            // this.MapBoxObject.easeTo({
+            //     center: LngLat
+            // })
         }
     }
 }
