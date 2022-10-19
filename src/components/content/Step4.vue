@@ -18,7 +18,6 @@
             </p>
             <p
                 v-if="textShow3"
-                class="infoBox"
                 data-aos="fade-up"			
                 data-aos-duration="1600"
             >

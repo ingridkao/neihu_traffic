@@ -83,7 +83,7 @@
     }
 }
 
-.cardbox{
+.cardContainer{
 	@extend %verticalCenter;
 	>div{
 		width: $mapAsideWidth*1.2;
@@ -281,7 +281,6 @@ $carouselTabBtnHeight: 3rem;
             height: 100%;
             &.slideActive{
                 .imgContainer{
-                    transition: opacity 1s;
                     opacity: 1;
                     z-index: 1;
                 }
@@ -308,8 +307,9 @@ $carouselTabBtnHeight: 3rem;
 			// 	background-position-x: center;
 			// 	background-position-y: center;
 			// }
-            opacity: 0.5;
+            opacity: 0;
             z-index: 0;
+            transition: opacity 1s;
         }
     }
     .imgLabelContainer{

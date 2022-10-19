@@ -14,7 +14,6 @@
                 :location="location" 
                 @trigger="clickLocation"
             />
-            <!-- :style="{visibility: (location.index === 'taipei_city')? 'visible': 'hidden'}" -->
             <div class="townBox">
                 <TownSelect 
                     v-if="location.index === 'taipei_city'"

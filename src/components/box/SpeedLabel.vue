@@ -2,11 +2,15 @@
     <div class="mapLabelBox">
         <h6>路段平均時速</h6>
         <p>Avg Speed km/hr</p>
-        <div v-for="(item) in showSpeed" :key="item.text">
+        <div class="legendBox" v-for="(item) in showSpeed" :key="item.text">
             <span :style="{
                 'background-color': item.color
             }"/>
             <span>{{item.text}}km/hr</span>
+        </div>
+        <div class="toggleBtn" data-attr="路段時速">
+            <button :class="{active:!lowSpeed}" @click="updateLowSpeed(false)">全部</button>
+            <button :class="{active:lowSpeed}" @click="updateLowSpeed(true)">篩選低速</button>
         </div>
     </div>
 </template>
@@ -25,11 +29,6 @@ export default {
         }
     },
     props:['lowSpeed'],
-    watch:{
-		lowSpeed(){
-            this.updateData()
-        }
-    },
     created(){
         this.updateData()
     },
@@ -40,14 +39,18 @@ export default {
             }else{
                 this.showSpeed = this.speed
             }
+        },
+        updateLowSpeed(boolen){
+            this.$emit('update', boolen)
         }
     }
 }
 </script>
 <style lang="scss" scoped>
     .mapLabelBox{
-        >div{
-            width: 10rem;
+        width: 15rem;
+        .legendBox{
+            width: 11rem;
             height: 1rem;
             display: inline-flex;
             align-items: center;
@@ -59,6 +62,10 @@ export default {
                     height: 0.2rem;
                 }
             }
+        }
+        .toggleBtn{
+            margin-left: 1rem;
+            margin-top: 2rem;
         }
     }
 </style>

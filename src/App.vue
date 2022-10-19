@@ -13,6 +13,7 @@
 <template v-cloak>
 	<Home/>
 	<Footer/>
+	{{isMpbile? 1: 0}}
 </template>
 
 <style lang="scss">

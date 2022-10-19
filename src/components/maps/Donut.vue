@@ -11,7 +11,6 @@
 </template>
 
 <script>
-// const chartData = []
 const chartLabels =  ['公車', '捷運', 'Youbike', '私人運具']
 const chartColors = ['#6b9a80','#72be95', '#8bc08b', 'rgb(244, 70, 70)']
 export default {
@@ -88,6 +87,9 @@ export default {
                 }
             }
         }
+    },
+    created(){
+        this.updateChart()
     }
 }
 </script>

@@ -4,7 +4,6 @@
 </template>
 <script>
 import { createApp, defineComponent, nextTick } from 'vue'
-import * as turf from '@turf/turf' 
 import mapboxgl from 'mapbox-gl'
 import axios from 'axios'
 import 'mapbox-gl/dist/mapbox-gl.css'
@@ -40,16 +39,17 @@ export default {
             townCode: null,
             langObj : {
                 COUNTYNAME: '縣市',
-                TOWNNAME: '區',
+                TOWNNAME: '行政區',
+                // VILLNAME: '里',
                 //COUNTYCODE - location.id
                 //TOWNID - tpTown.id || ntpTown.id
-                transport_rate: '大眾運輸比例',
-                bus_avg: '公車轉乘',
-                mrt_avg: '捷運轉乘',
-                ubike_avg: '腳踏車轉乘',
-                untransport: '私人運具',
-                pop_work_min: '?'
-                // ROADNAME: this.$t('hotmap.name'),
+                pop_work_min: '工作人口',
+                transport_avg: '大眾運輸通勤人口',
+                transport_rate: '使用大眾運輸比例',
+                // bus_avg: '公車轉乘',
+                // mrt_avg: '捷運轉乘',
+                // ubike_avg: '腳踏車轉乘',
+                // untransport: '私人運具',
             }
         }
     },
@@ -89,12 +89,13 @@ export default {
             const Lang = this.$i18n.locale === 'zh-TW'? 'zh-Hant': 'en'
             mapboxgl.accessToken = MAPBOXTOKEN
             this.MapBoxObject = new mapboxgl.Map({
-                antialias: true,
                 container: "mapbox_container",
                 style: 'mapbox://styles/mapbox/light-v10',
-                center: locationsCenter.northArea,
-                zoom: initZoom.northArea,
-                minZoom: initZoom.northArea - 1,
+                // style: "mapbox://styles/taipei-tuic/cl9fha9yc000314pb5zl1fcqy",
+                antialias: true,
+                center: locationsCenter.haveData,
+                zoom: initZoom.haveData,
+                minZoom: initZoom.haveData - 1,
                 maxZoom: initZoom.maxZoom
             }).addControl(new MapboxLanguage({ defaultLanguage: Lang }))
 
@@ -113,9 +114,10 @@ export default {
             this.MapBoxObject.on("load", () => {
                 this.mapLoading = true
                 this.MapBoxObject.addLayer(mapboxBuildings)
+                console.log(this.MapBoxObject.getStyle().layers);
                 this.MapBoxObject.setLayoutProperty('settlement-label', 'visibility', 'none')
+                // this.MapBoxObject.setpaint('bridge-motorway-trunk-case', 'visibility', 'none')
                 this.loadDataToMapbox()
-                // console.log(this.MapBoxObject.getStyle().layers);
             })
             this.MapBoxObject.on("click", (e) => {
                 // console.log( this.MapBoxObject.getBounds())
@@ -133,7 +135,7 @@ export default {
                     type: 'geojson', 
                     data: popData 
                 }).addLayer(PopWorkStyle)
-
+                // this.MapBoxObject.moveLayer('pop_work_fill', 'bridge-motorway-trunk-case');
                 if(!this.MapBoxObject.getLayer('pop_work_fill'))return
                 this.MapBoxObject.on('click', 'pop_work_fill', (e) => {
                     this.MapBoxObject.getCanvas().style.cursor = 'pointer'

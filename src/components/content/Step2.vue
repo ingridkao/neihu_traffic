@@ -17,18 +17,14 @@
                 data-aos="fade-up"			
                 data-aos-duration="1600"
             >
-                大內科周邊的主要道路，除了供大內科工作的人使用外，同時也要負擔其他區域的過境車流。據交通局委託民間業者的分析報告指出，在通勤時段從其他區域進入大內科的車流為42.5%，過境大內科的車流為57.5%。.5%，過境內科的車流為57.5%。
+                大內科周邊的主要道路，除了供大內科工作的人使用外，同時也要負擔其他區域的過境車流。據交通局委託民間業者的分析報告指出，在通勤時段從其他區域進入大內科的車流為42.5%，過境大內科的車流為57.5%。
             </p>
-            <p 
+            <p
                 v-if="imgBoxShow3" 
-                class="infoBox"
                 data-aos="fade-up"			
                 data-aos-duration="1600"
             >
-                <SpeedLabel :low-speed="lowSpeed"/>
-                <button @click="lowSpeed = !lowSpeed">
-                    僅顯示低時速 {{lowSpeed ? 'on':'off'}}
-                </button>
+                <SpeedLabel :low-speed="lowSpeed" @update="updateLowSpeed"/>
             </p>
 		</div>
 
@@ -118,6 +114,11 @@ export default {
             MapImg2,
             MapImg3,
             MapImg4
+        }
+    },
+    methods:{
+        updateLowSpeed(boolen){
+            this.lowSpeed = boolen
         }
     }
 }

@@ -81,7 +81,8 @@ export const PopWorkStyle = {
             'interpolate',['linear'],['get', 'pop_work_min'],
             0, 0,
             100, 500,
-            5000, 5000
+            2000, 3000,
+            4000, 3500
         ],
         'fill-extrusion-opacity': 0.8
     }
@@ -3090,53 +3091,6 @@ export default {
                 ]
             }
         },
-        /*
-        {
-            "id": "Building",
-            "type": "fill-extrusion",
-            "source": "composite",
-            "source-layer": "_3-4n4uab", //Mapbox don't have this
-            "layout": {},
-            "paint": {
-                "fill-extrusion-height": [
-                    "interpolate",
-                    ["linear"],
-                    ["zoom"],
-                    0,
-                    [
-                        "interpolate",
-                        ["linear"],
-                        ["get", "1_Top_high"],
-                        2.2,
-                        0,
-                        1044.14,
-                        1044.14
-                    ],
-                    22,
-                    [
-                        "interpolate",
-                        ["linear"],
-                        ["get", "1_Top_high"],
-                        2.2,
-                        0,
-                        1044.14,
-                        1044.14
-                    ]
-                ],
-                "fill-extrusion-opacity": 0.9,
-                "fill-extrusion-translate": [
-                    "interpolate",
-                    ["linear"],
-                    ["zoom"],
-                    0,
-                    ["literal", [0, 0]],
-                    22,
-                    ["literal", [0, 0]]
-                ],
-                "fill-extrusion-color": "hsl(0, 0%, 13%)"
-            }
-        },
-        */
         {
             "id": "road-intersection",
             "type": "symbol",

@@ -1,19 +1,16 @@
 <template>
     <div class="chartActionBox">
-        <div>
-            <span>排序方式: </span>
-            <button class="underLineBtn" :disabled="sortType == 1" @click="sortTypeToggle(1)">私人運具</button>
-            <button class="underLineBtn" :disabled="sortType == 0" @click="sortTypeToggle(0)">大眾運輸</button>
+        <div class="toggleBtn" data-attr="排序方式">
+            <button :class="{active:sortType == 0}" @click="sortTypeToggle(0)">私人運具</button>
+            <button :class="{active:sortType == 1}" @click="sortTypeToggle(1)">大眾運輸</button>
         </div>
-        <div>
-            <span>內湖數據顯示: </span>
-            <button class="underLineBtn" :disabled="!neiHuShow" @click="neiHuShowToggle(false)">ON</button>
-            <button class="underLineBtn" :disabled="neiHuShow" @click="neiHuShowToggle(true)">OFF</button>
+        <div class="toggleBtn" data-attr="內湖數據顯示">
+            <button :class="{active:neiHuShow}" @click="neiHuShowToggle(true)">ON</button>
+            <button :class="{active:!neiHuShow}" @click="neiHuShowToggle(false)">OFF</button>
         </div>
-        <div>
-            <span>呈現方式: </span>
-            <button class="underLineBtn" :disabled="!stackedChart" @click="stackedChartToggle(false)">類型比較</button>
-            <button class="underLineBtn" :disabled="stackedChart" @click="stackedChartToggle(true)">運輸佔比</button>
+        <div class="toggleBtn" data-attr="呈現方式">
+            <button :class="{active:!stackedChart}" @click="stackedChartToggle(false)">類型比較</button>
+            <button :class="{active:stackedChart}" @click="stackedChartToggle(true)">運輸佔比</button>
         </div>
     </div>
     <div v-if="chartReload" class="apexChartContainer basic">

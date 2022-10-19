@@ -34,9 +34,7 @@ export default {
 </script>
 <style lang="scss" scoped>
     .mapLabelBox{
-        width: 15rem;
-        height: auto;
-        padding: 0 0.5rem 0.5rem 0.5rem;
+        width: 14rem;
         >div{
             &.patio{
                 text-align: right;
@@ -59,20 +57,6 @@ export default {
                     font-size: 0.3rem;
                 }
             }
-        }
-        >div{
-            // width: 10rem;
-            // height: 1rem;
-            // display: inline-flex;
-            // align-items: center;
-            // justify-content: space-between;
-            // span{
-            //     margin: 0 .5rem;
-            //     &:first-child{
-            //         width: 3rem;
-            //         height: 0.2rem;
-            //     }
-            // }
         }
     }
 </style>
