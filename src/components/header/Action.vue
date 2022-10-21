@@ -1,8 +1,10 @@
 <template>
-	<div id="headerActionWrapper" class="block_scrollama">
-		<div style="flex-basis: calc(50% - 5rem);"/>
-		<div>
-			<a :href="copyUrl" id="logoBox"><img :src="LOGO" alt="TUIC"></a>
+	<div id="headerActionWrapper">
+		<div style="flex-basis: 30vh;"/>
+		<div class="titleBox">
+			<a :href="copyUrl" class="logoBox">
+				<img :src="LOGO" alt="TUIC">
+			</a>
 			<div>
 				<h2>{{$t('mainTitle2')}}</h2>
 				<h1>{{$t('mainTitle')}}</h1>
@@ -10,7 +12,7 @@
 			</div>
 		</div>
 		<p v-if="mobildDevice">{{$t('suggest')}}</p>
-		<div id="actionBox" class="buttonBox">
+		<div class="buttonBox buttonActionBox">
 			<input type="hidden" id="webURL" :value="copyUrl">
 			<button class="fbBtn" @click="shareToFb($event)"/>
 			<button class="linkBtn" @click="copyURL($event)"/>
@@ -26,8 +28,6 @@
 <script>
 import LOGO from '@/assets/TUIC.svg'
 import ScrollButton from "@/components/header/ScrollButton.vue"
-import MobileDetect from 'mobile-detect'
-const mobileDetect = new MobileDetect(window.navigator.userAgent)
 export default {
 	name: "HeaderPage",
 	props:{ 
@@ -43,12 +43,16 @@ export default {
 	components: {
 		ScrollButton
 	},
+	computed: {
+        mobildDevice(){
+            return this.$store.state.mobildDevice
+        },
+	},
 	data() {
 		return {
 			LOGO,
 			timeout: null,
 			copyUrl: '#',
-			mobildDevice: mobileDetect.phone()? true: false,
 			showSlide: false
 		}
 	},
@@ -118,14 +122,25 @@ export default {
 @import '@/assets/scss/main.scss';
 $mainColor: darken($whiteColor, 25);
 #headerActionWrapper{
+	position: relative;
 	display: flex;
 	flex-direction: column;
-	align-items: self-start;
 	justify-content: space-between;
+	align-items: self-start;
 	z-index: 3;
 	padding: 3rem;
+	background-color: transparent;
 	h1, h2, h3{
 		color: $blackColor;
+	}
+	.titleBox{
+		align-items: flex-start;
+	}
+	.logoBox{
+		display: inline-block;
+		text-align: left;
+		height: 3rem;
+		margin: 0.5rem;
 	}
 	footer{
 		width: 100%;
@@ -133,22 +148,13 @@ $mainColor: darken($whiteColor, 25);
 	}
 }
 
-#logoBox{
-	display: inline-block;
-	text-align: left;
-	height: 3rem;
-    margin: 0.5rem;
-}
-
-#actionBox{
+.buttonActionBox{
 	position: fixed;
 	z-index: 100;
 	top: .75rem;
 	right: 1rem;
-    // width: 11rem;
     width: 6.5rem;
     height: 1.5rem;
-
 	display: inline-flex;
 	.fbBtn{
 		background-image: url('../../assets/icon/fb.svg');

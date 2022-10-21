@@ -128,7 +128,6 @@ export default {
                     }
                     break;
                 case 'new_taipei_city':
-                    // this.parseData(NewTaipeiTotal)
                     if(!(this.ntpTown && this.ntpTown.id)){
                         this.parseData(NewTaipeiTotal)
                     }else{
@@ -172,10 +171,9 @@ export default {
 @import '@/assets/scss/variables.scss';
 .chartContainer{
     header{
-        @extend %horizontalCenter;
-        justify-content: space-around;
+        @extend %horizontalSpaceAround;
         width: 14rem;
-        margin: 0.5rem 0;
+        margin-bottom: 1rem;
 		@extend %titleCardShadow;
         h6{
             font-weight: normal;

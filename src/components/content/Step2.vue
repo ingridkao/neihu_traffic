@@ -1,13 +1,10 @@
 <template>
-	<div 
-        id="chapter1"
-        class="block_scrollama contextbox rowBox"
-    >
-		<div class="articalBox">
+    <div class="articalBox space-between">
+        <div>
             <h6>內湖交通改善計畫：先了解大內科園區</h6>
             <p
                 v-if="imgBoxShow1"
-                data-aos="fade-up"			
+                data-aos="fade-up"
                 data-aos-duration="1600"
             >
                 根據 2019 年交通流量資料，內湖的交通壅塞熱點，主要集中在以內湖科技園區及大彎南段工業區組成的「大內湖科技園區」(以下簡稱大內科)。大內科總面積2.8km²，其中多為工商業用地，住宅用地次之。
@@ -19,57 +16,58 @@
             >
                 大內科周邊的主要道路，除了供大內科工作的人使用外，同時也要負擔其他區域的過境車流。據交通局委託民間業者的分析報告指出，在通勤時段從其他區域進入大內科的車流為42.5%，過境大內科的車流為57.5%。
             </p>
-            <p
-                v-if="imgBoxShow3" 
-                data-aos="fade-up"			
-                data-aos-duration="1600"
-            >
-                <SpeedLabel :low-speed="lowSpeed" @update="updateLowSpeed"/>
-            </p>
-		</div>
-
-        <div :class="[
-            'imgBox',
-            {
-                fixedbox: imgBoxShow3 || (currStep == 3 && currStepProgress <= 25)
-            }
-        ]">
-            <div
-                :style="{
-                    backgroundImage: `url(${MapImg1})`
-                }"
-                :class="[
-                    'bgBlock',
-                    {
-                        active: currStep == 1 || (currStep == 2 && currStepProgress <= 60),
-                    }
-                ]"
-            />
-            <div
-               :style="{
-                    backgroundImage: `url(${lowSpeed? MapImg2: MapImg3})`
-                }"
-                :class="[
-                    'bgBlock',
-                    {
-                        'activeOpacity': (currStep == 2 && currStepProgress >= 45 && currStepProgress <= 60),
-                        'active': (currStep == 2 && currStepProgress > 60)
-                    }
-                ]"
-            />
-            <div 
-                :style="{
-                    backgroundImage: `url(${MapImg4})`
-                }"
-                :class="[
-                    'bgBlock',
-                    {
-                        activeOpacity: (currStep == 2 && currStepProgress > 90) || (currStep == 3 && currStepProgress <= 10)
-                    }
-                ]"
-            />
         </div>
-	</div>
+        <SpeedLabel 
+            v-if="imgBoxShow3" 
+            data-aos="fade-up"			
+            data-aos-duration="1600"
+            :low-speed="lowSpeed" 
+            @update="updateLowSpeed"
+        />
+    </div>
+
+    <div :class="[
+        'imgBox',
+        {
+            fixedbox: imgBoxShow3 || (currStep == 3 && currStepProgress <= 25),
+            currStep: currStep == 2
+        }
+    ]">
+        <div
+            :style="{
+                backgroundImage: `url(${MapImg1})`
+            }"
+            :class="[
+                'bgBlock',
+                {
+                    active: currStep == 1 || (currStep == 2 && currStepProgress <= 60),
+                }
+            ]"
+        />
+        <div
+            :style="{
+                backgroundImage: `url(${lowSpeed? MapImg2: MapImg3})`
+            }"
+            :class="[
+                'bgBlock',
+                {
+                    'activeOpacity': (currStep == 2 && currStepProgress >= 45 && currStepProgress <= 60),
+                    'active': (currStep == 2 && currStepProgress > 60)
+                }
+            ]"
+        />
+        <div 
+            :style="{
+                backgroundImage: `url(${MapImg4})`
+            }"
+            :class="[
+                'bgBlock',
+                {
+                    activeOpacity: (currStep == 2 && currStepProgress > 90) || (currStep == 3 && currStepProgress <= 10)
+                }
+            ]"
+        />
+    </div>
 </template>
 
 <script>

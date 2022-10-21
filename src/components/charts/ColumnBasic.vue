@@ -1,5 +1,9 @@
 <template>
     <div class="chartActionBox">
+        <div class="toggleBtn" data-attr="呈現方式">
+            <button :class="{active:!stackedChart}" @click="stackedChartToggle(false)">類型比較</button>
+            <button :class="{active:stackedChart}" @click="stackedChartToggle(true)">運輸佔比</button>
+        </div>
         <div class="toggleBtn" data-attr="排序方式">
             <button :class="{active:sortType == 0}" @click="sortTypeToggle(0)">私人運具</button>
             <button :class="{active:sortType == 1}" @click="sortTypeToggle(1)">大眾運輸</button>
@@ -7,10 +11,6 @@
         <div class="toggleBtn" data-attr="內湖數據顯示">
             <button :class="{active:neiHuShow}" @click="neiHuShowToggle(true)">ON</button>
             <button :class="{active:!neiHuShow}" @click="neiHuShowToggle(false)">OFF</button>
-        </div>
-        <div class="toggleBtn" data-attr="呈現方式">
-            <button :class="{active:!stackedChart}" @click="stackedChartToggle(false)">類型比較</button>
-            <button :class="{active:stackedChart}" @click="stackedChartToggle(true)">運輸佔比</button>
         </div>
     </div>
     <div v-if="chartReload" class="apexChartContainer basic">
@@ -165,29 +165,13 @@ export default {
 
 <style lang="scss" scoped>
 @import '@/assets/scss/variables.scss';
-.chartActionBox{
-    @extend %horizontalCenter;
-    align-items: flex-start;
-    width: 100%;
-    padding: 0;
-    >div{
-        @media screen and (max-width:501px){
-            display: flex;
-            flex-direction: column;
-        }
-        padding-right: 1rem;
-        button{
-            height: 2rem;
-        }
-    }
-    input{
-        margin: 0 .25rem 0 .75rem;
-    }
-}
 .apexChartContainer{
     display: block;
     width: 100%;
     height: calc(100vh - 20rem);
+    @media screen and (max-width:501px){
+        height: calc(100vh - 15rem);
+    }
 }
 </style>
 <style lang="scss"> 

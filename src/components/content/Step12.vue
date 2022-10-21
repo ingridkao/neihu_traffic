@@ -1,34 +1,34 @@
 <template>
-    <div 
-        class="block_scrollama contextbox"
+    <div class="imgBox"
+        :class="{
+            currStep: currStep == 12
+        }"
     >
-        <div class="imgBox">
-            <div class="bgBlock imgCenter bg1 active"/>
-            <div class="bgBlock imgCenter bg2" :class="{active: article >= 2}"/>
+        <div class="bgBlock imgCenter bg1 active"/>
+        <div class="bgBlock imgCenter bg2" :class="{active: article >= 2}"/>
+    </div>
+    <div class="cardBox">
+        <div class="top left title">
+            <h6>YouBike的通勤熱區在哪</h6>
+            <p>- 上下班時段的起訖熱門區域-</p>
         </div>
-        <div class="cardBox">
-            <div class="top left title">
-                <h6>YouBike的通勤熱區在哪</h6>
-                <p>- 上下班時段的起訖熱門區域-</p>
+        <div class="middle2 right content">
+            <div
+                v-if="article <= 2"
+                data-aos="fade-down"			
+                data-aos-duration="1600"
+            >
+                YouBike使用熱區多為捷運站周邊，大多通勤族使用YouBike至捷運站轉乘。
             </div>
-            <div class="middle2 right content">
-                <div
-                    v-if="article <= 2"
-                    data-aos="fade-down"			
-                    data-aos-duration="1600"
-                >
-                    YouBike使用熱區多為捷運站周邊，大多通勤族使用YouBike至捷運站轉乘。
-                </div>
-            </div>
-            <div class="middle right content">
-                <div
-                    v-if="article === 3"
-                    data-aos="fade-up"			
-                    data-aos-duration="1600"
-                >
-                    港墘捷運站為轉乘至內科最熱門的捷運站，依序為劍南路、文德、松山、西湖。
-                    <ColumnBasicBike />
-                </div>
+        </div>
+        <div class="middle right content">
+            <div
+                v-if="article === 3"
+                data-aos="fade-up"			
+                data-aos-duration="1600"
+            >
+                港墘捷運站為轉乘至內科最熱門的捷運站，依序為劍南路、文德、松山、西湖。
+                <ColumnBasicBike />
             </div>
         </div>
     </div>

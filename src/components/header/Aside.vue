@@ -1,5 +1,5 @@
 <template>
-    <div id="slideContainer" class="buttonBox">
+    <div id="slideContainer" class="buttonBox" :style="scrollBind">
         <button id="slideBtn" @click="showAside = !showAside">
             <img v-if="showAside" :src="Close" alt="關閉" />
             <img v-else :src="Logo" alt="本文內容" class="svg_scroll" />
@@ -25,10 +25,20 @@ import Logo from '@/assets/TUIC.svg'
 import Close from '@/assets/icon/close.svg'
 
 export default {
+    props: {
+        containerHeight: {
+            type: Number,
+        }
+    },
 	computed: {
         step() {
 			return this.$store.state.step
-		}
+		},
+        scrollBind() {
+			return {
+				'--scroll': this.scrollValue
+			}
+		},
     },
 	watch:{
 		step: {
@@ -48,14 +58,21 @@ export default {
             Close,
             article: {
                 "chapter1": "內湖交通改善計畫：先了解大內科園區",
-                "chapter2": "13萬的工作人口，居住內湖不到4成",
+                "chapter2": "13萬的工作人口，大多居住在園區以外",
                 "chapter3": "大內科通勤族，約有3成選擇大眾運輸",
                 "chapter4": "從大眾運輸使用方式，分析通勤族的困境",
                 "chapter5": "解決大內科交通問題，我們有哪些機會？"
             },
-            secActive: null
+            secActive: null,
+            scrollValue: 0
         }
     },
+	mounted () {
+		window.addEventListener("scroll", this.handleScroll)
+	},
+	beforeUnmount() {
+	    window.removeEventListener('scroll', this.handleScroll)
+	},
     methods: {
         scrollTo(key){
             this.secActive = key
@@ -67,7 +84,10 @@ export default {
                 top: (offsetTarget.top + window.pageYOffset),
                 behavior: 'smooth'
             })
-        }
+        },
+        handleScroll(){
+			this.scrollValue = window.pageYOffset / (this.containerHeight - window.innerHeight)
+		}
     }
 }
 </script>

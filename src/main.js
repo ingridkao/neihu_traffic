@@ -8,9 +8,8 @@ import { en, zh } from './assets/js/lang.js'
 
 import VueApexCharts from "vue3-apexcharts"
 
-import Annotation from "@/components/content/Annotation.vue"
-
-
+import AnnotationTrigger from "@/components/annotation/Trigger.vue"
+import AnnotationContent from "@/components/annotation/Content.vue"
 
 const Locale = localStorage.getItem("locale")
 const i18n = createI18n({
@@ -48,5 +47,6 @@ const app  = createApp(App)
 app.use(i18n)
 app.use(VueApexCharts)
 app.use(store)
-app.component('Annotation', Annotation)
+app.component('AnnotationTrigger', AnnotationTrigger)
+app.component('AnnotationContent', AnnotationContent)
 app.mount('#app')

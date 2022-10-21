@@ -13,7 +13,15 @@
 				:style="{
 					'background-image': 'url('+ require(`@/assets/img/${imgURL}/${slide.index}.jpg`)+')',
 				}"
-			/>
+			>
+				<div 
+					v-if="imgLabel"
+					class="imgLabelContainer"
+					:style="{
+						backgroundImage: `url(${require('@/assets/img/zone.png')})`,
+					}"
+				/>
+			</div>
 		</div>
 		<ChartLabel :text="label" :gradient="gradient"/>
 	</div>
@@ -38,6 +46,9 @@ export default {
 		},
 		imgURL: {
 			type: String
+		},
+		imgLabel: {
+			type: Boolean
 		}
     },
 	components:{

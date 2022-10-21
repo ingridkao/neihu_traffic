@@ -1,41 +1,40 @@
 <template>
-    <div class="block_scrollama contextbox fullContainer">
-        <div class="imgBox"
-            :class="{
-                fixedbox: blockFixed,
-                blockBottom: blockBottom
-            }"
-        >
-            <div class="bgBlock imgCenter bg1 active"/>
-            <div class="bgBlock imgCenter bg2" :class="{active: article === 2}"/>
+    <div class="imgBox"
+        :class="{
+            fixedbox: blockFixed,
+            blockBottom: blockBottom,
+            currStep: currStep == 11
+        }"
+    >
+        <div class="bgBlock imgCenter bg1 active"/>
+        <div class="bgBlock imgCenter bg2" :class="{active: article === 2}"/>
+    </div>
+    <div class="cardBox"
+        :class="{
+            blockFixed: blockFixed,
+        }"
+    >
+        <div class="top left title">
+            <h6>公車的通勤熱區在哪</h6>
+            <p>- 上下班時段的起訖熱門區域-</p>
         </div>
-        <div class="cardBox"
-            :class="{
-                blockFixed: blockFixed,
-            }"
-        >
-            <div class="top left title">
-                <h6>公車的通勤熱區在哪</h6>
-                <p>- 上下班時段的起訖熱門區域-</p>
+        <div class="middle2 right content">
+            <div
+                v-if="article === 1"
+                data-aos="fade-down"			
+                data-aos-duration="1600"
+            >
+                公車搭乘熱區大多為捷運站周邊，推測有多數人使用捷運轉乘公車通勤至內科。
             </div>
-            <div class="middle2 right content">
-                <div
-                    v-if="article === 1"
-                    data-aos="fade-down"			
-                    data-aos-duration="1600"
-                >
-                    公車搭乘熱區大多為捷運站周邊，推測有多數人使用捷運轉乘公車通勤至內科。
-                </div>
-            </div>
-            <div class="middle right content">
-                <div
-                    v-if="article === 2"
-                    data-aos="fade-up"			
-                    data-aos-duration="1600"
-                >
-                    松山捷運站為轉乘至內科最熱門的捷運站，其餘依序為港墘、中山國小、西湖、內湖。
-                    <ColumnBasicBus />
-                </div>
+        </div>
+        <div class="middle right content">
+            <div
+                v-if="article === 2"
+                data-aos="fade-up"			
+                data-aos-duration="1600"
+            >
+                松山捷運站為轉乘至內科最熱門的捷運站，其餘依序為港墘、中山國小、西湖、內湖。
+                <ColumnBasicBus />
             </div>
         </div>
     </div>
@@ -45,7 +44,7 @@
 import ColumnBasicBus from '@/components/charts/ColumnBasicBus.vue';
 export default {
 	components:{
-		ColumnBasicBus,
+		ColumnBasicBus
 	},
     computed: {
         currStep() {

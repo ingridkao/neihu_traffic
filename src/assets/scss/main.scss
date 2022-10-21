@@ -1,77 +1,6 @@
 @import './variables.scss';
 
-.block_scrollama {
-    position: relative;
-    height: 100vh;
-    color: $textSubColor;
-    &.autoH{
-        height: auto;
-    }
-    h6, p{
-        position: relative;
-        width: 100%;
-        text-align: left;
-        margin-bottom: 1rem;
-    }
-}
-
-.contextbox{
-	background-color: $whiteColor;
-	>*{
-		@extend %verticalCenter;
-		@extend %contentPadding;
-	}
-	&.half{
-		width: $mapAsideWidth;
-	}
-	&.full{
-		z-index: 0;
-	}
-    &.fullContainer{
-        height: 200vh;
-        .articalBox{
-            height: 100vh;
-            &.fixedbox{
-                position: fixed;
-                top: 0;
-            }
-            &.blockBottom{
-                position: absolute;
-                bottom: 0;
-            }
-        }
-        .imgBox{
-            height: 100vh;
-            &.blockBottom{position: absolute;bottom: 0;right:0;z-index: 0;}
-        }
-        .cardBox{
-            &.blockFixed{
-                position: fixed;
-                height: 100vh;
-                z-index: 2;
-            }
-        }
-    }
-}
-
 .rowBox{
-    @extend %horizontalCenter;
-    @media screen and (max-width:501px){
-        display: block;
-        position: relative;
-    }
-    .articalBox{
-        width: $mapAsideWidth;
-        @extend %verticalCenter;
-        @extend %contentPadding;
-        @media screen and (max-width:501px){
-            position: absolute;
-            width: 100vw;
-            top: 0;
-            z-index: 10;
-            background-color: rgba($whiteColor, 0.8);
-        }
-    }
     .imgBox{
         width: calc(100% - $mapAsideWidth);
         @media screen and (max-width:501px){
@@ -83,30 +12,65 @@
     }
 }
 
-.cardContainer{
-	@extend %verticalCenter;
-	>div{
-		width: $mapAsideWidth*1.2;
-		height: auto;
-		@media screen and (max-width:501px){
-			width: 90%;
-		}
-		@extend %whiteCardShadow;
-		@extend %contentPadding;
-		border-radius: .25rem;
-		border: 1px solid rgba($blackColor, 0.3);
-		background-color: rgba($whiteColor, 0.8);
-	}
+.fullContainer{
+    .articalBox{
+        height: 100vh;
+        &.fixedbox{
+            position: fixed;
+            top: 0;
+        }
+        &.blockBottom{
+            position: absolute;
+            bottom: 0;
+        }
+    }
+    .imgBox{
+        height: 100vh;
+        &.blockBottom{position: absolute;bottom: 0;right:0;z-index: 0;}
+    }
+    .cardBox{
+        &.blockFixed{
+            position: fixed;
+            height: 100vh;
+            z-index: 2;
+        }
+    }
 }
 
-.halfRowBox{
+.articalBox{
+    position: relative;
+    width: $mapAsideWidth;
+    @extend %verticalCenter;
+    @extend %contentPadding;
+    padding-top: 10vh;
+    @media screen and (max-width:501px){
+        position: absolute;
+        padding-top: 1rem;
+        width: 100vw;
+        top: 0;
+        z-index: 10;
+        background-color: rgba($whiteColor, 0.8);
+    }
+}
+
+.rowFlex{
+    position: relative;
     @extend %horizontalCenter;
-    align-items: flex-start;
-    flex-wrap: wrap;
+    @media screen and (max-width:501px){
+        display: block;
+    }
+}
+
+.halfRowHeader{
+    @extend %horizontalCenter;
     @media screen and (max-width:501px){
         flex-direction: column;
     }
+    align-items: flex-start;
+    flex-wrap: wrap;
+    position: relative;
     :first-child{
+        position: relative;
         flex-basis: calc(100% - #{$mapGifWidth + 8rem});
         @media screen and (max-width:501px){
             flex-basis: auto;
@@ -159,6 +123,20 @@
         background: $whiteColor;
         z-index: 2;
     }
+    // &::after{
+    //     content: '';
+    //     position: absolute;
+    //     width: 100%;
+    //     height: 100%;
+    //     background-color: rgba($whiteColor, 0.5);
+    //     z-index: 1;
+    //     transition: background-color 0.5s;
+    //     transition: display 0.5s 1s;
+    // }
+    // &.currStep::after{
+    //     background-color: transparent;
+    //     display: none;
+    // }
     .bgBlock{
         @extend %imgBlock;
         &.imgCenter{
@@ -192,7 +170,7 @@
         &.top{top: 5rem;}
         &.left{left: -.5rem;}
         &.right{right: 5rem;}
-        &.middle{top: 60vh;} 
+        &.middle{top: 50vh;} 
         &.middle2{top: 70vh;} 
         @media screen and (max-width:501px){
             &.top{top: 2.5rem;}
@@ -227,35 +205,21 @@
 	opacity: 0;
 }
 
-// .vertialSuper{
-//     vertical-align: super;
-//     font-size: 50%;
-// 	opacity: 0.5;
-// }
-
 // carousel start
-$carouselHeaderHeight: 20rem;
+$carouselHeaderHeight: 17.5rem;
 $carouselTabBtnHeight: 3rem;
-
-.carouselContainer{
-    z-index: 0;
-    height: calc(90vh + #{$carouselHeaderHeight});
-    > header{
-        padding-top: 3rem;
-        padding-bottom: 0;
-        height: $carouselHeaderHeight;
-    }
-    .carousel{
-        height: 90vh;
-    }
+.carouselHeader{
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    height: $carouselHeaderHeight;
 }
-
 .carousel{
     position: relative;
     padding-top: 0;
+    z-index: 0;
+    height: calc(100% - #{$carouselHeaderHeight});
     .carousel-header{
         @extend %horizontalCenter;
-        justify-content: space-between;
         width: 100%;
         height: $carouselTabBtnHeight;
     }
@@ -295,34 +259,30 @@ $carouselTabBtnHeight: 3rem;
             }
 		}
         .imgContainer{
+            position: relative;
             width: 100%;
             height: 100%;
             background-size: cover;
             background-position-x: center;
             background-position-y: center;
             background-repeat: no-repeat;
-			// @media screen and (max-width:641px){
-			// 	height: 90%;
-			// 	background-size: cover;
-			// 	background-position-x: center;
-			// 	background-position-y: center;
-			// }
             opacity: 0;
             z-index: 0;
             transition: opacity 1s;
+            .imgLabelContainer{
+                position: absolute;
+                bottom: .5rem;
+                left: .5rem;
+                width: 9rem;
+                height: 9rem;
+                background-size: cover;
+                background-position: center;
+            }
         }
-    }
-    .imgLabelContainer{
-        position: absolute;
-        bottom: 3rem;
-        left: 3rem;
-        width: 9rem;
-        height: 9rem;
-        background-size: cover;
-        background-position: center;
     }
 }
 //carousel end
+
 .svgHeader{
     @extend %horizontalCenter;
     svg {
@@ -371,5 +331,40 @@ $carouselTabBtnHeight: 3rem;
                 display: none;
             } 
         }
+    }
+    @media screen and (max-width:501px){
+        width: 100%;
+        svg{
+            display: none;
+        }
+        ul{
+            width: 100% !important;
+        }
+    }
+}
+
+.chartActionBox{
+    @extend %horizontalCenter;
+    align-items: flex-start;
+    width: 100%;
+    padding: 0;
+    >div{
+        padding-right: 1rem;
+        button{
+            height: 2rem;
+        }
+    }
+    @media screen and (max-width:501px){
+        flex-direction: column;
+        margin-left: 2rem;
+        >div{
+            &::before{
+                width: 6rem;
+            }
+            margin-bottom: .25rem;
+        }
+    }
+    input{
+        margin: 0 .25rem 0 .75rem;
     }
 }

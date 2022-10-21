@@ -1,27 +1,55 @@
 <template>
-	<main id="homePage" ref="home_container" :class="{langEn: !langZh}" :style="scrollBind">
+	<main id="homePage" ref="home_container" :class="{langEn: !langZh}">
 		<HeadCover v-if="currStep <= 2" :video-start="videoStart" @toggle="toggleVideoStatus" />
 		<div id="main_scrollama" ref="scrollama_container">
 			<HeaderAction data-step-no="0" :video-start="videoStart" />
-			<Step1 data-step-no="1"/>
-			<Step2 data-step-no="2"/>
-			<Step3 data-step-no="3"/>
-			<Step4 data-step-no="4"/>
-			<Step5 data-step-no="5" />
-			<Step6 data-step-no="6"/>
-			<Step7 data-step-no="7"/>
-			<StepMap data-step-no="8"/>
-			<Step9 data-step-no="9" />
-			<Step10 data-step-no="10"/>
-			<Step11 data-step-no="11"/>
-			<Step12 data-step-no="12"/>
-			<Step13 data-step-no="13"/>
+			<div data-step-no="1" class="cardContainer">
+				<Step1 />
+			</div>
+			<div data-step-no="2" class="rowBox" id="chapter1" >
+				<Step2/>
+			</div>
+			<div data-step-no="3" class="rowBox">
+				<Step3/>
+			</div>
+			<div data-step-no="4" class="rowBox" id="chapter2">
+				<Step4/>
+			</div>
+			<div data-step-no="5" class="carouselContainer">
+				<Step5/>
+			</div>
+			<div data-step-no="6" class="carouselContainer" id="chapter3">
+				<Step6/>
+			</div>
+			<div data-step-no="7" class="fullchartContainer">
+				<Step7/>
+			</div>
+			<div data-step-no="8" class="rowBox mapContainer">
+				<StepMap/>
+			</div>
+			<div data-step-no="9" class="contentPadding" id="chapter4">
+				<Step9/>
+			</div>
+			<div data-step-no="10" class="fullContainer">
+				<Step10/>
+			</div>
+			<div data-step-no="11" class="fullContainer">
+				<Step11/>
+			</div>
+			<div data-step-no="12">
+				<Step12/>
+			</div>
+			<div data-step-no="13" class="rowBox fullContainer" id="chapter5">
+				<Step13/>
+			</div>
 		</div>
-		<AsideBox v-if="currStep > 0"/>
+		<AsideBox v-if="currStep >= 1" :container-height="containerHeight"/>
 	</main>
 </template>
 
 <script>
+import { defineAsyncComponent } from 'vue'
+
 import "intersection-observer"
 import scrollama from "scrollama"
 import AOS from "aos"
@@ -30,49 +58,28 @@ import "aos/dist/aos.css"
 import AsideBox from "@/components/header/Aside.vue"
 import HeaderAction from "@/components/header/Action.vue"
 import HeadCover from "@/components/header/Cover.vue"
-import Step1 from "@/components/content/Step1.vue"
-import Step2 from "@/components/content/Step2.vue"
-import Step3 from "@/components/content/Step3.vue"
-import Step4 from "@/components/content/Step4.vue"
-import Step5 from "@/components/content/Step5.vue"
-import Step6 from "@/components/content/Step6.vue"
-import Step7 from "@/components/content/Step7.vue"
-import Step9 from "@/components/content/Step9.vue"
-import Step10 from "@/components/content/Step10.vue"
-import Step11 from "@/components/content/Step11.vue"
-import Step12 from "@/components/content/Step12.vue"
-import Step13 from "@/components/content/Step13.vue"
-// import Step14 from "@/components/content/Step14.vue"
-
-import StepMap from '@/components/content/StepMap.vue'
-
 export default {
+	components:{
+		AsideBox, HeaderAction, HeadCover,
+		Step1: defineAsyncComponent(() => import('@/components/content/Step1.vue')),
+		Step2: defineAsyncComponent(() => import('@/components/content/Step2.vue')),
+		Step3: defineAsyncComponent(() => import('@/components/content/Step3.vue')),
+		Step4: defineAsyncComponent(() => import('@/components/content/Step4.vue')),
+		Step5: defineAsyncComponent(() => import('@/components/content/Step5.vue')),
+		Step6: defineAsyncComponent(() => import('@/components/content/Step6.vue')),
+		Step7: defineAsyncComponent(() => import('@/components/content/Step7.vue')),
+		StepMap: defineAsyncComponent(() => import('@/components/content/StepMap.vue')),
+		Step9: defineAsyncComponent(() => import('@/components/content/Step9.vue')),
+		Step10: defineAsyncComponent(() => import('@/components/content/Step10.vue')),
+		Step11: defineAsyncComponent(() => import('@/components/content/Step11.vue')),
+		Step12: defineAsyncComponent(() => import('@/components/content/Step12.vue')),
+		Step13: defineAsyncComponent(() => import('@/components/content/Step13.vue'))
+	},
 	name: "HomePage",
-  	created() {
-    	AOS.init({})
-    },
-	mounted () {
-		this.setupScroller()
-		window.addEventListener("scroll", this.handleScroll)
-	},
-	beforeUnmount() {
-		this._scroller.destroy()
-	    window.removeEventListener('scroll', this.handleScroll)
-	},
 	data() {
 		return {
-			videoStart: false,
-			// currStep: 0,
-			// currStepProgress: 0,			
-			scrollValue: 0
+			videoStart: false	
 		}
-	},
-	components:{
-		AsideBox, HeaderAction, HeadCover, 
-		Step1, Step2, Step3, Step4, Step5, Step6, Step7, 
-		StepMap, Step9, Step10, 
-		Step11, Step12, Step13, 
-		// Step14
 	},
 	computed: {
 		langZh(){
@@ -87,47 +94,39 @@ export default {
 				progress: true
 			}, this.$attrs)
 		},
-		scrollBind() {
-			return {
-				'--scroll': this.scrollValue
-			}
+		containerHeight(){
+			return this.$refs.home_container? this.$refs.home_container.offsetHeight: 0
 		},
 		currStep() {
 			return this.$store.state.step
-		},
-		currStepProgress() {
-			return this.$store.state.progres
 		}
+	},
+  	created() {
+    	AOS.init({})
+    },
+	mounted () {
+		this._scroller = scrollama()
+		this.setupScroller()
+	},
+	beforeUnmount() {
+		this._scroller.destroy()
 	},
 	methods: {
         toggleVideoStatus(boolen){
             this.videoStart = boolen
         },
-		handleScroll(){
-			this.scrollValue = window.pageYOffset / (this.$refs.home_container.offsetHeight - window.innerHeight)
-		},
 		setupScroller() {
-			this._scroller = scrollama()
 			this._scroller.destroy()
 			this._scroller
 			.setup(this.opts)
-			.onStepProgress(resp => {
-				const {progress} = resp	
-				this.$store.commit('updateProgres', (Math.floor(progress*10000)/100))
-				// this.currStepProgress = (Math.floor(progress*10000)/100)
-			})
-			.onStepEnter(resp => {
-				const {element} = resp
+			.onStepProgress(({element, progress}) => {
 				this.$store.commit('updateStep', element.dataset.stepNo)
-				// this.currStep = element.dataset.stepNo
+				this.$store.commit('updateProgres', (Math.floor(progress*10000)/100))
 			})
-			// .onStepExit(resp => {
-			// 	const {element} = resp
-			// 	console.log(element.dataset.stepNo);
-			// })
-			window.addEventListener('resize', () => {
-				this._scroller.resize()
-			})
+			window.addEventListener('resize', this.handleResize)
+		},
+		handleResize () {
+			this._scroller.resize();
 		}
 	}
 }

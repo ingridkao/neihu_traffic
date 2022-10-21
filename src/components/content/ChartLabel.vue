@@ -28,8 +28,7 @@ export default {
 <style lang="scss" scoped>
 @import '@/assets/scss/variables.scss';
 .chartLabel{
-    @extend %horizontalCenter;
-	justify-content: space-around;
+    @extend %horizontalSpaceAround;
 	align-items: center;
 	width: 12rem !important;
 	font-size: 0.5rem;

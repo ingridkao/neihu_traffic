@@ -1,47 +1,41 @@
 <template>
-	<div id="map_container" class="block_scrollama contextbox">
-       <aside>
-           <p>
-               此外，我們也將上述的大眾運輸通勤佔比，以空間網格的方式做互動呈現，利於相關單位針對不同區域做深入查詢研究。
-           </p>
-            <MapChart 
-                v-if="load" 
-                :location="location" 
-                :tpTown="tpTown" 
-                :ntpTown="ntpTown"
+    <aside>
+        <p>
+            此外，我們也將上述的大眾運輸通勤佔比，以空間網格的方式做互動呈現，利於相關單位針對不同區域做深入查詢研究。
+        </p>
+        <MapSelect 
+            :location="location" 
+            @trigger="clickLocation"
+        />
+        <div class="townBox">
+            <TownSelect 
+                v-if="location.index === 'taipei_city'"
+                :town="tpTown" 
+                @trigger="clickTpTown"
             />
-            <MapSelect 
-                :location="location" 
-                @trigger="clickLocation"
+            <TownSelectNewTaipei 
+                v-if="location.index === 'new_taipei_city'" 
+                :town="ntpTown" 
+                @trigger="clickNTpTown"
             />
-            <div class="townBox">
-                <TownSelect 
-                    v-if="location.index === 'taipei_city'"
-                    :town="tpTown" 
-                    @trigger="clickTpTown"
-                />
-                <TownSelectNewTaipei 
-                    v-if="location.index === 'new_taipei_city'" 
-                    :town="ntpTown" 
-                    @trigger="clickNTpTown"
-                />
-            </div>
-       </aside>
-       <main>
-            <MapBox 
-                :location="location"
-                :tp-town="tpTown"
-                :ntp-town="ntpTown"
-            /> 
-       </main>
-	</div>
+        </div>
+        <MapChart 
+            v-if="load" 
+            :location="location" 
+            :tpTown="tpTown" 
+            :ntpTown="ntpTown"
+        />
+    </aside>
+    <MapBox 
+        :location="location"
+        :tp-town="tpTown"
+        :ntp-town="ntpTown"
+    /> 
 </template>
 
 <script>
+import { defineAsyncComponent } from 'vue'
 import MapSelect from "@/components/maps/MapSelect.vue"
-import TownSelect from "@/components/maps/TownSelect.vue"
-import TownSelectNewTaipei from "@/components/maps/TownSelectNewTaipei.vue"
-import MapChart from "@/components/maps/Chart.vue"
 import MapBox from "@/components/maps/MapBox.vue"
 export default {
 	data() {
@@ -58,10 +52,10 @@ export default {
     },
 	components:{
         MapSelect,
-        TownSelect,
-        TownSelectNewTaipei,
-        MapChart,
-        MapBox
+        MapBox,
+		TownSelect: defineAsyncComponent(() => import('@/components/maps/TownSelect.vue')),
+		TownSelectNewTaipei: defineAsyncComponent(() => import('@/components/maps/TownSelectNewTaipei.vue')),
+		MapChart: defineAsyncComponent(() => import('@/components/maps/Chart.vue'))
 	},
     methods: {
         clickLocation(target){
@@ -74,32 +68,35 @@ export default {
         },
         clickNTpTown(targetObj){
             this.ntpTown = targetObj
-        }
+        } 
     }
 }
 </script>
 
 <style lang="scss" scoped>
 @import '@/assets/scss/variables.scss';
-#map_container{
-    @extend %horizontalCenter;
-    width: 100vw;
-    >aside{
+    aside{
         flex-basis: $mapAsideWidth;
         padding: 1rem;
         .chartContainer{
             width: 100%;
-            height: calc(100vh - 27rem);
-        }
-        .townBox{
             height: 19rem;
         }
+        .townBox{
+            width: 100%;
+            height: calc(100vh - 33rem);
+
+            @include scrollbar_style;
+            overflow: scroll;
+            @media screen and (max-width:501px){
+                height: auto;
+                margin-bottom: 2rem;
+            }
+        }
     }
-    >main{
+    main{
         flex: 1 1 calc(100% - #{$mapAsideWidth});
-        background-color: #999;
         padding: 0;
     }
-}
 </style>
 

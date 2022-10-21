@@ -12,54 +12,6 @@ export const colors = {
     nepal: '#92acb8'
 }
 
-export const taiwanLineStyle = {
-    id: 'taiwan_city_line',
-    source: 'taiwan_city',
-    type: 'line',
-    maxzoom: 10,
-    layout : { 
-        "line-join": "round"
-    },
-    paint:{
-        "line-color": colors.nepal,
-        "line-width": 2
-    }
-}
-
-export const taiwanSymbolStyle = (zh) =>{
-    const Name = zh ? "name_zh":"name_en"
-    return {
-        id: 'taiwan_city_symbol',
-        source: 'taiwan_city',
-        type: 'symbol',
-        layout : { 
-            "icon-allow-overlap": true,
-            "text-field": [
-                "format",
-                ["get", Name], {
-                    "font-scale": 0.9
-                },
-                // "\n", {},
-                // ["get", "percentage"],{
-                //     "text-font": ["literal", ["DIN Offc Pro Italic"]],
-                //     "font-scale": 0.8
-                // },
-                // "%",{
-                //     "text-font": ["literal", ["DIN Offc Pro Italic"]],
-                //     "font-scale": 0.8
-                // }
-            ]
-        },
-        paint:{
-            "text-color": colors.hoki
-        },
-        filter: [
-            "any",  
-            ["all", ["has", 'percentage'], [">=", ['get', 'percentage'], 0.49]]
-        ]
-    }
-}
-
 export const PopWorkStyle = {
     id: 'pop_work_fill',
     source: 'pop_work',

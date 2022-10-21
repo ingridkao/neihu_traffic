@@ -1,21 +1,23 @@
 <template>
     <div class="mapLabelBox">
-        <h6>信令推估人口</h6>
-        <p>Telecom Population</p>
-        <div class="patio">0%</div>
-        <div class="gradient">
-            <div 
-                v-for="(item) in speed" 
-                :key="item.text"
-                :style="{
-                    'background': `linear-gradient(180deg, #fff, ${item.color})`
-                }"
-            >
-                <div>{{item.ch}}</div>
-                <div>{{item.en}}</div>
+        <div>
+            <h6>信令推估人口</h6>
+            <p>Telecom Population</p>
+            <div class="patio">0%</div>
+            <div class="gradient">
+                <div 
+                    v-for="(item) in speed" 
+                    :key="item.text"
+                    :style="{
+                        'background': `linear-gradient(180deg, #fff, ${item.color})`
+                    }"
+                >
+                    <div>{{item.ch}}</div>
+                    <div>{{item.en}}</div>
+                </div>
             </div>
+            <div class="patio">100%</div>
         </div>
-        <div class="patio">100%</div>
     </div>
 </template>
 
@@ -34,28 +36,28 @@ export default {
 </script>
 <style lang="scss" scoped>
     .mapLabelBox{
-        width: 14rem;
         >div{
-            &.patio{
-                text-align: right;
-                font-size: 0.5rem;
-            }
-            &.gradient{
+            width: 13rem;
+        }
+        .patio{
+            text-align: right;
+            font-size: 0.5rem;
+        }
+        .gradient{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            width: 90%;
+            height: 7rem;
+            margin: auto;
+            >div{
+                opacity: 0.9;
                 display: flex;
-                flex-direction: row;
-                flex-wrap: wrap;
-                width: 80%;
-                height: 8rem;
-                margin: auto;
-                >div{
-                    opacity: 0.9;
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: flex-end;
-                    flex-basis: 33%;
-                    align-items: center;
-                    font-size: 0.3rem;
-                }
+                flex-direction: column;
+                justify-content: flex-end;
+                align-items: center;
+                flex-basis: 33%;
+                font-size: 0.3rem;
             }
         }
     }

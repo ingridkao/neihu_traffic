@@ -1,6 +1,20 @@
 <template>
-    <div id="mapbox_container" class="mapboxBox"/>
-    <Loading :load-start="mapLoading"/>
+    <main id="mapbox_container" class="mapboxBox">
+        <div class="mapLabelBox">
+            <div>
+                <h6>大眾運通勤率</h6>
+                <p>Public Transit Commute Rates</p>
+                <div class="legendBox" v-for="(item) in rates" :key="item.text">
+                    <span :style="{
+                        'background-color': item.color
+                    }"/>
+                    <span>{{item.text}}%</span>
+                </div>
+                <p>大於100%的情形，推測為有其他區域之通勤族至此區域轉乘。</p>
+            </div>
+        </div>
+        <Loading :load-start="mapLoading"/>
+    </main>
 </template>
 <script>
 import { createApp, defineComponent, nextTick } from 'vue'
@@ -11,7 +25,7 @@ import 'mapbox-gl/dist/mapbox-gl.css'
 import Loading from '@/components/Loading.vue'
 import MapboxPopupComponent from '@/components/maps/MapboxPopup.vue'
 
-import { PopWorkStyle, taiwanFillStyle, taiwanSymbolStyle, taiwanLineStyle, mapboxBuildings } from '@/assets/config/mapbox-style.js'
+import { PopWorkStyle, mapboxBuildings } from '@/assets/config/mapbox-style.js'
 import { locationsCenter, initZoom, maxBound, durationConfig} from '@/assets/config/map-config.js'
 const BASE_URL = process.env.NODE_ENV === 'production'? process.env.VUE_APP_BASE_URL: '../..'
 const MAPBOXTOKEN = process.env.VUE_APP_MAPBOXTOKEN
@@ -38,19 +52,29 @@ export default {
             countyCode: null,
             townCode: null,
             langObj : {
-                COUNTYNAME: '縣市',
+                COUNTYNAME: '來源地縣市',
                 TOWNNAME: '行政區',
                 // VILLNAME: '里',
                 //COUNTYCODE - location.id
                 //TOWNID - tpTown.id || ntpTown.id
-                pop_work_min: '工作人口',
+                pop_work_min: '總工作人口',
                 transport_avg: '大眾運輸通勤人口',
                 transport_rate: '使用大眾運輸比例',
                 // bus_avg: '公車轉乘',
                 // mrt_avg: '捷運轉乘',
                 // ubike_avg: '腳踏車轉乘',
                 // untransport: '私人運具',
-            }
+            },
+            rates: [
+                {text: '0-5', color: '#D53335'},
+                {text: '5-10', color: '#DB6769'},
+                {text: '10-20', color: '#E19C9D'},
+                {text: '20-30', color: '#E7D0D0'},
+                {text: '30-50', color: '#D4E0D8'},
+                {text: '50-70', color: '#A7CDB5'},
+                {text: '70-100', color: '#7AB992'},
+                {text: '>100', color: '#4DA56E'},
+            ],
         }
     },
     mounted(){
@@ -216,7 +240,6 @@ export default {
         },
         openMapboxPopup(featuresData, LngLat){
             this.MapBoxPopup = new mapboxgl.Popup().setLngLat(LngLat).setHTML('<div id="popup-content"></div>').addTo(this.MapBoxObject)
-            // const LangObj = this.langObj
             const NewFeatures = featuresData.map(features => {
                 const Propertie = features.properties
                 if(Propertie){
@@ -240,21 +263,36 @@ export default {
                 }
             })
             nextTick(() => { createApp(defindPopup).mount("#popup-content") })
-            // this.MapBoxObject.easeTo({
-            //     center: LngLat
-            // })
         }
     }
 }
 </script>
 <style lang="scss">
+@import '@/assets/scss/variables.scss';
 .mapboxBox, 
 .mapboxgl-canvas{
+    position: relative;
     width: 100%;
     height: 100vh;
-}
-.loadingBox{
-    height: 100vh;
+    .mapLabelBox{
+        left: auto;
+        right: .25rem;
+        bottom: .75rem;
+        z-index: 1;
+        >div{
+            width: 12rem;
+            height: 17.5rem;
+        }
+        .legendBox{
+            span{
+                line-height: 1;
+                &:first-child{
+                    width: 1rem;
+                    height: 1rem;
+                }
+            }
+        }
+    }
 }
 .mapboxgl-ctrl-top-right{
     left: 0;

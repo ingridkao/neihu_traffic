@@ -16,7 +16,7 @@ export default {
         return {
             seriesData: [{
                 name: '轉乘人數',
-                data: MrtData.map(item => item['work'])
+                data: MrtData.map(item => item['avg'])
             }],
             chartOptions: {
                 title: {
@@ -25,7 +25,7 @@ export default {
                     offsetX: -10,
                     offsetY: 5,
                     style: {
-                        fontSize: '10px'
+                        fontSize: '12px'
                     }
                 },
                 plotOptions: {
@@ -41,7 +41,7 @@ export default {
                     categories: MrtData.map(item => item['name']),
                     labels: {
                         style: {
-                            fontSize: '8px',
+                            fontSize: '10px',
                         },
                         minHeight: 90
                     },
@@ -50,7 +50,7 @@ export default {
                     labels: {
                         maxWidth: 60,
                         style: {
-                            fontSize: '8px',
+                            fontSize: '10px',
                             colors: [
                                 '#007ffd', '#007ffd', '#007ffd', '#007ffd','#007ffd',
                                 '#ff9800', 
@@ -66,7 +66,7 @@ export default {
                 dataLabels: {
                     enabled: true,
                     style: {
-                        fontSize: '8px',
+                        fontSize: '10px',
                         fontWeight: 'normal',
                         colors: ['#666']
                     },

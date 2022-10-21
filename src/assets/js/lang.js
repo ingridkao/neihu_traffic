@@ -112,7 +112,7 @@ export const en = {
     scrollama2:{
         title:"Types and Percentile of Registered Taxis",
         imgAlt:"Taipei taxi",
-        p:"As of the end of 2019, the registered taxis of northern <span class='vertialSuper'>1</span>Taiwan municipalities (New Taipei City, Taipei City, Taoyuan City, Keelung City, Yilan County, Hsinchu City, and Hsinchu County) can be subdivided into the following: Personal Operators 25.6%; Transportation Corporation 26.2%; and Taxi Fleet 48.2%. Currently, only a small number of taxi fleets collect and manage data related to taxi rides. ",
+        p:"As of the end of 2019, the registered taxis of northern Taiwan municipalities (New Taipei City, Taipei City, Taoyuan City, Keelung City, Yilan County, Hsinchu City, and Hsinchu County) can be subdivided into the following: Personal Operators 25.6%; Transportation Corporation 26.2%; and Taxi Fleet 48.2%. Currently, only a small number of taxi fleets collect and manage data related to taxi rides. ",
         annotation1:"1. In accordance with ",
         annotation2:"Article 34 of the Highway Act",
         annotation3:", to implement the overall quantity control of cabs and to avoid massive number of taxis on the road worsening traffic jams and air pollution, taxi operations require a vehicle to carry passengers and a taxi license.",

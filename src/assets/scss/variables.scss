@@ -28,6 +28,10 @@ $textSubColor: lighten($blackColor, 10);
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    &.space-between{
+        justify-content: space-between;
+        align-items: flex-start;
+    }
 }
 
 %horizontalCenter {
@@ -35,12 +39,18 @@ $textSubColor: lighten($blackColor, 10);
     flex-direction: row;
 }
 
+%horizontalSpaceAround {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
 %imgCommom{
     background-repeat: no-repeat;
     background-position: center;
 }
 
-$mapAsideWidth : 27.5rem;
+$mapAsideWidth : 28rem;
 $mapGifWidth: 20rem;
 
 @mixin scrollbar_style {
