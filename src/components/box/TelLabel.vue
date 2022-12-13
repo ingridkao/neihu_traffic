@@ -41,7 +41,7 @@ export default {
         }
         .patio{
             text-align: right;
-            font-size: 0.5rem;
+            font-size: 50%;
         }
         .gradient{
             display: flex;
@@ -57,7 +57,7 @@ export default {
                 justify-content: flex-end;
                 align-items: center;
                 flex-basis: 33%;
-                font-size: 0.3rem;
+                font-size: 30%;
             }
         }
     }

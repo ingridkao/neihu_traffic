@@ -84,7 +84,7 @@ export default {
         }
         .townBox{
             width: 100%;
-            height: calc(100vh - 33rem);
+            height: calc(100vh - 38rem);
 
             @include scrollbar_style;
             overflow: scroll;

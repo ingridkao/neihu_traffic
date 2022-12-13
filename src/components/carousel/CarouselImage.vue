@@ -28,9 +28,11 @@
 </template>
 
 <script>
-import ChartLabel from "@/components/content/ChartLabel.vue"
-
+import { defineAsyncComponent } from 'vue'
 export default {
+	components:{
+		ChartLabel: defineAsyncComponent(() => import('@/components/content/ChartLabel.vue')),
+	},
     props: {
         tab: {
             type: Array
@@ -51,9 +53,6 @@ export default {
 			type: Boolean
 		}
     },
-	components:{
-		ChartLabel
-	},
 	methods: {
 		slideSelect(index) {
 			const selectIndex = this.tab.findIndex( item => item.index == this.currentTab)

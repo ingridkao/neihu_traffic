@@ -26,10 +26,13 @@
 </template>
 
 <script>
+import { defineAsyncComponent } from 'vue'
 import LOGO from '@/assets/TUIC.svg'
-import ScrollButton from "@/components/header/ScrollButton.vue"
 export default {
 	name: "HeaderPage",
+	components: {
+		ScrollButton: defineAsyncComponent(() => import('@/components/header/ScrollButton.vue'))
+	},
 	props:{ 
 		step: {
             type: String,
@@ -40,13 +43,10 @@ export default {
             default: false
         }
 	},
-	components: {
-		ScrollButton
-	},
 	computed: {
         mobildDevice(){
             return this.$store.state.mobildDevice
-        },
+        }
 	},
 	data() {
 		return {

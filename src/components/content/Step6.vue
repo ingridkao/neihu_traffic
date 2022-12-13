@@ -21,8 +21,8 @@
             />
         </div>
         <div>
-            <RadialsBasicAll v-if="(currStep == 5 && currStepProgress > 25) || (currStep == 6 && currStepProgress < 15)"/>
-            <RadialsBasic v-if="(currStep == 6 && currStepProgress >= 15)"/>
+            <RadialsBasicAll v-if="(currStep == 5 && currStepProgress > 25) || (currStep == 6 && currStepProgress < 50)"/>
+            <RadialsBasic v-if="(currStep == 6 && currStepProgress >= 50)"/>
         </div>
     </header>
     <div class="carousel">

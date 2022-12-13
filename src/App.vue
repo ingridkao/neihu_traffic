@@ -1,19 +1,25 @@
 <script setup>
-	import { useStore } from 'vuex'
 	import MobileDetect from 'mobile-detect'
-
 	import Home from '@/views/Home.vue'
 	import Footer from '@/views/Footer.vue'
-
+	import { onMounted, onBeforeMount } from "vue"
+	import { useStore } from 'vuex'
 	const store = useStore()
-	const mobileDetect = new MobileDetect(window.navigator.userAgent)
-	const isMpbile = mobileDetect.phone() || document.body.clientWidth <= 600
-	store.commit('updateMobildDevice', isMpbile? true: false)
+    const resizeWindow = () => {
+      	const mobileDetect = new MobileDetect(window.navigator.userAgent)
+		const isMpbile = mobileDetect.phone() || document.body.clientWidth <= 600
+		store.commit('updateMobildDevice', isMpbile? true: false)
+	}
+	onMounted(() => {
+		window.addEventListener('resize', resizeWindow)
+	})
+	onBeforeMount(() => {
+		window.removeEventListener('resize', resizeWindow);
+	})
 </script>
 <template v-cloak>
 	<Home/>
 	<Footer/>
-	{{isMpbile? 1: 0}}
 </template>
 
 <style lang="scss">

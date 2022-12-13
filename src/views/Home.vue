@@ -59,6 +59,7 @@ import AsideBox from "@/components/header/Aside.vue"
 import HeaderAction from "@/components/header/Action.vue"
 import HeadCover from "@/components/header/Cover.vue"
 export default {
+	name: "HomePage",
 	components:{
 		AsideBox, HeaderAction, HeadCover,
 		Step1: defineAsyncComponent(() => import('@/components/content/Step1.vue')),
@@ -75,7 +76,6 @@ export default {
 		Step12: defineAsyncComponent(() => import('@/components/content/Step12.vue')),
 		Step13: defineAsyncComponent(() => import('@/components/content/Step13.vue'))
 	},
-	name: "HomePage",
 	data() {
 		return {
 			videoStart: false	
@@ -126,7 +126,7 @@ export default {
 			window.addEventListener('resize', this.handleResize)
 		},
 		handleResize () {
-			this._scroller.resize();
+			this._scroller.resize()
 		}
 	}
 }

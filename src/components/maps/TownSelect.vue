@@ -131,3 +131,11 @@ export default {
     }
 }
 </script>
+<style lang="scss" scoped>
+header.svgHeader{
+    svg{
+        height: 16rem;
+        margin: auto;
+    }
+}
+</style>

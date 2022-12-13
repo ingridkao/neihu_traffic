@@ -72,6 +72,7 @@
     :first-child{
         position: relative;
         flex-basis: calc(100% - #{$mapGifWidth + 8rem});
+        max-width: 45em;
         @media screen and (max-width:501px){
             flex-basis: auto;
         }
@@ -206,7 +207,7 @@
 }
 
 // carousel start
-$carouselHeaderHeight: 17.5rem;
+$carouselHeaderHeight: 17rem;
 $carouselTabBtnHeight: 3rem;
 .carouselHeader{
     padding-top: 1rem;
@@ -217,13 +218,13 @@ $carouselTabBtnHeight: 3rem;
     position: relative;
     padding-top: 0;
     z-index: 0;
-    height: calc(100% - #{$carouselHeaderHeight});
-    .carousel-header{
+    height: calc(100vh - #{$carouselHeaderHeight} - 1rem);
+    &-header{
         @extend %horizontalCenter;
         width: 100%;
         height: $carouselTabBtnHeight;
     }
-    .carousel-btn{
+    &-btn{
         @extend %horizontalCenter;
         height: $carouselTabBtnHeight;
         button{
@@ -237,7 +238,7 @@ $carouselTabBtnHeight: 3rem;
     .carousel-image{
         position: relative;
         width: 100%;
-        height: 100%;
+        height: calc(100% - #{$carouselTabBtnHeight});
         >div{
             position: absolute;
             top: 0;
@@ -285,8 +286,8 @@ $carouselTabBtnHeight: 3rem;
 
 .svgHeader{
     @extend %horizontalCenter;
+    justify-content: space-between;
     svg {
-        width: 55%;
         path {
             stroke: $whiteColor;
             fill: darken($grayColor, 10);
@@ -304,7 +305,7 @@ $carouselTabBtnHeight: 3rem;
             } 
         }
         text{
-            font-size: 1.5rem;
+            font-size: 2em;
             fill: darken($grayColor, 60);
         }
         g.active path{
@@ -313,15 +314,16 @@ $carouselTabBtnHeight: 3rem;
     }
     ul{
         list-style-type: none;
-        width: 12.5em;
+        width: 11rem;
         li{
             display: inline-block;
             color: darken($grayColor, 20);
             border: 1px solid darken($grayColor, 20);
             cursor: pointer;
-            padding: .1rem .5rem;
-            margin: .5rem;
-            border-radius: .1rem; 
+            padding: 0 .5rem;
+            margin: .3rem;
+            border-radius: .1rem;
+            line-height: 1.5;
             &.active {
                 @extend %titleCardShadow;
                 border-width: 1px;

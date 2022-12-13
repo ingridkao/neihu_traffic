@@ -2,7 +2,7 @@
     <div class="apexChartContainer radialsBasic">
         <apexchart 
             type= "radialBar"
-            height="300" 
+            height="280" 
             :options="chartOptions" 
             :series="series"
         />
@@ -28,14 +28,14 @@ export default {
                         startAngle: 0,
                         endAngle: 270,
                         hollow: {
-                            margin: 5,
-                            size: '40%',
+                            margin: 10,
+                            size: '42.5%',
                             background: 'transparent',
                             image: undefined,
                         },
                         dataLabels: {
                             name: {
-                                fontSize: '10px',
+                                fontSize: '14px',
                                 offsetY: -15
                             },
                             value: {
@@ -60,15 +60,15 @@ export default {
                     floating: true,
                     position: 'left',
                     horizontalAlign: 'left',
-                    offsetX: 90,
-                    offsetY: 5,
+                    offsetX: -7.5,
+                    offsetY: 7.5,
                     labels: {
                         useSeriesColors: true,
                     },
                     markers: {
-                        width: 6,
-                        height: 6,
-                        radius: 6,
+                        width: 5,
+                        height: 5,
+                        radius: 5
                     },
                     formatter: function(seriesName, opts) {
                         return seriesName + ":  " + opts.w.globals.series[opts.seriesIndex] + "%"
@@ -95,6 +95,7 @@ export default {
 <style lang="scss">
 .apexChartContainer{
     &.radialsBasic{
+        width: 20rem;
         .apexcharts-legend-series{
             height: auto;
             line-height: .8rem;

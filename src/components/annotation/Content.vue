@@ -57,8 +57,7 @@ export default {
 .annotationDropdown{
     width: 100%;
     height: auto;
-    padding: .25rem;
-    font-size: .8rem;
+    font-size: .75rem;
     opacity: 0;
     transition: opacity 1s 0.5s;
     z-index: 1;
@@ -74,22 +73,26 @@ export default {
         opacity: 1;
         border-radius: .25rem;
         background-color: $whiteColor;
-        border: 1px dashed rgba($blackColor, 0.3);
         .annotationContent{
             visibility: visible;
         }
     }
     &.bottom{
         position: absolute;
-        width: 110%;
-        left: -5%;
-        top: 92.5%;
+        width: 100%;
+        left: 0%;
+        top: 90%;
         z-index: 1;
+        padding: 0 2rem;
+        @media screen and (max-width:501px){ // For mobile
+            padding: 0 1rem;
+        }
         &.left{
-            left: 0;
+            border: 1px dashed rgba($blackColor, 0.3);
             pointer-events: none;
         }
         &.right{
+            border: 1px dashed rgba($blackColor, 0.3);
             left: auto;
             right: 0;
             pointer-events: none;

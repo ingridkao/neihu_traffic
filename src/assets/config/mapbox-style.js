@@ -28,13 +28,9 @@ export const PopWorkStyle = {
             0.3, '#e7d0d1',
             0.31, '#d4dfd8',
             1, '#4da66e'
-        ],   
-        'fill-extrusion-height': [
-            'interpolate',['linear'],['get', 'pop_work_min'],
-            0, 0,
-            100, 500,
-            2000, 3000,
-            4000, 3500
+        ],
+        "fill-extrusion-height": [
+            "sqrt", ["*", ["get", "pop_work_min"], 300]
         ],
         'fill-extrusion-opacity': 0.8
     }

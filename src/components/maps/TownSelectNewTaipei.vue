@@ -94,7 +94,12 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-header.svgHeader ul{
-    width: 13em;
+header.svgHeader{
+    svg{
+        width: 55%;
+    }
+    ul{
+        width: 11.5em;
+    }
 }
 </style>

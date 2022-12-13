@@ -17,14 +17,12 @@
     </main>
 </template>
 <script>
-import { createApp, defineComponent, nextTick } from 'vue'
+import { createApp, defineComponent, defineAsyncComponent, nextTick } from 'vue'
 import mapboxgl from 'mapbox-gl'
 import axios from 'axios'
 import 'mapbox-gl/dist/mapbox-gl.css'
 
-import Loading from '@/components/Loading.vue'
 import MapboxPopupComponent from '@/components/maps/MapboxPopup.vue'
-
 import { PopWorkStyle, mapboxBuildings } from '@/assets/config/mapbox-style.js'
 import { locationsCenter, initZoom, maxBound, durationConfig} from '@/assets/config/map-config.js'
 const BASE_URL = process.env.NODE_ENV === 'production'? process.env.VUE_APP_BASE_URL: '../..'
@@ -32,6 +30,9 @@ const MAPBOXTOKEN = process.env.VUE_APP_MAPBOXTOKEN
 
 const MapboxLanguage = require('@/assets/js/mapbox-gl-language.js')
 export default {
+	components:{
+        Loading: defineAsyncComponent(() => import('@/components/Loading.vue'))
+	},
     props: {
         location: {
             type: Object
@@ -84,9 +85,6 @@ export default {
         this.MapBoxObject.remove()
         clearInterval(this.timeout)
     },
-	components:{
-		Loading
-	},
     computed: {
         langZh(){
             return this.$i18n.locale === 'zh-TW'
@@ -138,7 +136,6 @@ export default {
             this.MapBoxObject.on("load", () => {
                 this.mapLoading = true
                 this.MapBoxObject.addLayer(mapboxBuildings)
-                console.log(this.MapBoxObject.getStyle().layers);
                 this.MapBoxObject.setLayoutProperty('settlement-label', 'visibility', 'none')
                 // this.MapBoxObject.setpaint('bridge-motorway-trunk-case', 'visibility', 'none')
                 this.loadDataToMapbox()

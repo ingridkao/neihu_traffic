@@ -32,10 +32,13 @@
 		&.cardContainer{
 			@extend %verticalCenter;
 			background-color: transparent;
+			@media screen and (max-width:501px){
+				justify-content: flex-start;
+				margin-top: 20vh;
+			}
 		}
 		&.carouselContainer{
 			@extend %contentPadding;
-			height: 125vh;
 			@media screen and (max-width:501px){
 				height: auto;
 			}
@@ -96,7 +99,7 @@
 		height: auto;
 		border: 2px solid $grayColor;
 		background-color: $whiteColor;
-		border-radius: 0.3rem;
+		border-radius: 0.5rem;
 		margin: 1rem 0;
 		padding: 0.5rem;
 		h6{
@@ -104,7 +107,7 @@
 			font-weight: 500;
 		}
 		p{
-			font-size: 0.7rem;
+			font-size: 70%;
 		}
 		h6, p{
 			margin-bottom: 0 !important;
@@ -135,7 +138,7 @@
 		border: 1px solid lighten($textSubColor, 15);
 		color:  lighten($textSubColor, 15);
 		margin: 0;
-		padding: 0 .75rem;
+		padding: 0 .25rem;
 		min-width: 3rem;
 		&:first-child{
 			border-radius: 2rem 0 0 2rem;
@@ -167,4 +170,11 @@
     path{
         stroke: transparent;
     }
+}
+
+.annotationbox{
+	position: relative;
+	.annotationDropdown{
+		padding: 0 !important;
+	}
 }

@@ -66,10 +66,11 @@ export default {
     }
 }
 </script>
-
 <style lang="scss" scoped>
-header.svgHeader ul{
-    margin-top: -1rem;
+header.svgHeader{
+    padding: 0 .5rem .5rem 0;
+    svg{
+        width: 55%;
+    }
 }
 </style>
-
