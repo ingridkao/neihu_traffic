@@ -15,7 +15,7 @@ const chartDatas = [62, 32, 6]
 // const chartLabels = ['非大眾運輸','公車', '捷運', 'Youbike']
 const chartLabels = ['公車', '捷運', 'Youbike']
 // const chartColors = ['#e4a37b','#6b9a80','#72be95', '#8bc08b']
-const chartColors = ['#6b9a80','#72be95', '#8bc08b']
+const chartColors = ['#73ba8c','#a0cfb2', '#c1ddca']
 export default {
     data(){
         return {
@@ -95,7 +95,8 @@ export default {
 <style lang="scss">
 .apexChartContainer{
     &.radialsBasic{
-        width: 20rem;
+        width: 230px;
+        margin-left: 3rem;
         .apexcharts-legend-series{
             height: auto;
             line-height: .8rem;

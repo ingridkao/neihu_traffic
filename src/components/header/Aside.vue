@@ -2,9 +2,8 @@
     <div id="slideContainer" class="buttonBox" :style="scrollBind">
         <button id="slideBtn" @click="showAside = !showAside">
             <img v-if="showAside" :src="Close" alt="關閉" />
-            <img v-else :src="Logo" alt="本文內容" class="svg_scroll" />
+            <img v-else :src="require('@/assets/img/tuic_logo_simple.svg')" alt="本文內容" class="svg_scroll">
         </button>
-
         <aside :class="{active: showAside}">
             <ul>
                 <li 
@@ -21,7 +20,6 @@
 </template>
 
 <script>
-import Logo from '@/assets/TUIC.svg'
 import Close from '@/assets/icon/close.svg'
 
 export default {
@@ -54,7 +52,6 @@ export default {
     data(){
         return {
             showAside: false,
-            Logo,
             Close,
             article: {
                 "chapter1": "內湖交通改善計畫：先了解大內科園區",

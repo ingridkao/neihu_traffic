@@ -43,7 +43,7 @@ export default {
             },
             sortType: '0',  
             neiHuShow: true,
-            stackedChart: true,
+            stackedChart: false,
             transData: [],
 
             categories: [],
@@ -61,7 +61,7 @@ export default {
     computed:{
         chartOptions(){
             const Option = {
-                colors: ['rgb(244, 70, 70)', 'rgb(120, 198, 121)'],
+                colors: ['#fb6b6d', '#73ba8c'],
                 chart:{
                     stacked: (this.stackedChart)? true: false,
                     stackType: (this.stackedChart)? '100%': 'normal'
@@ -177,6 +177,7 @@ export default {
 <style lang="scss"> 
 .apexChartContainer.basic .vue-apexcharts{ 
     width: 100%;
+    height: 100%;
     .apexcharts-legend{
         overflow: hidden;
     }

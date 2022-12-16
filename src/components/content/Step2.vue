@@ -29,7 +29,7 @@
         </div>
         <SpeedLabel 
             v-if="speedLabelShow" 
-            data-aos="fade-up"			
+            data-aos="fade-up"
             data-aos-duration="1600"
             :low-speed="lowSpeed" 
             @update="updateLowSpeed"

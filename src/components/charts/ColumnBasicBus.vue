@@ -10,44 +10,51 @@
 </template>
 
 <script>
-import {TranData} from '@/assets/js/transport.js'
-const ClearData = TranData.sort((a, b)=> b['bus_avg'] - a['bus_avg']).slice(0, 15)
-// const values = ClearData.map(item => item['ubike_avg'])
-// let sum = values.reduce((previous, current) => current += previous);
-// let avg = sum / values.length;
-const avg = 179.9
+import { TranData, ParseRatio } from '@/assets/js/transport.js'
+// const ClearData = TranData.sort((a, b)=> b['bus_avg'] - a['bus_avg']).slice(0, 15)
+// const avg = 269.9
+const AvgSum = 8750
+const ClearData = TranData.slice(0,15).map(item => {
+    return {
+        ...item,
+        ratio: ParseRatio(item['bus_avg'], AvgSum, 0)
+    }
+})
 export default {
     data(){
         return {
             seriesData: [{
                 name: '前15熱區',
-                data: ClearData.map(item => item['bus_avg'])
+                data: ClearData.map(item => item['ratio'])
             }],
             chartOptions: {
                 colors: ['#5b955b'],
                 title: {
-                    text: '公車通勤前15熱區',
+                    text: '公車通勤前15轉乘站點',
                     margin: 0,
-                    offsetX: -10,
-                    offsetY: 5,
                     style: {
-                        fontSize: '10px'
+                        fontSize: '12px'
                     }
                 },
-                annotations: {
-                    yaxis: [{
-                        y: avg,
-                        borderColor: '#00E396',
-                        label: {
-                            style: {
-                                fontSize: '10px',
-                                color: '#fff',
-                                background: '#567888',
-                            },
-                            text: `前15區平均線:${avg}`,
-                        }
-                    }]
+                subtitle: {
+                    text: `樣本數量:${AvgSum}人`,
+                    margin: 0,
+                    offsetY: 15
                 },
+                // annotations: {
+                //     yaxis: [{
+                //         y: avg,
+                //         borderColor: '#00E396',
+                //         label: {
+                //             style: {
+                //                 fontSize: '10px',
+                //                 color: '#fff',
+                //                 background: '#567888',
+                //             },
+                //             text: `前15區平均線:${avg}`,
+                //         }
+                //     }]
+                // },
                 plotOptions: {
                     bar: {
                         horizontal: false,
@@ -55,19 +62,19 @@ export default {
                     },
                 },
                 xaxis: {
-                    categories: ClearData.map(item => item['TOWNNAME']),
+                    categories: ClearData.map(item => item['name']),
                     labels: {
                         rotate: -90,
                         style: {
-                            fontSize: '8px',
+                            fontSize: '10px',
                         },
-                        minHeight: 90,
-                        offsetY: -5,
-                    },
+                        minHeight: 120,
+                        offsetY: -5
+                    }
                 },
                 yaxis: {
                     labels: {
-                        maxWidth: 20,
+                        maxWidth: 10,
                         style: {
                             fontSize: '8px',
                         }
@@ -75,6 +82,11 @@ export default {
                 },
                 dataLabels: {
                     enabled: false
+                },
+                tooltip:{
+                    y: {
+                        formatter: (val) => (`${val}%`)
+                    }
                 }
             }
         }

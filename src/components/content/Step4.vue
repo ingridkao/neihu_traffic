@@ -27,8 +27,8 @@
             />
         </div>
         <TelLabel
-            v-if="!mobildDevice && (telLabelShow || currStep == 5)"
-            data-aos="fade-up"			
+            v-if="telLabelShow"
+            data-aos="fade-up"
             data-aos-duration="1000"
         />
     </div>
@@ -71,25 +71,30 @@ export default {
 			return this.$store.state.progres
 		},
         textShow1(){
-            if(!this.mobildDevice) return true
-            return (this.currStep == 4 && this.currStepProgress >= 10)
+            return this.currStep == 4 && this.currStepProgress >= 10
         },
         textShow2(){
-            return (this.currStep == 4 && this.currStepProgress >= 25) || this.currStep == 5
+            if(this.currStep == 5) return true
+            return this.currStep == 4 && this.currStepProgress >= 25
         },
         telLabelShow(){
-            return (this.currStep == 4 && this.currStepProgress >= 45)
+            if(this.mobildDevice) return false
+            if(this.currStep == 5) return true
+            return this.currStep == 4 && this.currStepProgress >= 45
         }
     },
     methods: {
         updateToggle1(boolen) {
             this.annotationToggle1 = boolen
-            this.annotationToggle2 = boolen && this.annotationToggle2? false: this.annotationToggle2
-            
+            if(boolen){
+                this.annotationToggle2 = this.annotationToggle2? false: this.annotationToggle2
+            }
         },
         updateToggle2(boolen) {
             this.annotationToggle2 = boolen
-            this.annotationToggle1 = boolen && this.annotationToggle1? false: this.annotationToggle1
+            if(boolen){
+                this.annotationToggle1 = this.annotationToggle1? false: this.annotationToggle1
+            }
         }
     }
 }

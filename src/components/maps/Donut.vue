@@ -5,7 +5,7 @@
             type= "donut"
             height="200" 
             :options="chartOptions" 
-            :series="chartValue"
+            :series="chartData"
         />
     </div>
 </template>
@@ -16,12 +16,12 @@ const chartColors = ['#6b9a80','#72be95', '#8bc08b', 'rgb(244, 70, 70)']
 export default {
     props: {
         chartData: {
-            type: Array
+            type: Array,
+            default: () => []
         }
     },
     data(){
         return {
-            chartValue: [0,0,0,0],
             chartOptions: {
                 colors: chartColors,
                 labels: chartLabels,
@@ -69,14 +69,14 @@ export default {
     },
     watch:{
 		chartData(newVal, oldVal){
-            if(oldVal){
+            if(newVal){
                 this.updateChart()
             }
         }
     },
     methods:{
         updateChart(){
-            this.chartValue = this.chartData
+            if(this.chartData.length === 0) return
             if(!this.chartOptions.legend.show){
                 this.chartOptions = {
                     ...this.chartOptions,

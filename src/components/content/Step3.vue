@@ -1,6 +1,6 @@
 <template>
     <div class="articalBox"
-        data-aos="fade-up"			
+        data-aos="fade-up"
         data-aos-duration="1600"
     >
         <p>

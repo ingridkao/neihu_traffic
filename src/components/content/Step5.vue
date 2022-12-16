@@ -32,7 +32,6 @@
             :label="'工作人口數量'" 
             :gradient="['#e3c5c7', '#cf181b']"
             :imgURL="'tab'"
-            :imgLabel="true"
             @update="selectPage"
         />
     </div>
@@ -72,7 +71,7 @@ export default {
 <style lang="scss" scoped>
 header{
     position: relative;
-    max-width: 60rem;
+    max-width: calc(100vw - 20rem);
 }
 </style>
 

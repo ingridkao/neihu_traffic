@@ -1,12 +1,20 @@
 <template>
-	<main id="homePage" ref="home_container" :class="{langEn: !langZh}">
-		<HeadCover v-if="currStep <= 2" :video-start="videoStart" @toggle="toggleVideoStatus" />
+	<main 
+		id="homePage" 
+		ref="home_container" 
+		:class="{langEn: !langZh}"
+	>
+		<HeadCover 
+			v-if="currStep <= 2" 
+			:video-start="videoStart" 
+			@toggle="toggleVideoStatus" 
+		/>
 		<div id="main_scrollama" ref="scrollama_container">
-			<HeaderAction data-step-no="0" :video-start="videoStart" />
+			<HeaderAction data-step-no="0" :video-start="videoStart" @toggle="toggleVideoStatus" />
 			<div data-step-no="1" class="cardContainer">
 				<Step1 />
 			</div>
-			<div data-step-no="2" class="rowBox" id="chapter1" >
+			<div data-step-no="2" class="rowBox" id="chapter1">
 				<Step2/>
 			</div>
 			<div data-step-no="3" class="rowBox">
@@ -36,10 +44,10 @@
 			<div data-step-no="11" class="fullContainer">
 				<Step11/>
 			</div>
-			<div data-step-no="12">
+			<div data-step-no="12" class="fullContainer">
 				<Step12/>
 			</div>
-			<div data-step-no="13" class="rowBox fullContainer" id="chapter5">
+			<div data-step-no="13" class="fullchartContainer epilogue" id="chapter5">
 				<Step13/>
 			</div>
 		</div>
@@ -49,7 +57,6 @@
 
 <script>
 import { defineAsyncComponent } from 'vue'
-
 import "intersection-observer"
 import scrollama from "scrollama"
 import AOS from "aos"
@@ -61,7 +68,8 @@ import HeadCover from "@/components/header/Cover.vue"
 export default {
 	name: "HomePage",
 	components:{
-		AsideBox, HeaderAction, HeadCover,
+		AsideBox, HeaderAction, HeadCover, 
+		StepMap: defineAsyncComponent(() => import('@/components/content/StepMap.vue')),
 		Step1: defineAsyncComponent(() => import('@/components/content/Step1.vue')),
 		Step2: defineAsyncComponent(() => import('@/components/content/Step2.vue')),
 		Step3: defineAsyncComponent(() => import('@/components/content/Step3.vue')),
@@ -69,7 +77,6 @@ export default {
 		Step5: defineAsyncComponent(() => import('@/components/content/Step5.vue')),
 		Step6: defineAsyncComponent(() => import('@/components/content/Step6.vue')),
 		Step7: defineAsyncComponent(() => import('@/components/content/Step7.vue')),
-		StepMap: defineAsyncComponent(() => import('@/components/content/StepMap.vue')),
 		Step9: defineAsyncComponent(() => import('@/components/content/Step9.vue')),
 		Step10: defineAsyncComponent(() => import('@/components/content/Step10.vue')),
 		Step11: defineAsyncComponent(() => import('@/components/content/Step11.vue')),
@@ -78,34 +85,36 @@ export default {
 	},
 	data() {
 		return {
-			videoStart: false	
+			videoStart: false,
+			opts: {}
 		}
 	},
 	computed: {
 		langZh(){
             return this.$i18n.locale === 'zh-TW'
         },
-		opts() {
-			const step = Object.values(this.$refs.scrollama_container.childNodes).filter(item => {
-				return item && item.hasAttribute('data-step-no')
-			})
-			return Object.assign({},  {
-				step: step,
-				progress: true
-			}, this.$attrs)
+		currStep() {
+			return this.$store.state.step
 		},
 		containerHeight(){
 			return this.$refs.home_container? this.$refs.home_container.offsetHeight: 0
-		},
-		currStep() {
-			return this.$store.state.step
 		}
 	},
   	created() {
     	AOS.init({})
     },
-	mounted () {
-		this._scroller = scrollama()
+	mounted() {
+		const childNodes = this.$refs.scrollama_container.childNodes
+		if(typeof childNodes === 'object'){
+			const step = Object.values(childNodes).filter(item => {
+				return typeof item === 'object' && item.hasAttribute('data-step-no')
+			})
+			this.opts = Object.assign({},  {
+				step: step,
+				progress: true
+			}, this.$attrs)
+		}
+
 		this.setupScroller()
 	},
 	beforeUnmount() {
@@ -116,6 +125,7 @@ export default {
             this.videoStart = boolen
         },
 		setupScroller() {
+			this._scroller = scrollama()
 			this._scroller.destroy()
 			this._scroller
 			.setup(this.opts)

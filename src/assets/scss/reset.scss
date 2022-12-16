@@ -1,4 +1,6 @@
-@import './variables.scss';
+@import '@/assets/scss/variables.scss';
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+TC:400,500,600&display=swap&subset=chinese-traditional');
+
 html{
     font-size:14px;
     // @media screen and (max-width:501px){ // For mobile
@@ -11,6 +13,12 @@ html{
 *{
 	margin: 0;
 	padding: 0;
+}
+[v-cloak] { display:none; }
+#app {
+	font-family: "Noto Sans TC", "Microsoft Yahei", "微軟雅黑", sans-serif;
+    background: $whiteColor;
+	color: $blackColor;
 }
 b{
 	font-weight: 500;

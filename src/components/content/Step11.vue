@@ -6,8 +6,9 @@
             currStep: currStep == 11
         }"
     >
-        <div class="bgBlock imgCenter bg1 active"/>
-        <div class="bgBlock imgCenter bg2" :class="{active: article === 2}"/>
+        <div class="bgBlock imgCenter busbg1 active"/>
+        <div class="bgBlock imgCenter busbg2" :class="{active: article === 2}"/>
+        <div class="bgBlock imgCenter busbg3" :class="{active: article === 3}"/>
     </div>
     <div class="cardBox"
         :class="{
@@ -18,33 +19,49 @@
             <h6>公車的通勤熱區在哪</h6>
             <p>- 上下班時段的起訖熱門區域-</p>
         </div>
-        <div class="middle2 right content">
-            <div
-                v-if="article === 1"
-                data-aos="fade-down"			
-                data-aos-duration="1600"
-            >
-                公車搭乘熱區大多為捷運站周邊，推測有多數人使用捷運轉乘公車通勤至內科。
-            </div>
+        <div class="mapLabel">
+            <ChartLabel/>
+            <MapPointLabel v-if="article >= 2" :text="'轉乘熱門度'" :gradient="['#fff', '#ee3c43']"/>
+            <template  v-if="article >= 3">
+                <MapLabel :text="'捷運服務可及範圍'" :borderWidth="1.5" :borderColor="'#666'" :borderStyle="'dotted'"/>
+                <MapLabel :text="'捷運服務範圍外公車搭乘熱區'" :borderWidth="3" :borderColor="'#c2272d'" :borderStyle="'dotted'"/>
+            </template>
         </div>
         <div class="middle right content">
             <div
-                v-if="article === 2"
-                data-aos="fade-up"			
+                v-if="article >= 1"
+                data-aos="fade-down"
                 data-aos-duration="1600"
             >
-                松山捷運站為轉乘至內科最熱門的捷運站，其餘依序為港墘、中山國小、西湖、內湖。
+                除了搭乘公車直達內科上班外，有大量的上班族也會透過捷運轉公車的方式至內科上班。從數據上發現，松山捷運站為最熱門的轉乘站點。
+            </div>
+            <div
+                v-if="article >= 2"
+                data-aos="fade-down"
+                data-aos-duration="1600"
+            >
                 <ColumnBasicBus />
+            </div>
+            <div
+                v-if="article >= 3"
+                data-aos="fade-up"
+                data-aos-duration="1600"
+            >
+                除了捷運轉乘公車的需求外，捷運無覆蓋的士林、內湖、松山、南港、中山、新莊、汐止等臨近地區，也是公車通勤的主要熱區。
             </div>
         </div>
     </div>
 </template>
 
 <script>
+import { defineAsyncComponent } from 'vue'
 import ColumnBasicBus from '@/components/charts/ColumnBasicBus.vue';
 export default {
 	components:{
-		ColumnBasicBus
+		ColumnBasicBus,
+        ChartLabel: defineAsyncComponent(() => import('@/components/content/ChartLabel.vue')),
+        MapPointLabel: defineAsyncComponent(() => import('@/components/content/MapPointLabel.vue')),
+        MapLabel: defineAsyncComponent(() => import('@/components/content/MapLabel.vue'))
 	},
     computed: {
         currStep() {
@@ -53,29 +70,32 @@ export default {
 		currStepProgress() {
 			return this.$store.state.progres
 		},
-        article(){
-            if((this.currStep == 11 && this.currStepProgress >= 50) || this.currStep == 12){
-                return 2
-            }else{
-                return 1
-            }
-        },
         blockFixed(){
-            return  this.currStep == 11 && this.currStepProgress >= 15 && this.currStepProgress < 90
+            return  this.currStep == 11 && this.currStepProgress >= 10 && this.currStepProgress <= 95
         },
         blockBottom(){
-            return  (this.currStep == 11 && this.currStepProgress >= 90) || this.currStep == 12
+            return  this.currStep == 12 || (this.currStep == 11 && this.currStepProgress > 95)
+        },
+        article(){
+            if(this.currStep == 12)return 3
+            if(this.currStep == 11 && this.currStepProgress >= 60)return 3
+            if(this.currStep == 11 && this.currStepProgress >= 30)return 2 
+            if(this.currStep == 11) return 1
         }
     }
 }
 </script>
 <style lang="scss" scoped>
     .bgBlock{
-        &.bg1{ background-image: url('../../assets/img/zoom/Bus-01.jpg'); }
-        &.bg2{ background-image: url('../../assets/img/zoom/Bus-02.jpg');}
+        &.busbg1{ background-image: url('../../assets/img/zoom/Bus-01.jpg');}
+        &.busbg2{ background-image: url('../../assets/img/zoom/Bus-02.jpg');}
+        &.busbg3{ background-image: url('../../assets/img/zoom/Bus-03.jpg');}
     }
     .cardBox{
         pointer-events: none;
+    }
+    .mapLabel{
+        background-color: rgba(255,255,255, 0.7);
     }
 </style>
 

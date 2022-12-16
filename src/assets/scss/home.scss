@@ -47,7 +47,10 @@
 			@extend %contentPadding;
 		}
 		&.fullContainer{
-			height: 200vh;
+			height: 400vh;
+			&#chapter5{
+				height: 300vh;
+			}
 		}
 		&.fullchartContainer{
 			@extend %contentPadding;
@@ -61,6 +64,12 @@
 			p{
 				display: block;
 			}	
+		}
+		&.epilogue{
+			height: calc(100vh + 40rem);
+			p > p{
+				margin-bottom: 1rem
+			}
 		}
 		&.rowBox{
 			@extend %horizontalCenter;

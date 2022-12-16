@@ -11,11 +11,11 @@ import VueApexCharts from "vue3-apexcharts"
 import AnnotationTrigger from "@/components/annotation/Trigger.vue"
 import AnnotationContent from "@/components/annotation/Content.vue"
 
+import '@/assets/scss/reset.scss'
+
 const Locale = localStorage.getItem("locale")
 const i18n = createI18n({
-    // legacy: false,
     locale: Locale ? Locale: "zh-TW",
-    // fallbackLocale: "zh-TW",
     messages: {
       "zh-TW": zh,
       "en-US": en

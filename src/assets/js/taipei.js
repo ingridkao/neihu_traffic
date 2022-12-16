@@ -1,15 +1,4 @@
-// export const dataColor = [colors.gold, colors.nepal, "#4d6683", "#d89e8d", colors.map]
-// export const fleets_categories = (lang) => {
-//   const Lang = (lang === 'en-US'? 'type_en': 'type_zh')
-// }
-export const TaipeiTotal = {
-    "bus_avg": 23943,
-    "mrt_avg": 10883,
-    "ubike_avg": 2718,
-    "untransport": 69588
-}
-
-export default [
+export const TaipeiData = [
     {
         "id": 67243,
         "pop_work_min": 3948,
@@ -30,8 +19,8 @@ export default [
         "transport_avg": 22,
         "untransport": 3926,
         "transport_rate": 0.00557
-      },
-      {
+	},
+	{
         "id": 68602,
         "pop_work_min": 2860,
         "bus_up": 133,
@@ -62171,3 +62160,4 @@ export default [
         "transport_rate": ""
     }
 ]
+export default {}

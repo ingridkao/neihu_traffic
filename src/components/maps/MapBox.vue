@@ -1,18 +1,9 @@
 <template>
     <main id="mapbox_container" class="mapboxBox">
-        <div class="mapLabelBox">
-            <div>
-                <h6>大眾運通勤率</h6>
-                <p>Public Transit Commute Rates</p>
-                <div class="legendBox" v-for="(item) in rates" :key="item.text">
-                    <span :style="{
-                        'background-color': item.color
-                    }"/>
-                    <span>{{item.text}}%</span>
-                </div>
-                <p>大於100%的情形，推測為有其他區域之通勤族至此區域轉乘。</p>
-            </div>
-        </div>
+        <RatioLabel 
+            data-aos="fade-up"
+            data-aos-duration="1600"
+        />
         <Loading :load-start="mapLoading"/>
     </main>
 </template>
@@ -31,7 +22,8 @@ const MAPBOXTOKEN = process.env.VUE_APP_MAPBOXTOKEN
 const MapboxLanguage = require('@/assets/js/mapbox-gl-language.js')
 export default {
 	components:{
-        Loading: defineAsyncComponent(() => import('@/components/Loading.vue'))
+        Loading: defineAsyncComponent(() => import('@/components/Loading.vue')),
+        RatioLabel: defineAsyncComponent(() => import('@/components/box/RatioLabel.vue'))
 	},
     props: {
         location: {
@@ -65,17 +57,7 @@ export default {
                 // mrt_avg: '捷運轉乘',
                 // ubike_avg: '腳踏車轉乘',
                 // untransport: '私人運具',
-            },
-            rates: [
-                {text: '0-5', color: '#D53335'},
-                {text: '5-10', color: '#DB6769'},
-                {text: '10-20', color: '#E19C9D'},
-                {text: '20-30', color: '#E7D0D0'},
-                {text: '30-50', color: '#D4E0D8'},
-                {text: '50-70', color: '#A7CDB5'},
-                {text: '70-100', color: '#7AB992'},
-                {text: '>100', color: '#4DA56E'},
-            ],
+            }
         }
     },
     mounted(){
@@ -271,25 +253,6 @@ export default {
     position: relative;
     width: 100%;
     height: 100vh;
-    .mapLabelBox{
-        left: auto;
-        right: .25rem;
-        bottom: .75rem;
-        z-index: 1;
-        >div{
-            width: 12rem;
-            height: 17.5rem;
-        }
-        .legendBox{
-            span{
-                line-height: 1;
-                &:first-child{
-                    width: 1rem;
-                    height: 1rem;
-                }
-            }
-        }
-    }
 }
 .mapboxgl-ctrl-top-right{
     left: 0;

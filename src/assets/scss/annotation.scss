@@ -1,0 +1,71 @@
+@import '@/assets/scss/variables.scss';
+$annotationColor: lighten($textSubColor, 30);
+.annotationBtn{
+    border-bottom: 1px solid $annotationColor;
+    padding-right: .25rem;
+    font-size: 1rem;
+    cursor: pointer;
+    span{
+        color: $annotationColor;
+        font-size: 0.6rem;
+        pointer-events: none;
+    }
+}
+.annotationDropdown{
+    width: 100%;
+    height: auto;
+    font-size: .75rem;
+    opacity: 0;
+    transition: opacity 1s 0.5s;
+    z-index: 1;
+    .annotationContent{
+        visibility: hidden;
+        margin: 0;
+        color: $annotationColor;
+    }
+    .annotationImage{
+        width: 100%;
+        padding: .5rem;
+    }
+    &.open{
+        opacity: 1;
+        border-radius: .25rem;
+        background-color: $whiteColor;
+        .annotationContent{
+            visibility: visible;
+        }
+    }
+    &.bottom{
+        position: absolute;
+        width: 100%;
+        left: 0%;
+        top: 90%;
+        z-index: 1;
+        padding: 0 2rem;
+        @media screen and (max-width:501px){ // For mobile
+            padding: 0 1rem;
+        }
+        &.left{
+            border: 1px dashed rgba($blackColor, 0.3);
+            pointer-events: none;
+        }
+        &.right{
+            border: 1px dashed rgba($blackColor, 0.3);
+            left: auto;
+            right: 0;
+            pointer-events: none;
+        }
+    }
+    &.rowLayout{
+        position: absolute;
+        z-index: 1;
+        bottom: 0;
+        width: 16rem;
+        right: -16rem;
+        @media screen and (max-width:501px){
+            position: relative;
+            width: 100%;
+            left: 0;
+        }
+    }
+}

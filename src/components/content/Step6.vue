@@ -34,8 +34,6 @@
         <CarouselImage 
             :tab="tab" 
             :currentTab="currentTab" 
-            :label="'熱門上車點'" 
-            :gradient="['#e5eed6', '#78c17a']"
             :imgURL="'transportation'"
             @update="selectPage"
         />

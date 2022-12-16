@@ -1,6 +1,6 @@
 <template>
     <div 
-        data-aos="fade-up"			
+        data-aos="fade-up"
         data-aos-duration="1000"
         class="cardBox"
     >
@@ -57,7 +57,7 @@ export default {
     @extend %contentPadding;
     border-radius: .25rem;
     border: 1px solid rgba($blackColor, 0.3);
-    background-color: rgba($whiteColor, 0.8);
+    background-color: rgba($whiteColor, 0.9);
 }
 </style>
 

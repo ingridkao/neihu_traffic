@@ -18,7 +18,7 @@ export default {
         },
 		text: {
             type: String,
-            default: 'center'
+            default: ''
         }
 	},
     methods: {
@@ -28,18 +28,7 @@ export default {
     }
 }
 </script>
-<style lang="scss" scoped>
-@import '@/assets/scss/variables.scss';
-.annotationBtn{
-    border-bottom: 1px solid #999;
-    padding-right: .25rem;
-    font-size: 1rem;
-    cursor: pointer;
-    span{
-        opacity: 0.5;
-        font-size: 50%;
-        pointer-events: none;
-    }
-}
-</style>
 
+<style lang="scss" scoped>
+@import '@/assets/scss/annotation.scss';
+</style>

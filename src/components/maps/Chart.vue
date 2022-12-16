@@ -12,19 +12,17 @@
                 <h5>{{provision}}</h5>
             </div>
         </header>
-        <Donut 
-            :chart-data="chartData"
+        <Donut
+            :chart-data="chartData"  
         />
     </div>
 </template>
 
 <script>
-import Taipei from '@/assets/js/taipei.js'
-import {Northern, TaipeiTotal, TaoyuanTotal, KeelungTotal} from '@/assets/js/totals.js'
-import NewTaipei, {NewTaipeiTotal} from '@/assets/js/newTaipei.js'
+import { TaipeiData } from '@/assets/js/taipei.js'
+import { Northern, TaipeiTotal, TaoyuanTotal, KeelungTotal } from '@/assets/js/totals.js'
+import NewTaipei, { NewTaipeiTotal } from '@/assets/js/newTaipei.js'
 import Donut from "@/components/maps/Donut.vue"
-const comma=/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g
-
 export default {
     props: {
         location: {
@@ -86,22 +84,25 @@ export default {
         },
         parseCount(target, countTo){
             let startTime = null
-            let currentTime = Date.now()
+            const currentTime = Date.now()
+            const priceFormat = (val) => {
+                const regExp = new RegExp('\\B(?=(\\d{3})+(?!\\d))', 'g');
+                return val.toString().replace(regExp, ',');
+            }
             const step = (currentTime) => {
                 if (!startTime) {
                     startTime = currentTime
                 }
                 //duration : 1600 = 1.6sec
                 const progress = Math.min((currentTime - startTime) / 1600, 1)
-                const currentNum = Math.floor(progress * countTo)
-                // this[target] = currentNum
-                this[target] = currentNum.toString().replace(comma, ',')
+                const num = Math.floor(progress * countTo)
+                this[target] = priceFormat(num)
                 if (progress < 1) {
                     window.requestAnimationFrame(step)
                 } else {
                     window.cancelAnimationFrame(window.requestAnimationFrame(step))
                 }
-            };
+            }
             window.requestAnimationFrame(step)
         },
         updateChart(){
@@ -117,7 +118,7 @@ export default {
                             "ubike_avg": 0,
                             "untransport": 0
                         }
-                        const TargetTown = Taipei.filter(item => item.TOWNID === this.tpTown.id)
+                        const TargetTown = TaipeiData.filter(item => item.TOWNID === this.tpTown.id)
                         TargetTown.map(item => {
                             TargetTPTownTotal.bus_avg += item.bus_avg
                             TargetTPTownTotal.mrt_avg += item.mrt_avg
@@ -138,7 +139,10 @@ export default {
                             "untransport": 0
                         }
                         const TargetTown = NewTaipei.filter(item => item.TOWNID === this.ntpTown.id)
-                        if(TargetTown.length > 0){
+                        if(TargetTown.length === 0){
+                            this.ownership = 0
+                            this.provision = 0
+                        }else{
                             TargetTown.map(item => {
                                 TargetNTPTownTotal.bus_avg += item.bus_avg
                                 TargetNTPTownTotal.mrt_avg += item.mrt_avg
@@ -146,9 +150,6 @@ export default {
                                 TargetNTPTownTotal.untransport += item.untransport
                             })
                             this.parseData(TargetNTPTownTotal)
-                        }else{
-                            this.ownership = 0
-                            this.provision = 0
                         }
                     }
                     break;

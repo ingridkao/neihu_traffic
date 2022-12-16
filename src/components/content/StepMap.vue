@@ -20,7 +20,6 @@
             />
         </div>
         <MapChart 
-            v-if="load" 
             :location="location" 
             :tpTown="tpTown" 
             :ntpTown="ntpTown"
@@ -37,6 +36,7 @@
 import { defineAsyncComponent } from 'vue'
 import MapSelect from "@/components/maps/MapSelect.vue"
 import MapBox from "@/components/maps/MapBox.vue"
+import MapChart from "@/components/maps/Chart.vue"
 export default {
 	data() {
 		return {
@@ -46,16 +46,19 @@ export default {
 		}
 	},
     computed: {
+        currStep() {
+			return this.$store.state.step
+		},
         load() {
-			return this.$store.state.step >= 7 && this.$store.state.step <= 9
+			return this.currStep >= 7 && this.currStep <= 9
 		}
     },
 	components:{
         MapSelect,
         MapBox,
+        MapChart,
 		TownSelect: defineAsyncComponent(() => import('@/components/maps/TownSelect.vue')),
-		TownSelectNewTaipei: defineAsyncComponent(() => import('@/components/maps/TownSelectNewTaipei.vue')),
-		MapChart: defineAsyncComponent(() => import('@/components/maps/Chart.vue'))
+		TownSelectNewTaipei: defineAsyncComponent(() => import('@/components/maps/TownSelectNewTaipei.vue'))
 	},
     methods: {
         clickLocation(target){

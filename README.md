@@ -125,4 +125,54 @@
     2. 用法可以參考[實作](https://github.com/ingridkao/neihu_traffic/blob/main/src/components/charts/ColumnBasic.vue)
 
 
+
+7. 使用`WebM`檔案
+    1.  [支援度](https://caniuse.com/webm)
+    2. 但考慮到瀏覽器的支援程度並不高，尤其safari、Opera完全沒有救，因此還是先以mp4為主，在source中設定也會有error產生
+        ```
+        sources: [
+            {
+                type: "video/mp4",
+                src:VideoMp4
+            },
+            {
+                type: "video/webm",
+                src:VideoWebm
+            }
+        ]
+        ```
+        因此先放棄此種方式
+    3. [線上轉檔](https://cloudconvert.com/webm-to-mp4)
+
+
+8. safari出現error: Unhandled Promise Rejection: AbortError: The operation was aborted.
+    > 這個問題應該是因為video.js衍伸的問題，2018年就開始出現且只有在safari才會出現，safari真的是繼IE之後最討人厭的瀏覽器，偏偏因為是apple預設不管是電腦還是手機都很多人使用。
+    [參考解法](https://github.com/videojs/videojs-contrib-quality-levels/issues/32)
+    ```
+        videojs.options.hls.overrideNative = true;
+        videojs.options.html5.nativeAudioTracks = false;
+        videojs.options.html5.nativeVideoTracks = false;
+    ```
+    可參考`/src/components/header/VideoPlayer.vue`L18-20，不過加完後還是會偶發性出現那段error
+
+9. 正規表示法在safari中會產生意外的錯誤: Invalid regular expression: invalid group specifier name
+    > 總之就是Regular format is wrong，safari看不懂沒宣告過的方式
+    
+    原本參考各個寫法顯示千分位數值的方式
+    `/\B(?=(\d{3})+(?!\d))/g `是全部匹配一个位置，這個位置前面要有字元存在，然後後面是3的倍數個數字，再後面是非數字。
+    ```
+    num = 1279834847944074100465236.33;
+    comma = /(d{1,3})(?=(d{3})+(?:$|D))/g ;
+    n1 = num.toString().replace(comma,",")
+    ```
+
+    1. 需要使用new RegExp('...', 'g') 包起來
+    2. 有使用到 \d 的部份要改用兩個反斜線來取代，例如 \d 需更改為 \\d
+    ```
+        const priceFormat = (val) => {
+            const regExp = new RegExp('\\B(?=(\\d{3})+(?!\\d))', 'g');
+            return val.toString().replace(regExp, ',');
+        }
+    ```
+
 tags: `Vue` `apexcharts` `mapbox`

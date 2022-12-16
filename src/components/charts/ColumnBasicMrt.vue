@@ -2,7 +2,7 @@
     <div class="apexChartContainer columnMrt">
         <apexchart 
             type="bar"
-            height="350"
+            height="400"
             :options="chartOptions" 
             :series="seriesData"
         />
@@ -10,95 +10,176 @@
 </template>
 
 <script>
-import { MrtData } from '@/assets/js/transport.js'
+import { MrtData, MrtColor, ParseRatio } from '@/assets/js/transport.js'
+const WenhuData = []
+const NonWenhuData = []
+const DanshuiData = []
+const AvgSum = 18161
+MrtData.map(item => {
+    if(item.type === '文湖線'){
+        WenhuData.push({
+            ...item,
+            ratio: ParseRatio(item.avg, AvgSum),
+            color: MrtColor[item.type]
+        })
+    }else{
+        NonWenhuData.push({
+            ...item,
+            ratio: ParseRatio(item.avg, AvgSum),
+            color: MrtColor[item.type]
+        })
+    }
+    if(item.type === '淡水信義線'){
+        DanshuiData.push({
+            ...item,
+            ratio: ParseRatio(item.avg, AvgSum),
+            color: MrtColor[item.type]
+        })
+    }
+})
 export default {
+    props: {
+        article: {
+            type: Number,
+            default: 1
+        }
+    },
     data(){
         return {
+            sourceData: [],
+            chartOptions: {},
             seriesData: [{
-                name: '轉乘人數',
-                data: MrtData.map(item => item['avg'])
+                name: '捷運轉乘佔比',
+                data: []
             }],
-            chartOptions: {
-                title: {
-                    text: '上班通勤非木柵線的轉乘站',
-                    margin: 0,
-                    offsetX: -10,
-                    offsetY: 5,
-                    style: {
-                        fontSize: '12px'
-                    }
-                },
+            title: '',
+            categories: [],
+            yaxisColors: [],
+            zone : [],
+            subtitle: ''
+        }
+    },
+    mounted(){
+        this.updateData()
+    },
+    watch:{
+		article(newVal, oldVal){
+            this.updateData()
+        }
+    },
+    methods:{
+        updateData(){
+            switch (this.article) {
+                case 1:
+                    this.title = '捷運通勤前20轉乘站點'
+                    this.subtitle = `總佔45.95%`
+                    this.sourceData = WenhuData.slice(0, 20)
+                    break;
+                case 2:
+                    this.title = '非木柵線Top20轉乘捷運站'
+                    this.subtitle = `總佔32.5%`
+                    this.sourceData = NonWenhuData.slice(0, 20)
+                    break;
+                case 3:
+                    this.title = '淡水信義線Top20轉乘捷運站'
+                    this.subtitle = `總佔2.8%`
+                    this.sourceData = DanshuiData.slice(0, 20)
+                    break;
+                default:
+                    break;
+            }
+
+            this.seriesData[0]['data'] = []
+            this.categories = []
+            this.yaxisColors = []
+            this.sourceData.map(item => {
+                this.seriesData[0]['data'].push(item['ratio'])
+                this.categories.push(item['name'])
+                this.yaxisColors.push(item['color'])
+            })
+            this.updateChart()
+        },
+        updateChart(){
+            this.chartOptions = {
                 plotOptions: {
                     bar: {
                         horizontal: true,
                         dataLabels: {
                             position: 'bottom'
-                        },
+                        }
                     }
                 },
                 colors: ['#ddd'],
+                title: {
+                    text: this.title,
+                    margin: 0,                    
+                    style: {
+                        fontSize: '12px'
+                    }
+                },
+                subtitle: {
+                    text: this.subtitle,
+                    margin: 0,
+                    offsetY: 15
+                },
                 xaxis: {
-                    categories: MrtData.map(item => item['name']),
+                    categories: this.categories,
                     labels: {
+                        minHeight: 90,
                         style: {
-                            fontSize: '10px',
-                        },
-                        minHeight: 90
-                    },
+                            fontSize: '11px',
+                        }
+                    }
                 },
                 yaxis: {
                     labels: {
-                        maxWidth: 60,
+                        maxWidth: 90,
                         style: {
-                            fontSize: '10px',
-                            colors: [
-                                '#007ffd', '#007ffd', '#007ffd', '#007ffd','#007ffd',
-                                '#ff9800', 
-                                '#007ffd', '#007ffd', '#007ffd', '#007ffd',
-                                '#ff9800', '#ff9800', '#ff9800', 
-                                '#007ffd', '#007ffd', '#007ffd', '#007ffd',
-                                '#f44336',
-                                '#ff9800', '#ff9800'
-                            ]
+                            fontSize: '11px',
+                            colors: this.yaxisColors
                         }
-                    },
+                    }
                 },
                 dataLabels: {
                     enabled: true,
                     style: {
-                        fontSize: '10px',
+                        fontSize: '11px',
                         fontWeight: 'normal',
-                        colors: ['#666']
+                        colors: ['#555']
                     },
                     textAnchor: 'start',
                     formatter: (val, opt) => {
-                        // return val
-                        if(val && opt.dataPointIndex >= 0){
-                            const Target = MrtData[opt.dataPointIndex]
-                            return Target.mrt_type ? `${Target.mrt_type}`: ''
+                        const Target = this.sourceData[opt.dataPointIndex]
+                        if(this.article === 3){
+                            return Target && Target.zone ? Target.zone: Target.mrt_type
+                        }else{
+                            return Target && Target.mrt_type ? `${Target.mrt_type}`: ''
                         }
                     }
                 },
                 tooltip:{
+                    marker: {
+                        show: false
+                    },
+                    fixed: {
+                        enabled: true,
+                        position: 'bottomRight',
+                        offsetX: 0,
+                        offsetY: -50,
+                    },
                     x: {
                         formatter: (val, { series, seriesIndex, dataPointIndex, w }) => {
-                            const Target = MrtData[dataPointIndex]
-                            if(Target.mrt_type){
-                                return `${val}(${Target.mrt_type}${Target.type? '、'+ Target.type: ''})`
-                            }else{
-                                return val
-                            }
+                            const Target = this.sourceData[dataPointIndex]
+                            if(!(Target && Target.type))return val
+                            return `${val}(${Target.type? Target.type: ''}${Target.mrt_type? '、'+Target.mrt_type: ''} )`
                         }
                     },
                     y: {
-                        formatter: (val) => (`${val}人`)
-                    },
-                    marker: {
-                        show: false,
-                    },
+                        formatter: (val) => (`${val}%`)
+                    }
                 }
             }
-        }
+        } 
     }
 }
 </script>
@@ -106,7 +187,10 @@ export default {
 <style lang="scss"> 
 .apexChartContainer.columnMrt{
     width: 100%;
-    height: 18rem;
+    height: 25rem;
     overflow: hidden;
+    .apexcharts-bar-area:hover {
+        fill: #999;
+    }
 }
 </style>

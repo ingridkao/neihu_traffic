@@ -1,5 +1,4 @@
-@import './variables.scss';
-
+@import '@/assets/scss/variables.scss';
 .rowBox{
     .imgBox{
         width: calc(100% - $mapAsideWidth);
@@ -71,17 +70,7 @@
     position: relative;
     :first-child{
         position: relative;
-        flex-basis: calc(100% - #{$mapGifWidth + 8rem});
-        max-width: 45em;
-        @media screen and (max-width:501px){
-            flex-basis: auto;
-        }
-    }
-    :last-child{
-        flex-basis: $mapGifWidth;
-        @media screen and (max-width:501px){
-            flex-basis: auto;
-        }
+        max-width: calc(100vw - 25rem);
     }
 }
 
@@ -146,15 +135,6 @@
         &.imgLeft{
             background-position-x: left;
         }
-        >p{
-            position: absolute;
-            width: calc(100% - 0.5rem);
-            bottom: 0;
-            margin: .25rem;
-            font-size: 0.75rem;
-            line-height: 1.5;
-            background: rgba($whiteColor, 0.5);
-        }
     }
 }
 
@@ -168,11 +148,18 @@
     >div{
         position: absolute;
         z-index: 2;
-        &.top{top: 5rem;}
+        &.top{
+            top: 5rem;
+        }
         &.left{left: -.5rem;}
-        &.right{right: 5rem;}
-        &.middle{top: 50vh;} 
-        &.middle2{top: 70vh;} 
+        &.right{right: 3rem;}
+        &.middle{top: calc(100vh - 32.5rem);} 
+        &.middle2{top: calc(100vh - 27.5rem);} 
+        &.button{top: auto; bottom: 5rem;} 
+        &.mapLabel{
+            top: 12.5rem;
+            left: 1rem;
+        }
         @media screen and (max-width:501px){
             &.top{top: 2.5rem;}
             &.right{right: 1rem;}
@@ -198,7 +185,6 @@
             font-size: 0.8rem;
         }
     }
-
 }
 
 .hide{
@@ -207,18 +193,15 @@
 }
 
 // carousel start
-$carouselHeaderHeight: 17rem;
 $carouselTabBtnHeight: 3rem;
 .carouselHeader{
     padding-top: 1rem;
     padding-bottom: 1rem;
-    height: $carouselHeaderHeight;
 }
 .carousel{
     position: relative;
     padding-top: 0;
     z-index: 0;
-    height: calc(100vh - #{$carouselHeaderHeight} - 1rem);
     &-header{
         @extend %horizontalCenter;
         width: 100%;
@@ -238,7 +221,7 @@ $carouselTabBtnHeight: 3rem;
     .carousel-image{
         position: relative;
         width: 100%;
-        height: calc(100% - #{$carouselTabBtnHeight});
+        height: calc(100vh - 5em);
         >div{
             position: absolute;
             top: 0;
@@ -251,38 +234,66 @@ $carouselTabBtnHeight: 3rem;
                 }
             }
         }
-		.chartLabel{
-			height: 2rem;
-			right: 0;
-			top: -2rem;
-            @media screen and (max-width:501px){
-                top: -4rem;
-            }
-		}
         .imgContainer{
+            @extend %bgimage;
+            background-size: cover;
             position: relative;
             width: 100%;
             height: 100%;
-            background-size: cover;
-            background-position-x: center;
-            background-position-y: center;
-            background-repeat: no-repeat;
             opacity: 0;
             z-index: 0;
             transition: opacity 1s;
             .imgLabelContainer{
+                @extend %bgimage;
+                background-size: cover;
                 position: absolute;
                 bottom: .5rem;
                 left: .5rem;
                 width: 9rem;
                 height: 9rem;
-                background-size: cover;
-                background-position: center;
+            }
+        }
+        .chartLabel{
+            right: 0;
+            top: -2.25rem;
+            width: 12rem;
+            height: 2rem;
+            @media screen and (max-width:501px){
+                top: -4rem;
             }
         }
     }
 }
 //carousel end
+
+//chart label start
+.chartLabel{
+    font-size: 0.7rem;
+    color: #999;
+    >div{
+        text-align: center;
+        height: 1rem;
+        line-height: 1.1;
+        padding: 0 1rem;
+        color: $whiteColor;
+    } 
+}
+
+.cardBox .mapLabel{
+    padding: .5rem 1rem;
+    .chartLabel{
+        justify-content: flex-start;
+        margin-bottom: .5rem;
+        color: #777;
+        > span{
+            padding: 0 .5rem;
+        }
+        > div:not(.icon){
+            padding: 0 1.5rem;
+        }
+    }
+}
+//chart label end
 
 .svgHeader{
     @extend %horizontalCenter;

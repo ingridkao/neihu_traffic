@@ -13,6 +13,12 @@ const seriesData = [{
     data: [76, 85, 101, 98, 87, 105, 91, 114, 94]
 }]
 export default {
+    props: {
+        load: {
+            type: Boolean,
+            default: false
+        }
+    },
     data(){
         return {    
             series: [],
@@ -55,12 +61,6 @@ export default {
                     }
                 }
             }
-        }
-    },
-    props: {
-        load: {
-            type: Boolean,
-            default: false
         }
     },
     watch:{

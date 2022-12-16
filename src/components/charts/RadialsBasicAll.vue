@@ -12,7 +12,7 @@
 <script>
 const chartDatas = [68.2, 19.8, 10.2, 1.9]
 const chartLabels = ['非大眾運輸','公車', '捷運', 'Youbike']
-const chartColors = ['#cf181b','#6b9a80','#72be95', '#8bc08b']
+const chartColors = ['#fb6b6d','#73ba8c','#a0cfb2', '#c1ddca']
 export default {
     data(){
         return {
@@ -26,13 +26,13 @@ export default {
                         endAngle: 270,
                         hollow: {
                             margin: 5,
-                            size: '37.5%',
+                            size: '35%',
                             background: 'transparent',
                             image: undefined,
                         },
                         dataLabels: {
                             name: {
-                                fontSize: '14px',
+                                fontSize: '12px',
                                 offsetY: -15
                             },
                             value: {
@@ -53,19 +53,19 @@ export default {
                 legend: {
                     show: true,
                     inverseOrder: true,
-                    height: 100,
+                    height: 'auto',
                     floating: true,
                     position: 'left',
                     horizontalAlign: 'left',
-                    offsetX: -7.5,
+                    offsetX: -30,
                     offsetY: 0,
                     labels: {
-                        useSeriesColors: true,
+                        useSeriesColors: true
                     },
                     markers: {
                         width: 5,
                         height: 5,
-                        radius: 5,
+                        radius: 5
                     },
                     formatter: function(seriesName, opts) {
                         return seriesName + ":  " + opts.w.globals.series[opts.seriesIndex] + "%"
@@ -92,7 +92,8 @@ export default {
 <style lang="scss">
 .apexChartContainer{
     &.radialsAll{
-        width: 20rem;
+        width: 230px;
+        margin-left: 3rem;
         .apexcharts-legend-series{
             height: auto;
             line-height: .8rem;

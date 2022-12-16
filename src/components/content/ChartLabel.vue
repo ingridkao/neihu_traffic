@@ -17,10 +17,11 @@ export default {
 	props: {
         text: {
             type: String,
+			default: '熱門上車點'
         },
         gradient: {
             type: Array,
-			default: () => ["#999", "#111"]
+			default: () => ['#e5eed6', '#208e4f']
         }
     },
 }
@@ -30,16 +31,6 @@ export default {
 .chartLabel{
     @extend %horizontalSpaceAround;
 	align-items: center;
-	width: 12rem !important;
-	font-size: 0.5rem;
-	color: #999;
-	>div{
-		width: 6rem;
-		height: 1rem;
-		line-height: 1rem;
-		text-align: center;
-		color: $whiteColor;
-	} 
 }
 </style>
 

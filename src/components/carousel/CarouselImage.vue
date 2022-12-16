@@ -14,13 +14,14 @@
 					'background-image': 'url('+ require(`@/assets/img/${imgURL}/${slide.index}.jpg`)+')',
 				}"
 			>
-				<div 
-					v-if="imgLabel"
-					class="imgLabelContainer"
-					:style="{
-						backgroundImage: `url(${require('@/assets/img/zone.png')})`,
-					}"
-				/>
+				<template v-if="imgURL === 'tab'">
+					<div v-if="currentTab === 'All'" class="imgLabelContainer all"/>
+					<div v-else class="imgLabelContainer"
+						:style="{
+							'background-image': 'url('+ require(`@/assets/img/${imgURL}/mini/${currentTab}.jpg`)+')',
+						}"
+					/>
+				</template>
 			</div>
 		</div>
 		<ChartLabel :text="label" :gradient="gradient"/>
@@ -63,4 +64,8 @@ export default {
 	}
 }
 </script>
-
+<style lang="scss" scoped>
+.imgLabelContainer{
+    &.all{ background-image: url('../../assets/img/tab/mini/zone.png'); }
+}
+</style>

@@ -1,9 +1,9 @@
 <template>
-	<div id="headerActionWrapper">
+	<div id="headerActionWrapper" class="space-between">
 		<div style="flex-basis: 30vh;"/>
 		<div class="titleBox">
 			<a :href="copyUrl" class="logoBox">
-				<img :src="LOGO" alt="TUIC">
+				<img :src="require('@/assets/img/tuic_logo_simple.svg')" :alt="$t('TUIC')">
 			</a>
 			<div>
 				<h2>{{$t('mainTitle2')}}</h2>
@@ -16,7 +16,12 @@
 			<input type="hidden" id="webURL" :value="copyUrl">
 			<button class="fbBtn" @click="shareToFb($event)"/>
 			<button class="linkBtn" @click="copyURL($event)"/>
-			<!-- <button v-if="step == 0 && !mobildDevice" :class="['videoBtn',videoStart? 'videoPause': 'videoStart']" @click="videoStart = !videoStart"/> -->
+			<button 
+				v-if="videoBtnShow" 
+				class="videoBtn"
+				:class="videoStart? 'videoPause': 'videoStart'" 
+				@click="toggleVideoStatus"
+			/>
 			<!-- <button id="translateToggle" :title="$t('langTranslate')" @click="toggleLocaleLang">{{$t('langZh')}}</button> -->
 		</div>
 		<footer>
@@ -27,17 +32,12 @@
 
 <script>
 import { defineAsyncComponent } from 'vue'
-import LOGO from '@/assets/TUIC.svg'
 export default {
 	name: "HeaderPage",
 	components: {
 		ScrollButton: defineAsyncComponent(() => import('@/components/header/ScrollButton.vue'))
 	},
 	props:{ 
-		step: {
-            type: String,
-            default: '0'
-        },
 		videoStart: {
             type: Boolean,
             default: false
@@ -46,11 +46,16 @@ export default {
 	computed: {
         mobildDevice(){
             return this.$store.state.mobildDevice
-        }
+        },
+		currStep() {
+			return this.$store.state.step
+		},
+		videoBtnShow(){
+			return this.currStep == 0 && !this.mobildDevice
+		}
 	},
 	data() {
 		return {
-			LOGO,
 			timeout: null,
 			copyUrl: '#',
 			showSlide: false
@@ -114,75 +119,13 @@ export default {
 			this.$i18n.locale = this.$i18n.availableLocales.find(lang => lang !== this.$i18n.locale)
 			localStorage.setItem("locale", this.$i18n.locale)
 			location.reload()
-		}
+		},
+		toggleVideoStatus(){
+			this.$emit('toggle', !this.videoStart)
+        }
     }
 }
 </script>
 <style lang="scss" scoped>
-@import '@/assets/scss/main.scss';
-$mainColor: darken($whiteColor, 25);
-#headerActionWrapper{
-	position: relative;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	align-items: self-start;
-	z-index: 3;
-	padding: 3rem;
-	background-color: transparent;
-	h1, h2, h3{
-		color: $blackColor;
-	}
-	.titleBox{
-		align-items: flex-start;
-	}
-	.logoBox{
-		display: inline-block;
-		text-align: left;
-		height: 3rem;
-		margin: 0.5rem;
-	}
-	footer{
-		width: 100%;
-		text-align: center;
-	}
-}
-
-.buttonActionBox{
-	position: fixed;
-	z-index: 100;
-	top: .75rem;
-	right: 1rem;
-    width: 6.5rem;
-    height: 1.5rem;
-	display: inline-flex;
-	.fbBtn{
-		background-image: url('../../assets/icon/fb.svg');
-	}
-	.linkBtn{
-		background-image: url('../../assets/icon/link.svg');
-	}
-	.videoBtn{
-		background-size: 65%;
-		background-repeat: no-repeat;
-		background-position: 50% 50%;
-		&.videoStart{
-			background-image: url('../../assets/icon/play.svg');
-		}
-		&.videoPause{
-			background-image: url('../../assets/icon/pause.svg');
-		}
-	}
-	#translateToggle{
-		font-weight: 500;
-		font-size: 1rem;
-		width: auto;
-		padding: 0 0.25rem;
-		color: darken($whiteColor, 10);
-		border-radius: 0.25rem;
-		&:hover{
-			color: $whiteColor;
-		}
-	}
-}
+@import '@/assets/scss/header.scss';
 </style>
