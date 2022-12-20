@@ -72,17 +72,23 @@ export const zh = {
         time: "熱點時間"
     },
     footer:{
-       title1: "參考資料：",
-    //    linkTitle1: "臺北市政府交通會報",
-    //    linkDesc1: "：應用計程車搭乘熱點大數據規劃合理的計程車排班方案",
-    //    linkTitle2: "計程車營運狀況調查報告",
-    //    linkDesc2: "：中華民國交通部",
-    //    linkTitle3: "計程車招呼站",
-    //    linkDesc3: "：提供臺北市各行政區計程車招呼站相關資訊",
-       title2: "資料來源",
-       linkTitle4: "台北投資服務辦公室",
-       linkTitle5: "台北市政府交通局 108年度臺北市運輸走廊整合道路交通與電信資訊應用服務案",
-       linkTitle6: "Mining Traffic Data for Insights About The Pandemic",
+        title1: "參考資料：",
+        linkHost1: "台北投資服務辦公室",
+        linkTitle1: "大內湖科技園區",
+        linkHost2: "中華顧問工程司、中華民國管理科學學會",
+        linkTitle2: "2019智慧城鄉論壇",
+        linkHost3: "台北市政府交通局",
+        linkTitle3: "108年度臺北市運輸走廊整合道路交通與電信資訊應用服務案",
+        linkHost5: "倫敦市政府",
+
+        title2: "使用資料",
+        linkTitle4: "Tom Tom Traffic stats 2019/04",
+        linkTitle5: "信令資料:工作人口與居住人口推估　2020/06",
+        linkTitle6: "信令資料:工作人口居住地人數推估　2020/06",
+        linkTitle7: "捷運每日分時各站OD流量統計資料  2020/06",
+        linkTitle8: "公車上下車刷卡交易資料 2020/06",
+        linkTitle9: "Youbike借還車刷卡交易資料 2020/06",
+
        participate:"專案參與",
        menber:  "專案顧問 Roy Lin<br>資料分析 Ian Tsern<br>前端工程 Ingrid Kao<br>文章編輯 Lowlow Wang",
        collaborate:"合作單位",
@@ -95,6 +101,7 @@ export const zh = {
         ratio: "佔比"
     }
 }
+
 export const en = {
     TUIC:"TUIC",
     langZh:"中文",
@@ -170,15 +177,21 @@ export const en = {
     // }
     footer:{
         title1: "Related Research:",
-        // linkTitle1: "Taipei City Government Traffic Briefing",
-        // linkDesc1: ":Using big data on taxi-hailing hotspots to devise reasonable taxi scheduling solutions.",
-        // linkTitle2: "Taxi Operation Status Investigation Report",
-        // linkDesc2: ":MOTC",
-        // linkTitle3: "Taxi Stand",
-        // linkDesc3: ":Data on taxi stands across each of Taipei's administrative districts.",
-        title2: "Data source:",
-        linkTitle4: "計程車招呼站 半數熱點無法設",
-        linkTitle5: "民眾叫車習慣改變 小黃招呼站使用率偏低",
+        linkHost1: "台北投資服務辦公室",
+        linkTitle1: "大內湖科技園區",
+        linkHost2: "中華顧問工程司、中華民國管理科學學會",
+        linkTitle2: "2019智慧城鄉論壇",
+        linkHost3: "台北市政府交通局",
+        linkTitle3: "108年度臺北市運輸走廊整合道路交通與電信資訊應用服務案",
+        linkHost5: "倫敦市政府",
+        
+        linkTitle4: "Tom Tom Traffic stats 2019/04",
+        linkTitle5: "信令資料:工作人口與居住人口推估　2020/06",
+        linkTitle6: "信令資料:工作人口居住地人數推估　2020/06",
+        linkTitle7: "捷運每日分時各站OD流量統計資料  2020/06",
+        linkTitle8: "公車上下車刷卡交易資料 2020/06",
+        linkTitle9: "Youbike借還車刷卡交易資料 2020/06",
+        
         participate:"Team",
         menber:  "Data analysis: Ian Tsern<br>Frontend engineer: Ingrid Kao",
         collaborate:"Collaborate",

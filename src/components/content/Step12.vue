@@ -31,7 +31,7 @@
                 YouBike使用熱區多為鄰近內科的捷運站周邊，大多通勤族使用YouBike至捷運站轉乘。
             </div>
             <div
-                v-if="article === 2"
+                v-if="!mobildDevice && article === 2"
                 data-aos="fade-up"
                 data-aos-duration="1600"
             >
@@ -58,6 +58,9 @@ export default {
         MapPointLabel: defineAsyncComponent(() => import('@/components/content/MapPointLabel.vue'))
 	},
     computed: {
+        mobildDevice(){
+            return this.$store.state.mobildDevice
+        },
         currStep() {
 			return this.$store.state.step
 		},
@@ -86,8 +89,14 @@ export default {
     }
     .cardBox{
         pointer-events: none;
+        @media screen and (max-width:501px){
+            div.middle2 {
+                top: auto;
+                bottom: 1rem;
+            }
+        }
     }
-    .mapLabel{
+    .a{
         background-color: rgba(255,255,255, 0.7);
     }
 </style>

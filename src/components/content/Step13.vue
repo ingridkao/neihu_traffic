@@ -61,9 +61,6 @@ export default {
         }
     },
     computed: {
-        mobildDevice(){
-            return this.$store.state.mobildDevice
-        },
         currStep() {
 			return this.$store.state.step
 		},
@@ -87,11 +84,7 @@ export default {
     },
     methods:{
         displayShow(val){
-            if(this.mobildDevice){
-                return this.listShow == val
-            }else{
-                return this.listShow >= val
-            }
+            return this.listShow >= val
         },
         updateToggle1(boolen) {
             this.annotationToggle1 = boolen

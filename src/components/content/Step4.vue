@@ -71,6 +71,7 @@ export default {
 			return this.$store.state.progres
 		},
         textShow1(){
+            if(this.mobildDevice) return !this.textShow2
             return this.currStep == 4 && this.currStepProgress >= 10
         },
         textShow2(){

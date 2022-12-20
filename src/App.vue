@@ -8,13 +8,12 @@
     const resizeWindow = () => {
       	const mobileDetect = new MobileDetect(window.navigator.userAgent)
 		const isMpbile = mobileDetect.phone() || document.body.clientWidth <= 600
+		console.log(isMpbile);
 		stores.commit('updateMobildDevice', isMpbile? true: false)
 	}
-	onMounted(() => {
-		window.addEventListener('resize', resizeWindow)
-	})
 	onBeforeMount(() => {
 		window.removeEventListener('resize', resizeWindow);
+		resizeWindow()
 	})
 </script>
 

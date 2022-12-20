@@ -170,7 +170,7 @@ export default {
     width: 100%;
     height: calc(100vh - 20rem);
     @media screen and (max-width:501px){
-        height: calc(100vh - 15rem);
+        height: 20rem;
     }
 }
 </style>

@@ -1,5 +1,9 @@
 <template>
-    <div id="slideContainer" class="buttonBox" :style="scrollBind">
+    <div id="slideContainer" 
+        class="buttonBox" 
+        :class="{active: showAside}"
+        :style="scrollBind"
+    >
         <button id="slideBtn" @click="showAside = !showAside">
             <img v-if="showAside" :src="Close" alt="關閉" />
             <img v-else :src="require('@/assets/img/tuic_logo_simple.svg')" alt="本文內容" class="svg_scroll">
@@ -97,7 +101,12 @@ export default {
     height: 3rem;
     top: 0;
     right: 0;
-    z-index: 4;
+    z-index: 10;
+    &.active{
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.2);
+    }
     #slideBtn{
         position: absolute;
         top: 0;

@@ -14,21 +14,40 @@
 		<div>
 			<h6>{{$t('footer.title1')}}</h6>
 			<p>
-				<a target="_blank" href="https://invest.taipei/pages/NeihuTechnologyPark.html?1653362761" :title="$t('linkTo')">台北投資服務辦公室</a>
+				<a target="_blank" href="https://invest.taipei/pages/NeihuTechnologyPark.html?1653362761" :title="`${$t('linkTo')}:${$t('footer.linkTitle1')}`">
+					{{$t('footer.linkHost1')}}
+				</a>
+				:{{$t('footer.linkTitle1')}}
 			</p>
 			<p>
-				台北市政府交通局 108年度臺北市運輸走廊整合道路交通與電信資訊應用服務案
+				<a target="_blank" href="https://www.digitimes.com.tw/seminar/ceci_20190305/article.html" :title="`${$t('linkTo')}:${$t('footer.linkTitle2')}`">
+					{{$t('footer.linkHost2')}}
+				</a>
+				:{{$t('footer.linkTitle2')}}
 			</p>
 			<p>
-				<a target="_blank" href="https://spectrum.ieee.org/mining-traffic-data-for-insights-about-the-pandemic" :title="$t('linkTo')">Mining Traffic Data for Insights About The Pandemic</a>
+				{{$t('footer.linkHost3')}}:{{$t('footer.linkTitle3')}}
 			</p>
+			<p>
+				<a target="_blank" href="https://spectrum.ieee.org/mining-traffic-data-for-insights-about-the-pandemic" :title="$t('linkTo')">
+					TomTom
+				</a>
+				:Mining Traffic Data for Insights About The Pandemic
+			</p>
+			<p>
+				<a target="_blank" href="https://tfl.gov.uk/modes/driving/ultra-low-emission-zone" :title="`${$t('linkTo')}:${$t('footer.linkTitle2')}`">
+					{{$t('footer.linkHost5')}}
+				</a>
+				:Ultra Low Emission Zone
+			</p>
+
 			<h6>{{$t('footer.title2')}}</h6>
-			<p>信令工作人口與居住人口推估</p>
-			<p>信令工作人口居住地推估</p>
-			<p>捷運每日分時各站OD流量統計資料</p>
-			<p>公車上下車刷卡交易資料</p>
-			<p>Youbike借還車刷卡交易資料</p>
-			<p>Tom Tom Traffic stats 2019/04</p>
+			<p>{{$t('footer.linkTitle4')}}</p>
+			<p>{{$t('footer.linkTitle5')}}</p>
+			<p>{{$t('footer.linkTitle6')}}</p>
+			<p>{{$t('footer.linkTitle7')}}</p>
+			<p>{{$t('footer.linkTitle8')}}</p>
+			<p>{{$t('footer.linkTitle9')}}</p>
 		</div>
 	</footer>
 </template>

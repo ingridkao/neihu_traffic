@@ -71,6 +71,9 @@
     :first-child{
         position: relative;
         max-width: calc(100vw - 25rem);
+        @media screen and (max-width:501px){
+            max-width: none;
+        }
     }
 }
 
@@ -157,7 +160,7 @@
         &.middle2{top: calc(100vh - 27.5rem);} 
         &.button{top: auto; bottom: 5rem;} 
         &.mapLabel{
-            top: 12.5rem;
+            top: 10rem;
             left: 1rem;
         }
         @media screen and (max-width:501px){
@@ -222,6 +225,9 @@ $carouselTabBtnHeight: 3rem;
         position: relative;
         width: 100%;
         height: calc(100vh - 5em);
+        @media screen and (max-width:501px){
+            height: 30rem;
+        }
         >div{
             position: absolute;
             top: 0;
@@ -369,12 +375,12 @@ $carouselTabBtnHeight: 3rem;
     }
     @media screen and (max-width:501px){
         flex-direction: column;
-        margin-left: 2rem;
+        margin: 1rem;
         >div{
             &::before{
                 width: 6rem;
             }
-            margin-bottom: .25rem;
+            margin-bottom: .5rem;
         }
     }
     input{

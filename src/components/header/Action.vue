@@ -2,7 +2,7 @@
 	<div id="headerActionWrapper" class="space-between">
 		<div style="flex-basis: 30vh;"/>
 		<div class="titleBox">
-			<a :href="copyUrl" class="logoBox">
+			<a :href="currentUrl" class="logoBox">
 				<img :src="require('@/assets/img/tuic_logo_simple.svg')" :alt="$t('TUIC')">
 			</a>
 			<div>
@@ -13,11 +13,9 @@
 		</div>
 		<p v-if="mobildDevice">{{$t('suggest')}}</p>
 		<div class="buttonBox buttonActionBox">
-			<input type="hidden" id="webURL" :value="copyUrl">
-			<button class="fbBtn" @click="shareToFb($event)"/>
-			<button class="linkBtn" @click="copyURL($event)"/>
+			<button class="fbBtn" @click.prevent="shareToFb"/>
+			<button class="linkBtn" @click.prevent="copyURL"/>
 			<button 
-				v-if="videoBtnShow" 
 				class="videoBtn"
 				:class="videoStart? 'videoPause': 'videoStart'" 
 				@click="toggleVideoStatus"
@@ -49,49 +47,33 @@ export default {
         },
 		currStep() {
 			return this.$store.state.step
-		},
-		videoBtnShow(){
-			return this.currStep == 0 && !this.mobildDevice
 		}
 	},
 	data() {
 		return {
-			timeout: null,
-			copyUrl: '#',
-			showSlide: false
-		}
-	},
-	beforeUnmount(){
-		if(this.timeout){
-			clearTimeout(this.timeout)
+			currentUrl: '#',
 		}
 	},
 	created(){
 		this.checkParentLang()
 	},
 	mounted(){
-		this.copyUrl = window.location.href
+		this.currentUrl = window.location.href
 	},
     methods: {
-        shareToFb(e){
-            e.preventDefault()
-            window.open(`http://www.facebook.com/sharer.php?u=${encodeURIComponent(this.copyUrl)}`)
+        shareToFb(){
+            window.open(`http://www.facebook.com/sharer.php?u=${encodeURIComponent(this.currentUrl)}`)
         },
-        copyURL(e){
-            e.preventDefault()
-            if(window.innerWidth > 768){
-				const webURLSelect = document.querySelector('#webURLwebURL')
-				webURLSelect.setAttribute('type', 'text')
-				webURLSelect.select()
-                document.execCommand("copy")
-				/* unselect the range */
-				webURLSelect.setAttribute('type', 'hidden')
-				window.getSelection().removeAllRanges()
-            }else if (navigator.share) {
+        copyURL(){
+            if(navigator.clipboard){
+				navigator.clipboard.writeText(this.currentUrl).then(() => {
+					console.log(1);
+				})
+            }else if(navigator.share) {
 				navigator.share({
 					title: this.$t('mainTitle'),
 					text: this.$t('pageDesc'),
-					url: this.copyUrl,
+					url: this.currentUrl,
 				})
 				.then(() => console.log('Successful share'))
 				.catch((error) => console.log('Error sharing', error));

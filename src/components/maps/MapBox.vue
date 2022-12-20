@@ -10,7 +10,6 @@
 <script>
 import { createApp, defineComponent, defineAsyncComponent, nextTick } from 'vue'
 import mapboxgl from 'mapbox-gl'
-import axios from 'axios'
 import 'mapbox-gl/dist/mapbox-gl.css'
 
 import MapboxPopupComponent from '@/components/maps/MapboxPopup.vue'
@@ -132,8 +131,11 @@ export default {
             })
         },
         loadDataToMapbox(){
-            axios.get(`${BASE_URL}/data/neihu_pop.geojson`).then((res) => {
-                const popData = res.data
+            fetch(`${BASE_URL}/data/neihu_pop.geojson`)
+            .then((data) => {
+                return data.json()
+            }).then((res) => {
+                const popData = res
                 this.MapBoxObject.addSource('pop_work', { 
                     type: 'geojson', 
                     data: popData 
@@ -253,6 +255,10 @@ export default {
     position: relative;
     width: 100%;
     height: 100vh;
+    @media screen and (max-width:501px){ // For mobile
+        height: 25rem;
+        margin-top: 1rem;
+    }
 }
 .mapboxgl-ctrl-top-right{
     left: 0;

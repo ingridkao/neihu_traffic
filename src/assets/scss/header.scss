@@ -9,6 +9,9 @@
 	h1, h2, h3{
 		color: $blackColor;
 	}
+	h3{
+		font-size: 1rem;
+	}
 	.titleBox{
 		align-items: flex-start;
 	}
@@ -29,7 +32,7 @@
 	display: inline-flex;
 	z-index: 100;
 	top: .75rem;
-	right: 1rem;
+	right: 3rem;
     width: 6.5rem;
     height: 1.5rem;
 	button{

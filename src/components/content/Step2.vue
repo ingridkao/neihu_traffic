@@ -82,11 +82,10 @@ export default {
             return this.currStep == 3 && this.currStepProgress <= 10
         },
         textShow1(){
-            if(this.mobildDevice) return !(this.currStep == 2 && this.currStepProgress >= 25)
+            if(this.mobildDevice) return !this.img2Show
             return this.currStep == 2 && this.currStepProgress > 10
         },
         textShow2(){
-            if(this.mobildDevice) return this.currStep == 2 && this.currStepProgress >= 25
             return this.img2Show
         },
         speedLabelShow(){

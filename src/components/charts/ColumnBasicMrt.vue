@@ -192,5 +192,8 @@ export default {
     .apexcharts-bar-area:hover {
         fill: #999;
     }
+    @media screen and (max-width:501px){
+        display: none;
+    }
 }
 </style>
