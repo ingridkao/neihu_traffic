@@ -213,9 +213,10 @@ $carouselTabBtnHeight: 3rem;
     &-btn{
         @extend %horizontalCenter;
         height: $carouselTabBtnHeight;
+        color:  darken($textSubColor, 15);
         button{
             @extend %underLineBtn;
-            opacity: 0.3;
+            opacity: 0.5;
             &.slideActive{
                 opacity: 1;
             }
@@ -286,7 +287,9 @@ $carouselTabBtnHeight: 3rem;
 }
 
 .cardBox .mapLabel{
-    padding: .5rem 1rem;
+    position: absolute;
+    top: 7.5rem;
+    left: 1rem;
     .chartLabel{
         justify-content: flex-start;
         margin-bottom: .5rem;

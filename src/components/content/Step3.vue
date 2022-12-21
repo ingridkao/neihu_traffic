@@ -35,13 +35,16 @@ export default {
 			return this.$store.state.progres
 		},
         img1Show(){
-            return this.currStep == 3 && this.currStepProgress < 50
+            if(this.currStep != 3) return false
+            return this.currStepProgress < 50
         },
         continuePrev(){
-            return this.currStep == 2 && this.currStepProgress > 75
+            if(this.currStep != 2) return false
+            return this.currStepProgress > 75
         },
         eyecatch(){
-            return this.currStep == 3 && this.currStepProgress >= 45 && this.currStepProgress < 50
+            if(this.currStep != 3) return false
+            return this.currStepProgress >= 45 && this.currStepProgress < 50
         }
     }
 }

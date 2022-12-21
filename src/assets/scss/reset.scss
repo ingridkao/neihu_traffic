@@ -3,9 +3,9 @@
 
 html{
     font-size:14px;
-    // @media screen and (max-width:501px){ // For mobile
-    //     font-size: 16px;
-    // }
+    @media screen and (max-width:501px){ // For mobile
+        font-size: 15px;
+    }
     @media all and (min-width: 1920px){ //For dashboard
         font-size: 18px;
     }
@@ -35,6 +35,9 @@ h2{
     font-weight: 600;
     color: $whiteColor;
 }
+h3{
+	font-size: 1rem;
+}
 h6{
     margin: 0 0 1.5rem 0;
 	font-size: 1.25rem;
@@ -61,6 +64,7 @@ button{
     border: none;
     background-color: transparent;
     background-size: contain;
+    color:  lighten($textSubColor, 15);
     &:focus{
         outline: 1px solid $blueColor;
         outline-offset: 4px;

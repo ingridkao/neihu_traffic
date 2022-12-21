@@ -1,11 +1,9 @@
 @import '@/assets/scss/variables.scss';
 .buttonActionBox{
-
 	display: inline-flex;
 	z-index: 100;
     width: 6.5rem;
     height: 1.5rem;
-
 	button{
 		@extend %bgimage;
 	}
@@ -49,9 +47,7 @@
 
 #slideContainer{
 	.buttonActionBox{
-		position: absolute;
-		bottom: 1rem;
-		right: 0;
+		margin: 5rem 0.5rem;
 	}
 }
 

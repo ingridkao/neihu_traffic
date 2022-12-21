@@ -86,7 +86,11 @@ export default {
             height: 100vh;
             width: 100vw;
             video{
-                height: 100%;
+                width: 100%;
+                @media screen and (max-width:1380px){
+                    width: auto;
+                    height: 100%;
+                }
             }
         }
     }

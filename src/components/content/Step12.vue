@@ -17,10 +17,10 @@
         <div class="top left title">
             <h6>YouBike的通勤熱區在哪</h6>
             <p>- 上下班時段的起訖熱門區域-</p>
-        </div>
-        <div class="mapLabel">
-            <ChartLabel/>
-            <MapPointLabel v-if="article >= 2" :text="'轉乘熱門度'" :gradient="['#fff', '#ee3c43']"/>
+            <div class="mapLabel">
+                <ChartLabel/>
+                <MapPointLabel v-if="article >= 2" :text="'轉乘熱門度'" :gradient="['#fff', '#ee3c43']"/>
+            </div>
         </div>
         <div class="middle2 right content">
             <div
@@ -31,7 +31,7 @@
                 YouBike使用熱區多為鄰近內科的捷運站周邊，大多通勤族使用YouBike至捷運站轉乘。
             </div>
             <div
-                v-if="!mobileDevice && article === 2"
+                v-if="chartShow"
                 data-aos="fade-up"
                 data-aos-duration="1600"
             >
@@ -76,10 +76,14 @@ export default {
         article(){
             if(this.currStep == 13)return 2
             if(this.currStep == 12 && this.currStepProgress >= 50)return 2 
-            if(this.currStep == 12) return 1
+            return 1
+        },
+        chartShow(){
+            if(this.mobileDevice) return false
+            if(this.currStep == 13)return true
+            return this.currStep == 12 && this.currStepProgress >= 50
         }
-    },
-
+    }
 }
 </script>
 <style lang="scss" scoped>

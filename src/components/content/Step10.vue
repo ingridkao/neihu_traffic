@@ -19,10 +19,10 @@
         <div class="top left title">
             <h6>捷運的通勤熱區在哪</h6>
             <p>- 上下班時段的起訖熱門區域 -</p>
-        </div>
-        <div class="mapLabel">
-            <ChartLabel/>
-            <MapLabel v-if="article >= 4" :text="'捷運南港展覽館範圍'" :borderWidth="2" :borderColor="'#c2272d'" :borderStyle="'dotted'"/>
+            <div class="mapLabel">
+                <ChartLabel/>
+                <MapLabel v-if="article >= 4" :text="'捷運南港展覽館範圍'" :borderWidth="2" :borderColor="'#c2272d'" :borderStyle="'dotted'"/>
+            </div>
         </div>
         <div class="middle right content" :class="{button: article === 4}">
             <div
@@ -48,7 +48,7 @@
             </div>
             <keep-alive>
                 <ColumnBasicMrt
-                    v-if="article !==4"
+                    v-if="chartShow"
                     :article="article"
                 />
             </keep-alive>
@@ -73,6 +73,9 @@ export default {
         MapLabel: defineAsyncComponent(() => import('@/components/content/MapLabel.vue'))
 	},
     computed: {
+        mobileDevice(){
+            return this.$store.state.mobileDevice
+        },
         currStep() {
 			return this.$store.state.step
 		},
@@ -91,6 +94,10 @@ export default {
             if(this.currStep == 10 && this.currStepProgress >= 50)return 3    
             if(this.currStep == 10 && this.currStepProgress >= 25)return 2
             if(this.currStep == 10) return 1
+        },
+        chartShow(){
+            if(this.mobileDevice) return false
+            return this.article !== 4
         }
     }
 }

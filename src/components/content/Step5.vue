@@ -1,6 +1,8 @@
 <template>
     <header class="carouselHeader">
         <h6>工作人口從哪來？士林、松山、汐止佔多數</h6>
+        {{currStep}}|
+        {{currStepProgress}}
         <p v-if="textShow1"
             data-aos="fade-up"
             data-aos-duration="1000"
@@ -61,13 +63,16 @@ export default {
         currStep() {
 			return this.$store.state.step
 		},
+		currStepProgress() {
+			return this.$store.state.progres
+		},
         textShow1(){
-            if(!this.mobileDevice) return true
+            if(this.mobileDevice) return true
             return this.currStep == 4
         },
         textShow2(){
-            if(!this.mobileDevice) return true
-            return !this.textShow1
+            if(this.currStep == 6) return true
+            return this.currStep == 5
         }
     },
     data(){

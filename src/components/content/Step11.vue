@@ -18,14 +18,14 @@
         <div class="top left title">
             <h6>公車的通勤熱區在哪</h6>
             <p>- 上下班時段的起訖熱門區域-</p>
-        </div>
-        <div class="mapLabel">
-            <ChartLabel/>
-            <MapPointLabel v-if="article >= 2" :text="'轉乘熱門度'" :gradient="['#fff', '#ee3c43']"/>
-            <template  v-if="article >= 3">
-                <MapLabel :text="'捷運服務可及範圍'" :borderWidth="1.5" :borderColor="'#666'" :borderStyle="'dotted'"/>
-                <MapLabel :text="'捷運服務範圍外公車搭乘熱區'" :borderWidth="3" :borderColor="'#c2272d'" :borderStyle="'dotted'"/>
-            </template>
+            <div class="mapLabel">
+                <ChartLabel/>
+                <MapPointLabel v-if="article >= 2" :text="'轉乘熱門度'" :gradient="['#fff', '#ee3c43']"/>
+                <template  v-if="article >= 3">
+                    <MapLabel :text="'捷運服務可及範圍'" :borderWidth="1.5" :borderColor="'#666'" :borderStyle="'dotted'"/>
+                    <MapLabel :text="'捷運服務範圍外公車搭乘熱區'" :borderWidth="3" :borderColor="'#c2272d'" :borderStyle="'dotted'"/>
+                </template>
+            </div>
         </div>
         <div class="middle right content">
             <div
@@ -36,14 +36,14 @@
                 除了搭乘公車直達內科上班外，有大量的上班族也會透過捷運轉公車的方式至內科上班。從數據上發現，松山捷運站為最熱門的轉乘站點。
             </div>
             <div
-                v-if="!mobileDevice && article >= 2"
+                v-if="chartShow"
                 data-aos="fade-down"
                 data-aos-duration="1600"
             >
                 <ColumnBasicBus />
             </div>
             <div
-                v-if="article >= 3"
+                v-if="article == 2"
                 data-aos="fade-up"
                 data-aos-duration="1600"
             >
@@ -80,10 +80,17 @@ export default {
             return  this.currStep == 12 || (this.currStep == 11 && this.currStepProgress > 95)
         },
         article(){
-            if(this.currStep == 12)return 3
-            if(this.currStep == 11 && this.currStepProgress >= 60)return 3
-            if(this.currStep == 11 && this.currStepProgress >= 30)return 2 
-            if(this.currStep == 11) return 1
+            if(this.currStep == 12)return 2
+            if(this.mobileDevice){
+                return this.currStep == 11 && this.currStepProgress < 40 ? 1: 2
+            }else{
+                return this.currStep == 11 && this.currStepProgress < 60 ? 1: 2
+            }
+        },
+        chartShow(){
+            if(this.mobileDevice) return false
+            if(this.currStep == 12)return true
+            return this.currStep == 11 && this.currStepProgress >= 30
         }
     }
 }

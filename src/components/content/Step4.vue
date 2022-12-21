@@ -71,12 +71,20 @@ export default {
 			return this.$store.state.progres
 		},
         textShow1(){
-            if(this.mobileDevice) return !this.textShow2
-            return this.currStep == 4 && this.currStepProgress >= 10
+            if(this.currStep == 3) return true
+            if(this.mobileDevice){
+                return this.currStep == 4 && this.currStepProgress < 40
+            }else{
+                return this.currStep == 4 && this.currStepProgress < 25
+            }
         },
         textShow2(){
             if(this.currStep == 5) return true
-            return this.currStep == 4 && this.currStepProgress >= 25
+            if(this.mobileDevice){
+                return this.currStep == 4 && this.currStepProgress >= 40
+            }else{
+                return this.currStep == 4 && this.currStepProgress >= 25
+            }
         },
         telLabelShow(){
             if(this.mobileDevice) return false

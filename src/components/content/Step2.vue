@@ -47,7 +47,7 @@
         />
         <div class="bgBlock"
             :class="{
-                active: img2Show || continueNext,
+                active: textShow2 || continueNext,
                 activeOpacity: eyecatch || continueNext
             }"
             :style="{
@@ -75,25 +75,29 @@ export default {
 		currStepProgress() {
 			return this.$store.state.progres
 		},
-        img2Show(){
-            return this.currStep == 2 && this.currStepProgress >= 40
-        },
         continueNext(){
-            return this.currStep == 3 && this.currStepProgress <= 10
+            if(this.currStep != 3) return false
+            return this.currStepProgress <= 10
         },
         textShow1(){
-            if(this.mobileDevice) return !this.img2Show
-            return this.currStep == 2 && this.currStepProgress > 10
+            if(this.mobileDevice){
+                if(this.currStep == 1) return true
+                return this.currStepProgress < 40
+            }else{
+                if(this.currStep != 2) return false
+                return this.currStepProgress > 10
+            }
         },
         textShow2(){
-            return this.img2Show
+            if(this.currStep != 2) return false
+            return this.currStepProgress >= 40
         },
         speedLabelShow(){
             if(this.mobileDevice) return false
-            return this.img2Show && this.currStepProgress > 50
+            return this.textShow2 && this.currStepProgress > 50
         },
         eyecatch(){
-            return (this.img2Show && this.currStepProgress < 50)
+            return (this.textShow2 && this.currStepProgress < 50)
         }
     },
     data(){
