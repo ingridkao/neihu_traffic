@@ -19,19 +19,23 @@
                     {{item}}
                 </li>
             </ul>
+            <MainAction/>
         </aside>
     </div>
 </template>
 
 <script>
+import { defineAsyncComponent } from 'vue'
 import Close from '@/assets/icon/close.svg'
-
 export default {
     props: {
         containerHeight: {
             type: Number,
         }
     },
+	components: {
+		MainAction: defineAsyncComponent(() => import('@/components/header/Action.vue'))
+	},
 	computed: {
         step() {
 			return this.$store.state.step
@@ -40,7 +44,7 @@ export default {
 			return {
 				'--scroll': this.scrollValue
 			}
-		},
+		}
     },
 	watch:{
 		step: {

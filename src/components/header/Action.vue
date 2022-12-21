@@ -1,57 +1,36 @@
 <template>
-	<div id="headerActionWrapper" class="space-between">
-		<div style="flex-basis: 30vh;"/>
-		<div class="titleBox">
-			<a :href="currentUrl" class="logoBox">
-				<img :src="require('@/assets/img/tuic_logo_simple.svg')" :alt="$t('TUIC')">
-			</a>
-			<div>
-				<h2>{{$t('mainTitle2')}}</h2>
-				<h1>{{$t('mainTitle')}}</h1>
-				<h3>{{$t('subTitle')}}</h3>
-			</div>
-		</div>
-		<p v-if="mobildDevice">{{$t('suggest')}}</p>
-		<div class="buttonBox buttonActionBox">
-			<button class="fbBtn" @click.prevent="shareToFb"/>
-			<button class="linkBtn" @click.prevent="copyURL"/>
-			<button 
-				class="videoBtn"
-				:class="videoStart? 'videoPause': 'videoStart'" 
-				@click="toggleVideoStatus"
-			/>
-			<!-- <button id="translateToggle" :title="$t('langTranslate')" @click="toggleLocaleLang">{{$t('langZh')}}</button> -->
-		</div>
-		<footer>
-			<ScrollButton/>
-		</footer>
+	<div class="buttonBox buttonActionBox">
+		<button class="fbBtn" @click.prevent="shareToFb"/>
+		<button 
+			class="linkBtn" 
+			:class="{active: copySuccess}"
+			@click.prevent="copyURL"
+		/>
+		<button 
+			v-if="!mobileDevice"
+			class="videoBtn"
+			:class="videoStart? 'videoPause': 'videoStart'" 
+			@click="toggleVideoStatus"
+		/>
+		<!-- <button id="translateToggle" :title="$t('langTranslate')" @click="toggleLocaleLang">{{$t('langZh')}}</button> -->
 	</div>
 </template>
 
 <script>
-import { defineAsyncComponent } from 'vue'
 export default {
-	name: "HeaderPage",
-	components: {
-		ScrollButton: defineAsyncComponent(() => import('@/components/header/ScrollButton.vue'))
-	},
-	props:{ 
-		videoStart: {
-            type: Boolean,
-            default: false
-        }
-	},
 	computed: {
-        mobildDevice(){
-            return this.$store.state.mobildDevice
+        mobileDevice(){
+            return this.$store.state.mobileDevice
         },
-		currStep() {
-			return this.$store.state.step
+		videoStart() {
+			return this.$store.state.videoStart
 		}
 	},
 	data() {
 		return {
 			currentUrl: '#',
+			timer: null,
+			copySuccess: false
 		}
 	},
 	created(){
@@ -60,6 +39,11 @@ export default {
 	mounted(){
 		this.currentUrl = window.location.href
 	},
+    destroyed(){
+		if(this.timer){
+			clearInterval(this.timer)
+		}
+    },
     methods: {
         shareToFb(){
             window.open(`http://www.facebook.com/sharer.php?u=${encodeURIComponent(this.currentUrl)}`)
@@ -67,7 +51,10 @@ export default {
         copyURL(){
             if(navigator.clipboard){
 				navigator.clipboard.writeText(this.currentUrl).then(() => {
-					console.log(1);
+					this.copySuccess = true
+					this.timer = setInterval(()=>{
+						this.copySuccess = false
+					}, 5000)
 				})
             }else if(navigator.share) {
 				navigator.share({
@@ -102,12 +89,13 @@ export default {
 			localStorage.setItem("locale", this.$i18n.locale)
 			location.reload()
 		},
-		toggleVideoStatus(){
-			this.$emit('toggle', !this.videoStart)
+        toggleVideoStatus(boolen){
+			this.$store.commit('toggleVideoStatus', !this.videoStart)
         }
     }
 }
 </script>
+
 <style lang="scss" scoped>
-@import '@/assets/scss/header.scss';
+@import '@/assets/scss/action.scss';
 </style>

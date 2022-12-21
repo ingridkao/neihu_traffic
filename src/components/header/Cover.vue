@@ -5,48 +5,30 @@
 		}"
 	>
 		<keep-alive>
-			<VideoPlayer id="videoWapper" :video-start="videoStart" @toggle="toggleVideoStatus"/>
+			<div v-if="mobileDevice" id="gifWapper" />
+			<VideoPlayer v-else id="videoWapper"/>
 		</keep-alive>
-		<!-- <div id="imgWapper" :class="{show: step == 0}" /> -->
 	</div>
 </template>
 
 <script>
-import VideoPlayer from "@/components/header/VideoPlayer.vue"
+import { defineAsyncComponent } from 'vue'
 export default {
 	name: "HeaderCover",
-	props:{ 
-		videoStart: {
-            type: Boolean,
-            default: false
-        }
-	},
 	computed: {
-        step() {
+        mobileDevice(){
+            return this.$store.state.mobileDevice
+        },
+        currStep() {
 			return this.$store.state.step
 		},
 		bgOpacity(){
-			return this.step == 0 ? 0.6: 1
+			return this.currStep == 0 ? 0.6: 1
 		}
     },
 	components: {
-		VideoPlayer
-	},
-	watch:{
-		step(val, oldVal){
-			if(val == 0 && !this.videoStart){
-				this.toggleVideoStatus(true)
-			}
-			if(val > 1 && this.videoStart){
-				this.toggleVideoStatus(false)
-			} 
-		}
-	},
-    methods: {
-        toggleVideoStatus(boolen){
-			this.$emit('toggle', boolen)
-        }
-    }
+		VideoPlayer: defineAsyncComponent(() => import('@/components/header/VideoPlayer.vue'))
+	}
 }
 </script>
 <style lang="scss" scoped>
@@ -56,28 +38,17 @@ export default {
 	height: 100%;
 	z-index: 0;
 	transition: opacity 1s ease;
-	>div{
+	#videoWapper, #gifWapper{
 		position: absolute;
 		width: 100%;
 		height: 100%;
         top: 0;
         left: 0;
         overflow: hidden;
-		// &#imgWapper{
-		// 	width: 100%;
-		// 	height: 100%;
-		// 	background-size: cover;
-		// 	background-position: center;
-		// 	background-image: url('../../assets/img/cover.png');
-		// 	opacity: 0.5;
-		// 	transition: opacity 1s ease;
-		// 	&.show{
-		// 		opacity: 1;
-		// 	}
-		// }
-		&#videoWapper{
-			z-index: 0;
-		}
+		z-index: 0;
+	}
+	#gifWapper{
+
 	}
 	.vjs-loading-spinner{
 		display: none;

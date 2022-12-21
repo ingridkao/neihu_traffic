@@ -226,7 +226,7 @@ $carouselTabBtnHeight: 3rem;
         width: 100%;
         height: calc(100vh - 5em);
         @media screen and (max-width:501px){
-            height: 30rem;
+            height: calc(100vh - 8em);
         }
         >div{
             position: absolute;

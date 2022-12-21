@@ -36,7 +36,7 @@
                 除了搭乘公車直達內科上班外，有大量的上班族也會透過捷運轉公車的方式至內科上班。從數據上發現，松山捷運站為最熱門的轉乘站點。
             </div>
             <div
-                v-if="!mobildDevice && article >= 2"
+                v-if="!mobileDevice && article >= 2"
                 data-aos="fade-down"
                 data-aos-duration="1600"
             >
@@ -64,8 +64,8 @@ export default {
         MapLabel: defineAsyncComponent(() => import('@/components/content/MapLabel.vue'))
 	},
     computed: {
-        mobildDevice(){
-            return this.$store.state.mobildDevice
+        mobileDevice(){
+            return this.$store.state.mobileDevice
         },
         currStep() {
 			return this.$store.state.step

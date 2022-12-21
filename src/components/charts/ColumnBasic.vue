@@ -83,7 +83,7 @@ export default {
                     }
                 }
             }
-            if(this.$store.state.mobildDevice){
+            if(this.$store.state.mobileDevice){
                 return {
                     ...Option,
                     dataLabels: {
@@ -170,7 +170,7 @@ export default {
     width: 100%;
     height: calc(100vh - 20rem);
     @media screen and (max-width:501px){
-        height: 20rem;
+        height: 55vh;
     }
 }
 </style>

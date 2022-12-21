@@ -20,11 +20,13 @@ videojs.options.html5.nativeAudioTracks = false
 videojs.options.html5.nativeVideoTracks = false
 export default {
     name: "VideoPlayer",
-    props: {
-        videoStart: {
-            type: Boolean,
-            default: false
-        }
+	computed: {
+		videoStart() {
+			return this.$store.state.videoStart
+		},
+        currStep() {
+			return this.$store.state.step
+		}
     },
     data() {
         return {
@@ -45,21 +47,26 @@ export default {
         }
     },
     watch: {
-        videoStart: {
-            handler(newVal) {
-                if(!this.player)return
-                if(newVal){
-                    this.player.play()
-                }else{
-                    this.player.pause()
-                }
+		currStep(newVal){
+			if(newVal == 0 && !this.videoStart) {
+                this.$store.commit('toggleVideoStatus', false)
+            }else if(newVal > 1 && this.videoStart){
+                this.$store.commit('toggleVideoStatus', true)
+            }
+		},
+        videoStart(newVal){
+            if(!this.player)return
+            if(newVal){
+                this.player.play()
+            }else{
+                this.player.pause()
             }
         }
     },
     mounted() {
         this.player = videojs(this.$refs.videoPlayer, this.options)
         this.player.on('ready', () => {
-            this.$emit('toggle', true)
+            this.$store.commit('toggleVideoStatus', true)
         })
     },
     beforeUnmount() {

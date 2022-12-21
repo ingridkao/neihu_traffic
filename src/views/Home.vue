@@ -6,11 +6,9 @@
 	>
 		<HeadCover 
 			v-if="currStep <= 2" 
-			:video-start="videoStart" 
-			@toggle="toggleVideoStatus" 
 		/>
 		<div id="main_scrollama" ref="scrollama_container">
-			<HeaderAction data-step-no="0" :video-start="videoStart" @toggle="toggleVideoStatus" />
+			<HeaderTitle data-step-no="0" />
 			<div data-step-no="1" class="cardContainer">
 				<Step1 />
 			</div>
@@ -63,12 +61,12 @@ import AOS from "aos"
 import "aos/dist/aos.css"
 
 import AsideBox from "@/components/header/Aside.vue"
-import HeaderAction from "@/components/header/Action.vue"
 import HeadCover from "@/components/header/Cover.vue"
+import HeaderTitle from "@/components/header/Title.vue"
 export default {
 	name: "HomePage",
 	components:{
-		AsideBox, HeaderAction, HeadCover, 
+		AsideBox, HeadCover, HeaderTitle,
 		StepMap: defineAsyncComponent(() => import('@/components/content/StepMap.vue')),
 		Step1: defineAsyncComponent(() => import('@/components/content/Step1.vue')),
 		Step2: defineAsyncComponent(() => import('@/components/content/Step2.vue')),
@@ -85,7 +83,6 @@ export default {
 	},
 	data() {
 		return {
-			videoStart: false,
 			opts: {}
 		}
 	},
@@ -121,9 +118,6 @@ export default {
 		this._scroller.destroy()
 	},
 	methods: {
-        toggleVideoStatus(boolen){
-            this.videoStart = boolen
-        },
 		setupScroller() {
 			this._scroller = scrollama()
 			this._scroller.destroy()

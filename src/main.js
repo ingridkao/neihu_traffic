@@ -27,7 +27,8 @@ const store = createStore({
 		return {
 			step: 0,
 			progres: 0,
-			mobildDevice: false
+			mobileDevice: false,
+			videoStart: false
 		}
 	},
 	mutations: {
@@ -37,8 +38,11 @@ const store = createStore({
 		updateProgres (state, payload) {
 			state.progres = payload
 		},
-		updateMobildDevice (state, payload) {
-			state.mobildDevice = payload
+		updatemobileDevice (state, payload) {
+			state.mobileDevice = payload
+		},
+		toggleVideoStatus (state, payload) {
+			state.videoStart = payload
 		}
 	}
 })

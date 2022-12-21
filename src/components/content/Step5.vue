@@ -55,18 +55,18 @@ export default {
         CarouselImage
 	},
     computed: {
-        mobildDevice(){
-            return this.$store.state.mobildDevice
+        mobileDevice(){
+            return this.$store.state.mobileDevice
         },
         currStep() {
 			return this.$store.state.step
 		},
         textShow1(){
-            if(!this.mobildDevice) return true
+            if(!this.mobileDevice) return true
             return this.currStep == 4
         },
         textShow2(){
-            if(!this.mobildDevice) return true
+            if(!this.mobileDevice) return true
             return !this.textShow1
         }
     },

@@ -66,8 +66,8 @@ export default {
         SpeedLabel: defineAsyncComponent(() => import('@/components/box/SpeedLabel.vue'))
 	},
     computed: {
-        mobildDevice(){
-            return this.$store.state.mobildDevice
+        mobileDevice(){
+            return this.$store.state.mobileDevice
         },
         currStep() {
 			return this.$store.state.step
@@ -82,14 +82,14 @@ export default {
             return this.currStep == 3 && this.currStepProgress <= 10
         },
         textShow1(){
-            if(this.mobildDevice) return !this.img2Show
+            if(this.mobileDevice) return !this.img2Show
             return this.currStep == 2 && this.currStepProgress > 10
         },
         textShow2(){
             return this.img2Show
         },
         speedLabelShow(){
-            if(this.mobildDevice) return false
+            if(this.mobileDevice) return false
             return this.img2Show && this.currStepProgress > 50
         },
         eyecatch(){

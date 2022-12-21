@@ -61,8 +61,8 @@ export default {
         }
     },
     computed: {
-        mobildDevice(){
-            return this.$store.state.mobildDevice
+        mobileDevice(){
+            return this.$store.state.mobileDevice
         },
         currStep() {
 			return this.$store.state.step
@@ -71,7 +71,7 @@ export default {
 			return this.$store.state.progres
 		},
         textShow1(){
-            if(this.mobildDevice) return !this.textShow2
+            if(this.mobileDevice) return !this.textShow2
             return this.currStep == 4 && this.currStepProgress >= 10
         },
         textShow2(){
@@ -79,7 +79,7 @@ export default {
             return this.currStep == 4 && this.currStepProgress >= 25
         },
         telLabelShow(){
-            if(this.mobildDevice) return false
+            if(this.mobileDevice) return false
             if(this.currStep == 5) return true
             return this.currStep == 4 && this.currStepProgress >= 45
         }
