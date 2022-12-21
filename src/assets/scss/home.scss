@@ -39,6 +39,7 @@
 		}
 		&.carouselContainer{
 			@extend %contentPadding;
+			height: 150vh;
 			@media screen and (max-width:501px){
 				height: auto;
 			}

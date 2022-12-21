@@ -18,26 +18,40 @@ $annotationColor: lighten($textSubColor, 30);
     opacity: 0;
     transition: opacity 1s 0.5s;
     z-index: 1;
-	@media screen and (max-width:501px){ // For mobile
-		display: none;
-		&.open{
-			display: block;
-		}
-	}
+    @media screen and (max-width:501px){ // For mobile
+        display: none;
+    }
+    &::before{
+        content: "";
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba($blackColor, 0.3);
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        z-index: -1;
+    }
     .annotationContent{
         visibility: hidden;
-        margin: 0;
+        transition: visibility 1s 0.5s;
         color: $annotationColor;
-		margin-bottom: .25rem;
+		margin-bottom: 0 !important;
+        padding: 0.25rem;
+        background-color: $whiteColor;
     }
     .annotationImage{
         width: 100%;
         padding: .5rem;
+        background-color: $whiteColor;
     }
     &.open{
         opacity: 1;
         border-radius: .25rem;
         background-color: $whiteColor;
+        @media screen and (max-width:501px){ // For mobile
+            display: block;
+        }
         .annotationContent{
             visibility: visible;
         }
@@ -45,10 +59,9 @@ $annotationColor: lighten($textSubColor, 30);
     &.bottom{
         position: absolute;
         width: 100%;
-        left: 0%;
-        top: 90%;
+        left: 0;
+        top: 100%;
         z-index: 1;
-        padding: 0 2rem;
         @media screen and (max-width:501px){ // For mobile
 			width: calc(100% + 2rem);
 			left: -1rem;

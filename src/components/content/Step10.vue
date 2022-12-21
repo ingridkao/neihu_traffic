@@ -9,7 +9,7 @@
         <div class="bgBlock imgCenter mrtbg1 active"/>
         <div class="bgBlock imgCenter mrtbg2" :class="{active: article === 2}"/>
         <div class="bgBlock imgCenter mrtbg3" :class="{active: article === 3}"/>
-        <div class="bgBlock imgCenter mrtbg4" :class="{active: article === 4}"/>
+        <div class="bgBlock imgCenter mrtbg4" :class="{active: article >= 4}"/>
     </div>
     <div class="cardBox"
         :class="{
@@ -103,14 +103,38 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.bgBlock{
+.bgBlock.imgCenter{
+    background-position-x: 55%;
     &.mrtbg1{ background-image: url('../../assets/img/zoom/MRT-02.jpg'); }
     &.mrtbg2{ background-image: url('../../assets/img/zoom/MRT-03.jpg'); }
     &.mrtbg3{ background-image: url('../../assets/img/zoom/MRT-04.jpg'); }
-    &.mrtbg4{ background-image: url('../../assets/img/zoom/MRT-05.jpg'); }
+    &.mrtbg4{ 
+        background-image: url('../../assets/img/zoom/MRT-05.jpg'); 
+        &.active{
+            @media screen and (min-width:501px){ // For desktop
+                animation-name:image;
+                animation-duration: 3s;
+                animation-fill-mode: both;
+            }
+        }
+    }
 }
 .mapLabel{
     background-color: rgba(255,255,255, 0.7);
+}
+@keyframes image{
+	0%{
+        background-size: cover;
+        background-position-x: 55%;
+	}
+	25%{
+        background-size: 200%;
+        background-position-x: 60%;
+	}
+	100%{
+        background-size: 250%;
+        background-position-x: 75%;
+	}
 }
 </style>
 

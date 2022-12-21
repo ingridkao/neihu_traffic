@@ -21,8 +21,8 @@
             />
         </div>
         <div>
-            <RadialsBasicAll v-if="(currStep == 5 && currStepProgress > 25) || (currStep == 6 && currStepProgress < 50)"/>
-            <RadialsBasic v-if="(currStep == 6 && currStepProgress >= 50)"/>
+            <RadialsBasicAll v-if="!radialsBasic2Show || (currStep == 5 && currStepProgress > 25)"/>
+            <RadialsBasic v-if="radialsBasic2Show"/>
         </div>
     </header>
     <div class="carousel">
@@ -58,7 +58,10 @@ export default {
 		},
 		currStepProgress() {
 			return this.$store.state.progres
-		}
+		},
+        radialsBasic2Show(){
+             return this.currStep == 6 && this.currStepProgress > 45
+        }
     },
     data(){
 		return {

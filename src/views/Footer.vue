@@ -14,31 +14,31 @@
 		<div>
 			<h6>{{$t('footer.title1')}}</h6>
 			<p>
+				1. {{$t('footer.linkHost1')}}：
 				<a target="_blank" href="https://invest.taipei/pages/NeihuTechnologyPark.html?1653362761" :title="`${$t('linkTo')}:${$t('footer.linkTitle1')}`">
-					{{$t('footer.linkHost1')}}
+					{{$t('footer.linkTitle1')}}
 				</a>
-				:{{$t('footer.linkTitle1')}}
 			</p>
 			<p>
+				2. {{$t('footer.linkHost2')}}：
 				<a target="_blank" href="https://www.digitimes.com.tw/seminar/ceci_20190305/article.html" :title="`${$t('linkTo')}:${$t('footer.linkTitle2')}`">
-					{{$t('footer.linkHost2')}}
+					{{$t('footer.linkTitle2')}}
 				</a>
-				:{{$t('footer.linkTitle2')}}
 			</p>
 			<p>
-				{{$t('footer.linkHost3')}}:{{$t('footer.linkTitle3')}}
+				3. {{$t('footer.linkHost3')}}：{{$t('footer.linkTitle3')}}
 			</p>
 			<p>
+				4. TomTom：
 				<a target="_blank" href="https://spectrum.ieee.org/mining-traffic-data-for-insights-about-the-pandemic" :title="$t('linkTo')">
-					TomTom
+					Mining Traffic Data for Insights About The Pandemic
 				</a>
-				:Mining Traffic Data for Insights About The Pandemic
 			</p>
 			<p>
+				5. {{$t('footer.linkHost5')}}：
 				<a target="_blank" href="https://tfl.gov.uk/modes/driving/ultra-low-emission-zone" :title="`${$t('linkTo')}:${$t('footer.linkTitle2')}`">
-					{{$t('footer.linkHost5')}}
+					Ultra Low Emission Zone
 				</a>
-				:Ultra Low Emission Zone
 			</p>
 
 			<h6>{{$t('footer.title2')}}</h6>
