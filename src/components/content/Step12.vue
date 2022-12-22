@@ -25,22 +25,22 @@
         <div class="middle2 right content">
             <div
                 v-if="article >= 1"
-                data-aos="fade-down"
-                data-aos-duration="1600"
+                data-aos="fade-left"
+                data-aos-duration="800"
             >
                 YouBike使用熱區多為鄰近內科的捷運站周邊，大多通勤族使用YouBike至捷運站轉乘。
             </div>
             <div
                 v-if="chartShow"
-                data-aos="fade-up"
-                data-aos-duration="1600"
+                data-aos="fade-left"
+                data-aos-duration="800"
             >
                 <ColumnBasicBike/>
             </div>
             <div
                 v-if="article === 2"
-                data-aos="fade-up"
-                data-aos-duration="1600"
+                data-aos="fade-left"
+                data-aos-duration="800"
             >
                 港墘捷運站為捷運轉乘Youbike至內科最熱門的捷運站，後依序為文德、劍南路、內湖、松山。
             </div>
@@ -74,14 +74,15 @@ export default {
             return  this.currStep == 13 || (this.currStep == 12 && this.currStepProgress > 95)
         },
         article(){
+            if(this.currStep == 11)return 1
             if(this.currStep == 13)return 2
-            if(this.currStep == 12 && this.currStepProgress >= 50)return 2 
+            if(this.currStep == 12 && this.currStepProgress >= 40)return 2 
             return 1
         },
         chartShow(){
             if(this.mobileDevice) return false
             if(this.currStep == 13)return true
-            return this.currStep == 12 && this.currStepProgress >= 50
+            return this.currStep == 12 && this.currStepProgress >= 25
         }
     }
 }

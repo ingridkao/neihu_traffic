@@ -20,10 +20,10 @@
                 @update="updateToggle"
             />
         </div>
-        <div>
-            <RadialsBasicAll v-if="!radialsBasic2Show || (currStep == 5 && currStepProgress > 25)"/>
-            <RadialsBasic v-if="radialsBasic2Show"/>
-        </div>
+        <keep-alive>
+            <RadialsBasicAll v-if="radialsBasic1Show"/>
+            <RadialsBasic v-if="!radialsBasic1Show"/>
+        </keep-alive>
     </header>
     <div class="carousel">
         <CarouselHeader 
@@ -59,8 +59,10 @@ export default {
 		currStepProgress() {
 			return this.$store.state.progres
 		},
-        radialsBasic2Show(){
-             return this.currStep == 6 && this.currStepProgress > 45
+        radialsBasic1Show(){
+            if(this.currStep == 5) return true
+            if(this.currStep == 7) return false
+            return this.currStepProgress < 20
         }
     },
     data(){

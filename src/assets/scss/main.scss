@@ -55,28 +55,12 @@
     }
 }
 
-.rowFlex{
-    position: relative;
-    @extend %horizontalCenter;
-    @media screen and (max-width:501px){
-        display: block;
-    }
-}
-
 .halfRowHeader{
     @extend %horizontalCenter;
-    @media screen and (max-width:501px){
-        flex-direction: column;
-    }
     align-items: flex-start;
     flex-wrap: wrap;
-    position: relative;
-    :first-child{
-        position: relative;
-        max-width: calc(100vw - 25rem);
-        @media screen and (max-width:501px){
-            max-width: none;
-        }
+    @media screen and (max-width:501px){
+        flex-direction: column;
     }
 }
 
@@ -177,6 +161,9 @@
     }
     .title{
         padding: .5rem 3rem;
+        @media screen and (max-width:501px){
+            padding: .5rem 2rem;
+        }
         h6{font-size: 1.2rem;margin-bottom: 0;font-weight: bold;}
         p{font-size: 0.8rem;margin-bottom: 0;}
     }
@@ -200,10 +187,6 @@
 
 // carousel start
 $carouselTabBtnHeight: 3rem;
-.carouselHeader{
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-}
 .carousel{
     position: relative;
     padding-top: 0;

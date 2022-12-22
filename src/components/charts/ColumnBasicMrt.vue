@@ -70,11 +70,6 @@ export default {
     methods:{
         updateData(){
             switch (this.article) {
-                case 1:
-                    this.title = '捷運通勤前20轉乘站點'
-                    this.subtitle = `總佔45.95%`
-                    this.sourceData = WenhuData.slice(0, 20)
-                    break;
                 case 2:
                     this.title = '非木柵線Top20轉乘捷運站'
                     this.subtitle = `總佔32.5%`
@@ -86,6 +81,9 @@ export default {
                     this.sourceData = DanshuiData.slice(0, 20)
                     break;
                 default:
+                    this.title = '捷運通勤前20轉乘站點'
+                    this.subtitle = `總佔45.95%`
+                    this.sourceData = WenhuData.slice(0, 20)
                     break;
             }
 

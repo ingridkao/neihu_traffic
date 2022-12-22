@@ -27,38 +27,38 @@
         <div class="middle right content" :class="{button: article === 4}">
             <div
                 v-if="article === 1 "
-                data-aos="fade-down"
-                data-aos-duration="1600"
+                data-aos="fade-left"
+                data-aos-duration="800"
             >
                 1. 主要的捷運通勤族皆來自文湖線站點周邊。
             </div>
             <div
                 v-if="article === 2"
-                data-aos="fade-down"
-                data-aos-duration="1600"
+                data-aos="fade-left"
+                data-aos-duration="800"
             >
                 2. 在轉乘的部分最多的人次來自板南線、其次為中和新蘆線與松山新店線。
             </div>
             <div
                 v-if="article === 3"
-                data-aos="fade-down"
-                data-aos-duration="1600"
+                data-aos="fade-left"
+                data-aos-duration="800"
             >
                 3. 士林北投區域的工作人口佔9.2%但使用捷運通勤人數相當少數。
             </div>
-            <keep-alive>
-                <ColumnBasicMrt
-                    v-if="chartShow"
-                    :article="article"
-                />
-            </keep-alive>
             <div
                 v-if="article === 4"
-                data-aos="fade-up"
-                data-aos-duration="1600"
+                data-aos="fade-left"
+                data-aos-duration="800"
             >
                 4. 不管上班或下班，南港展覽館為進出人次最高的站，推測其周邊汐止區居住人口至此搭乘至內科工作。
             </div>
+            <keep-alive>
+                <ColumnBasicMrt
+                    v-if="!mobileDevice"
+                    :article="article"
+                />
+            </keep-alive>
         </div>
     </div>
 </template>
@@ -83,21 +83,18 @@ export default {
 			return this.$store.state.progres
 		},
         blockFixed(){
-            return  this.currStep == 10 && this.currStepProgress >= 10 && this.currStepProgress <= 90
+            return this.currStep == 10 && this.currStepProgress >= 10 && this.currStepProgress <= 90
         },
         blockBottom(){
             return this.currStep == 11 || (this.currStep == 10 && this.currStepProgress > 90)
         },
         article(){
             if(this.currStep == 11)return 4
-            if(this.currStep == 10 && this.currStepProgress >= 75)return 4
-            if(this.currStep == 10 && this.currStepProgress >= 50)return 3    
-            if(this.currStep == 10 && this.currStepProgress >= 25)return 2
-            if(this.currStep == 10) return 1
-        },
-        chartShow(){
-            if(this.mobileDevice) return false
-            return this.article !== 4
+            if(this.currStep == 9)return 1
+            if(this.currStepProgress >= 60)return 4
+            if(this.currStepProgress >= 40)return 3    
+            if(this.currStepProgress >= 20)return 2
+            return 1
         }
     }
 }

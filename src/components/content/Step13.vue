@@ -1,12 +1,10 @@
 <template>
-    <header 
-        class="rowFlex"
-        data-aos="fade-down"
-        data-aos-duration="3000"
-        data-aos-offset="500"
-    >
+    <header class="rowFlex">
         <h6>解決大內科交通問題，我們有哪些機會？</h6>
-        <p>
+        <p
+            data-aos="fade-down"
+            :data-aos-duration="mobileDevice? 800: 3000"
+        >
             <p>內湖科學園區的交通問題，受限於先天的都市規劃與既成路網系統，較難一次到位的解決。但透過數據得出的洞察，可以為我們指引一些可能性：</p>
             <p>1. 未來捷運環狀線(北環段)的開通，有望化解如士林、北投區需多段轉乘的困擾，藉此提高通勤族搭乘捷運的意願、減少開車比例。</p>
         </p>
@@ -61,6 +59,9 @@ export default {
         }
     },
     computed: {
+        mobileDevice(){
+            return this.$store.state.mobileDevice
+        },
         currStep() {
 			return this.$store.state.step
 		},

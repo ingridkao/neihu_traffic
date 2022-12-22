@@ -1,10 +1,7 @@
 <template>
     <header class="carouselHeader">
         <h6>工作人口從哪來？士林、松山、汐止佔多數</h6>
-        <p v-if="textShow1"
-            data-aos="fade-up"
-            data-aos-duration="1000"
-        >
+        <p>
             大內科的工作人口，除了來自內湖當地，還有地緣上鄰近內湖的士林、南港以及汐止區，共佔15%。另外，居住於台北市中心的內科通勤族（松山、大安、信義以及中山區），約佔16%。
         </p>
         <p v-if="textShow2"
@@ -64,16 +61,13 @@ export default {
 		currStepProgress() {
 			return this.$store.state.progres
 		},
-        textShow1(){
-            if(!this.mobileDevice) return true
-            if(this.currStep == 4) return false
-        },
         textShow2(){
+            if(this.currStep == 4) return false
             if(this.currStep == 6) return true
             if(this.mobileDevice){
-                return this.currStep == 5
+                return this.currStepProgress > 10
             }else{
-                return this.currStep == 5 && this.currStepProgress > 30
+                return this.currStepProgress > 25
             }
         }
     },
@@ -99,13 +93,3 @@ export default {
 	}
 }
 </script>
-<style lang="scss" scoped>
-header{
-    position: relative;
-    max-width: calc(100vw - 20rem);
-    @media screen and (max-width:501px){ // For mobile
-        max-width: none;
-    }
-}
-</style>
-

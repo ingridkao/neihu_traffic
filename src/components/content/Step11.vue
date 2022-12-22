@@ -30,21 +30,21 @@
         <div class="middle right content">
             <div
                 v-if="article >= 1"
-                data-aos="fade-down"
+                data-aos="fade-left"
                 data-aos-duration="1600"
             >
                 除了搭乘公車直達內科上班外，有大量的上班族也會透過捷運轉公車的方式至內科上班。從數據上發現，松山捷運站為最熱門的轉乘站點。
             </div>
             <div
                 v-if="chartShow"
-                data-aos="fade-down"
+                data-aos="fade-left"
                 data-aos-duration="1600"
             >
                 <ColumnBasicBus />
             </div>
             <div
                 v-if="article == 2"
-                data-aos="fade-up"
+                data-aos="fade-left"
                 data-aos-duration="1600"
             >
                 除了捷運轉乘公車的需求外，捷運無覆蓋的士林、內湖、松山、南港、中山、新莊、汐止等臨近地區，也是公車通勤的主要熱區。
