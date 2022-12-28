@@ -23,7 +23,7 @@ export default {
 			return this.$store.state.step
 		},
 		bgOpacity(){
-			return this.currStep == 0 ? 0.6: 1
+			return this.currStep == 0 ? 0.6: 0.9
 		}
     },
 	components: {
@@ -48,7 +48,10 @@ export default {
 		z-index: 0;
 	}
 	#gifWapper{
-
+		background-image: url('../../assets/video/studio_m.gif');
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: cover;
 	}
 	.vjs-loading-spinner{
 		display: none;

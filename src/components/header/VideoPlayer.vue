@@ -14,7 +14,6 @@
 <script>
 //https://ithelp.ithome.com.tw/articles/10205387
 import videojs from 'video.js'
-import VideoMp4 from '@/assets/video/studio.mp4'
 videojs.options.hls.overrideNative = true
 videojs.options.html5.nativeAudioTracks = false
 videojs.options.html5.nativeVideoTracks = false
@@ -40,7 +39,7 @@ export default {
 				sources: [
                     {
                         type: "video/mp4",
-						src:VideoMp4
+						src: require("@/assets/video/studio_d.mp4")
 					}
 				]
             }
