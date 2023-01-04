@@ -1,16 +1,18 @@
 <template>
     <div class="articalBox space-between">
         <div>
-            <h6>13萬的工作人口，大多居住在園區以外</h6>
-            <p>
+            <h6>13萬以上的工作人口，大多居住在園區以外</h6>
+            <p
+                data-aos="fade-up"
+                data-aos-duration="800"
+            >
                 <span>本次研究，透過</span>
                 <AnnotationTrigger :key="'電信資料'" :toggle="annotationToggle1" :text="'電信資料'" @update="updateToggle1"/>
                 <span>推估大內科的人口特性。大內科工作人口為13萬3500人，從右圖可知整體大內科屬於工作為主的區域較少住商混合的狀態，多數人前往大內科工作，需要較長距離的通勤。</span>
             </p>
             <p 
-                v-if="textShow2"
                 data-aos="fade-up"
-                data-aos-duration="800"
+                data-aos-duration="1600"
             >
                 <span>此外，</span>
                 <AnnotationTrigger :key="'對比台北市建成區'" :toggle="annotationToggle2" :text="'對比台北市建成區'" @update="updateToggle2"/>
@@ -32,22 +34,15 @@
         <TelLabel
             v-if="telLabelShow"
             data-aos="fade-up"
-            data-aos-duration="1000"
+            data-aos-duration="1600"
         />
     </div>
     <div class="imgBox"
         :class="{
-            fixedbox: currStep == 4 && currStepProgress <= 50,
-            currStep: currStep == 4
+            fixed: (currStep == 3 && currStepProgress >= 0.1 &&  currStepProgress < 0.55)
         }"
     >
-        <div class="bgBlock bg6 active"/>
-        <div class="bgBlock bg7"
-            :class="{
-                active: textShow2,
-                activeOpacity: telLabelShow && currStepProgress <= 30
-            }"
-        />
+        <div class="bgBlock bg7 active"/>
     </div>
 </template>
 
@@ -64,29 +59,14 @@ export default {
         }
     },
     computed: {
-        mobileDevice(){
-            return this.$store.state.mobileDevice
-        },
         currStep() {
 			return this.$store.state.step
 		},
 		currStepProgress() {
 			return this.$store.state.progres
 		},
-        textShow2(){
-            if(this.currStep == 3) return false
-            if(this.currStep == 5) return true
-            if(this.mobileDevice){
-                return this.currStepProgress >= 25
-            }else{
-                return this.currStepProgress >= 40
-            }
-        },
         telLabelShow(){
-            if(this.mobileDevice) return false
-            if(this.currStep == 3) return false
-            if(this.currStep == 5) return true
-            return this.currStepProgress >= 40
+            return !this.$store.state.mobileDevice
         }
     },
     methods: {
@@ -107,7 +87,6 @@ export default {
 </script>
 <style lang="scss" scoped>
 .bgBlock{
-    &.bg6{ background-image: url('../../assets/img/map/6.jpg'); }
     &.bg7{ background-image: url('../../assets/img/map/7.jpg'); }
 }
 </style>

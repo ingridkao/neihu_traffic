@@ -8,20 +8,9 @@
         </p>
     </div>
     <div :class="['imgBox',{
-        currStep: currStep == 3,
-        fixedbox: currStep == 3 || (currStep == 4 && currStepProgress <= 10)
+        fixed: (currStep == 2 && currStepProgress >= 0.375) || (currStep == 3 && currStepProgress < 0.1) 
     }]">
-        <div class="bgBlock bg4 active"
-            :class="{
-                activeOpacity: continuePrev || (currStep == 3 && currStepProgress <= 10) || eyecatch
-            }"
-        />
-        <div class="bgBlock bg6"
-            :class="{
-                active: currStep == 3 && !img1Show,
-                activeOpacity: eyecatch
-            }"
-        />
+        <div class="bgBlock bg6 active"/>
     </div>
 </template>
 
@@ -33,25 +22,12 @@ export default {
 		},
 		currStepProgress() {
 			return this.$store.state.progres
-		},
-        img1Show(){
-            if(this.currStep != 3) return false
-            return this.currStepProgress < 50
-        },
-        continuePrev(){
-            if(this.currStep != 2) return false
-            return this.currStepProgress > 75
-        },
-        eyecatch(){
-            if(this.currStep != 3) return false
-            return this.currStepProgress >= 45 && this.currStepProgress < 50
-        }
+		}
     }
 }
 </script>
 <style lang="scss" scoped>
 .bgBlock{
-    &.bg4{ background-image: url('../../assets/img/map/4.jpg'); }
     &.bg6{ background-image: url('../../assets/img/map/6.jpg'); }
 }
 </style>

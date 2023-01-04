@@ -1,6 +1,6 @@
 <template>
-	<div id="headerActionWrapper" class="space-between">
-		<div style="flex-basis: 30vh;"/>
+	<div id="headerTitle" class="space-between">
+		<div></div>
 		<div class="titleBox">
 			<a :href="currentUrl" class="logoBox">
 				<img :src="require('@/assets/img/tuic_logo_simple.svg')" :alt="$t('TUIC')">
@@ -22,7 +22,6 @@
 <script>
 import { defineAsyncComponent } from 'vue'
 export default {
-	name: "HeaderPage",
 	components: {
 		MainAction: defineAsyncComponent(() => import('@/components/header/Action.vue')),
 		ScrollButton: defineAsyncComponent(() => import('@/components/header/ScrollButton.vue'))
@@ -42,6 +41,3 @@ export default {
 	}
 }
 </script>
-<style lang="scss">
-@import '@/assets/scss/header.scss';
-</style>

@@ -1,8 +1,8 @@
 <template>
     <div 
+        id="aricle1"
         data-aos="fade-up"
         data-aos-duration="1000"
-        class="cardBox"
     >
         <p>
             <span>內湖的塞車問題不僅是通勤族的夢靨，也是台北市政府長久以來的施政痛點。儘管市府已經針對交通壅塞提出</span>
@@ -10,7 +10,7 @@
             <span>，現階段的交通改善仍然有限。而實際上內科面對的不只是交通問題，核心的問題是最初的都市計畫的設定低估了未來發展的潛力。</span>
         </p>
         <p>
-            於2020年中臺北大數據中心主動與台北市交通局合作，以全觀的視角，理解車流與人流如何進到內湖，並將地理位置鄰近內湖的大直、士林、松山、汐止區納入研究，嘗試提供不同的政策思考。
+            於2021年臺北大數據中心與台北市交通局共同合作，以全觀的視角，理解車流與人流如何進到內湖，並將地理位置鄰近內湖的大直、士林、松山、汐止區納入研究，嘗試提供不同的政策思考。
         </p>
         <AnnotationContent 
             :dropdown="annotationToggle"
@@ -43,22 +43,3 @@ export default {
     }
 }
 </script>
-<style lang="scss" scoped>
-@import '@/assets/scss/variables.scss';
-.cardBox{
-    @extend %contentPadding;
-    position: relative;
-    width: $mapAsideWidth*1.2;
-    height: auto;
-    @media screen and (max-width:501px){
-        width: 90%;
-    }
-    @extend %whiteCardShadow;
-    @extend %contentPadding;
-    border-radius: .25rem;
-    border: 1px solid rgba($blackColor, 0.3);
-    background-color: rgba($whiteColor, 0.9);
-}
-</style>
-
-

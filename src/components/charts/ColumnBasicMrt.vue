@@ -70,12 +70,12 @@ export default {
     methods:{
         updateData(){
             switch (this.article) {
-                case 2:
+                case 3:
                     this.title = '非木柵線Top20轉乘捷運站'
                     this.subtitle = `總佔32.5%`
                     this.sourceData = NonWenhuData.slice(0, 20)
                     break;
-                case 3:
+                case 4:
                     this.title = '淡水信義線Top20轉乘捷運站'
                     this.subtitle = `總佔2.8%`
                     this.sourceData = DanshuiData.slice(0, 20)

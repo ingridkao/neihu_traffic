@@ -1,7 +1,7 @@
 <template>
     <div id="videoWapper"
         :style="{
-            backgroundImage: `url( ${ require('@/assets/img/cover.png') } )`            
+            backgroundImage: `url( ${ require('@/assets/img/tuic_logo_simple.svg') } )`            
         }"
     >
         <video 
@@ -74,26 +74,6 @@ export default {
     }
 }
 </script>
-
-<style lang="scss" scoped>
-    @import "~video.js/dist/video-js.min.css";
-    #videoWapper{
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center; 
-        .videoBox{
-            height: 100vh;
-            width: 100vw;
-            video{
-                width: 100%;
-                @media screen and (max-width:1380px){
-                    width: auto;
-                    height: 100%;
-                }
-            }
-        }
-    }
-</style>
 <style>
     .vjs-loading-spinner:after{
         display: none !important;

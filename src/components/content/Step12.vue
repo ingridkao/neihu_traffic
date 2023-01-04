@@ -1,17 +1,14 @@
 <template>
     <div class="imgBox"
         :class="{
-            fixedbox: blockFixed,
-            blockBottom: blockBottom,
-            currStep: currStep == 12
+            fixed: blockFixed
         }"
     >
         <div class="bgBlock imgCenter bg1 active"/>
-        <div class="bgBlock imgCenter bg2" :class="{active: article >= 2}"/>
     </div>
     <div class="cardBox"
         :class="{
-            blockFixed: blockFixed,
+            blockFixed: blockFixed
         }"
     >
         <div class="top left title">
@@ -19,12 +16,11 @@
             <p>- 上下班時段的起訖熱門區域-</p>
             <div class="mapLabel">
                 <ChartLabel/>
-                <MapPointLabel v-if="article >= 2" :text="'轉乘熱門度'" :gradient="['#fff', '#ee3c43']"/>
+                <MapPointLabel :text="'轉乘熱門度'" :gradient="['#fff', '#ee3c43']"/>
             </div>
         </div>
         <div class="middle2 right content">
             <div
-                v-if="article >= 1"
                 data-aos="fade-left"
                 data-aos-duration="800"
             >
@@ -38,7 +34,7 @@
                 <ColumnBasicBike/>
             </div>
             <div
-                v-if="article === 2"
+                v-if="article == 2"
                 data-aos="fade-left"
                 data-aos-duration="800"
             >
@@ -68,31 +64,28 @@ export default {
 			return this.$store.state.progres
 		},
         blockFixed(){
-            return  this.currStep == 12 && this.currStepProgress >= 10 && this.currStepProgress <= 95
-        },
-        blockBottom(){
-            return  this.currStep == 13 || (this.currStep == 12 && this.currStepProgress > 95)
+            return (this.currStep == 11 && this.currStepProgress > 0.05)
         },
         article(){
-            if(this.currStep == 11)return 1
-            if(this.currStep == 13)return 2
-            if(this.currStep == 12 && this.currStepProgress >= 40)return 2 
-            return 1
+            if(this.currStep == 12)return 2
+            return this.currStep == 11 && this.currStepProgress < 0.55 ? 1: 2
         },
         chartShow(){
             if(this.mobileDevice) return false
-            if(this.currStep == 13)return true
-            return this.currStep == 12 && this.currStepProgress >= 25
+            if(this.currStep == 12)return true
+            return this.currStep == 11 && this.currStepProgress >= 0.3
         }
     }
 }
 </script>
 <style lang="scss" scoped>
     .bgBlock{
-        &.bg1{ background-image: url('../../assets/img/zoom/Youbike-01.jpg'); }
-        &.bg2{ background-image: url('../../assets/img/zoom/Youbike-02.jpg'); }
+        &.bg1{ background-image: url('../../assets/img/zoom/Youbike-01.jpeg'); }
     }
     .cardBox{
+        &.blockFixed{
+            height: 600vh !important;
+        }
         pointer-events: none;
         @media screen and (max-width:501px){
             div.middle2 {
@@ -100,9 +93,6 @@ export default {
                 bottom: 1rem;
             }
         }
-    }
-    .a{
-        background-color: rgba(255,255,255, 0.7);
     }
 </style>
 

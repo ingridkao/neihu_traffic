@@ -1,7 +1,14 @@
 @import '@/assets/scss/variables.scss';
 @import '@/assets/scss/main.scss';
 
+%articleLayout {
+	height: 60rem;
+	color: $textSubColor;
+	background-color: $whiteColor;
+}
+
 #homePage{
+	position: relative;
 	overflow: hidden;
 	*{
 		box-sizing: border-box;
@@ -15,65 +22,72 @@
 }
 
 // main_scrollama - start
+.colArticle{
+	max-width: 52rem;
+}
 #main_scrollama{
-	z-index: 0;
-	>div{
-	    position: relative;
-		height: 100vh;
-		color: $textSubColor;
-		background-color: $whiteColor;
+	z-index: 1;
+	.step{
+		position: relative;
+		@extend %articleLayout;
+		//Avoid using viewport height (vh) in your CSS because scrolling up and down constantly triggers vh to change, which will also trigger a window resize.
 		h6, p{
 			position: relative;
 			width: 100%;
 			text-align: left;
+		}
+		h6{
 			margin-bottom: 1rem;
 		}
-		&.cardContainer{
-			@extend %verticalCenter;
-			background-color: transparent;
+		p{
+			margin-bottom: 2rem;
+		}
+		&.rowBox{
+			@extend %horizontalCenter;
 			@media screen and (max-width:501px){
-				justify-content: flex-start;
-				margin-top: 20vh;
+				display: block;
 			}
 		}
 		&.carouselContainer{
 			@extend %contentPadding;
+			height: auto;
 			.carouselHeader{
 				position: relative;
 				padding-top: 1rem;
 				padding-bottom: 1rem;
-			}
-			&[data-step-no="5"]{
-				height: calc(100vh + 16rem);
-				header{
-					min-height: 16rem;
-					max-width: 46rem;
-				}
-			}
-			&[data-step-no="6"]{
-				height: calc(100vh + 18rem);
-				header{
-					min-height: 18rem;
-					>div:first-child{
-						max-width: 46rem;
+				&.halfRowHeader{
+					@extend %horizontalCenter;
+					align-items: flex-start;
+					flex-wrap: wrap;
+					max-width: none;
+					@media screen and (max-width:501px){
+						flex-direction: column;
+					}
+					>div{
+						flex-basis: 46rem;
 					}
 				}
 			}
 		}
-		&.contentPadding{
-			@extend %contentPadding;
-		}
 		&.fullContainer{
-			height: 400vh;
-			&#chapter5{
-				height: 300vh;
+			.imgBox{
+				height: 100vh;
+				&.fixed{
+					width: 100%;
+				}
+			}
+			.cardBox{
+				&.blockFixed{
+					position: fixed;
+					height: 100vh;
+					z-index: 2;
+				}
 			}
 		}
 		&.fullchartContainer{
 			@extend %contentPadding;
-			padding-top: 5rem;
-		    @media screen and (max-width:501px){
-				height: 130vh;
+			@media screen and (max-width:501px){
+				height: 130%;
 			}
 			h6{
 				flex-basis: 50rem;
@@ -81,51 +95,58 @@
 			p{
 				display: block;
 			}	
-		}
-		&.epilogue{
-			height: calc(100vh + 50rem);
-			@media screen and (max-width:501px){
-				height: 230vh;
-			}
-			p > p{
-				margin-bottom: 1rem
+			&#chapter5{
+				height: 600%;
+				@media screen and (max-width:501px){
+					height: 250%;
+				}
 			}
 		}
-		&.rowBox{
-			@extend %horizontalCenter;
-			@media screen and (max-width:501px){
-				display: block;
-				position: relative;
-			}
+		&#chapter4{
+			@extend %contentPadding;
+			height: auto;
 		}
 		&.mapContainer{
 			@media screen and (max-width:501px){ // For mobile
 				height: 70rem;
 			}
 		}
-		&#chapter4{
-			height: auto;
-			padding-top: 3rem;
-			padding-bottom: 3rem;
-		}
-		.rowFlex{
-			position: relative;
-			@extend %horizontalCenter;
-			@media screen and (max-width:501px){
-				display: block;
-			}
-			>h6{
-				flex-basis: 26rem
-			}
-			>p{
-				max-width: 46rem;
-			}
-		}
 	}
 }
 
+// #main_figure{
+// 	right: 0;
+// 	top: 0;
+// 	width: calc(100vw - #{$mapAsideWidth});
+// 	height: 100vh;
+// 	background: #ddd;
+// 	&.absolute{
+// 		position: absolute;
+// 	}
+// 	&.fixed{
+// 		position: fixed;
+// 	}
+// }
+
 .apexChartContainer{
 	width: $mapAsideWidth;
+}
+
+.articalBox{
+	@extend %contentPadding;
+	@extend %verticalCenter;
+	width: $mapAsideWidth;
+	padding-top: 4rem;
+	@media screen and (max-width:501px){
+		position: absolute;
+		padding-top: 1rem;
+		width: 100%;
+		top: 0;
+		z-index: 10;
+	}
+	>div{
+		position: relative;
+	}
 }
 
 .mapLabelBox{

@@ -1,12 +1,15 @@
 <template>
-    <header class="carouselHeader">
+    <header class="carouselHeader colArticle">
         <h6>工作人口從哪來？士林、松山、汐止佔多數</h6>
-        <p>
+        <p
+            data-aos="fade-up"
+            data-aos-duration="800"
+        >
             大內科的工作人口，除了來自內湖當地，還有地緣上鄰近內湖的士林、南港以及汐止區，共佔15%。另外，居住於台北市中心的內科通勤族（松山、大安、信義以及中山區），約佔16%。
         </p>
-        <p v-if="textShow2"
+        <p 
             data-aos="fade-up"
-            data-aos-duration="1000"
+            data-aos-duration="1600"
         >
             <span>如果我們將大內科以距捷運站距離，分成</span>
             <AnnotationTrigger :toggle="annotationToggle" :text="'A、B、C三區域'" @update="updateToggle"/>
@@ -52,24 +55,12 @@ export default {
         CarouselImage
 	},
     computed: {
-        mobileDevice(){
-            return this.$store.state.mobileDevice
-        },
         currStep() {
 			return this.$store.state.step
 		},
 		currStepProgress() {
 			return this.$store.state.progres
-		},
-        textShow2(){
-            if(this.currStep == 4) return false
-            if(this.currStep == 6) return true
-            if(this.mobileDevice){
-                return this.currStepProgress > 10
-            }else{
-                return this.currStepProgress > 25
-            }
-        }
+		}
     },
     data(){
 		return {

@@ -25,14 +25,14 @@ export default {
                         startAngle: 0,
                         endAngle: 270,
                         hollow: {
-                            margin: 5,
+                            margin: 10,
                             size: '35%',
                             background: 'transparent',
                             image: undefined,
                         },
                         dataLabels: {
                             name: {
-                                fontSize: '12px',
+                                fontSize: '14px',
                                 offsetY: -15
                             },
                             value: {
@@ -92,8 +92,8 @@ export default {
 <style lang="scss">
 .apexChartContainer{
     &.radialsAll{
-        width: 230px;
-        margin-left: 3rem;
+        flex-basis: 20rem !important;
+        padding-left: 1rem;
         .apexcharts-legend-series{
             height: auto;
             line-height: .8rem;

@@ -32,7 +32,7 @@
 import { defineAsyncComponent } from 'vue'
 export default {
 	components:{
-		ChartLabel: defineAsyncComponent(() => import('@/components/content/ChartLabel.vue')),
+		ChartLabel: defineAsyncComponent(() => import('@/components/content/ChartLabel.vue'))
 	},
     props: {
         tab: {
@@ -66,6 +66,6 @@ export default {
 </script>
 <style lang="scss" scoped>
 .imgLabelContainer{
-    &.all{ background-image: url('../../assets/img/tab/mini/zone.png'); }
+    &.all{ background-image: url('../../assets/img/tab/mini/zone.jpeg'); }
 }
 </style>

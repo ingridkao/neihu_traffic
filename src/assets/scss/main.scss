@@ -1,4 +1,6 @@
 @import '@/assets/scss/variables.scss';
+
+
 .rowBox{
     .imgBox{
         width: calc(100% - $mapAsideWidth);
@@ -8,59 +10,6 @@
             height: 100vh;
             z-index: 0;
         }
-    }
-}
-
-.fullContainer{
-    .articalBox{
-        height: 100vh;
-        &.fixedbox{
-            position: fixed;
-            top: 0;
-        }
-        &.blockBottom{
-            position: absolute;
-            bottom: 0;
-        }
-    }
-    .imgBox{
-        height: 100vh;
-        &.blockBottom{position: absolute;bottom: 0;right:0;z-index: 0;}
-    }
-    .cardBox{
-        &.blockFixed{
-            position: fixed;
-            height: 100vh;
-            z-index: 2;
-        }
-    }
-}
-
-.articalBox{
-    position: relative;
-    width: $mapAsideWidth;
-    @extend %verticalCenter;
-    @extend %contentPadding;
-    padding-top: 10vh;
-    @media screen and (max-width:501px){
-        position: absolute;
-        padding-top: 1rem;
-        width: 100vw;
-        top: 0;
-        z-index: 10;
-        background-color: rgba($whiteColor, 0.8);
-    }
-    >div{
-        position: relative;
-    }
-}
-
-.halfRowHeader{
-    @extend %horizontalCenter;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    @media screen and (max-width:501px){
-        flex-direction: column;
     }
 }
 
@@ -91,16 +40,24 @@
 
 .imgBox{
     position: relative;
-    width: 100%;
     height: 100%;
-    padding: 0;
     z-index: 1;
+    background: $whiteColor;
+    &.absolute{
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+    &.fixed{
+        position: fixed;
+        top: 0;
+        right: 0;
+        z-index: 2;
+    }
     &.fixedbox{
         position: fixed;
         top: 0;
         right: 0;
-        height: 100vh;
-        background: $whiteColor;
         z-index: 2;
     }
     // &::after{
@@ -143,9 +100,8 @@
         }
         &.left{left: -.5rem;}
         &.right{right: 3rem;}
-        &.middle{top: calc(100vh - 32.5rem);} 
-        &.middle2{top: calc(100vh - 27.5rem);} 
-        &.button{top: auto; bottom: 5rem;} 
+        &.middle{top:  calc(100vh - 32.5rem);} 
+        &.middle2{top: calc(100vh - 26.5rem);} 
         &.mapLabel{
             top: 10rem;
             left: 1rem;
@@ -211,7 +167,7 @@ $carouselTabBtnHeight: 3rem;
     &-image{
         position: relative;
         width: 100%;
-        height: calc(100vh - #{$carouselTabBtnHeight*3});
+        height: calc(100vh - #{$carouselTabBtnHeight*4});
         >div{
             position: absolute;
             top: 0;
@@ -271,8 +227,9 @@ $carouselTabBtnHeight: 3rem;
 
 .cardBox .mapLabel{
     position: absolute;
-    top: 7.5rem;
+    top: 8rem;
     left: 1rem;
+    background-color: rgba(255,255,255, 0.7);
     .chartLabel{
         justify-content: flex-start;
         margin-bottom: .5rem;

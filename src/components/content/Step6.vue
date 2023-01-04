@@ -1,6 +1,9 @@
 <template>
-    <header class="carouselHeader halfRowHeader">
-        <div>
+    <header class="carouselHeader colArticle halfRowHeader">
+        <div
+            data-aos="fade-up"
+            data-aos-duration="800"
+        >
             <h6>大內科通勤族，約有3成選擇大眾運輸</h6>
             <p>
                 <span>捷運、公車為台北市重要的大眾運輸系統。我們</span>
@@ -21,8 +24,8 @@
             />
         </div>
         <keep-alive>
-            <RadialsBasicAll v-if="radialsBasic1Show"/>
-            <RadialsBasic v-if="!radialsBasic1Show"/>
+            <RadialsBasicAll v-if="currStep <= 4"/>
+            <RadialsBasic v-else/>
         </keep-alive>
     </header>
     <div class="carousel">
@@ -58,12 +61,7 @@ export default {
 		},
 		currStepProgress() {
 			return this.$store.state.progres
-		},
-        radialsBasic1Show(){
-            if(this.currStep == 5) return true
-            if(this.currStep == 7) return false
-            return this.currStepProgress < 20
-        }
+		}
     },
     data(){
 		return {
