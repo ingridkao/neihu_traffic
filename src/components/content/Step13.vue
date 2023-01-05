@@ -84,12 +84,13 @@ export default {
 <style lang="scss" scoped>
 header{
     margin-bottom: 5rem;
+    max-width: 38rem;
 }
 .imgBox{
     height: auto;
     .bgBlock{
         position: relative;
-        height:calc(100vh - 5rem);
+        height:calc(100vh - 2.5rem);
         background-image: url('../../assets/img/epilogue/circular.jpeg');
     }
     p{

@@ -4,10 +4,12 @@
 .rowBox{
     .imgBox{
         width: calc(100% - $mapAsideWidth);
+        .bgBlock{
+            height: 100vh;
+        }
         @media screen and (max-width:501px){
             position: absolute;
             width: 100vw;
-            height: 100vh;
             z-index: 0;
         }
     }
@@ -43,37 +45,12 @@
     height: 100%;
     z-index: 1;
     background: $whiteColor;
-    &.absolute{
-        position: absolute;
-        top: 0;
-        right: 0;
-    }
     &.fixed{
         position: fixed;
         top: 0;
         right: 0;
         z-index: 2;
     }
-    &.fixedbox{
-        position: fixed;
-        top: 0;
-        right: 0;
-        z-index: 2;
-    }
-    // &::after{
-    //     content: '';
-    //     position: absolute;
-    //     width: 100%;
-    //     height: 100%;
-    //     background-color: rgba($whiteColor, 0.5);
-    //     z-index: 1;
-    //     transition: background-color 0.5s;
-    //     transition: display 0.5s 1s;
-    // }
-    // &.currStep::after{
-    //     background-color: transparent;
-    //     display: none;
-    // }
     .bgBlock{
         @extend %imgBlock;
         &.imgCenter{
@@ -100,8 +77,8 @@
         }
         &.left{left: -.5rem;}
         &.right{right: 3rem;}
-        &.middle{top:  calc(100vh - 32.5rem);} 
-        &.middle2{top: calc(100vh - 26.5rem);} 
+        &.middle{top:  45vh;} 
+        &.middle2{top: 55vh;} 
         &.mapLabel{
             top: 10rem;
             left: 1rem;
@@ -124,7 +101,7 @@
         p{font-size: 0.8rem;margin-bottom: 0;}
     }
     .content{
-        max-width: 20rem;
+        max-width: 18rem;
         &.large{
             max-width: 50vw;
         }

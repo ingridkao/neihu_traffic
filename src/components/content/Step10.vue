@@ -82,16 +82,16 @@ export default {
 			return this.$store.state.progres
 		},
         blockFixed(){
-            return (this.currStep == 9 && this.currStepProgress > 0.05) || (this.currStep == 10 && this.currStepProgress <= 0.1)
+            return this.currStep == 9  || (this.currStep == 10 && this.currStepProgress <= 0.1)
         },
         article(){
             if(this.currStep == 10)return 6
             if(this.currStep == 8)return 1
-            if(this.currStepProgress > 0.9)return 6
-            if(this.currStepProgress > 0.7)return 5
+            if(this.currStepProgress > 0.8)return 6
+            if(this.currStepProgress > 0.65)return 5
             if(this.currStepProgress > 0.5)return 4
-            if(this.currStepProgress > 0.3)return 3    
-            if(this.currStepProgress > 0.1)return 2
+            if(this.currStepProgress > 0.35)return 3    
+            if(this.currStepProgress > 0.2)return 2
             return 1
         }
     }
@@ -118,7 +118,6 @@ export default {
     }
 }
 .cardBox{
-    height: 3000vh !important;
     pointer-events: none;
 }
 @keyframes image{

@@ -17,8 +17,10 @@
             <p>- 上下班時段的起訖熱門區域-</p>
             <div class="mapLabel">
                 <ChartLabel/>
-                <MapPointLabel v-if="article >= 1" :text="'轉乘熱門度'" :gradient="['#fff', '#ee3c43']"/>
-                <template  v-if="article >= 2">
+                <template v-if="article == 1" >
+                    <MapPointLabel :text="'轉乘熱門度'" :gradient="['#fff', '#ee3c43']"/>
+                </template>
+                <template  v-else>
                     <MapLabel :text="'捷運服務可及範圍'" :borderWidth="1.5" :borderColor="'#666'" :borderStyle="'dotted'"/>
                     <MapLabel :text="'捷運服務範圍外公車搭乘熱區'" :borderWidth="3" :borderColor="'#c2272d'" :borderStyle="'dotted'"/>
                 </template>
@@ -32,7 +34,7 @@
                 除了搭乘公車直達內科上班外，有大量的上班族也會透過捷運轉公車的方式至內科上班。從數據上發現，松山捷運站為最熱門的轉乘站點。
             </div>
             <div
-                v-if="chartShow"
+                v-show="chartShow"
                 data-aos="fade-left"
                 data-aos-duration="800"
             >
@@ -90,7 +92,6 @@ export default {
         &.busbg2{ background-image: url('../../assets/img/zoom/Bus-02.jpeg');}
     }
     .cardBox{
-        height: 1200vh !important;
         pointer-events: none;
     }
 </style>

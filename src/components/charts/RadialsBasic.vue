@@ -90,6 +90,7 @@ export default {
 </script>
 
 <style lang="scss">
+@import '@/assets/scss/variables.scss';
 .apexChartContainer{
     &.radialsBasic{
         flex-basis: 20rem !important;

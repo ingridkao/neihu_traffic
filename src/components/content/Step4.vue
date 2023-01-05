@@ -3,6 +3,7 @@
         <div>
             <h6>13萬以上的工作人口，大多居住在園區以外</h6>
             <p
+                v-if="articleShow1"
                 data-aos="fade-up"
                 data-aos-duration="800"
             >
@@ -11,6 +12,7 @@
                 <span>推估大內科的人口特性。大內科工作人口為13萬3500人，從右圖可知整體大內科屬於工作為主的區域較少住商混合的狀態，多數人前往大內科工作，需要較長距離的通勤。</span>
             </p>
             <p 
+                v-if="articleShow2"
                 data-aos="fade-up"
                 data-aos-duration="1600"
             >
@@ -59,14 +61,25 @@ export default {
         }
     },
     computed: {
+        mobileDevice(){
+            return this.$store.state.mobileDevice
+        },
         currStep() {
 			return this.$store.state.step
 		},
 		currStepProgress() {
 			return this.$store.state.progres
 		},
+        articleShow1(){
+            if(!this.mobileDevice)return true
+            return  this.currStep == 2 || (this.currStep == 3 && this.currStepProgress < 0.3)
+        },
+        articleShow2(){
+            if(!this.mobileDevice)return true
+            return (this.currStep == 3 && this.currStepProgress >= 0.3) || this.currStep == 4
+        },
         telLabelShow(){
-            return !this.$store.state.mobileDevice
+            return !this.mobileDevice
         }
     },
     methods: {

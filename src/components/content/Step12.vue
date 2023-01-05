@@ -19,7 +19,7 @@
                 <MapPointLabel :text="'轉乘熱門度'" :gradient="['#fff', '#ee3c43']"/>
             </div>
         </div>
-        <div class="middle2 right content">
+        <div class="middle right content">
             <div
                 data-aos="fade-left"
                 data-aos-duration="800"
@@ -27,7 +27,7 @@
                 YouBike使用熱區多為鄰近內科的捷運站周邊，大多通勤族使用YouBike至捷運站轉乘。
             </div>
             <div
-                v-if="chartShow"
+                v-show="chartShow"
                 data-aos="fade-left"
                 data-aos-duration="800"
             >
@@ -83,12 +83,9 @@ export default {
         &.bg1{ background-image: url('../../assets/img/zoom/Youbike-01.jpeg'); }
     }
     .cardBox{
-        &.blockFixed{
-            height: 600vh !important;
-        }
         pointer-events: none;
-        @media screen and (max-width:501px){
-            div.middle2 {
+        .middle2{
+            @media screen and (max-width:501px){
                 top: auto;
                 bottom: 1rem;
             }

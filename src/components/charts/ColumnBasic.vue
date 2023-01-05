@@ -167,8 +167,7 @@ export default {
 @import '@/assets/scss/variables.scss';
 .apexChartContainer{
     display: block;
-    width: 100%;
-    height: 60vh;
+    height: 30rem;
     @media screen and (max-width:501px){
         height: 55vh;
     }

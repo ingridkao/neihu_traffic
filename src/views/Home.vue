@@ -128,7 +128,6 @@ export default {
 				}
 			})
 			.onStepProgress(({element, progress}) => {
-				console.log(progress);
 				this.$store.commit('updateStep', element.dataset.step)
 				this.$store.commit('updateProgres', progress)
 			})

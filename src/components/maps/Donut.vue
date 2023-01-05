@@ -94,8 +94,10 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+@import '@/assets/scss/variables.scss';
 .apexChartContainer{
     &.donut{
+        width: $mapAsideWidth;
         .apexcharts-legend-series{
             height: auto;
             line-height: .8rem;

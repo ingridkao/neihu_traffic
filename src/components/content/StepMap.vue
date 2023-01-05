@@ -75,31 +75,3 @@ export default {
     }
 }
 </script>
-
-<style lang="scss" scoped>
-@import '@/assets/scss/variables.scss';
-    aside{
-        flex-basis: $mapAsideWidth;
-        padding: 1rem;
-        .chartContainer{
-            width: 100%;
-            height: 19rem;
-        }
-        .townBox{
-            width: 100%;
-            height: calc(100vh - 38rem);
-
-            @include scrollbar_style;
-            overflow: scroll;
-            @media screen and (max-width:501px){
-                height: auto;
-                margin-bottom: 2rem;
-            }
-        }
-    }
-    main{
-        flex: 1 1 calc(100% - #{$mapAsideWidth});
-        padding: 0;
-    }
-</style>
-
