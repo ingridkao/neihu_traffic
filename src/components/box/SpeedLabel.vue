@@ -48,6 +48,9 @@ export default {
 </script>
 <style lang="scss" scoped>
     .mapLabelBox{
+        left: 1rem;
+        bottom: 0;
+        z-index: 0;
         .legendBox{
             height: 1rem;
             span{

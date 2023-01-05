@@ -6,8 +6,10 @@
 	import Footer from '@/views/Footer.vue'
 	const stores = useStore()
     const resizeWindow = () => {
-		const isMpbile = document.body.clientWidth <= 600
-		stores.commit('updatemobileDevice', isMpbile? true: false)
+		const clientWidth = window.innerWidth
+		const windowHeight = window.innerHeight
+		const isMpbile = clientWidth <= 600 || clientWidth/windowHeight <= 1.1
+		stores.commit('updatemobileDevice', isMpbile)
 	}
 	onMounted(()=>{
 		window.addEventListener('resize', resizeWindow)

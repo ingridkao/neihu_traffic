@@ -36,6 +36,9 @@ export default {
 </script>
 <style lang="scss" scoped>
     .mapLabelBox{
+        left: 1rem;
+        bottom: 0;
+        z-index: 0;
         >div{
             width: 13rem;
         }

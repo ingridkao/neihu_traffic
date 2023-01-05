@@ -2,12 +2,10 @@
 @import '@/assets/scss/main.scss';
 
 %articleLayout {
-	height: 57.5rem;
-	@media screen and (min-width:1801px){ // For desktop
-		height: 65rem;
-	}
+	position: relative;
 	color: $textSubColor;
 	background-color: $whiteColor;
+	z-index: 1;
 }
 
 #homePage{
@@ -29,11 +27,25 @@
 	max-width: 52rem;
 }
 #main_scrollama{
+	position: relative;
 	z-index: 1;
+	.imgContainer{
+		position: absolute;
+		width: calc(100% - $mapAsideWidth);
+		height: 100vh;
+		top: 0;
+		right: 0;
+		z-index: 2;
+		@media screen and (max-width:501px){
+			width: 100vw;
+			pointer-events: none;
+		}
+		&.fixed{
+			position: fixed;
+		}
+	}
 	.step{
-		position: relative;
 		@extend %articleLayout;
-		z-index: 1;
 		//Avoid using viewport height (vh) in your CSS because scrolling up and down constantly triggers vh to change, which will also trigger a window resize.
 		h6, p{
 			position: relative;
@@ -49,15 +61,81 @@
 				margin-bottom: 1rem;
 			}
 		}
+		&#chapter4{
+			@extend %contentPadding;
+		}
 		&.rowBox{
+			@extend %horizontalCenter;
+			height: 57.5rem;
+			@media screen and (max-width:501px){
+				display: block;
+				background-color: transparent;
+				z-index: 2;
+			}
+			@media screen and (min-width:1801px){ // For desktop
+				height: 65rem;
+			}
+			.articalBox{
+				@extend %contentPadding;
+				@extend %verticalCenter;
+				width: $mapAsideWidth;
+				padding-top: 4rem;
+				@media screen and (max-width:501px){
+					position: absolute;
+					padding-top: 1rem;
+					width: 100%;
+					top: 0;
+					z-index: 10;
+					background-color: rgba($whiteColor, 0.9);
+				}
+				>div{
+					position: relative;
+				}
+			}
+			.imgBox{
+				width: calc(100% - $mapAsideWidth);
+				.bgBlock{
+					height: 100vh;
+				}
+				@media screen and (max-width:501px){
+					position: absolute;
+					width: 100vw;
+					z-index: 0;
+				}
+			}
+		}
+		&.mapContainer{
 			@extend %horizontalCenter;
 			@media screen and (max-width:501px){
 				display: block;
 			}
+			aside{
+				flex-basis: $mapAsideWidth;
+				height: calc(100vh - 2rem);
+				padding: 1rem;
+				.chartContainer{
+					width: 100%;
+					height: 19rem;
+				}
+				.townBox{
+					width: 100%;
+					height: 20rem;
+					@include scrollbar_style;
+					overflow: scroll;
+					@media screen and (max-width:501px){
+						height: auto;
+						margin-bottom: 2rem;
+					}
+				}
+			}
+			main{
+				flex: 1 1 calc(100% - #{$mapAsideWidth});
+				padding: 0;
+			}
 		}
 		&.carouselContainer{
 			@extend %contentPadding;
-			height: auto;
+			z-index: 2;
 			.carouselHeader{
 				position: relative;
 				padding-top: 1rem;
@@ -113,8 +191,15 @@
 		}
 		&.fullchartContainer{
 			@extend %contentPadding;
+			height: 57.5rem;
 			@media screen and (max-width:501px){
 				height: 130%;
+			}
+			&#chapter5{
+				height: 600%;
+				@media screen and (max-width:501px){
+					height: 250%;
+				}
 			}
 			h6{
 				flex-basis: 50rem;
@@ -122,69 +207,12 @@
 			p{
 				display: block;
 			}	
-			&#chapter5{
-				height: 600%;
-				@media screen and (max-width:501px){
-					height: 250%;
-				}
-			}
 		}
-		&#chapter4{
-			@extend %contentPadding;
-			height: auto;
-		}
-		&.mapContainer{
-			height: auto;
-			aside{
-				flex-basis: $mapAsideWidth;
-				height: calc(100vj - 2rem);
-				padding: 1rem;
-				.chartContainer{
-					width: 100%;
-					height: 19rem;
-				}
-				.townBox{
-					width: 100%;
-					height: 20rem;
-					@include scrollbar_style;
-					overflow: scroll;
-					@media screen and (max-width:501px){
-						height: auto;
-						margin-bottom: 2rem;
-					}
-				}
-			}
-			main{
-				flex: 1 1 calc(100% - #{$mapAsideWidth});
-				padding: 0;
-			}
-		}
-	}
-}
-
-.articalBox{
-	@extend %contentPadding;
-	@extend %verticalCenter;
-	width: $mapAsideWidth;
-	padding-top: 4rem;
-	@media screen and (max-width:501px){
-		position: absolute;
-		padding-top: 1rem;
-		width: 100%;
-		top: 0;
-		z-index: 10;
-		background-color: rgba($whiteColor, 0.9);
-	}
-	>div{
-		position: relative;
 	}
 }
 
 .mapLabelBox{
 	position: absolute;
-	bottom: 0;
-	left: 1rem;
-	z-index: 0;
 	@media screen and (max-width:501px){
 		display: none;
 	}

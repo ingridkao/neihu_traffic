@@ -28,7 +28,8 @@ const store = createStore({
 			step: 0,
 			progres: 0,
 			mobileDevice: false,
-			videoStart: false
+			videoStart: false,
+			lowSpeed: false
 		}
 	},
 	mutations: {
@@ -43,6 +44,9 @@ const store = createStore({
 		},
 		toggleVideoStatus (state, payload) {
 			state.videoStart = payload
+		},
+		updateLowSpeed (state, payload) {
+			state.lowSpeed = payload
 		}
 	}
 })

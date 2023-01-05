@@ -39,13 +39,6 @@
             data-aos-duration="1600"
         />
     </div>
-    <div class="imgBox"
-        :class="{
-            fixed: (currStep == 3 && currStepProgress >= 0.1 &&  currStepProgress < 0.55)
-        }"
-    >
-        <div class="bgBlock bg7 active"/>
-    </div>
 </template>
 
 <script>
@@ -98,9 +91,3 @@ export default {
     }
 }
 </script>
-<style lang="scss" scoped>
-.bgBlock{
-    &.bg7{ background-image: url('../../assets/img/map/7.jpg'); }
-}
-</style>
-

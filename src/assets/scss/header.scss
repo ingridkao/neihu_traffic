@@ -13,7 +13,15 @@
 	top: 0;
 	left: 0;
 	z-index: 0;
-	opacity: 0.7;
+	&:after{
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-color: rgba($whiteColor, 0.6);
+	}
 	#videoWapper, #gifWapper{
 		height: 100%;
 	}
@@ -32,7 +40,7 @@
 			video{
 				height: 100%;
 			}
-			@media all and (min-width: 1300px){
+			@media (min-aspect-ratio: 8/5) {
 				width: 100%;
 				height: auto;
 				video{

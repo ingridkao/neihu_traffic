@@ -5,6 +5,9 @@
 		:class="{langEn: !langZh}"
 	>
 		<article id="main_scrollama" ref="scrollama_container">
+			<div class="imgContainer" :class="{fixed: imgContainerFixed}">
+				<ImgContainer/>
+			</div>
 			<div data-step="1" class="step rowBox" id="chapter1">
 				<Step2/>
 			</div>
@@ -23,7 +26,7 @@
 			<div data-step="6" class="step fullchartContainer">
 				<Step7/>
 			</div>
-			<div data-step="7" class="step rowBox mapContainer">
+			<div data-step="7" class="step mapContainer">
 				<StepMap/>
 			</div>
 			<div data-step="8" class="step" id="chapter4">
@@ -60,6 +63,7 @@ export default {
 	name: "HomePage",
 	components:{
 		AsideBox,
+		ImgContainer: defineAsyncComponent(() => import('@/components/content/ImgContainer.vue')),
 		StepMap: defineAsyncComponent(() => import('@/components/content/StepMap.vue')),
 		Step1: defineAsyncComponent(() => import('@/components/content/Step1.vue')),
 		Step2: defineAsyncComponent(() => import('@/components/content/Step2.vue')),
@@ -83,11 +87,28 @@ export default {
 		langZh(){
             return this.$i18n.locale === 'zh-TW'
         },
+        mobileDevice(){
+            return this.$store.state.mobileDevice
+        },
 		currStep() {
 			return this.$store.state.step
 		},
+		currStepProgress() {
+			return this.$store.state.progres
+		},
 		containerHeight(){
 			return this.$refs.home_container? this.$refs.home_container.offsetHeight: 0
+		},
+		imgContainerFixed(){
+			if(this.mobileDevice){
+				if(this.currStep == 0)return false
+				if(this.currStep > 5)return false
+				return true
+			}else{
+				if(this.currStep < 1 && this.currStep > 3)return false
+				if(this.currStep == 1)return this.currStepProgress >= 0.35 && this.currStepProgress >= 0.7
+				return true
+			}
 		}
 	},
   	created() {
@@ -118,12 +139,15 @@ export default {
 			this._scroller
 			.setup(this.opts)
 			.onStepEnter(({element, direction}) => {
-				if(element.dataset.step == 1 && direction == 'down'){
-					this.$store.commit('updateStep', 1)
+				console.log(element.dataset.step);
+				if(this.mobileDevice) return
+				if(element.dataset.step == 1){
+					this.$store.commit('updateStep', direction == 'down'? 1: 0)
 				}
 			})
-			.onStepExit(({element, direction}) => {
-				if(element.dataset.step == 1 && direction == 'up'){
+			.onStepExit(({element}) => {
+				console.log(element.dataset.step);
+				if(this.mobileDevice && element.dataset.step == 1){
 					this.$store.commit('updateStep', 0)
 				}
 			})

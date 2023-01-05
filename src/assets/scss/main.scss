@@ -1,20 +1,5 @@
 @import '@/assets/scss/variables.scss';
 
-
-.rowBox{
-    .imgBox{
-        width: calc(100% - $mapAsideWidth);
-        .bgBlock{
-            height: 100vh;
-        }
-        @media screen and (max-width:501px){
-            position: absolute;
-            width: 100vw;
-            z-index: 0;
-        }
-    }
-}
-
 %imgBlock{
     @extend %imgCommom; 
     position: absolute;
@@ -151,13 +136,13 @@ $carouselTabBtnHeight: 3rem;
             width: 100%;
             height: 100%;
             &.slideActive{
-                .imgContainer{
+                .imgBox{
                     opacity: 1;
                     z-index: 1;
                 }
             }
         }
-        .imgContainer{
+        .imgBox{
             position: relative;
             @extend %bgimage;
             background-size: cover;

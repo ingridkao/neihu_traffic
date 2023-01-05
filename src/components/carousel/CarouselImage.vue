@@ -9,7 +9,7 @@
 			}"
 		>
 			<div 
-				class="imgContainer"
+				class="imgBox"
 				:style="{
 					'background-image': 'url('+ require(`@/assets/img/${imgURL}/${slide.index}.jpg`)+')',
 				}"

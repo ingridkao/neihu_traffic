@@ -34,36 +34,18 @@
             @update="updateLowSpeed"
         />
     </div>
-
-    <div :class="['imgBox', {
-        fixed: (currStep == 1 && currStepProgress >= 0.475) || (currStep == 2 && currStepProgress < 0.375) 
-    }]">
-        <div class="bgBlock bg1 active"
-            :class="{
-                activeOpacity: eyecatch
-            }"
-        />
-        <div class="bgBlock"
-            :class="{
-                active: textShow2,
-                activeOpacity: eyecatch
-            }"
-            :style="{
-                backgroundImage: `url(${lowSpeed? MapImg2: MapImg3})`
-            }"
-        />
-    </div>
 </template>
 
 <script>
 import { defineAsyncComponent } from 'vue'
-import MapImg2 from '@/assets/img/map/2.jpg'
-import MapImg3 from '@/assets/img/map/3.jpg'
 export default {
     components:{
         SpeedLabel: defineAsyncComponent(() => import('@/components/box/SpeedLabel.vue'))
 	},
     computed: {
+        lowSpeed() {
+			return this.$store.state.lowSpeed
+		},
         currStep() {
 			return this.$store.state.step
 		},
@@ -73,23 +55,17 @@ export default {
         textShow2(){
             if(this.currStep != 1) return false
             return this.currStepProgress >= 0.35
-        },
-        eyecatch(){
-            return (this.textShow2 && this.currStepProgress < 0.4)
         }
     },
     data(){
         return {
-            lowSpeed: false,
-            MapImg2,
-            MapImg3,
             annotationToggle1: false,
             annotationToggle2: false
         }
     },
     methods:{
         updateLowSpeed(boolen){
-            this.lowSpeed = boolen
+            this.$store.commit('updateLowSpeed', boolen)
         },
         updateToggle1(boolen) {
             this.annotationToggle1 = boolen
@@ -102,11 +78,5 @@ export default {
     }
 }
 </script>
-
-<style lang="scss" scoped>
-.bgBlock{
-    &.bg1{ background-image: url('../../assets/img/map/1.jpg'); }
-}
-</style>
 
 
