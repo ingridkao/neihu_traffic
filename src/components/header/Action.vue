@@ -47,8 +47,9 @@ export default {
     methods: {
         shareToFb(){
             window.open(`http://www.facebook.com/sharer.php?u=${encodeURIComponent(this.currentUrl)}`)
-            this.$gtag.event('share_to_fb', {
-                event_category: 'neihu_traffic'
+            this.$gtag.event('share', {
+                event_category: 'neihu_traffic',
+				event_label: 'share_to_fb'
             })
         },
         copyURL(){
@@ -68,7 +69,7 @@ export default {
 				.then(() => console.log('Successful share'))
 				.catch((error) => console.log('Error sharing', error));
 			}
-			this.$gtag.event('action', {
+            this.$gtag.event('share', {
                 event_category: 'neihu_traffic',
                 event_label: 'copyURL'
             })

@@ -68,15 +68,17 @@ export default {
         },
         clickTpTown(targetObj){
             this.tpTown = targetObj
-            this.$gtag.event('update_map_filter', {
+            this.$gtag.event('click', {
                 event_category: 'neihu_traffic',
+                event_label: 'update_map_filter',
                 value: 'tp'
             })
         },
         clickNTpTown(targetObj){
             this.ntpTown = targetObj
-            this.$gtag.event('update_map_filter', {
+            this.$gtag.event('click', {
                 event_category: 'neihu_traffic',
+                event_label: 'update_map_filter',
                 value: 'ntp'
             })
         } 

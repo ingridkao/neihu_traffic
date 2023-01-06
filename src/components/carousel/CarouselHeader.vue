@@ -28,8 +28,9 @@ export default {
 	methods: {
 		selectPage(val){
 			this.$emit('update', val)
-            this.$gtag.event('update_carousel', {
-                event_category: 'neihu_traffic'
+            this.$gtag.event('click', {
+                event_category: 'neihu_traffic',
+                event_label: 'update_carousel'
             })
 		}
 	}

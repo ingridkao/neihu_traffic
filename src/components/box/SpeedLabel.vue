@@ -42,8 +42,9 @@ export default {
     methods:{
         updateLowSpeed(boolen){
             this.$emit('update', boolen)
-            this.$gtag.event('update_speed', {
-                event_category: 'neihu_traffic'
+            this.$gtag.event('click', {
+                event_category: 'neihu_traffic',
+                event_label: 'update_speed'
             })
         }
     }
