@@ -46,6 +46,9 @@ export default {
         lowSpeed() {
 			return this.$store.state.lowSpeed
 		},
+        mobileDevice(){
+            return this.$store.state.mobileDevice
+        },
         currStep() {
 			return this.$store.state.step
 		},
@@ -53,8 +56,11 @@ export default {
 			return this.$store.state.progres
 		},
         textShow2(){
-            if(this.currStep != 1) return false
-            return this.currStepProgress >= 0.35
+            if(this.currStep < 1) return false
+            if(this.currStep > 2) return false
+            if(this.currStep == 2) return true
+            if(this.mobileDevice)return this.currStepProgress >= 0.35 && this.currStepProgress < 0.8
+            return this.currStepProgress >= 0.45
         }
     },
     data(){

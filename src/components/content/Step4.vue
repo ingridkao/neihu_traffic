@@ -65,11 +65,13 @@ export default {
 		},
         articleShow1(){
             if(!this.mobileDevice)return true
-            return  this.currStep == 2 || (this.currStep == 3 && this.currStepProgress < 0.3)
+            if(this.currStep == 2) return true
+            return this.currStep == 3 && this.currStepProgress < 0.3
         },
         articleShow2(){
             if(!this.mobileDevice)return true
-            return (this.currStep == 3 && this.currStepProgress >= 0.3) || this.currStep == 4
+            if(this.currStep == 4) return true
+            return this.currStep == 3 && this.currStepProgress >= 0.3
         },
         telLabelShow(){
             return !this.mobileDevice
