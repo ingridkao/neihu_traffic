@@ -27,6 +27,7 @@ const store = createStore({
 		return {
 			step: 0,
 			progres: 0,
+			contentEnter: false,
 			mobileDevice: false,
 			videoStart: false,
 			lowSpeed: false
@@ -39,7 +40,10 @@ const store = createStore({
 		updateProgres (state, payload) {
 			state.progres = payload
 		},
-		updatemobileDevice (state, payload) {
+		updateContentEnter (state, payload) {
+			state.contentEnter = payload
+		},
+		updateMobileDevice (state, payload) {
 			state.mobileDevice = payload
 		},
 		toggleVideoStatus (state, payload) {

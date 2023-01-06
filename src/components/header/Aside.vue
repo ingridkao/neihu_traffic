@@ -30,7 +30,7 @@ import Close from '@/assets/icon/close.svg'
 export default {
     props: {
         containerHeight: {
-            type: Number,
+            type: Number
         }
     },
 	components: {
@@ -69,6 +69,7 @@ export default {
                 "chapter5": "解決大內科交通問題，我們有哪些機會？"
             },
             secActive: null,
+            pageYOffset: 0,
             scrollValue: 0
         }
     },
@@ -85,13 +86,17 @@ export default {
             if(!target) return
 
             const offsetTarget = target.getBoundingClientRect()
+            
             window.scrollTo({
-                top: (offsetTarget.top + window.pageYOffset),
+                top: (offsetTarget.top + this.pageYOffset),
                 behavior: 'smooth'
             })
         },
         handleScroll(){
-			this.scrollValue = window.pageYOffset / (this.containerHeight - window.innerHeight)
+            const innerHeight = window.innerHeight
+            this.pageYOffset = window.pageYOffset
+			this.scrollValue = this.pageYOffset / (this.containerHeight - innerHeight)
+            this.$store.commit('updateContentEnter', this.pageYOffset >= innerHeight*2)
 		}
     }
 }

@@ -1,10 +1,10 @@
 <template>
-	<main 
-		id="homePage" 
-		ref="home_container" 
-		:class="{langEn: !langZh}"
-	>
-		<article id="main_scrollama" ref="scrollama_container">
+	<main ref="home_container">
+		<article 
+			id="main_scrollama" 
+			ref="scrollama_container"
+			:class="{langEn: !langZh}"
+		>
 			<div class="imgContainer" :class="{fixed: imgContainerFixed}">
 				<ImgContainer/>
 			</div>
@@ -101,13 +101,11 @@ export default {
 		},
 		imgContainerFixed(){
 			if(this.mobileDevice){
-				if(this.currStep == 0)return false
 				if(this.currStep > 5)return false
 				return true
 			}else{
-				if(this.currStep < 1 && this.currStep > 3)return false
-				if(this.currStep == 1)return this.currStepProgress >= 0.35 && this.currStepProgress >= 0.7
-				return true
+				if(this.currStep > 3)return false
+				return this.$store.state.contentEnter
 			}
 		}
 	},
@@ -125,11 +123,11 @@ export default {
 				progress: true
 			}, this.$attrs)
 		}
-		this.$store.commit('updateStep', 0)
 		this.setupScroller()
 		window.addEventListener('resize', this.handleResize)
 	},
 	beforeUnmount() {
+		this.$store.commit('updateStep', 0)
 		this._scroller.destroy()
 		window.removeEventListener('resize', this.handleResize)
 	},
@@ -138,20 +136,8 @@ export default {
 			this._scroller = scrollama()
 			this._scroller
 			.setup(this.opts)
-			.onStepEnter(({element, direction}) => {
-				console.log(element.dataset.step);
-				if(this.mobileDevice) return
-				if(element.dataset.step == 1){
-					this.$store.commit('updateStep', direction == 'down'? 1: 0)
-				}
-			})
-			.onStepExit(({element}) => {
-				console.log(element.dataset.step);
-				if(this.mobileDevice && element.dataset.step == 1){
-					this.$store.commit('updateStep', 0)
-				}
-			})
 			.onStepProgress(({element, progress}) => {
+				// console.log(element.dataset.step + ":" + progress);
 				this.$store.commit('updateStep', element.dataset.step)
 				this.$store.commit('updateProgres', progress)
 			})

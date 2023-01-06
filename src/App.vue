@@ -9,7 +9,7 @@
 		const clientWidth = window.innerWidth
 		const windowHeight = window.innerHeight
 		const isMpbile = clientWidth <= 600 || clientWidth/windowHeight <= 1.1
-		stores.commit('updatemobileDevice', isMpbile)
+		stores.commit('updateMobileDevice', isMpbile)
 	}
 	onMounted(()=>{
 		window.addEventListener('resize', resizeWindow)

@@ -8,17 +8,10 @@
 	z-index: 1;
 }
 
-#homePage{
+main{
 	position: relative;
-	overflow: hidden;
 	*{
 		box-sizing: border-box;
-	}
-	&.langEn{
-		h6{
-			font-size: 1.2rem;
-			margin-bottom: 1rem;
-		}
 	}
 }
 
@@ -28,6 +21,13 @@
 }
 #main_scrollama{
 	position: relative;
+	overflow: hidden;
+	&.langEn{
+		h6{
+			font-size: 1.2rem;
+			margin-bottom: 1rem;
+		}
+	}
 	z-index: 1;
 	.imgContainer{
 		position: absolute;
