@@ -47,9 +47,8 @@ export default {
     methods: {
         shareToFb(){
             window.open(`http://www.facebook.com/sharer.php?u=${encodeURIComponent(this.currentUrl)}`)
-			this.$gtag.event('action', {
-                event_category: 'neihu_traffic',
-                event_label: 'shareToFb'
+            this.$gtag.event('share_to_fb', {
+                event_category: 'neihu_traffic'
             })
         },
         copyURL(){

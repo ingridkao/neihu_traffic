@@ -155,9 +155,8 @@ export default {
             this.categories = this.transData.map(item => item['TOWNNAME'])
             this.chartValue = this.seriesData
             this.chartReload = true
-            this.$gtag.event('action', {
-                event_category: 'neihu_traffic',
-                event_label: 'columnchart'
+            this.$gtag.event('update_column_chart', {
+                event_category: 'neihu_traffic'
             })
         }
     },
