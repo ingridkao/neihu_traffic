@@ -8,6 +8,8 @@ import { en, zh } from './assets/js/lang.js'
 
 import VueApexCharts from "vue3-apexcharts"
 
+import VueGtag from "vue-gtag"
+
 import AnnotationTrigger from "@/components/annotation/Trigger.vue"
 import AnnotationContent from "@/components/annotation/Content.vue"
 
@@ -55,10 +57,14 @@ const store = createStore({
 	}
 })
 
-const app  = createApp(App)
+const app = createApp(App)
 app.use(i18n)
 app.use(VueApexCharts)
 app.use(store)
+app.use(VueGtag, {
+	appName: 'neihu_traffic',
+	config: { id: process.env.VUE_APP_GA_MEASUREMENT_ID }
+})
 app.component('AnnotationTrigger', AnnotationTrigger)
 app.component('AnnotationContent', AnnotationContent)
 app.mount('#app')

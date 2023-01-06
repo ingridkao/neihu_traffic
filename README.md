@@ -42,9 +42,17 @@
 
 
 2. GA in vue 3
-    > 用vue-analytics有相依性問題，vue3-analytics作者說不維護了建議用[vue-gtag](https://matteo-gabriele.gitbook.io/vue-gtag/)，但用了之後還是覺得怪怪的，直接用GA介面上的程式碼GTAG.JS貼在index.html。
+    > 用vue-analytics有相依性問題，vue3-analytics作者說不維護了建議用[vue-gtag](https://matteo-gabriele.gitbook.io/vue-gtag/)
+    > 舊版GA2023年7月確認棄用，需要改成GA4
+    > vue-gtag已經出v2可以支援vue3，詳情可以看其官網
     > GA介面：管理 > 追蹤資訊 > 追蹤程式碼
 
+    埋了一些event
+    1. shareToFb
+    2. copyURL
+    3. updateLowSpeed
+    4. carousel click
+    5. columnchart click
 
 
 3. i18n
