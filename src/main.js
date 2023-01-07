@@ -63,6 +63,7 @@ app.use(VueApexCharts)
 app.use(store)
 app.use(VueGtag, {
 	appName: 'neihu_traffic',
+	pageTrackerScreenviewEnabled: true,
 	config: { id: process.env.VUE_APP_GA_MEASUREMENT_ID }
 })
 app.component('AnnotationTrigger', AnnotationTrigger)

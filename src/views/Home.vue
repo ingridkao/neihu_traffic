@@ -100,6 +100,7 @@ export default {
 			return this.$refs.home_container? this.$refs.home_container.offsetHeight: 0
 		},
 		imgContainerFixed(){
+			if(this.currStep == 0)return false
 			if(this.mobileDevice){
 				if(this.currStep > 5)return false
 				return true

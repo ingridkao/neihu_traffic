@@ -8,7 +8,7 @@
     const resizeWindow = () => {
 		const clientWidth = window.innerWidth
 		const windowHeight = window.innerHeight
-		const isMpbile = clientWidth <= 600 || clientWidth/windowHeight <= 1.1
+		const isMpbile = clientWidth <= 640 && clientWidth/windowHeight <= 1.1
 		stores.commit('updateMobileDevice', isMpbile)
 	}
 	onMounted(()=>{
