@@ -1,16 +1,16 @@
 <template>
     <div class="chartActionBox">
-        <div class="toggleBtn" data-attr="呈現方式">
-            <button :class="{active:!stackedChart}" @click="stackedChartToggle(false)">類型比較</button>
-            <button :class="{active:stackedChart}" @click="stackedChartToggle(true)">運輸佔比</button>
-        </div>
-        <div class="toggleBtn" data-attr="排序方式">
+        <div class="toggleBtn" data-attr="排序大小">
             <button :class="{active:sortType == 0}" @click="sortTypeToggle(0)">私人運具</button>
             <button :class="{active:sortType == 1}" @click="sortTypeToggle(1)">大眾運輸</button>
         </div>
-        <div class="toggleBtn" data-attr="內湖數據顯示">
-            <button :class="{active:neiHuShow}" @click="neiHuShowToggle(true)">ON</button>
-            <button :class="{active:!neiHuShow}" @click="neiHuShowToggle(false)">OFF</button>
+        <div class="toggleBtn" data-attr="內湖區">
+            <button :class="{active:neiHuShow}" @click="neiHuShowToggle(true)">顯示</button>
+            <button :class="{active:!neiHuShow}" @click="neiHuShowToggle(false)">隱藏</button>
+        </div>
+        <div class="toggleBtn" data-attr="圖表呈現">
+            <button :class="{active:!stackedChart}" @click="stackedChartToggle(false)">類型數量</button>
+            <button :class="{active:stackedChart}" @click="stackedChartToggle(true)">運輸佔比</button>
         </div>
     </div>
     <div v-if="chartReload" class="apexChartContainer basic">
@@ -72,29 +72,30 @@ export default {
                     }
                 },
                 xaxis: {
-                    categories: this.categories
+                    categories: this.categories,
+                    labels: {
+                        rotate: 0,
+                        hideOverlappingLabels: false,
+                    },
                 },
                 yaxis: {
-                    labels: {
-                        maxWidth: 40
-                    },
                     max: (e)=>{
                         return e
                     }
                 }
             }
-            if(this.$store.state.mobileDevice){
-                return {
-                    ...Option,
-                    dataLabels: {
-                        enabled: false,
-                    },
-                    legend: {
-                        position: 'top',
-                        horizontalAlign: 'left'
-                    }
-                }
-            }else{
+            // if(this.$store.state.mobileDevice){
+            //     return {
+            //         ...Option,
+            //         dataLabels: {
+            //             enabled: false,
+            //         },
+            //         legend: {
+            //             position: 'top',
+            //             horizontalAlign: 'left'
+            //         }
+            //     }
+            // }else{
                 return {
                     ...Option,
                     dataLabels: {
@@ -111,12 +112,11 @@ export default {
                     },
                     legend: {
                         position: 'top',
-                        horizontalAlign: 'right'
+                        horizontalAlign: 'left'
                     }
                 }
-            }
+            // }
         }
-
     },
     methods:{
         sortTypeToggle(val){
@@ -140,9 +140,10 @@ export default {
                 //     return b[targetKey] - a[targetKey]    //從大到小
             //     // return a[targetKey] - b[targetKey] //從小到大
             // })
+            // 依據上述算法資料已排序，排出兩者皆為0的鄉鎮
             const clearData = this.sortType == 0? PrivateT: PublicT
             //是否顯示內湖資料：內湖都在第一筆
-            this.transData = this.neiHuShow? clearData.slice(0, 20): clearData.slice(1, 21)
+            this.transData = this.neiHuShow? clearData.slice(0, 33): clearData.slice(1, 34)
             
             // 依據大眾運輸｜私人運具顯示
             Object.keys(this.seriesType).map(key=>{
@@ -171,7 +172,11 @@ export default {
 @import '@/assets/scss/variables.scss';
 .apexChartContainer{
     display: block;
-    height: 30rem;
+    height: 32.5rem;
+    @include scrollbar_style;
+    width: calc(100vw - 4rem);
+    overflow-x: auto;
+    overflow-y: hidden;
     @media screen and (max-width:501px){
         height: 55vh;
     }
@@ -179,7 +184,7 @@ export default {
 </style>
 <style lang="scss"> 
 .apexChartContainer.basic .vue-apexcharts{ 
-    width: 100%;
+    width: 120rem;
     height: 100%;
     .apexcharts-legend{
         overflow: hidden;

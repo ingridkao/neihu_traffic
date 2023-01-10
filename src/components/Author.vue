@@ -16,10 +16,9 @@ export default {
 </script>
 <style lang="scss" scoped>
 .auther{
-    padding: 3rem;
+    padding: 2rem;
     h6{
         color: #7f7f7f;
-        margin-top: 5rem;
     }
 }
 </style>

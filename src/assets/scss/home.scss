@@ -17,7 +17,7 @@ main{
 
 // main_scrollama - start
 .colArticle{
-	max-width: 52rem;
+	max-width: 62rem;
 }
 #main_scrollama{
 	position: relative;
@@ -199,9 +199,9 @@ main{
 		}
 		&.fullchartContainer{
 			@extend %contentPadding;
-			height: 57.5rem;
+			height: 65rem;
 			@media screen and (max-width:501px){
-				height: 130%;
+				height: 150%;
 			}
 			&#chapter5{
 				height: 600%;

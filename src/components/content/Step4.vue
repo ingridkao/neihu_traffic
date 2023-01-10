@@ -18,7 +18,7 @@
             >
                 <span>此外，</span>
                 <AnnotationTrigger :key="'對比台北市建成區'" :toggle="annotationToggle2" :text="'對比台北市建成區'" @update="updateToggle2"/>
-                <span>，大內科的工作人口密度為53,400人/平方公里，約為工作人口密度卻為2.5倍。而未來大灣南段進駐更多企業後，可預見將帶來更大的通勤需求通勤需求。</span>
+                <span>，大內科的工作人口密度為53,400人/平方公里，約為台北市平均工作人口密度的2.5倍。而未來大灣南段進駐更多企業後，可預見將帶來更大的通勤需求通勤需求。</span>
             </p>
             <AnnotationContent
                 :dropdown="annotationToggle1" 
