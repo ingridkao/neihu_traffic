@@ -48,7 +48,7 @@
 				<Author/>
 			</div>
 		</article>
-		<AsideBox v-if="currStep >= 1" :container-height="containerHeight"/>
+		<AsideBox :container-height="containerHeight"/>
 	</main>
 </template>
 

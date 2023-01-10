@@ -1,7 +1,7 @@
 @import '@/assets/scss/variables.scss';
 .buttonActionBox{
 	display: inline-flex;
-	z-index: 100;
+	z-index: 1;
     width: 6.5rem;
     height: 1.5rem;
 	button{
@@ -35,12 +35,6 @@
 		&:hover{
 			color: $whiteColor;
 		}
-	}
-}
-
-#slideContainer{
-	.buttonActionBox{
-		margin: 5rem 0.5rem;
 	}
 }
 

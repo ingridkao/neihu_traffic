@@ -47,6 +47,7 @@
     }
 }
 
+$apexChartHeight: 24rem;
 .cardBox{
     position: absolute;
     width: 100%;
@@ -62,8 +63,9 @@
         }
         &.left{left: -.5rem;}
         &.right{right: 3rem;}
-        &.middle{top:  45vh;} 
-        &.middle2{top: 55vh;} 
+        &.middle{top:  40vh;} 
+        &.middle2{bottom: 0;} 
+        &.middle3{bottom: #{$apexChartHeight + 1rem};} 
         &.mapLabel{
             top: 10rem;
             left: 1rem;
@@ -71,10 +73,11 @@
         @media screen and (max-width:501px){
             &.top{top: 2.5rem;}
             &.right{right: 1rem;}
-            &.middle{top:auto; bottom: 1rem;}
+            &.middle,&.middle3{top:auto; bottom: 3rem;}
         }
     }
-    .title, .content>div{
+    .title, 
+    .content>div{
 		@extend %titleCardShadow;
     }
     .title{
@@ -91,9 +94,13 @@
             max-width: 50vw;
         }
         >div{
+            min-width: 18rem;
             margin-bottom: 1rem;
             padding: .5rem .5rem;
             font-size: 0.8rem;
+            &.apexChartContainer{
+                height: $apexChartHeight;
+            }
         }
     }
 }

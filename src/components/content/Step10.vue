@@ -21,7 +21,7 @@
                 <MapLabel v-if="article >= 5" :text="'捷運南港展覽館範圍'" :borderWidth="2" :borderColor="'#c2272d'" :borderStyle="'dotted'"/>
             </div>
         </div>
-        <div class="middle right content">
+        <div class="middle3 right content">
             <div
                 v-if="article == 2"
                 data-aos="fade-left"

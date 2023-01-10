@@ -62,7 +62,10 @@ main{
 			}
 		}
 		&#chapter4{
-			@extend %contentPadding;
+			padding: 7.5rem 2rem;
+			@media screen and (max-width:501px){
+				padding: 2.5rem 1rem;
+			}
 		}
 		&.rowBox{
 			@extend %horizontalCenter;

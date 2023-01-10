@@ -6,9 +6,12 @@
     >
         <button id="slideBtn" @click="showAside = !showAside">
             <img v-if="showAside" :src="Close" alt="關閉" />
-            <img v-else :src="require('@/assets/img/tuic_logo_simple.svg')" alt="本文內容" class="svg_scroll">
+            <!-- <img v-else :src="require('@/assets/img/tuic_logo_simple.svg')" alt="本文內容" class="svg_scroll"> -->
+            <img v-else :src="require('@/assets/icon/detail.png')" alt="摘要連結" class="svg_scroll">
         </button>
         <aside :class="{active: showAside}">
+            <MainAction :video-btn-show="false"/>
+            <h6>本文內容</h6>
             <ul>
                 <li 
                     v-for="(item, key) in article" 
@@ -19,7 +22,6 @@
                     {{item}}
                 </li>
             </ul>
-            <MainAction/>
         </aside>
     </div>
 </template>
@@ -122,7 +124,7 @@ export default {
         right: 0;
         width: 2rem;
         height: 2rem;
-        margin: .5rem 1rem;
+        margin: .5rem 1.5rem .5rem .5rem;
         z-index: 5;
         background-color: transparent;
         img{
@@ -138,12 +140,15 @@ export default {
         top: 0;
         right: #{-$mapGifWidth};
         transition: right 0.5s ease;
+        padding-top: 4rem;
         &.active{
             right: 0;
         }
+        h6{
+            margin: 2rem 0;
+        }
         ul{
             list-style-type: none;
-            margin-top: 5rem;
             li{
                 padding: .5rem 1rem;
                 color: $blackColor;
@@ -166,12 +171,12 @@ export default {
     }
 }
 .svg_scroll{
-	animation: rotate 1s linear infinite;
-	animation-play-state: paused;
-	animation-delay: calc(var(--scroll) * -1s);
+	// animation: rotate 1s linear infinite;
+	// animation-play-state: paused;
+	// animation-delay: calc(var(--scroll) * -1s);
 
-	animation-iteration-count: 1;
-	animation-fill-mode: both;
+	// animation-iteration-count: 1;
+	// animation-fill-mode: both;
 	&.svgImg{
 		position: fixed;
 		z-index: 1000;
@@ -181,9 +186,9 @@ export default {
 		margin-left: -50px;
 	}
 }
-@keyframes rotate {
-  to {
-    transform: rotate(360deg);
-  }
-}
+// @keyframes rotate {
+//   to {
+//     transform: rotate(360deg);
+//   }
+// }
 </style>

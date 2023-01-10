@@ -43,7 +43,7 @@ export default {
                     colors: ['transparent']
                 },
                 xaxis: {
-                    categories: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
+                    categories: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct']
                 },
                 yaxis: {
                     title: {

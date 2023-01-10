@@ -12,7 +12,7 @@
 			</div>
 		</div>
 		<p v-if="mobileDevice">{{$t('suggest')}}</p>
-		<MainAction v-if="!mobileDevice"/>
+		<MainAction v-if="!mobileDevice" :video-btn-show="true"/>
 		<footer>
 			<ScrollButton/>
 		</footer>

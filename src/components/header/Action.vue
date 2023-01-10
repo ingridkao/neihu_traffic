@@ -7,7 +7,7 @@
 			@click.prevent="copyURL"
 		/>
 		<button 
-			v-if="!mobileDevice"
+			v-if="videoBtnShow"
 			class="videoBtn"
 			:class="videoStart? 'videoPause': 'videoStart'" 
 			@click="toggleVideoStatus"
@@ -18,10 +18,13 @@
 
 <script>
 export default {
+	props: {
+        videoBtnShow: {
+            type: Boolean,
+            default: true
+        }
+    },
 	computed: {
-        mobileDevice(){
-            return this.$store.state.mobileDevice
-        },
 		videoStart() {
 			return this.$store.state.videoStart
 		}

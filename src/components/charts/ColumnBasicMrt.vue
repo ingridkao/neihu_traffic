@@ -127,6 +127,12 @@ export default {
                         style: {
                             fontSize: '11px',
                         }
+                    },
+                    title: {
+                        text: '佔比(％)',
+                        style: {
+                            fontSize: '10px',
+                        }
                     }
                 },
                 yaxis: {
@@ -185,7 +191,6 @@ export default {
 <style lang="scss"> 
 .apexChartContainer.columnMrt{
     width: 100%;
-    height: 25rem;
     overflow: hidden;
     .apexcharts-bar-area:hover {
         fill: #999;

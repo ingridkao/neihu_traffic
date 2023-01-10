@@ -75,7 +75,8 @@ export default {
                         maxWidth: 20,
                         style: {
                             fontSize: '8px',
-                        }
+                        },
+                        formatter: (val) => { return `${val}%` }
                     }
                 },
                 dataLabels: {

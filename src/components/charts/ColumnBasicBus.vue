@@ -74,10 +74,11 @@ export default {
                 },
                 yaxis: {
                     labels: {
-                        maxWidth: 10,
+                        maxWidth: 20,
                         style: {
                             fontSize: '8px',
-                        }
+                        },
+                        formatter: (val) => { return `${val}%` }
                     }
                 },
                 dataLabels: {
@@ -97,7 +98,7 @@ export default {
 <style lang="scss"> 
 .apexChartContainer.columnBus{
     width: 100%;
-    height: 13rem;
+    height: 190px;
     overflow: hidden;
 }
 </style>
