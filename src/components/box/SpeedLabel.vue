@@ -52,7 +52,7 @@ export default {
 <style lang="scss" scoped>
     .mapLabelBox{
         left: 1rem;
-        bottom: 0;
+        bottom: 1rem;
         z-index: 0;
         .legendBox{
             height: 1rem;

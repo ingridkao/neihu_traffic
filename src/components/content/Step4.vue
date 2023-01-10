@@ -14,7 +14,7 @@
             <p 
                 v-if="articleShow2"
                 data-aos="fade-up"
-                data-aos-duration="1600"
+                data-aos-duration="800"
             >
                 <span>此外，</span>
                 <AnnotationTrigger :key="'對比台北市建成區'" :toggle="annotationToggle2" :text="'對比台北市建成區'" @update="updateToggle2"/>
@@ -36,7 +36,7 @@
         <TelLabel
             v-if="telLabelShow"
             data-aos="fade-up"
-            data-aos-duration="1600"
+            data-aos-duration="800"
         />
     </div>
 </template>

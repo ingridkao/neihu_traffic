@@ -134,8 +134,8 @@ export default {
 <style lang="scss" scoped>
 header.svgHeader{
     svg{
-        height: 16rem;
-        margin: auto;
+        width: auto;
+        height: 14rem;
     }
 }
 </style>

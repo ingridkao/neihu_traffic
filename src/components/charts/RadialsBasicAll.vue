@@ -57,8 +57,8 @@ export default {
                     floating: true,
                     position: 'left',
                     horizontalAlign: 'left',
-                    offsetX: -30,
-                    offsetY: 0,
+                    offsetX: -10,
+                    offsetY: -10,
                     labels: {
                         useSeriesColors: true
                     },
@@ -93,8 +93,6 @@ export default {
 @import '@/assets/scss/variables.scss';
 .apexChartContainer{
     &.radialsAll{
-        flex-basis: 20rem !important;
-        padding-left: 1rem;
         .apexcharts-legend-series{
             height: auto;
             line-height: .8rem;

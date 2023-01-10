@@ -80,6 +80,7 @@ main{
 				@extend %verticalCenter;
 				width: $mapAsideWidth;
 				padding-top: 4rem;
+				padding-bottom: 4rem;
 				@media screen and (max-width:501px){
 					position: absolute;
 					padding-top: 1rem;
@@ -111,19 +112,22 @@ main{
 			}
 			aside{
 				flex-basis: $mapAsideWidth;
-				height: calc(100vh - 2rem);
 				padding: 1rem;
+				height: calc(100vh - 2rem);
+				@media screen and (max-width:501px){
+					height: auto;
+					padding: 0 1rem;
+				}
 				.chartContainer{
 					width: 100%;
 					height: 19rem;
 				}
 				.townBox{
 					width: 100%;
-					height: 20rem;
-					@include scrollbar_style;
-					overflow: scroll;
+					min-height: 14rem;
+					margin-bottom: 1rem;
 					@media screen and (max-width:501px){
-						height: auto;
+						min-height: auto;
 						margin-bottom: 2rem;
 					}
 				}
@@ -149,7 +153,8 @@ main{
 						flex-direction: column;
 					}
 					>div{
-						flex-basis: 46rem;
+						flex-basis: 50%;
+						max-width: 46rem;
 						@media screen and (max-width:501px){
 							flex-basis: auto;
 						}

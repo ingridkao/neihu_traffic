@@ -210,6 +210,8 @@ $carouselTabBtnHeight: 3rem;
     @extend %horizontalCenter;
     justify-content: space-between;
     svg {
+        width: 12rem;
+        margin: auto;
         path {
             stroke: $whiteColor;
             fill: darken($grayColor, 10);

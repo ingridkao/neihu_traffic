@@ -37,7 +37,7 @@ export default {
 <style lang="scss" scoped>
     .mapLabelBox{
         left: 1rem;
-        bottom: 0;
+        bottom: 1rem;
         z-index: 0;
         >div{
             width: 13rem;

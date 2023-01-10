@@ -23,10 +23,10 @@
                 @update="updateToggle"
             />
         </div>
-        <keep-alive>
-            <RadialsBasicAll v-if="currStep <= 4"/>
-            <RadialsBasic v-else/>
-        </keep-alive>
+        <div class="rowChart">
+            <RadialsBasicAll/>
+            <RadialsBasic/>
+        </div>
     </header>
     <div class="carousel">
         <CarouselHeader 
@@ -85,3 +85,17 @@ export default {
 	}
 }
 </script>
+<style lang="scss" scoped>
+.rowChart{
+    display: inline-flex;
+    padding-top: 1rem;
+    padding-left: 3rem;
+    @media screen and (max-width:501px){ // For mobile
+        flex-direction: column;
+        width: 100%;
+        padding-top: 0;
+        padding-left: 0;
+    }
+
+}
+</style>

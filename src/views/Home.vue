@@ -44,6 +44,9 @@
 			<div data-step="12" class="step fullchartContainer" id="chapter5">
 				<Step13/>
 			</div>
+			<div data-step="13" class="step">
+				<Author/>
+			</div>
 		</article>
 		<AsideBox v-if="currStep >= 1" :container-height="containerHeight"/>
 	</main>
@@ -76,7 +79,8 @@ export default {
 		Step10: defineAsyncComponent(() => import('@/components/content/Step10.vue')),
 		Step11: defineAsyncComponent(() => import('@/components/content/Step11.vue')),
 		Step12: defineAsyncComponent(() => import('@/components/content/Step12.vue')),
-		Step13: defineAsyncComponent(() => import('@/components/content/Step13.vue'))
+		Step13: defineAsyncComponent(() => import('@/components/content/Step13.vue')),
+		Author: defineAsyncComponent(() => import('@/components/Author.vue'))
 	},
 	data() {
 		return {
