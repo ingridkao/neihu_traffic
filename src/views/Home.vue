@@ -102,7 +102,7 @@ export default {
 		imgContainerFixed(){
 			if(this.currStep == 0)return false
 			if(this.mobileDevice){
-				if(this.currStep > 5)return false
+				if(this.currStep > 4)return false
 				return true
 			}else{
 				if(this.currStep > 3)return false
@@ -137,8 +137,11 @@ export default {
 			this._scroller = scrollama()
 			this._scroller
 			.setup(this.opts)
+			.onStepExit(({ element, index }) => {
+				if(!this.mobileDevice)return
+				if(index == 0) this.$store.commit('updateStep', 0)
+			})
 			.onStepProgress(({element, progress}) => {
-				// console.log(element.dataset.step + ":" + progress);
 				this.$store.commit('updateStep', element.dataset.step)
 				this.$store.commit('updateProgres', progress)
 			})

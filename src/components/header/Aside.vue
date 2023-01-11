@@ -4,7 +4,7 @@
         :class="{active: showAside}"
         :style="scrollBind"
     >
-        <button id="slideBtn" @click="showAside = !showAside">
+        <button class="slideBtn" @click="showAside = !showAside">
             <img v-if="showAside" :src="Close" alt="關閉" />
             <!-- <img v-else :src="require('@/assets/img/tuic_logo_simple.svg')" alt="本文內容" class="svg_scroll"> -->
             <img v-else :src="require('@/assets/icon/detail.png')" alt="摘要連結" class="svg_scroll">
@@ -76,10 +76,12 @@ export default {
         }
     },
 	mounted () {
-		window.addEventListener("scroll", this.handleScroll)
+		document.addEventListener("scroll", this.handleScroll)
+        document.addEventListener("click", this.bodyCloseAside)
 	},
 	beforeUnmount() {
-	    window.removeEventListener('scroll', this.handleScroll)
+	    document.removeEventListener('scroll', this.handleScroll)
+        document.removeEventListener("click", this.bodyCloseAside)
 	},
     methods: {
         scrollTo(key){
@@ -99,7 +101,13 @@ export default {
             this.pageYOffset = window.pageYOffset
 			this.scrollValue = this.pageYOffset / (this.containerHeight - innerHeight)
             this.$store.commit('updateContentEnter', this.pageYOffset >= innerHeight*2)
-		}
+		},
+        bodyCloseAside(e) {
+            if(!this.showAside)return
+            if(!(e.target && e.target.className))return
+            const classList = e.target.className.split(' ')
+            this.showAside = !classList.includes('buttonBox')
+        }
     }
 }
 </script>
@@ -107,21 +115,17 @@ export default {
 <style lang="scss" scoped>
 @import '@/assets/scss/variables.scss';
 #slideContainer{
-    position: fixed;
+    @extend %fixedLayout;
     width: 3.5rem;
     height: 3rem;
-    top: 0;
-    right: 0;
-    z-index: 10;
+    z-index: 50;
     &.active{
         width: 100%;
         height: 100%;
         background: rgba(0,0,0,0.2);
     }
-    #slideBtn{
-        position: absolute;
-        top: 0;
-        right: 0;
+    .slideBtn{
+        @extend %absoluteLayout;
         width: 2rem;
         height: 2rem;
         margin: .5rem 1.5rem .5rem .5rem;
@@ -132,13 +136,12 @@ export default {
         }
     }
     aside{
-        position: absolute;
         @extend %whiteCardShadow;
         @extend %contentPadding;
+        @extend %absoluteLayout;
+        right: #{-$mapGifWidth};
         width: $mapGifWidth;
         height: 100vh;
-        top: 0;
-        right: #{-$mapGifWidth};
         transition: right 0.5s ease;
         padding-top: 4rem;
         &.active{
@@ -157,9 +160,7 @@ export default {
                     position: relative;
                     &:before{
                         content: "";
-                        position: absolute;
-                        top: 0;
-                        left: 0;
+                        @extend %absoluteLeftLayout;
                         border-radius: 2px;
                         width: 4px;
                         height: 100%;

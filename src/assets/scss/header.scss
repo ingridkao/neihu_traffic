@@ -7,17 +7,13 @@
 	overflow: hidden;
 }
 #headerCover{
-	position: fixed;
+	@extend %fixedLeftLayout;
 	width: 100%;
 	height: 100vh;
-	top: 0;
-	left: 0;
 	z-index: 0;
 	&:after{
 		content: '';
-		position: absolute;
-		top: 0;
-		left: 0;
+		@extend %absoluteLeftLayout;
 		width: 100%;
 		height: 100%;
 		background-color: rgba($whiteColor, 0.6);
@@ -26,9 +22,8 @@
 		height: 100%;
 	}
 	#videoWapper{
+		@extend %imgCommom;
         background-size: 5rem;
-        background-repeat: no-repeat;
-        background-position: center;
 		.vjs-loading-spinner{
 			display: none;
 		}
@@ -51,9 +46,8 @@
         }
 	}
 	#gifWapper{
+		@extend %imgCommom;
 		background-image: url('../assets/video/studio_m.gif');
-		background-position: center;
-		background-repeat: no-repeat;
 		background-size: cover;
 	}
 }

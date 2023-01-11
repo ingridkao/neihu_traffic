@@ -1,9 +1,11 @@
 @import '@/assets/scss/variables.scss';
 $annotationColor: lighten($textSubColor, 30);
 .annotationBtn{
-    border-bottom: 1px solid $annotationColor;
+    display: inline-block;
     padding-right: .25rem;
     font-size: 1rem;
+    text-align: left;
+    text-decoration: underline;
     cursor: pointer;
     span{
         color: $annotationColor;
@@ -16,23 +18,22 @@ $annotationColor: lighten($textSubColor, 30);
     height: auto;
     font-size: .75rem;
     opacity: 0;
-    transition: opacity 1s 0.5s;
+    transition: opacity 1s;
     z-index: 1;
     @media screen and (max-width:501px){ // For mobile
         display: none;
     }
     &::before{
         content: "";
-        position: fixed;
+        @extend %fixedLeftLayout;
         width: 100vw;
         height: 100vh;
         background-color: rgba($blackColor, 0.3);
-        top: 0;
-        left: 0;
         pointer-events: none;
-        z-index: -1;
+        z-index: 1;
     }
     .annotationContent{
+        max-width: $contentLimit;
         visibility: hidden;
         transition: visibility 1s 0.5s;
         color: $annotationColor;
@@ -54,12 +55,12 @@ $annotationColor: lighten($textSubColor, 30);
         }
         .annotationContent{
             visibility: visible;
+            z-index: 1;
         }
     }
     &.bottom{
-        position: absolute;
+        @extend %absoluteLeftLayout;
         width: 100%;
-        left: 0;
         top: 100%;
         z-index: 1;
         @media screen and (max-width:501px){ // For mobile

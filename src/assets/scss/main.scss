@@ -2,20 +2,17 @@
 
 %imgBlock{
     @extend %imgCommom; 
-    position: absolute;
+    @extend %absoluteLeftLayout; 
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    transition: opacity 0.5s;
     background-position-x: center;
     background-size: cover;
     @media screen and (max-width:641px){
         background-position-x: center;
         background-position-y: top;
     }
-    width: 100%;
-    height: 100%;
-    left: 0;
-    top: 0;
-    z-index: 1;
-    transition: opacity 0.5s;
-
     opacity: 0;
     &.active{
         opacity: 1;
@@ -31,9 +28,7 @@
     z-index: 1;
     background: $whiteColor;
     &.fixed{
-        position: fixed;
-        top: 0;
-        right: 0;
+        @extend %fixedLayout;
         z-index: 2;
     }
     .bgBlock{
@@ -49,11 +44,9 @@
 
 $apexChartHeight: 24rem;
 .cardBox{
-    position: absolute;
+    @extend %absoluteLeftLayout; 
     width: 100%;
     height: 100%;
-    top: 0;
-    left: 0;
     z-index: 1;
     >div{
         position: absolute;
@@ -124,7 +117,7 @@ $carouselTabBtnHeight: 3rem;
     &-btn{
         @extend %horizontalCenter;
         height: $carouselTabBtnHeight;
-        color:  darken($textSubColor, 15);
+        color:  $blackColor;
         button{
             @extend %underLineBtn;
             opacity: 0.5;
@@ -138,8 +131,7 @@ $carouselTabBtnHeight: 3rem;
         width: 100%;
         height: calc(100vh - #{$carouselTabBtnHeight*4});
         >div{
-            position: absolute;
-            top: 0;
+            @extend %absoluteLeftLayout; 
             width: 100%;
             height: 100%;
             &.slideActive{
@@ -151,7 +143,7 @@ $carouselTabBtnHeight: 3rem;
         }
         .imgBox{
             position: relative;
-            @extend %bgimage;
+            @extend %imgCommom;
             background-size: cover;
             width: 100%;
             height: 100%;
@@ -159,13 +151,13 @@ $carouselTabBtnHeight: 3rem;
             z-index: 0;
             transition: opacity 1s;
             .imgLabelContainer{
-                position: absolute;
-                @extend %bgimage;
+                @extend %imgCommom;
                 background-size: cover;
+                position: absolute;
                 bottom: .5rem;
                 left: .5rem;
-                width: 9rem;
                 height: 9rem;
+                width: 9rem;
             }
         }
         .chartLabel{

@@ -18,22 +18,20 @@ export default {
 <style lang="scss">
 @import '@/assets/scss/variables.scss';
     .loadingContainer{
-        position: absolute;
+        @extend %absoluteLeftLayout;
         width: 100%;
         height: 100%;
         z-index: 10;
-
         @extend %verticalCenter;
-
-        justify-content: center;
-        display: none;
-        opacity: 0;
 
         background-color: rgba($blackColor, 0.2);
         transition-property: opacity, display;
         transition-duration: 3s, 1s;
         animation-iteration-count: infinite, infinite;
         animation-direction: alternate, alternate;
+
+        display: none;
+        opacity: 0;
         &.loadStart{
             display: flex;
             opacity: 1;

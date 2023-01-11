@@ -34,20 +34,18 @@
         <p>交通總量調控：</p>
         <div class="list">
             <p>
-                1. 借鑑後疫情時代，
-                <AnnotationTrigger :toggle="annotationToggle1" :text="'國際興起的「混合辦公」制度，將有助降低進出內科的通勤量'" @update="updateToggle1"/>
-                。
+                1. 借鑑後疫情時代，國際興起的「混合辦公」制度，將有助降低進出內科的通勤量。
+                <AnnotationTrigger :toggle="annotationToggle1" @update="updateToggle1"/>
             </p>
             <p>
-                2. 亦可借鏡國外
-                <AnnotationTrigger :toggle="annotationToggle2" :text="'在核心地區設置「超低碳排區」的做法，提高開車成本(如通行費、停車費等)，以抑制交通流量'" @update="updateToggle2"/>
-                。
+                2. 亦可借鏡國外在核心地區設置「超低碳排區」的做法，提高開車成本(如通行費、停車費等)，以抑制交通流量。
+                <AnnotationTrigger :toggle="annotationToggle2" @update="updateToggle2"/>
             </p>
             <AnnotationContent
                 :dropdown="annotationToggle1" 
                 :fix="''"
                 :content="`
-                    交通數據公司TOMTOM在研究指出，各城市疫情解封總運量回到80-90%，在流量減少10-15%的情況下便能有效預防壅塞；更多細節可透過參考著資料4的Tomtom研究報告連結查閱。
+                    交通數據公司TOMTOM在研究指出，各城市疫情解封總運量回到80-90%，在流量減少10-15%的情況下便能有效預防壅塞；更多細節可透過參考資料4的Tomtom研究報告連結查閱。
                 `"
                 @update="updateToggle1"
             />
@@ -55,7 +53,7 @@
                 :dropdown="annotationToggle2" 
                 :fix="''"
                 :content="`
-                    倫敦市政府交通局設置超低碳排區，需支付12.50 英鎊的費用才能在該區域內行駛；更多細節可透過參考著資料5的倫敦市政府研究報告連結查閱。
+                    倫敦市政府交通局設置超低碳排區，需支付12.50 英鎊的費用才能在該區域內行駛；更多細節可透過參考資料5的倫敦市政府研究報告連結查閱。
                 `"
                 @update="updateToggle2"
             />

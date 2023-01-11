@@ -91,7 +91,7 @@ export default {
             if(this.currStepProgress > 0.65)return 5
             if(this.currStepProgress > 0.5)return 4
             if(this.currStepProgress > 0.35)return 3    
-            if(this.currStepProgress > 0.2)return 2
+            if(this.currStepProgress > 0.1)return 2
             return 1
         }
     }
