@@ -53,6 +53,12 @@
     3. updateLowSpeed
     4. carousel click
     5. columnchart click
+    ```
+        this.$gtag.event('neihu_traffic_action', {
+            event_category: 'copy_url'
+        })
+    ```
+
 
 
 3. i18n

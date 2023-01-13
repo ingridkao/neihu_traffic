@@ -140,6 +140,16 @@ $carouselTabBtnHeight: 3rem;
                     z-index: 1;
                 }
             }
+            &.chartLabel{
+                @extend %absoluteLayout; 
+                top: -2.25rem;
+                left: auto;
+                width: 12rem;
+                height: 2rem;
+                @media screen and (max-width:501px){
+                    top: -4rem;
+                }
+            }
         }
         .imgBox{
             position: relative;
@@ -160,15 +170,7 @@ $carouselTabBtnHeight: 3rem;
                 width: 9rem;
             }
         }
-        .chartLabel{
-            right: 0;
-            top: -2.25rem;
-            width: 12rem;
-            height: 2rem;
-            @media screen and (max-width:501px){
-                top: -4rem;
-            }
-        }
+
     }
 }
 //carousel end
