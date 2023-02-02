@@ -1,14 +1,12 @@
 <template>
     <div class="chartContainer">
-        <header>
+        <header :class="{langEn: !langZh}">
             <div>
-                <h6>私人運具</h6>
-                <!-- <h6>private vehicle ownership</h6> -->
+                <h6>{{$t('charts.columnBasic.sort0')}}</h6>
                 <h5>{{ownership}}</h5>
             </div>
             <div>
-                <h6>大眾運輸</h6>
-                <!-- <h6>public transit provision</h6> -->
+                <h6>{{$t('charts.columnBasic.sort1')}}</h6>
                 <h5>{{provision}}</h5>
             </div>
         </header>
@@ -47,6 +45,11 @@ export default {
 	},
     created(){
         this.updateChart()
+    },
+    computed: {
+		langZh(){
+            return this.$i18n.locale === 'zh-TW'
+        }
     },
     watch: {
         'location': {
@@ -175,6 +178,7 @@ export default {
         @extend %horizontalSpaceAround;
         width: 14rem;
         margin-bottom: 1rem;
+        padding: 0.5rem;
 		@extend %titleCardShadow;
         h6{
             font-weight: normal;
@@ -186,6 +190,9 @@ export default {
             font-size: 1.5rem;
             margin-bottom: 0 !important;
             text-align: right;
+        }
+        &.langEn{
+            width: 80%;
         }
     }
 }

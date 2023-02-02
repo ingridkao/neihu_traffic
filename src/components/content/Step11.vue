@@ -13,25 +13,25 @@
         }"
     >
         <div class="top left title">
-            <h6>公車的通勤熱區在哪</h6>
-            <p>- 上下班時段的起訖熱門區域-</p>
+            <h6>{{$t("article.step11.title")}}</h6>
+            <p>{{$t("article.step10.supTitle")}}</p>
             <div class="mapLabel">
-                <ChartLabel/>
+                <ChartLabel :text="$t('popularPick')"/>
                 <template v-if="article == 1" >
-                    <MapPointLabel :text="'轉乘熱門度'" :gradient="['#fff', '#ee3c43']"/>
+                    <MapPointLabel :text="$t('article.step11.mapPointLabel')" :gradient="['#fff', '#ee3c43']"/>
                 </template>
                 <template  v-else>
-                    <MapLabel :text="'捷運服務可及範圍'" :borderWidth="1.5" :borderColor="'#666'" :borderStyle="'dotted'"/>
-                    <MapLabel :text="'捷運服務範圍外公車搭乘熱區'" :borderWidth="3" :borderColor="'#c2272d'" :borderStyle="'dotted'"/>
+                    <MapLabel :text="$t('article.step11.mapLabel1')" :borderWidth="1.5" :borderColor="'#666'" :borderStyle="'dotted'"/>
+                    <MapLabel :text="$t('article.step11.mapLabel2')" :borderWidth="3" :borderColor="'#c2272d'" :borderStyle="'dotted'"/>
                 </template>
             </div>
         </div>
-        <div class="middle right content">
+        <div class="bottom right content">
             <div
                 data-aos="fade-left"
                 data-aos-duration="800"
             >
-                除了搭乘公車直達內科上班外，有大量的上班族也會透過捷運轉公車的方式至內科上班。從數據上發現，松山捷運站為最熱門的轉乘站點。
+                <p>{{$t("article.step11.p1")}}</p>
             </div>
             <div
                 v-show="chartShow"
@@ -45,7 +45,8 @@
                 data-aos="fade-left"
                 data-aos-duration="1600"
             >
-                捷運無覆蓋的士林、內湖、松山、南港、中山、新莊、汐止等臨近地區，也是公車通勤的主要熱區。
+                <p>{{$t("article.step11.p2")}}</p>
+                
             </div>
         </div>
     </div>

@@ -9,7 +9,7 @@
                 }"/>
                 <span>{{item.text}}%</span>
             </div>
-            <p>大於100%的情形，推測為有其他區域之通勤族至此區域轉乘。</p>
+            <p>{{$t("charts.columnBasicMrt.name")}}</p>
         </div>
     </div>
 </template>

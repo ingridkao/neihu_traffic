@@ -1,7 +1,7 @@
 <template>
 	<div id="headerTitle" class="space-between">
 		<div></div>
-		<div class="titleBox">
+		<div class="titleBox" :class="$i18n.locale">
 			<a :href="currentUrl" class="logoBox">
 				<img :src="require('@/assets/img/tuic_logo_simple.svg')" :alt="$t('TUIC')">
 			</a>

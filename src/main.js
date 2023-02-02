@@ -19,8 +19,8 @@ const Locale = localStorage.getItem("locale")
 const i18n = createI18n({
     locale: Locale ? Locale: "zh-TW",
     messages: {
-      "zh-TW": zh,
-      "en-US": en
+		"zh-TW": zh,
+		"en-US": en
     }
 })
 

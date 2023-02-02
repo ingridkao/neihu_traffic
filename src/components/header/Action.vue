@@ -12,7 +12,7 @@
 			:class="videoStart? 'videoPause': 'videoStart'" 
 			@click="toggleVideoStatus"
 		/>
-		<!-- <button id="translateToggle" :title="$t('langTranslate')" @click="toggleLocaleLang">{{$t('langZh')}}</button> -->
+		<button id="translateToggle" :title="$t('langTranslate')" @click="toggleLocaleLang">{{$t('langZh')}}</button>
 	</div>
 </template>
 
@@ -50,10 +50,9 @@ export default {
     methods: {
         shareToFb(){
             window.open(`http://www.facebook.com/sharer.php?u=${encodeURIComponent(this.currentUrl)}`)
-            this.$gtag.event('neihu_traffic_action', {
-                event_category: 'copy_url'
+			this.$gtag.event('share_fb', {
+                event_category: 'neihu_traffic_action'
             })
-
         },
         copyURL(){
             if(navigator.clipboard){
@@ -72,8 +71,8 @@ export default {
 				.then(() => console.log('Successful share'))
 				.catch((error) => console.log('Error sharing', error));
 			}
-            this.$gtag.event('neihu_traffic_action', {
-                event_category: 'copy_url'
+			this.$gtag.event('copy_url', {
+                event_category: 'neihu_traffic_action'
             })
         },
 		getCookie(name) {

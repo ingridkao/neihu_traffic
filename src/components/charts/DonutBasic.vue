@@ -10,25 +10,24 @@
 </template>
 
 <script>
+// const chartLabels = ['A區', 'B區', 'C區']
 const chartDatas = [59, 16, 25]
-const chartLabels = ['A區', 'B區', 'C區']
 const chartColors = ['rgb(203, 15, 15)','rgb(229, 135, 135)', 'rgb(238, 180, 180)']
 export default {
     data(){
         return {
             series: chartDatas,
             chartOptions: {
+                labels: this.$t("charts.donutBasic.label"),
                 colors: chartColors,
-                labels: chartLabels,
                 legend: {
-                    show: false,
-                    // position: 'bottom'
+                    show: false
                 },
                 dataLabels: {
                     enabled: true,
                     formatter: (val) => {
                         const dataIndex = chartDatas.findIndex(item => item === val)
-                        return `${chartLabels[dataIndex]} ${val}%`
+                        return `${this.$t("charts.donutBasic.label")[dataIndex]} ${val}%`
                     },
                     style: {
                         colors: ['#fff'],

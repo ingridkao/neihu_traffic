@@ -5,7 +5,7 @@
     >
         {{text}}
         <span>
-            {{toggle? '▲': '▼'}}註
+            {{toggle? '▲': '▼'}}{{$t("note")}}
         </span>
     </button>
 </template>

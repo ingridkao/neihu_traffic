@@ -59,6 +59,7 @@ $apexChartHeight: 24rem;
         &.middle{top:  40vh;} 
         &.middle2{bottom: 0;} 
         &.middle3{bottom: #{$apexChartHeight + 1rem};} 
+        &.bottom{bottom:  2.5vh;} 
         &.mapLabel{
             top: 10rem;
             left: 1rem;
@@ -66,7 +67,7 @@ $apexChartHeight: 24rem;
         @media screen and (max-width:501px){
             &.top{top: 2.5rem;}
             &.right{right: 1rem;}
-            &.middle,&.middle3{top:auto; bottom: 3rem;}
+            &.middle,&.middle3, &.bottom{top:auto; bottom: 3rem;}
         }
     }
     .title, 
@@ -211,7 +212,7 @@ $carouselTabBtnHeight: 3rem;
     @extend %horizontalCenter;
     justify-content: space-between;
     svg {
-        width: 12rem;
+        width: 11rem;
         margin: auto;
         path {
             stroke: $whiteColor;

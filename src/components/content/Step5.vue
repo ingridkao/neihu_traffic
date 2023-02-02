@@ -1,29 +1,31 @@
 <template>
     <header class="carouselHeader colArticle">
-        <h6>工作人口從哪來？士林、松山、汐止佔多數</h6>
+        <h6>{{$t("article.step5.title")}}</h6>
         <p
             data-aos="fade-up"
             data-aos-duration="800"
         >
-            大內科的工作人口，除了來自內湖當地，還有地緣上鄰近內湖的士林、南港以及汐止區，共佔15%。另外，居住於台北市中心的內科通勤族（松山、大安、信義以及中山區），約佔16%。
+            {{$t("article.step5.p1")}}
         </p>
         <p 
             data-aos="fade-up"
             data-aos-duration="1600"
         >
-            <span>如果我們將大內科以距捷運站距離，分成</span>
-            <AnnotationTrigger :toggle="annotationToggle" :text="'A、B、C三區域'" @update="updateToggle"/>
             <span>
-                ，可以更詳細的讀出，不同居住地的工作人口要往大內科的北端還是南端上班。由於A區鄰近文湖線，因此工作人口涵蓋雙北甚至到基隆，B、C區工作人口較多來自內湖及鄰近行政區。
+                {{$t("article.step5.p2")}}
+            </span>
+            <AnnotationTrigger :toggle="annotationToggle" :text="$t('article.step5.annotationTrigger1')" @update="updateToggle"/>
+            <span>
+                {{$t('article.step5.p3')}}
             </span>
         </p>
         <AnnotationContent
             :dropdown="annotationToggle"
             :fix="'rowLayout'"
             :content="`
-                <b>A區</b>：距離捷運文湖線 500 公尺內<br>
-                <b>B區</b>：距離捷運文湖線 500 公尺外<br>
-                <b>C區</b>：大安南段工業區                    
+                <b>${$t('article.step5.tab[1]')}</b>：${$t('article.step5.annotationContent1[0]')}<br>
+                <b>${$t('article.step5.tab[2]')}</b>：${$t('article.step5.annotationContent1[1]')}<br>
+                <b>${$t('article.step5.tab[3]')}</b>：${$t('article.step5.annotationContent1[2]')}                
             `"
             @update="updateToggle"
         />
@@ -37,7 +39,7 @@
         <CarouselImage 
             :tab="tab" 
             :currentTab="currentTab" 
-            :label="'工作人口數量'" 
+            :label="$t('charts.radialsAll.total')" 
             :gradient="['#e3c5c7', '#cf181b']"
             :imgURL="'tab'"
             @update="selectPage"
@@ -65,10 +67,10 @@ export default {
     data(){
 		return {
 			tab: [
-				{index: 'All', name: '全區'},
-				{index: 'A', name: 'A區'},
-				{index: 'B', name: 'B區'},
-				{index: 'C', name: 'C區'},
+				{index: 'All', name: this.$t('article.step5.tab[0]')},
+				{index: 'A', name: this.$t('article.step5.tab[1]')},
+				{index: 'B', name: this.$t('article.step5.tab[2]')},
+				{index: 'C', name: this.$t('article.step5.tab[3]')}
 			],
 			currentTab: "All",
             annotationToggle: false

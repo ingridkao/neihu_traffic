@@ -3,8 +3,8 @@
         data-aos="fade-down"
         data-aos-duration="800"
     >
-        <h6>解決大內科交通問題，我們有哪些機會？</h6>
-        <p>內湖科學園區的交通問題，受限於先天的都市規劃與既成路網系統，較難一次到位的解決。但透過數據得出的洞察，可以為我們指引一些可能性：</p>
+        <h6>{{$t("article.step13.title")}}</h6>
+        <p>{{$t("article.step13.p1")}}</p>
     </header>
     <div class="imgBox">   
         <div class="bgBlock active">
@@ -13,48 +13,44 @@
                 data-aos-duration="1600"
             />
         </div>
-        <p>若捷運環狀線完工，可服務的區域包括士林、北投、松山、信義、文山等。但佔最多內科通勤人口的內湖(37.6%)、及汐止(6.2%)的上班族沒有被環狀線服務到。</p>
+        <p>{{$t("article.step13.p2")}}</p>
     </div>
     <div data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">
-        <p>讓大眾運輸更便利：</p>
+        <p>{{$t("article.step13.p3")}}：</p>
         <div class="list">
-            <p>1. 針對需求熱區，提供接駁車。</p>
-            <p>2. 提高捷運轉乘公車的便利性，如改善慢行路徑、優化班次等。</p>
-            <p>3. 與民間業者合作，提供多樣的替代交通選擇，如共享運具、共乘等。</p>
+            <p>1. {{$t("article.step13.list1[0]")}}</p>
+            <p>2. {{$t("article.step13.list1[1]")}}</p>
+            <p>3. {{$t("article.step13.list1[2]")}}</p>
         </div>
     </div>
     <div data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">
-        <p>提供更好的「最後一哩」選擇：</p>
+        <p>{{$t("article.step13.p4")}}：</p>
         <div class="list">
-            <p>1. 針對需求熱區增設YouBike站，或加強車輛調度，提高使用性。</p>
-            <p>2. 配合環狀線的建設，建立更完善慢行系統如人行道、自行車道等，串連住宅與辦公區。</p>
+            <p>1. {{$t("article.step13.list2[0]")}}</p>
+            <p>2. {{$t("article.step13.list2[1]")}}</p>
         </div>
     </div>
     <div data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">
-        <p>交通總量調控：</p>
+        <p>{{$t("article.step13.p5")}}：</p>
         <div class="list">
             <p>
-                1. 借鑑後疫情時代，國際興起的「混合辦公」制度，將有助降低進出內科的通勤量。
+                1. {{$t("article.step13.list3[0]")}}
                 <AnnotationTrigger :toggle="annotationToggle1" @update="updateToggle1"/>
             </p>
             <p>
-                2. 亦可借鏡國外在核心地區設置「超低碳排區」的做法，提高開車成本(如通行費、停車費等)，以抑制交通流量。
+                2. {{$t("article.step13.list3[1]")}}
                 <AnnotationTrigger :toggle="annotationToggle2" @update="updateToggle2"/>
             </p>
             <AnnotationContent
                 :dropdown="annotationToggle1" 
                 :fix="''"
-                :content="`
-                    交通數據公司TOMTOM在研究指出，各城市疫情解封總運量回到80-90%，在流量減少10-15%的情況下便能有效預防壅塞；更多細節可透過參考資料4的Tomtom研究報告連結查閱。
-                `"
+                :content="$t('article.step13.annotationContent1')"
                 @update="updateToggle1"
             />
             <AnnotationContent
                 :dropdown="annotationToggle2" 
                 :fix="''"
-                :content="`
-                    倫敦市政府交通局設置超低碳排區，需支付12.50 英鎊的費用才能在該區域內行駛；更多細節可透過參考資料5的倫敦市政府研究報告連結查閱。
-                `"
+                :content="$t('article.step13.annotationContent2')"
                 @update="updateToggle2"
             />
         </div>

@@ -42,9 +42,12 @@ $annotationColor: lighten($textSubColor, 30);
         background-color: $whiteColor;
     }
     .annotationImage{
+        position: absolute;
         width: 100%;
+        height: auto;
         padding: .5rem;
         background-color: $whiteColor;
+        z-index: 1;
     }
     &.open{
         opacity: 1;

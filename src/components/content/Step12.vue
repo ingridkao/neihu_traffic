@@ -12,19 +12,19 @@
         }"
     >
         <div class="top left title">
-            <h6>YouBike的通勤熱區在哪</h6>
-            <p>- 上下班時段的起訖熱門區域-</p>
+            <h6>{{$t("article.step12.title")}}</h6>
+            <p>{{$t("article.step10.supTitle")}}</p>
             <div class="mapLabel">
-                <ChartLabel/>
-                <MapPointLabel :text="'轉乘熱門度'" :gradient="['#fff', '#ee3c43']"/>
+                <ChartLabel :text="$t('popularPick')"/>
+                <MapPointLabel :text="$t('article.step11.mapPointLabel')" :gradient="['#fff', '#ee3c43']"/>
             </div>
         </div>
-        <div class="middle right content">
+        <div class="bottom right content">
             <div
                 data-aos="fade-left"
                 data-aos-duration="800"
             >
-                YouBike使用熱區多為鄰近內科的捷運站周邊，大多通勤族使用YouBike至捷運站轉乘。
+                {{$t("article.step12.p1")}}
             </div>
             <div
                 v-show="chartShow"
@@ -38,7 +38,8 @@
                 data-aos="fade-left"
                 data-aos-duration="800"
             >
-                港墘捷運站為捷運轉乘Youbike至內科最熱門的捷運站，後依序為文德、劍南路、內湖、松山。
+                {{$t("article.step12.p2")}}
+                
             </div>
         </div>
     </div>
