@@ -8,22 +8,24 @@
 			</div>
 			<div class="contact_list">
 				<div>
-					<img src="https://tuic.gov.taipei/img/icon/pin.svg" alt="地址圖示">
-					<span>地址:</span>
-					<span>110204 臺北市信義區市府路1號</span>
+					<img src="https://tuic.gov.taipei/img/icon/pin.svg" :alt="$t('footer.addricon')">
+					<span>{{$t('footer.addr')}}:</span>
+					<span>{{$t('footer.addrInfo')}}</span>
 				</div>
 				<div>
-					<img src="https://tuic.gov.taipei/img/icon/phone.svg" alt="電話圖示">
-					<span>電話:</span>
-					<span>臺北市民當家熱線
+					<img src="https://tuic.gov.taipei/img/icon/phone.svg" :alt="$t('footer.telicon')">
+					<span>{{$t('footer.tel')}}:</span>
+					<span>
+						{{$t('footer.telInfo[0]')}}
 						<a href="tel:1999">1999</a>
-						分機8585(免付費電話服務，公共電話、放心講及第二類電信除外)， 外縣市請撥
+						{{$t('footer.telInfo[1]')}}
 						<a href="tel:0227208889">(02)2720-8889</a>
+						{{$t('footer.telInfo[2]')}}
 					</span>
 				</div>
 				<div>
-					<img src="https://tuic.gov.taipei/img/icon/mail.svg" alt="聯絡信箱圖示">
-					<span>聯絡信箱:</span>
+					<img src="https://tuic.gov.taipei/img/icon/mail.svg" :alt="$t('footer.emailicon')">
+					<span>{{$t('footer.email')}}:</span>
 					<a href="mailto:tuic@mail.taipei.gov.tw">tuic@mail.taipei.gov.tw</a>
 				</div>
 			</div>

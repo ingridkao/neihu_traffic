@@ -10,8 +10,8 @@
 </template>
 
 <script>
+// const chartLabels = ['公車', '捷運', 'Youbike']
 const chartDatas = [62, 32, 6]
-const chartLabels = ['公車', '捷運', 'Youbike']
 const chartColors = ['#73ba8c','#a0cfb2', '#c1ddca']
 export default {
     data(){
@@ -43,13 +43,15 @@ export default {
                                 show: true,
                                 fontSize: '12px',
                                 color: '#373d3f',
-                                label: '搭乘大眾運輸人口',
-                                formatter: (w) => ("42,500人")
+                                label: this.$i18n.locale === 'zh-TW'?'搭乘大眾運輸人口':'Public transport',
+                                formatter: (w) => {
+                                    return `42,500${this.$i18n.locale === 'zh-TW'?"人": "pl"}`
+                                }
                             }
                         }
                     }
                 },
-                labels: chartLabels,
+                labels: this.$i18n.locale === 'zh-TW'?['公車', '捷運', 'Youbike']: ['Bus', 'MRT', 'Youbike'],
                 legend: {
                     show: true,
                     inverseOrder: true,

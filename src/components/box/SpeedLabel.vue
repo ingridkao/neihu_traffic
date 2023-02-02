@@ -9,9 +9,9 @@
                 }"/>
                 <span>{{item.text}}km/hr</span>
             </div>
-            <div class="toggleBtn" data-attr="路段時速">
-                <button :class="{active:!lowSpeed}" @click="updateLowSpeed(false)">全部</button>
-                <button :class="{active:lowSpeed}" @click="updateLowSpeed(true)">篩選低速</button>
+            <div class="toggleBtn" :data-attr="$t('box.speedLabel.roadSpeed')">
+                <button :class="{active:!lowSpeed}" @click="updateLowSpeed(false)">{{$t('all')}}</button>
+                <button :class="{active:lowSpeed}" @click="updateLowSpeed(true)">{{$t('box.speedLabel.filterRow')}}</button>
             </div>
         </div>
     </div>
@@ -42,8 +42,8 @@ export default {
     methods:{
         updateLowSpeed(boolen){
             this.$emit('update', boolen)
-            this.$gtag.event('neihu_traffic_action', {
-                event_category: 'update_speed'
+            this.$gtag.event('update_speed', {
+                event_category: 'neihu_traffic_action'
             })
         }
     }

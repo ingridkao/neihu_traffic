@@ -66,6 +66,7 @@
 	.titleBox{
 		align-items: flex-start;
 		z-index: 1;
+		&.en-US h2{font-size: 1.4rem;}
 	}
 	.logoBox{
 		display: inline-block;
@@ -86,8 +87,11 @@
 #aricle1{
     position: relative;
     width: $mapAsideWidth*1.2;
+	&.en-US{
+		width: $mapAsideWidth*1.6;
+	}
     @media screen and (max-width:501px){
-        width: 90%;
+        width: 90% !important;
     }
     height: auto;
 	@extend %contentPadding;
@@ -96,4 +100,7 @@
     border-radius: .25rem;
     border: 1px solid rgba($blackColor, 0.3);
     background-color: rgba($whiteColor, 0.9);
+	.annotationDropdown::before{
+		z-index: -1;
+	}
 }

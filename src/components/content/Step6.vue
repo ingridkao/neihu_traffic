@@ -4,24 +4,17 @@
             data-aos="fade-up"
             data-aos-duration="800"
         >
-            <h6>大內科通勤族，約有3成選擇大眾運輸</h6>
+            <h6>{{$t("article.step6.title")}}</h6>
             <p>
-                <span>捷運、公車為台北市重要的大眾運輸系統。我們</span>
-                <AnnotationTrigger :toggle="annotationToggle" :text="'使用悠遊卡票證資料進行空間分析'" @update="updateToggle"/>
-                <span>
-                    後發現，在上班時段透過捷運、公車、或是 YouBike 進入大內科的平均人數為 42,500 人。與總工作人口 133,500人相比，可知僅約三成的通勤族選擇大眾運輸上下班，另外七成的通勤族偏好私人運具。
-                    （此方法可能忽略少部分現金購票的大眾運輸使用者，但仍可供大概的估算。）
-                </span>
+                <span>{{$t("article.step6.p1")}}</span>
+                <AnnotationTrigger :toggle="annotationToggle" :text="$t('article.step6.annotationTrigger1')" @update="updateToggle"/>
+                <span>{{$t("article.step6.p2")}}</span>
             </p>
             <AnnotationContent
                 :dropdown="annotationToggle"
                 :fix="'bottom left'"
-                :text="'使用悠遊卡票證資料進行空間分析'" 
-                :content="`
-                    步驟一、篩選出位於大內科範圍內的捷運、公車及YouBike 站點。<br>
-                    步驟二、統計各站點在上班時段的上車（騎乘）起點。<br>
-                    步驟三、繪製各站點的服務半徑，依照最小統計單元的人口密度，將人數分配至 250m*250m 的網格。以便依照顏色深淺區分使用量。
-                `"
+                :text="$t('article.step6.annotationTrigger1')"
+                :content="$t('article.step6.annotationContent1')"
                 :content-img="'visMethods.jpeg'"
                 @update="updateToggle"
             />
@@ -39,6 +32,7 @@
         />
         <CarouselImage 
             :tab="tab" 
+            :label="$t('popularPick')" 
             :currentTab="currentTab" 
             :imgURL="'transportation'"
             @update="selectPage"
@@ -69,10 +63,10 @@ export default {
     data(){
 		return {
 			tab: [
-				{index:'total', name: '大眾運輸'},
-				{index:'mrt', name: '捷運'},
-				{index:'bus', name: '公車'},
-				{index:'bike', name: 'Youbike'},
+				{index:'total', name: this.$t('charts.columnBasic.sort1')},
+				{index:'bus', name: this.$t('charts.radialsBasic.label[0]')},
+				{index:'mrt', name: this.$t('charts.radialsBasic.label[1]')},
+				{index:'bike', name: this.$t('charts.radialsBasic.label[2]')}
 			],
 			currentTab: "total",
             annotationToggle: false

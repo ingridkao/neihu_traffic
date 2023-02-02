@@ -17,6 +17,9 @@ export default {
                     })
                 }, 0.5 * i)
             }
+            this.$gtag.event('scroll_to', {
+                event_category: 'neihu_traffic_action'
+            })
         }
     }
 }

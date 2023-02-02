@@ -5,13 +5,12 @@
         :style="scrollBind"
     >
         <button class="slideBtn" @click="showAside = !showAside">
-            <img v-if="showAside" :src="Close" alt="關閉" />
-            <!-- <img v-else :src="require('@/assets/img/tuic_logo_simple.svg')" alt="本文內容" class="svg_scroll"> -->
+            <img v-if="showAside" :src="Close" alt="關閉Close" />
             <img v-else :src="require('@/assets/icon/detail.png')" alt="摘要連結" class="svg_scroll">
         </button>
         <aside :class="{active: showAside}">
             <MainAction :video-btn-show="false"/>
-            <h6>本文內容</h6>
+            <h6>{{$t("contentLink")}}</h6>
             <ul>
                 <li 
                     v-for="(item, key) in article" 
@@ -64,11 +63,11 @@ export default {
             showAside: false,
             Close,
             article: {
-                "chapter1": "內湖交通改善計畫：先了解大內科園區",
-                "chapter2": "13萬的工作人口，大多居住在園區以外",
-                "chapter3": "大內科通勤族，約有3成選擇大眾運輸",
-                "chapter4": "從大眾運輸使用方式，分析通勤族的困境",
-                "chapter5": "解決大內科交通問題，我們有哪些機會？"
+                "chapter1": this.$t("article.step2.title"),
+                "chapter2": this.$t("article.step4.title"),
+                "chapter3": this.$t("article.step6.title"),
+                "chapter4": this.$t("article.step9.title"),
+                "chapter5": this.$t("article.step13.title")
             },
             secActive: null,
             pageYOffset: 0,
@@ -94,6 +93,9 @@ export default {
             window.scrollTo({
                 top: (offsetTarget.top + this.pageYOffset),
                 behavior: 'smooth'
+            })
+            this.$gtag.event('scroll_aside', {
+                event_category: 'neihu_traffic_action'
             })
         },
         handleScroll(){

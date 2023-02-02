@@ -11,7 +11,7 @@
 
 <script>
 const chartDatas = [68.2, 19.8, 10.2, 1.9]
-const chartLabels = ['非大眾運輸','公車', '捷運', 'Youbike']
+// const chartLabels = ['非大眾運輸','公車', '捷運', 'Youbike']
 const chartColors = ['#fb6b6d','#73ba8c','#a0cfb2', '#c1ddca']
 export default {
     data(){
@@ -43,13 +43,15 @@ export default {
                                 show: true,
                                 fontSize: '12px',
                                 color: '#373d3f',
-                                label: '總工作人口',
-                                formatter: (w) => ("133,500人")
+                                label: this.$i18n.locale === 'zh-TW'?'工作人口數量':'Work population',
+                                formatter: (w) => {
+                                    return `133,500${this.$i18n.locale === 'zh-TW'?"人": "pl"}`
+                                }
                             }
                         }
                     }
                 },
-                labels: chartLabels,
+                labels: this.$i18n.locale === 'zh-TW'?['非大眾運輸', '公車', '捷運', 'Youbike']: ['Non-Public', 'Bus', 'MRT', 'Youbike'],
                 legend: {
                     show: true,
                     inverseOrder: true,

@@ -14,11 +14,11 @@
         }"
     >
         <div class="top left title">
-            <h6>捷運的通勤熱區在哪</h6>
-            <p>- 上下班時段的起訖熱門區域 -</p>
+            <h6>{{$t("article.step10.title")}}</h6>
+            <p>{{$t("article.step10.supTitle")}}</p>
             <div class="mapLabel">
-                <ChartLabel/>
-                <MapLabel v-if="article >= 5" :text="'捷運南港展覽館範圍'" :borderWidth="2" :borderColor="'#c2272d'" :borderStyle="'dotted'"/>
+                <ChartLabel :text="$t('popularPick')"/>
+                <MapLabel v-if="article >= 5" :text="$t('article.step10.annotationTrigger1')" :borderWidth="2" :borderColor="'#c2272d'" :borderStyle="'dotted'"/>
             </div>
         </div>
         <div class="middle3 right content">
@@ -27,28 +27,28 @@
                 data-aos="fade-left"
                 data-aos-duration="400"
             >
-                1. 主要的捷運通勤族皆來自文湖線站點周邊。
+                1. {{$t("article.step10.list[0]")}}
             </div>
             <div
                 v-if="article == 3"
                 data-aos="fade-left"
                 data-aos-duration="400"
             >
-                2. 在轉乘的部分最多的人次來自板南線、其次為中和新蘆線與松山新店線。
+                2. {{$t("article.step10.list[1]")}}
             </div>
             <div
                 v-if="article == 4"
                 data-aos="fade-left"
                 data-aos-duration="400"
             >
-                3. 士林北投區域的工作人口佔9.2%但使用捷運通勤人數相當少數。
+                3. {{$t("article.step10.list[2]")}}
             </div>
             <div
                 v-if="article >= 5"
                 data-aos="fade-left"
                 data-aos-duration="400"
             >
-                4. 不管上班或下班，南港展覽館為進出人次最高的站，推測其周邊汐止區居住人口至此搭乘至內科工作。
+                4. {{$t("article.step10.list[3]")}}
             </div>
         </div>
         <div class="content right middle2">
@@ -88,10 +88,10 @@ export default {
             if(this.currStep == 10)return 6
             if(this.currStep == 8)return 1
             if(this.currStepProgress > 0.8)return 6
-            if(this.currStepProgress > 0.65)return 5
-            if(this.currStepProgress > 0.5)return 4
-            if(this.currStepProgress > 0.35)return 3    
-            if(this.currStepProgress > 0.1)return 2
+            if(this.currStepProgress > 0.6)return 5
+            if(this.currStepProgress > 0.4)return 4
+            if(this.currStepProgress > 0.2)return 3    
+            if(this.currStepProgress > 0.05)return 2
             return 1
         }
     }

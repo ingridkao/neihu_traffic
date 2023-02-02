@@ -22,13 +22,27 @@ main{
 #main_scrollama{
 	position: relative;
 	overflow: hidden;
+	z-index: 1;
 	&.langEn{
 		h6{
-			font-size: 1.2rem;
-			margin-bottom: 1rem;
+			font-size: 1.1rem;
+			margin-bottom: 1.5rem;
 		}
+		p,
+		.annotationBtn{
+			font-size: 0.9rem;
+			line-height: 1.6;
+		}
+		.imgContainer{
+			width: calc(100% - $mapEnAsideWidth);
+		}
+		.step.rowBox .articalBox{
+			width: $mapEnAsideWidth;
+		}
+		.svgHeader ul{
+			width: calc($mapEnAsideWidth - 12rem);
+		}	
 	}
-	z-index: 1;
 	.imgContainer{
 		position: absolute;
 		width: calc(100% - $mapAsideWidth);
@@ -56,9 +70,10 @@ main{
 			margin-bottom: 1rem;
 		}
 		p{
-			margin-bottom: 2rem;
+			font-size: .8rem;
+			margin-bottom: 1rem;
 			@media screen and (max-width:501px){
-				margin-bottom: 1rem;
+				margin-bottom: 0.5rem;
 			}
 		}
 		&#chapter4{
@@ -104,7 +119,7 @@ main{
 				}
 				@media screen and (max-width:501px){
 					position: absolute;
-					width: 100vw;
+					width: 100vw !important;
 					z-index: 0;
 				}
 			}
@@ -127,7 +142,7 @@ main{
 				}
 				.townBox{
 					width: 100%;
-					min-height: 14rem;
+					min-height: 13rem;
 					margin-bottom: 1rem;
 					@media screen and (max-width:501px){
 						min-height: auto;

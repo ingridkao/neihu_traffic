@@ -107,6 +107,7 @@ export default {
 
             //https://docs.mapbox.com/mapbox-gl-js/example/toggle-interaction-handlers/
             this.MapBoxObject.touchZoomRotate.enable()
+            // this.MapBoxObject.dragPan.disable()
             // this.MapBoxObject.scrollZoom.disable()
 
             // Add language controls to the map.

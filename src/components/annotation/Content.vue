@@ -6,7 +6,7 @@
     ]" >
         <p class="annotationContent" v-html="content"/>
         <img 
-            v-if="contentImg !== ''" 
+            v-if="contentImg !== ''"
             class="annotationImage"
             :src="require(`@/assets/img/${contentImg}`)" :alt="text"
         />

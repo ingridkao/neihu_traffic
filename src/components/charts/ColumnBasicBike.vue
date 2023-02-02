@@ -11,7 +11,6 @@
 
 <script>
 import { TranData, ParseRatio } from '@/assets/js/transport.js'
-// const avg = 269.9
 const AvgSum = 791
 const ClearData = TranData.sort((a, b)=> b['ubike_avg'] - a['ubike_avg']).slice(0, 10).map(item => {
     return {
@@ -23,41 +22,28 @@ export default {
     data(){
         return {
             seriesData: [{
-                name: '前10熱區',
+                name: this.$t("charts.columnBasicBike.name"),
                 data: ClearData.map(item => item['ratio'])
             }],
             chartOptions: {
                 colors: ['#5b955b'],
                 title: {
-                    text: 'Youbike通勤前10熱區',
+                    text: this.$t("charts.columnBasicBike.title"),
                     margin: 0,
                     style: {
                         fontSize: '12px'
                     }
                 },
                 subtitle: {
-                    text: `樣本數量:${AvgSum}人`,
+                    text: `${this.$t("count")}:${AvgSum} ${this.$t("per")}`,
                     margin: 0,
                     offsetY: 15
                 },
-                // annotations: {
-                //     yaxis: [{
-                //         y: avg,
-                //         borderColor: '#00E396',
-                //         label: {
-                //             style: {
-                //                 color: '#fff',
-                //                 background: '#567888',
-                //             },
-                //             text: `前10平均線:${avg}`,
-                //         }
-                //     }]
-                // },
                 plotOptions: {
                     bar: {
                         horizontal: false,
                         columnWidth: '60%'
-                    },
+                    }
                 },
                 xaxis: {
                     categories: ClearData.map(item => item['name']),

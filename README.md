@@ -54,9 +54,9 @@
     4. carousel click
     5. columnchart click
     ```
-        this.$gtag.event('neihu_traffic_action', {
-            event_category: 'copy_url'
-        })
+        this.$gtag.event('update_column_chart', {
+            event_category: 'neihu_traffic_action'
+        }) 
     ```
 
 

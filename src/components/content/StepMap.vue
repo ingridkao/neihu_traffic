@@ -1,7 +1,7 @@
 <template>
     <aside>
         <p>
-            此外，我們也將上述的大眾運輸通勤佔比，以空間網格的方式做互動呈現，利於相關單位針對不同區域做深入查詢研究。
+            {{$t("article.stepMap.p")}}
         </p>
         <MapSelect 
             :location="location" 
@@ -68,15 +68,15 @@ export default {
         },
         clickTpTown(targetObj){
             this.tpTown = targetObj
-            this.$gtag.event('neihu_traffic_action', {
-                event_category: 'update_map_filter',
+            this.$gtag.event('update_map_filter', {
+                event_category: 'neihu_traffic_action',
                 value: 'tp'
             })
         },
         clickNTpTown(targetObj){
             this.ntpTown = targetObj
-            this.$gtag.event('neihu_traffic_action', {
-                event_category: 'update_map_filter',
+            this.$gtag.event('update_map_filter', {
+                event_category: 'neihu_traffic_action',
                 value: 'ntp'
             })
         } 

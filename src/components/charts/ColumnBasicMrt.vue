@@ -71,18 +71,18 @@ export default {
         updateData(){
             switch (this.article) {
                 case 3:
-                    this.title = '非木柵線Top20轉乘捷運站'
-                    this.subtitle = `總佔32.5%`
+                    this.title = this.$t("charts.columnBasicMrt.title3")
+                    this.subtitle = `${this.$t("accountAll")}32.5%`
                     this.sourceData = NonWenhuData.slice(0, 20)
                     break;
                 case 4:
-                    this.title = '淡水信義線Top20轉乘捷運站'
-                    this.subtitle = `總佔2.8%`
+                    this.title = this.$t("charts.columnBasicMrt.title4")
+                    this.subtitle = `${this.$t("accountAll")}2.8%`
                     this.sourceData = DanshuiData.slice(0, 20)
                     break;
                 default:
-                    this.title = '捷運通勤前20轉乘站點'
-                    this.subtitle = `總佔45.95%`
+                    this.title = this.$t("charts.columnBasicMrt.title2")
+                    this.subtitle = `${this.$t("accountAll")}45.95%`
                     this.sourceData = WenhuData.slice(0, 20)
                     break;
             }
@@ -129,7 +129,7 @@ export default {
                         }
                     },
                     title: {
-                        text: '佔比(％)',
+                        text: `${this.$t("accountFor")}(％)`,
                         style: {
                             fontSize: '10px',
                         }

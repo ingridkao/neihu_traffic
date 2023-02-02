@@ -1,16 +1,16 @@
 <template>
     <div class="chartActionBox">
-        <div class="toggleBtn" data-attr="排序大小">
-            <button :class="{active:sortType == 0}" @click="sortTypeToggle(0)">私人運具</button>
-            <button :class="{active:sortType == 1}" @click="sortTypeToggle(1)">大眾運輸</button>
+        <div class="toggleBtn" :data-attr="$t('sort')">
+            <button :class="{active:sortType == 0}" @click="sortTypeToggle(0)">{{$t("charts.columnBasic.sort0")}}</button>
+            <button :class="{active:sortType == 1}" @click="sortTypeToggle(1)">{{$t("charts.columnBasic.sort1")}}</button>
         </div>
-        <div class="toggleBtn" data-attr="內湖區">
-            <button :class="{active:neiHuShow}" @click="neiHuShowToggle(true)">顯示</button>
-            <button :class="{active:!neiHuShow}" @click="neiHuShowToggle(false)">隱藏</button>
+        <div class="toggleBtn" :data-attr="$t('neihu')">
+            <button :class="{active:neiHuShow}" @click="neiHuShowToggle(true)">{{$t("show")}}</button>
+            <button :class="{active:!neiHuShow}" @click="neiHuShowToggle(false)">{{$t("hide")}}</button>
         </div>
-        <div class="toggleBtn" data-attr="圖表呈現">
-            <button :class="{active:!stackedChart}" @click="stackedChartToggle(false)">類型數量</button>
-            <button :class="{active:stackedChart}" @click="stackedChartToggle(true)">運輸佔比</button>
+        <div class="toggleBtn" :data-attr="$t('chart')">
+            <button :class="{active:!stackedChart}" @click="stackedChartToggle(false)">{{$t("charts.columnBasic.stacked0")}}</button>
+            <button :class="{active:stackedChart}" @click="stackedChartToggle(true)">{{$t("charts.columnBasic.stacked1")}}</button>
         </div>
     </div>
     <div v-if="chartReload" class="apexChartContainer basic">
@@ -38,8 +38,8 @@ export default {
         return {
             chartReload: false,
             seriesType: {
-                '0':{index:'private_transport',name: '私人運具'},
-                '1':{index:'public_transport', name: '大眾運輸'}
+                '0':{index:'private_transport',name: this.$t("charts.columnBasic.sort0")},
+                '1':{index:'public_transport',name: this.$t("charts.columnBasic.sort1")}
             },
             sortType: '0',  
             neiHuShow: true,
@@ -84,38 +84,25 @@ export default {
                     }
                 }
             }
-            // if(this.$store.state.mobileDevice){
-            //     return {
-            //         ...Option,
-            //         dataLabels: {
-            //             enabled: false,
-            //         },
-            //         legend: {
-            //             position: 'top',
-            //             horizontalAlign: 'left'
-            //         }
-            //     }
-            // }else{
-                return {
-                    ...Option,
-                    dataLabels: {
-                        enabled: true,
-                        style: {
-                            fontSize: '8px',
-                            fontWeight: 'normal',
-                            colors: ['#666']
-                        },
-                        offsetY: -20,
-                        formatter: (val, opts) => {
-                            return (val%1 === 0)? val: `${parseFloat(val.toFixed(1))}%`
-                        },
+            return {
+                ...Option,
+                dataLabels: {
+                    enabled: true,
+                    style: {
+                        fontSize: '8px',
+                        fontWeight: 'normal',
+                        colors: ['#666']
                     },
-                    legend: {
-                        position: 'top',
-                        horizontalAlign: 'left'
-                    }
+                    offsetY: -20,
+                    formatter: (val, opts) => {
+                        return (val%1 === 0)? val: `${parseFloat(val.toFixed(1))}%`
+                    },
+                },
+                legend: {
+                    position: 'top',
+                    horizontalAlign: 'left'
                 }
-            // }
+            }
         }
     },
     methods:{
@@ -157,8 +144,8 @@ export default {
             this.chartValue = this.seriesData
             this.chartReload = true
 
-            this.$gtag.event('neihu_traffic_action', {
-                event_category: 'update_column_chart'
+            this.$gtag.event('update_column_chart', {
+                event_category: 'neihu_traffic_action'
             })
         }
     },

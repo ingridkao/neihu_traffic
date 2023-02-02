@@ -12,7 +12,6 @@
 <script>
 import { TranData, ParseRatio } from '@/assets/js/transport.js'
 // const ClearData = TranData.sort((a, b)=> b['bus_avg'] - a['bus_avg']).slice(0, 15)
-// const avg = 269.9
 const AvgSum = 8750
 const ClearData = TranData.slice(0,15).map(item => {
     return {
@@ -24,37 +23,23 @@ export default {
     data(){
         return {
             seriesData: [{
-                name: '前15熱區',
+                name: this.$t("charts.columnBasicBus.name"),
                 data: ClearData.map(item => item['ratio'])
             }],
             chartOptions: {
                 colors: ['#5b955b'],
                 title: {
-                    text: '公車通勤前15轉乘站點',
+                    text: this.$t("charts.columnBasicBus.title"),
                     margin: 0,
                     style: {
                         fontSize: '12px'
                     }
                 },
                 subtitle: {
-                    text: `樣本數量:${AvgSum}人`,
+                    text: `${this.$t("count")}:${AvgSum} ${this.$t("per")}`,
                     margin: 0,
                     offsetY: 15
                 },
-                // annotations: {
-                //     yaxis: [{
-                //         y: avg,
-                //         borderColor: '#00E396',
-                //         label: {
-                //             style: {
-                //                 fontSize: '10px',
-                //                 color: '#fff',
-                //                 background: '#567888',
-                //             },
-                //             text: `前15區平均線:${avg}`,
-                //         }
-                //     }]
-                // },
                 plotOptions: {
                     bar: {
                         horizontal: false,

@@ -17,7 +17,7 @@ export default {
 	props: {
         text: {
             type: String,
-			default: '熱門上車點'
+			default: ''
         },
         gradient: {
             type: Array,
