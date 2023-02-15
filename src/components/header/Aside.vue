@@ -141,10 +141,10 @@ export default {
         @extend %whiteCardShadow;
         @extend %contentPadding;
         @extend %absoluteLayout;
-        right: #{-$mapGifWidth};
-        width: $mapGifWidth;
+        right: #{-$mapAsideWidth - 1rem};
+        width: $mapAsideWidth;
         height: 100vh;
-        transition: right 0.5s ease;
+        transition: right 1s ease;
         padding-top: 4rem;
         &.active{
             right: 0;
@@ -155,7 +155,9 @@ export default {
         ul{
             list-style-type: none;
             li{
-                padding: .5rem 1rem;
+                margin: .5rem 0 2rem 1rem;
+                padding-left: 1rem;
+                line-height: 1.8;
                 color: $blackColor;
                 cursor: pointer;
                 &.active{

@@ -57,7 +57,7 @@
 	background-color: transparent;
 	box-sizing: border-box;
 	padding: 3rem;
-	@media screen and (max-width:501px){
+	@media screen and (max-width:1025px){
         padding: 2rem;
     }
 	h1, h2, h3{
@@ -90,9 +90,14 @@
 	&.en-US{
 		width: $mapAsideWidth*1.6;
 	}
-    @media screen and (max-width:501px){
+    @media screen and (max-width:1025px){
         width: 90% !important;
     }
+	.annotationDropdown{
+		position: absolute;
+		top: 12rem;
+		width: 100%;
+	}
     height: auto;
 	@extend %contentPadding;
     @extend %whiteCardShadow;

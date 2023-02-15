@@ -19,7 +19,7 @@ $contentLimit: 48rem;
 
 %contentPadding {
     padding: 2rem;
-    @media screen and (max-width:501px){
+    @media screen and (max-width:1025px){
         padding: 1rem;
     }
 }
@@ -74,8 +74,6 @@ $contentLimit: 48rem;
 
 $mapAsideWidth : 26rem;
 $mapEnAsideWidth : 28rem;
-
-$mapGifWidth: 20rem;
 
 @mixin scrollbar_style {
     scrollbar-face-color: rgba($grayColor,0.1);

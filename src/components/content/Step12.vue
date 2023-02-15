@@ -21,6 +21,7 @@
         </div>
         <div class="bottom right content">
             <div
+                v-if="!mobileDevice || article == 1"
                 data-aos="fade-left"
                 data-aos-duration="800"
             >
@@ -81,17 +82,19 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+.imgBox{
     .bgBlock{
         &.bg1{ background-image: url('../../assets/img/zoom/Youbike-01.jpeg'); }
     }
-    .cardBox{
-        pointer-events: none;
-        .middle2{
-            @media screen and (max-width:501px){
-                top: auto;
-                bottom: 1rem;
-            }
-        }
+    @media screen and (max-width:1025px){
+        height: 100%;
     }
+}
+.cardBox{
+    pointer-events: none;
+    @media screen and (max-width:1025px){
+        height: 100%;
+    }
+}
 </style>
 
