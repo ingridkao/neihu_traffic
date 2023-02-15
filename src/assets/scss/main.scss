@@ -56,7 +56,6 @@ $apexChartHeight: 24rem;
         }
         &.left{left: -.5rem;}
         &.right{right: 3rem;}
-        &.middle{top:  40vh;} 
         &.middle2{bottom: 0;} 
         &.middle3{bottom: #{$apexChartHeight + 1rem};} 
         &.bottom{bottom:  2.5vh;} 
@@ -64,10 +63,10 @@ $apexChartHeight: 24rem;
             top: 10rem;
             left: 1rem;
         }
-        @media screen and (max-width:501px){
+        @media screen and (max-width:1025px){
             &.top{top: 2.5rem;}
             &.right{right: 1rem;}
-            &.middle,&.middle3, &.bottom{top:auto; bottom: 3rem;}
+            &.middle3,&.bottom{bottom: 0.5rem;} 
         }
     }
     .title, 
@@ -76,8 +75,8 @@ $apexChartHeight: 24rem;
     }
     .title{
         padding: .5rem 3rem;
-        @media screen and (max-width:501px){
-            padding: .5rem 2rem;
+        @media screen and (max-width:1025px){
+            padding: .5rem 0 .5rem 1.5rem;
         }
         h6{font-size: 1.2rem;margin-bottom: 0;font-weight: bold;}
         p{font-size: 0.8rem;margin-bottom: 0;}
@@ -147,7 +146,7 @@ $carouselTabBtnHeight: 3rem;
                 left: auto;
                 width: 12rem;
                 height: 2rem;
-                @media screen and (max-width:501px){
+                @media screen and (max-width:1025px){
                     top: -4rem;
                 }
             }
@@ -184,16 +183,19 @@ $carouselTabBtnHeight: 3rem;
         text-align: center;
         height: 1rem;
         line-height: 1.1;
-        padding: 0 1rem;
+        margin: 0 .5rem;
         color: $whiteColor;
     } 
 }
 
 .cardBox .mapLabel{
+    background-color: rgba(255,255,255, 0.7);
     position: absolute;
     top: 8rem;
     left: 1rem;
-    background-color: rgba(255,255,255, 0.7);
+    @media screen and (max-width:1025px){
+        display: none;
+    }
     .chartLabel{
         justify-content: flex-start;
         margin-bottom: .5rem;
@@ -260,7 +262,7 @@ $carouselTabBtnHeight: 3rem;
             } 
         }
     }
-    @media screen and (max-width:501px){
+    @media screen and (max-width:1025px){
         width: 100%;
         svg{
             display: none;
@@ -283,12 +285,12 @@ $carouselTabBtnHeight: 3rem;
             height: 2rem;
         }
     }
-    @media screen and (max-width:501px){
+    @media screen and (max-width:1025px){
         flex-direction: column;
         margin: 1rem;
         >div{
             &::before{
-                width: 6rem;
+                width: 4rem;
             }
             margin-bottom: .5rem;
         }

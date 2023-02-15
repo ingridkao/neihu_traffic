@@ -87,7 +87,7 @@ export default {
     display: inline-flex;
     padding-top: 1rem;
     padding-left: 3rem;
-    @media screen and (max-width:501px){ // For mobile
+    @media screen and (max-width:1025px){ // For mobile
         flex-direction: column;
         width: 100%;
         padding-top: 0;

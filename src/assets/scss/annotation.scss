@@ -1,16 +1,21 @@
 @import '@/assets/scss/variables.scss';
 $annotationColor: lighten($textSubColor, 30);
 .annotationBtn{
-    display: inline-block;
-    padding-right: .25rem;
-    font-size: 1rem;
+    display: contents;
     text-align: left;
-    text-decoration: underline;
+    line-height: 1.6;
+    font-size: 1rem;
     cursor: pointer;
+    &::before,
+    &::after{
+        content: '';
+        width: 0.25rem;
+        display: inline-block;
+    }
     span{
-        color: $annotationColor;
-        font-size: 0.6rem;
+        color: lighten($annotationColor, 10);
         pointer-events: none;
+        font-size: 0.6rem;
     }
 }
 .annotationDropdown{
@@ -20,7 +25,7 @@ $annotationColor: lighten($textSubColor, 30);
     opacity: 0;
     transition: opacity 1s;
     z-index: 1;
-    @media screen and (max-width:501px){ // For mobile
+    @media screen and (max-width:1025px){ // For mobile
         display: none;
     }
     &::before{
@@ -55,7 +60,7 @@ $annotationColor: lighten($textSubColor, 30);
         opacity: 1;
         border-radius: .25rem;
         background-color: $whiteColor;
-        @media screen and (max-width:501px){ // For mobile
+        @media screen and (max-width:1025px){ // For mobile
             display: block;
         }
         .annotationContent{
@@ -68,7 +73,7 @@ $annotationColor: lighten($textSubColor, 30);
         width: 100%;
         top: 100%;
         z-index: 1;
-        @media screen and (max-width:501px){ // For mobile
+        @media screen and (max-width:1025px){ // For mobile
 			width: calc(100% + 2rem);
 			left: -1rem;
             padding: 0 1rem !important;
@@ -93,7 +98,7 @@ $annotationColor: lighten($textSubColor, 30);
         bottom: 0;
         width: 15rem;
         right: -16rem;
-        @media screen and (max-width:501px){
+        @media screen and (max-width:1025px){
             position: relative;
             width: 100%;
             left: 0;
@@ -104,7 +109,7 @@ $annotationColor: lighten($textSubColor, 30);
     &.rowLayout{
         width: 23rem;
         right: -24rem;
-        @media screen and (max-width:501px){
+        @media screen and (max-width:1025px){
             position: relative;
             width: 100%;
             left: 0;

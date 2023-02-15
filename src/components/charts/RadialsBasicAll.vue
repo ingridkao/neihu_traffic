@@ -10,15 +10,13 @@
 </template>
 
 <script>
-const chartDatas = [68.2, 19.8, 10.2, 1.9]
-// const chartLabels = ['非大眾運輸','公車', '捷運', 'Youbike']
-const chartColors = ['#fb6b6d','#73ba8c','#a0cfb2', '#c1ddca']
 export default {
     data(){
         return {
-            series: chartDatas,
+            series: [68.2, 19.8, 10.2, 1.9],
             chartOptions: {
-                colors: chartColors,
+                labels: this.$i18n.locale === 'zh-TW'?['非大眾運輸', '公車', '捷運', 'Youbike']: ['Non-Public', 'Bus', 'MRT', 'Youbike'],
+                colors: ['#fb6b6d','#73ba8c','#a0cfb2', '#c1ddca'],
                 plotOptions: {
                     radialBar: {
                         inverseOrder: true,
@@ -51,7 +49,6 @@ export default {
                         }
                     }
                 },
-                labels: this.$i18n.locale === 'zh-TW'?['非大眾運輸', '公車', '捷運', 'Youbike']: ['Non-Public', 'Bus', 'MRT', 'Youbike'],
                 legend: {
                     show: true,
                     inverseOrder: true,
@@ -93,13 +90,11 @@ export default {
 
 <style lang="scss">
 @import '@/assets/scss/variables.scss';
-.apexChartContainer{
-    &.radialsAll{
-        .apexcharts-legend-series{
-            height: auto;
-            line-height: .8rem;
-            margin-bottom: 0 !important;
-        }
+.apexChartContainer.radialsAll{
+    .apexcharts-legend-series{
+        height: auto;
+        line-height: .8rem;
+        margin-bottom: 0 !important;
     }
 }
 </style>

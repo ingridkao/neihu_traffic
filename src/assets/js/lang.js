@@ -4,7 +4,7 @@ export const zh = {
     langTranslate: "切換成英文 | Translate to English",
     mainTitle:"從數據看內湖科學園區通勤模式",
     mainTitle2:"人、車如何流進內湖？",
-    subTitle:"Exploring the Issue of Neihu Traffic through Statistics",
+    subTitle:"Decoding the Commute Pattern of Neihu Tech Park",
     pageDesc:"運用信令及票證數據，研究內湖科技園學整體的通勤狀態，並從分析洞見提出政策建議。",
     suggest:"建議使用電腦來取得理想的地圖互動效果",
     linkTo: "前往外部連結",
@@ -225,16 +225,16 @@ export const en = {
     TUIC:"TUIC",
     langZh:"中文",
     langTranslate: "Translate to Chinese | 切換成中文",
-    mainTitle:"Exploring the Issue of Neihu Traffic through Statistics",
-    mainTitle2:"Flow of Crowd and Traffic into Neihu",
+    mainTitle:"",
+    mainTitle2:"Decoding the Commute Pattern of Neihu Tech Park",
     subTitle:"",
-    pageDesc:"Using cellphone-based data and ticket data to analyize the Exploring the Issue of Neihu Traffic through Statistics and derive insights to facilitate policy-making.",
+    pageDesc:"Using cellphone-based data and ticket data to analyize the Decoding the Commute Pattern of Neihu Tech Park and derive insights to facilitate policy-making.",
     suggest:"Recommend to use desktop browser for better viewing experience.",
     linkTo: "Go to external links",
 
     all: "All",
-    show: "Show",
-    hide: "Hide",
+    show: "Include",
+    hide: "Exclude",
     count: "Number of samples",
     per: "pl",
     accountAll: "Total",
@@ -243,7 +243,7 @@ export const en = {
 
     telecom: "Telecom data",
     popularPick: "Bus usage hot spots",
-    sort: "Sort",
+    sort: "Sort by",
     neihu: "Neihu",
     chart: "Chart",
     nTw: "North Taiwan",
@@ -274,7 +274,7 @@ export const en = {
             title: "Neihu Traffic Improvement Project: Learning More about the Greater Neihu Park",
             p1:"According to ",
             annotationTrigger1: "traffic flow statistics from 2019",
-            p2: ", the hotspots of traffic congestions in Neihu are mostly located within the “Greater Neihu Technology Park” (hereafter referred to as “GNTP”) which comprises the Neihu Technology Park and the Dawan South Section Industrial Zone. The GNTP takes up roughly 2.8 km2, where the majority of properties are designated for industrial-use designation and some for residential-use.",
+            p2: ", the hotspots of traffic congestions in Neihu are mostly located within the “Greater Neihu Technology Park” (hereafter referred to as “GNTP”) which comprises the Neihu Technology Park and the Dawan South Section Industrial Zone. The GNTP takes up roughly 2.8 km², where the majority of properties are designated for industrial-use designation and some for residential-use.",
             p3: "Major thoroughfares in the surroundings of GNTP serve the needs of those working there, but they also carry the burden of accommodating traffic traversing the neighborhood. Based on",
             annotationTrigger2: "the analysis commissioned by the Department of Transportation",
             p4: ", 42.5% of the vehicle flow from neighboring areas into GNTP during commuting hours are heading to destinations inside the park, while 57.5% are ones passing through the park to reach other destinations.",
@@ -288,7 +288,7 @@ export const en = {
             p3: "In addition, when ",
             annotationTrigger2: "compared to the built area ",
             annotationContent2: "Built area refers to zoned urban lands that are non-agricultural use, often equipped with urban infrastructure including transportation, drainage, power grids, etc.",
-            p4: "of Taipei City, the working population density of GNTP is approximately 53,400 people/square kilometer – which is roughly 2.5 times the working population of the former. It is conceivable that with future development of the Dawan South Section Industrial Zone attracting more companies into the area, there will be a significant increase in meeting the needs of commuters.",
+            p4: "of Taipei City, the working population density of GNTP is approximately 53,400 people/km² – which is roughly 2.5 times the working population of the former. It is conceivable that with future development of the Dawan South Section Industrial Zone attracting more companies into the area, there will be a significant increase in meeting the needs of commuters.",
         },
         step5: {
             title: "Where Do the Workers Come from? Mostly from Shilin, Songshan, and Xizhi",
@@ -382,10 +382,10 @@ export const en = {
     },
     charts: {
         columnBasic: {
-            sort0: "Private vehicles ownership",
-            sort1: "Public transit provision",
-            stacked0: "Types",
-            stacked1: "Transport ratio"
+            sort0: "Private vehicles or on-foot",
+            sort1: "Public transit",
+            stacked0: "Counts",
+            stacked1: "Percentage"
         },
         columnBasicBike: {
             name: "Top 10 hot spots",

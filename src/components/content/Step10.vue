@@ -108,7 +108,7 @@ export default {
         &.mrtbg5{ 
             background-image: url('../../assets/img/zoom/MRT-05.jpg'); 
             &.zoom{
-                @media screen and (min-width:501px){ // For desktop
+                @media screen and (min-width:1024px){ // For desktop
                     animation-name:image;
                     animation-duration: 3s;
                     animation-fill-mode: both;
@@ -116,10 +116,17 @@ export default {
             }
         }
     }
+    @media screen and (max-width:1025px){
+        height: 100%;
+    }
 }
 .cardBox{
     pointer-events: none;
+    @media screen and (max-width:1025px){
+        height: 100%;
+    }
 }
+
 @keyframes image{
 	0%{
         background-size: cover;

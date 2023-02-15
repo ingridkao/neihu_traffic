@@ -28,13 +28,15 @@ main{
 			font-size: 1.1rem;
 			margin-bottom: 1.5rem;
 		}
-		p,
-		.annotationBtn{
+		p{
 			font-size: 0.9rem;
 			line-height: 1.6;
 		}
 		.imgContainer{
 			width: calc(100% - $mapEnAsideWidth);
+			@media screen and (max-width:1025px){
+				width: 100%;
+			}
 		}
 		.step.rowBox .articalBox{
 			width: $mapEnAsideWidth;
@@ -50,7 +52,7 @@ main{
 		top: 0;
 		right: 0;
 		z-index: 2;
-		@media screen and (max-width:501px){
+		@media screen and (max-width:1025px){
 			width: 100vw;
 			pointer-events: none;
 		}
@@ -65,27 +67,25 @@ main{
 			position: relative;
 			width: 100%;
 			text-align: left;
+			
 		}
-		h6{
+		h6:not(:last-child),
+		p:not(:last-child){
 			margin-bottom: 1rem;
-		}
-		p{
-			font-size: .8rem;
-			margin-bottom: 1rem;
-			@media screen and (max-width:501px){
-				margin-bottom: 0.5rem;
+			@media screen and (max-width:1025px){
+				margin-bottom: 0.75rem;
 			}
 		}
 		&#chapter4{
 			padding: 7.5rem 2rem;
-			@media screen and (max-width:501px){
+			@media screen and (max-width:1025px){
 				padding: 2.5rem 1rem;
 			}
 		}
 		&.rowBox{
 			@extend %horizontalCenter;
 			height: 57.5rem;
-			@media screen and (max-width:501px){
+			@media screen and (max-width:1025px){
 				display: block;
 				background-color: transparent;
 				z-index: 2;
@@ -99,11 +99,11 @@ main{
 				width: $mapAsideWidth;
 				padding-top: 4rem;
 				padding-bottom: 4rem;
-				@media screen and (max-width:501px){
+				@media screen and (max-width:1025px){
 					position: absolute;
 					padding-top: 1rem;
 					padding-bottom: 1rem;
-					width: 100%;
+					width: 100% !important;
 					top: 0;
 					z-index: 10;
 					background-color: rgba($whiteColor, 0.9);
@@ -117,7 +117,7 @@ main{
 				.bgBlock{
 					height: 100vh;
 				}
-				@media screen and (max-width:501px){
+				@media screen and (max-width:1025px){
 					position: absolute;
 					width: 100vw !important;
 					z-index: 0;
@@ -126,14 +126,14 @@ main{
 		}
 		&.mapContainer{
 			@extend %horizontalCenter;
-			@media screen and (max-width:501px){
+			@media screen and (max-width:1025px){
 				display: block;
 			}
 			aside{
 				flex-basis: $mapAsideWidth;
 				padding: 1rem;
 				height: calc(100vh - 2rem);
-				@media screen and (max-width:501px){
+				@media screen and (max-width:1025px){
 					height: auto;
 				}
 				.chartContainer{
@@ -144,7 +144,7 @@ main{
 					width: 100%;
 					min-height: 13rem;
 					margin-bottom: 1rem;
-					@media screen and (max-width:501px){
+					@media screen and (max-width:1025px){
 						min-height: auto;
 						margin-bottom: 2rem;
 					}
@@ -167,13 +167,13 @@ main{
 					align-items: flex-start;
 					flex-wrap: wrap;
 					max-width: none;
-					@media screen and (max-width:501px){
+					@media screen and (max-width:1025px){
 						flex-direction: column;
 					}
 					>div{
 						flex-basis: 50%;
 						max-width: $contentLimit;
-						@media screen and (max-width:501px){
+						@media screen and (max-width:1025px){
 							flex-basis: auto;
 						}
 					}
@@ -184,7 +184,7 @@ main{
 			&[data-step='9']{
 				//1200px*6
 				height: 7200px;
-				@media screen and (max-width:501px){
+				@media screen and (max-width:1025px){
 					//800px*6
 					height: 4800px;
 				}
@@ -193,7 +193,7 @@ main{
 			&[data-step='11']{
 				//1200px*2
 				height: 2400px;
-				@media screen and (max-width:501px){
+				@media screen and (max-width:1025px){
 					//800px*2
 					height: 1600px;
 				}
@@ -215,14 +215,17 @@ main{
 		&.fullchartContainer{
 			@extend %contentPadding;
 			height: 62.5rem;
-			@media screen and (max-width:501px){
+			@media screen and (max-width:1025px){
 				height: 150%;
 			}
 			&#chapter5{
 				height: 600%;
-				@media screen and (max-width:501px){
+				@media screen and (max-width:1025px){
 					height: 250%;
 				}
+			}
+			.imgBox{
+				margin-bottom: 1rem;
 			}
 			h6{
 				flex-basis: 50rem;
@@ -236,7 +239,7 @@ main{
 
 .mapLabelBox{
 	position: absolute;
-	@media screen and (max-width:501px){
+	@media screen and (max-width:1025px){
 		display: none;
 	}
 	>div{

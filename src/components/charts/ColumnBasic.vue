@@ -164,7 +164,7 @@ export default {
     width: calc(100vw - 4rem);
     overflow-x: auto;
     overflow-y: hidden;
-    @media screen and (max-width:501px){
+    @media screen and (max-width:1025px){
         height: 55vh;
     }
 }

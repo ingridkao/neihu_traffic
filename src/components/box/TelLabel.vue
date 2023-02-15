@@ -2,7 +2,7 @@
     <div class="mapLabelBox">
         <div>
             <h6>信令推估人口</h6>
-            <p>Telecom Population</p>
+            <p>Telecom Estimated Population</p>
             <div class="patio">0%</div>
             <div class="gradient">
                 <div 

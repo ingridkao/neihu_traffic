@@ -3,7 +3,7 @@
 
 html{
     font-size:16px;
-    @media screen and (max-width:501px){ // For mobile
+    @media screen and (max-width:1025px){ // For mobile
         font-size: 14px;
     }
     @media all and (min-width: 1920px){ //For dashboard

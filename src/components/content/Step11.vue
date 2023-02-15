@@ -28,6 +28,7 @@
         </div>
         <div class="bottom right content">
             <div
+                v-if="!mobileDevice || article == 1"
                 data-aos="fade-left"
                 data-aos-duration="800"
             >
@@ -88,12 +89,20 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+.imgBox{
+    @media screen and (max-width:1025px){
+        height: 100%;
+    }
     .bgBlock{
         &.busbg1{ background-image: url('../../assets/img/zoom/Bus-01.jpeg');}
         &.busbg2{ background-image: url('../../assets/img/zoom/Bus-02.jpeg');}
     }
-    .cardBox{
-        pointer-events: none;
+}
+.cardBox{
+    pointer-events: none;
+    @media screen and (max-width:1025px){
+        height: 100%;
     }
+}
 </style>
 
