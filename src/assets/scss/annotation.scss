@@ -33,13 +33,15 @@ $annotationColor: lighten($textSubColor, 30);
         z-index: 1;
     }
     .annotationContent{
-        max-width: $contentLimit;
+        position: relative;
         visibility: hidden;
         transition: visibility 1s 0.5s;
         color: $annotationColor;
-		margin-bottom: 0 !important;
-        padding: 0.25rem;
-        background-color: $whiteColor;
+        background-color: lighten($whiteColor, 5);
+        padding: 0.5rem;
+        p{
+            max-width: $contentLimit;
+        }
     }
     .annotationImage{
         position: absolute;
@@ -89,8 +91,19 @@ $annotationColor: lighten($textSubColor, 30);
         position: absolute;
         z-index: 1;
         bottom: 0;
-        width: 16rem;
+        width: 15rem;
         right: -16rem;
+        @media screen and (max-width:501px){
+            position: relative;
+            width: 100%;
+            left: 0;
+        }
+    }
+}
+.langEn .annotationDropdown{
+    &.rowLayout{
+        width: 23rem;
+        right: -24rem;
         @media screen and (max-width:501px){
             position: relative;
             width: 100%;

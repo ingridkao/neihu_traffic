@@ -18,7 +18,7 @@
             <p>{{$t("article.step10.supTitle")}}</p>
             <div class="mapLabel">
                 <ChartLabel :text="$t('popularPick')"/>
-                <MapLabel v-if="article >= 5" :text="$t('article.step10.annotationTrigger1')" :borderWidth="2" :borderColor="'#c2272d'" :borderStyle="'dotted'"/>
+                <MapLabel v-if="article >= 5" :text="$t('article.step10.mapLabel')" :borderWidth="2" :borderColor="'#c2272d'" :borderStyle="'dotted'"/>
             </div>
         </div>
         <div class="middle3 right content">

@@ -10,7 +10,6 @@
 </template>
 
 <script>
-// const chartLabels = ['公車', '捷運', 'Youbike']
 const chartDatas = [62, 32, 6]
 const chartColors = ['#73ba8c','#a0cfb2', '#c1ddca']
 export default {
@@ -18,6 +17,7 @@ export default {
         return {
             series: chartDatas,
             chartOptions: {
+                labels: this.$i18n.locale === 'zh-TW'?['公車', '捷運', 'Youbike']: ['Bus', 'MRT', 'Youbike'],
                 colors: chartColors,
                 plotOptions: {
                     radialBar: {
@@ -51,7 +51,6 @@ export default {
                         }
                     }
                 },
-                labels: this.$i18n.locale === 'zh-TW'?['公車', '捷運', 'Youbike']: ['Bus', 'MRT', 'Youbike'],
                 legend: {
                     show: true,
                     inverseOrder: true,
