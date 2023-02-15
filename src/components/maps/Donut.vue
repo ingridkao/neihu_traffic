@@ -11,8 +11,6 @@
 </template>
 
 <script>
-const chartLabels =  ['公車', '捷運', 'Youbike', '私人運具']
-const chartColors = ['#6b9a80','#72be95', '#8bc08b', 'rgb(244, 70, 70)']
 export default {
     props: {
         chartData: {
@@ -23,8 +21,8 @@ export default {
     data(){
         return {
             chartOptions: {
-                colors: chartColors,
-                labels: chartLabels,
+                colors: ['#6b9a80','#72be95', '#8bc08b', '#f44646'],
+                labels: this.$i18n.locale === 'zh-TW'?['公車', '捷運', 'Youbike','私人運具']: ['Bus', 'MRT', 'Youbike', 'Private'],
                 legend: {
                     show: false,
                     position: 'right',
@@ -37,10 +35,9 @@ export default {
                     enabled: true,
                     formatter: (val, opts) => {
                         if(val <= 5)return
-                        return `
-                            ${chartLabels[opts.seriesIndex]}
-                            ${parseFloat(val.toFixed(1))}%
-                        `
+                        const label = this.chartOptions.labels[opts.seriesIndex]
+                        const Ratio = `${parseFloat(val.toFixed(1))}%`
+                        return `${label} ${Ratio}`
                     },
                     style: {
                         colors: ['#fff'],

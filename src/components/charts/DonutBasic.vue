@@ -10,7 +10,6 @@
 </template>
 
 <script>
-// const chartLabels = ['A區', 'B區', 'C區']
 const chartDatas = [59, 16, 25]
 const chartColors = ['rgb(203, 15, 15)','rgb(229, 135, 135)', 'rgb(238, 180, 180)']
 export default {

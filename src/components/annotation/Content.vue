@@ -4,7 +4,9 @@
         fix,
         {open: dropdown},
     ]" >
-        <p class="annotationContent" v-html="content"/>
+        <div class="annotationContent" >
+            <p v-html="content"/>
+        </div>
         <img 
             v-if="contentImg !== ''"
             class="annotationImage"

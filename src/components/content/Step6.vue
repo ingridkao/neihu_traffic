@@ -64,9 +64,9 @@ export default {
 		return {
 			tab: [
 				{index:'total', name: this.$t('charts.columnBasic.sort1')},
-				{index:'bus', name: this.$t('charts.radialsBasic.label[0]')},
-				{index:'mrt', name: this.$t('charts.radialsBasic.label[1]')},
-				{index:'bike', name: this.$t('charts.radialsBasic.label[2]')}
+				{index:'bus', name: this.$t('ransportTypes[0]')},
+				{index:'mrt', name: this.$t('ransportTypes[1]')},
+				{index:'bike', name: this.$t('ransportTypes[2]')}
 			],
 			currentTab: "total",
             annotationToggle: false

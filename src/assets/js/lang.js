@@ -17,8 +17,8 @@ export const zh = {
     accountAll: "總佔",
     accountFor: "佔比",
     note: "註",
-    telecom: "信令資料",
 
+    telecom: "信令資料",
     popularPick: "熱門上車點",
     sort: "排序大小",
     neihu: "內湖區",
@@ -74,12 +74,16 @@ export const zh = {
             annotationTrigger1: "A、B、C三區域",
             p3: "，可以更詳細的讀出，不同居住地的工作人口要往大內科的北端還是南端上班。由於A區鄰近文湖線，因此工作人口涵蓋雙北甚至到基隆，B、C區工作人口較多來自內湖及鄰近行政區。",
             tab: ["全區", "A區", "B區", "C區"],
-            annotationContent1: ["距離捷運文湖線 500 公尺內", "距離捷運文湖線 500 公尺外", "大安南段工業區"]
+            annotationContent1: [
+                "距離捷運文湖線 500 公尺內",
+                "距離捷運文湖線 500 公尺外",
+                "大安南段工業區"
+            ]
         },
         step6: {
             title: "大內科通勤族，約有3成選擇大眾運輸",
-            p1: "捷運、公車為台北市重要的大眾運輸系統。我們",
-            annotationTrigger1: "使用悠遊卡票證資料進行空間分析",
+            p1: "捷運、公車為台北市重要的大眾運輸系統。我們使用",
+            annotationTrigger1: "悠遊卡票證資料進行空間分析",
             p2: "後發現，在上班時段透過捷運、公車、或是 YouBike 進入大內科的平均人數為 42,500 人。與總工作人口 133,500人相比，可知僅約三成的通勤族選擇大眾運輸上下班，另外七成的通勤族偏好私人運具。（此方法可能忽略少部分現金購票的大眾運輸使用者，但仍可供大概的估算。）",
             annotationContent1: "步驟一、篩選出位於大內科範圍內的捷運、公車及YouBike 站點。<br>步驟二、統計各站點在上班時段的上車（騎乘）起點。<br>步驟三、繪製各站點的服務半徑，依照最小統計單元的人口密度，將人數分配至 250m*250m 的網格。以便依照顏色深淺區分使用量。",
         },
@@ -101,6 +105,7 @@ export const zh = {
         step10:{
             title: "捷運的通勤熱區在哪",
             supTitle: "- 上下班時段的起訖熱門區域 -",
+            mapLabel: "捷運南港展覽館範圍",
             list: [
                 "主要的捷運通勤族皆來自文湖線站點周邊。",
                 "在轉乘的部分最多的人次來自板南線、其次為中和新蘆線與松山新店線。",
@@ -146,7 +151,6 @@ export const zh = {
         }
     },
     box: {
-        ratio: "捷運轉乘佔比",
         speedLabel:{
             roadSpeed: "路段時速",
             filterRow: "篩選低速",
@@ -177,14 +181,12 @@ export const zh = {
         donutBasic:{
             label: ['A區', 'B區', 'C區']
         },
-        radialsBasic:{
-            label: ['公車', '捷運', 'Youbike']
-        },
         radialsAll:{
             total: "工作人口數量"
         }
     },
-    types: ['公車', '捷運', 'Youbike'],
+    ransportTypes: ['公車', '捷運', 'Youbike'],
+    types2: ['公車', '捷運', 'Youbike', '私人運具'],
     footer:{
         title1: "參考資料：",
         linkHost1: "台北投資服務辦公室",
@@ -240,7 +242,7 @@ export const en = {
     note: "note",
 
     telecom: "Telecom data",
-    popularPick: "Popular pick-up",
+    popularPick: "Bus usage hot spots",
     sort: "Sort",
     neihu: "Neihu",
     chart: "Chart",
@@ -255,17 +257,17 @@ export const en = {
             p3: "In 2021, the Taipei Urban Intelligence Center (TUIC) worked with the Department of Transportation to study how crowds and traffic flow into Neihu District from a comprehensive perspective. It also incorporated surrounding districts such as Dazhi, Shilin, Songshan, and Xizhi into the study to provide planners with different lines of thoughts.",
             annotationContent: [
                 {
-                    title: "Short terms",
-                    text: "針對交通阻塞要點，進行29項小工程改造。例如：拆除分隔島、調整匝道、縮短捷運文湖線間隔班次、增設快速公車等，預估可以節省5%至19%的行車時間。",
+                    title: "Short-term plan",
+                    text: "29 local improvement constructions for traffic congestion spots such as removing separation islands, shortening MRT Wenhu Line intervals, adding express buses, etc., to reduce 5% to 9% traffic time.",
                 },
                 {
-                    title: "Medium terms",
-                    text: "道路拓寬與規劃，例如：將港墘路拓寬、成功橋再拓寬，以及瑞湖街改成單向車道等。",
+                    title: "Mid-term plan",
+                    text: "Road widening and planning, such as widening Gangqian Road and Chenggong Bridge, and turning Ruihu St. into one-way lane, etc.",
                 },
                 {
-                    title: "Long terms",
-                    text: "打造捷運「環狀線」運輸系統，連接文湖、松山、板南、信義線的東側南北向軌道。在住宅方面，計畫建造優先出租給內湖上班族的社會住宅。",
-                },
+                    title: "Long-term plan",
+                    text: "Introduce MRT ‘Ring Line’ to connect Wenhu, Songshan, Bannan, and Xinyi Lines. As for housing, affordable housing units are planned to preferably be leased to workers in Neihu Park.",
+                }
             ]
         },
         step2: {
@@ -281,11 +283,11 @@ export const en = {
         step4: {
             title: "Over 130,000 Workers, Mostly Commuting from Outside the Tech Park",
             p1: "This study utilizes ",
-            annotationContent1: "電信業者透過手機訊號，推估空間範圍內的人口變化。這能幫助我們更精確掌握如上下班通勤的實際流動、居住與就業地分佈等資訊。",
+            annotationContent1: "Telecom operators estimate demographic changes via cell phone-based signals. This allows us to understand the pattern of commuters, including their flow, residential and working areas.",
             p2: "to estimate the population characteristics of GNTP. There are a total of 133,500 working at the GNTP. From the graph to the right, we can tell that the majority of the GNTP consists of workplaces and offices, with relatively few properties that are residential mix-uses. The majority of workers have to travel to their work at the tech park, requiring relatively long-distance commutes.",
             p3: "In addition, when ",
             annotationTrigger2: "compared to the built area ",
-            annotationContent2: "指市行政區範圍內經過徵用的土地和實際建設發展起來的非農業生產建設地段，它包括市區集中連片的部分以及分散在近郊區與城市有著密切聯繫，具有基本完善的市政公用設施的城市建設用地（如機場、鐵路編組站、污水處理廠、通訊電台等）。",
+            annotationContent2: "Built area refers to zoned urban lands that are non-agricultural use, often equipped with urban infrastructure including transportation, drainage, power grids, etc.",
             p4: "of Taipei City, the working population density of GNTP is approximately 53,400 people/square kilometer – which is roughly 2.5 times the working population of the former. It is conceivable that with future development of the Dawan South Section Industrial Zone attracting more companies into the area, there will be a significant increase in meeting the needs of commuters.",
         },
         step5: {
@@ -295,22 +297,26 @@ export const en = {
             annotationTrigger1: "zones A, B and C",
             p3: "based on the distance to the MRT stations, we can acquire more detailed readings on where the working population living at different places need to head for their workplace in either northern Neihu or southern Neihu. As zone A is located right next to the Wenhu Line, the working population hail from area spanning both Taipei and New Taipei – even as far as Keelung. For zones B and C, the majority of the working populations here are either Neihu locals or from neighboring districts. ",
             tab: ["All", "Zones A", "Zones B", "Zones C"],
-            annotationContent1: ["距離捷運文湖線 500 公尺內", "距離捷運文湖線 500 公尺外", "大安南段工業區"]
+            annotationContent1: [
+                "Within 500-meter radius of Wenhu Line stations", 
+                "Beyond 500-meter radius of Wenhu Line stations",
+                "Da-an south part industrial area"
+            ]
         },
         step6: {
-            title: "大內科通勤族，約有3成選擇大眾運輸",
-            p1: "捷運、公車為台北市重要的大眾運輸系統。我們",
-            annotationTrigger1: "使用悠遊卡票證資料進行空間分析",
-            p2: "後發現，在上班時段透過捷運、公車、或是 YouBike 進入大內科的平均人數為 42,500 人。與總工作人口 133,500人相比，可知僅約三成的通勤族選擇大眾運輸上下班，另外七成的通勤族偏好私人運具。（此方法可能忽略少部分現金購票的大眾運輸使用者，但仍可供大概的估算。）",
-            annotationContent1: "步驟一、篩選出位於大內科範圍內的捷運、公車及YouBike 站點。<br>步驟二、統計各站點在上班時段的上車（騎乘）起點。<br>步驟三、繪製各站點的服務半徑，依照最小統計單元的人口密度，將人數分配至 250m*250m 的網格。以便依照顏色深淺區分使用量。",
+            title: "There Are About 30% of Neihu Tech Park Commuters Use Public Transit",
+            p1: "MRT and buses are the most important public transit systems in Taipei. We used",
+            annotationTrigger1: "Easy Card transaction data and geo-spatial analytics",
+            p2: "to understand that there are about 42.5 thousand passengers taking MRT, buses, or YouBikes to work during morning peak hours. Compared to the total workers of 133.5 thousand, the public tranist utilization rate is merely 30% whereas 70% of the total workers took private vehicles.",
+            annotationContent1: "Step 1: Isolate MRT, bus, YouBike stations within Neihu Tech Park region.<br>Step 2: Summarize the origins of the trips arriving to the stations.<br>Step 3: Define service area for the origin stations, and redistribute the passenger numbers to the 250 by 250 meter spatial grid proportionally to local census population density.",
         },
         step7: {
             title: "Commuters from Which Areas Utilize the Least Amount of Public Transportation?",
             p1: "To better understand where GNTP workers live and how it relates to their utilization rate of public transportation, we isolated the trips arriving at the MRT stations, bus stations, and YouBike stations within GNTP and categorize them based on passengers’ trip origins. The data suggested that out of the 58,742 employees living in Neihu, only 20% use public transportation, and over 80% ",
             annotationTrigger1: "use private vehicles (car, motorcycle, or walking)",
             p2: "for their commute. Furthermore, those who commute from Xizhi, Shilin, Beitou, and Wenshan districts also show a preference for private vehicles.",
-            p3: "透過下列的統計圖表，可以檢視不同行政區使用私人運具與大眾運輸的數量以及占比，對於私人運具使用人數及比例高的行政區，即是需要先關注的區域。",
-            annotationContent1: "私人運具通勤工作人口：來源地總工作人口減去來源地大眾運輸通勤工作人口，此方法僅為推估總體的通勤現況，若該區域的大眾運輸通勤工作人口超過來源地總工作人口，表示有使用其他通勤方式至該區域搭乘大眾運輸的行為。",
+            p3: "Throught the stats below, we can examinate the the total number and percentage of commuters using public transit versus private vehicles. For thouse area that have high private vehicle usage, shall be the area we’d need to address the most.",
+            annotationContent1: "Calculation for private vehicle commute workers:  Total working population from the origins minus public transit passengers from the origins. ",
         },
         step9:{
             title: "Understanding the Dilemma of Commuters through Analysis of Public Transportation Use",
@@ -322,19 +328,19 @@ export const en = {
         step10:{
             title: "Where are Some of the Hotspots for MRT Commuters?",
             supTitle: "Origin and Destination Hot Spots for Morning and Evening Commute",
+            mapLabel: "MRT Nangang Exhibition Hall service area",
             list: [
                 "The majority of MRT commuters can be traced to the surrounding area along MRT Wenhu Line.",
                 "The largest number of transferring commuters are coming from Bannan Line, followed by those coming from Songshan-Xindian, and Zhonghe-Luzhou Lines.",
                 "The worker population from Shilin and Beitou districts account for 9.2% of the total worker population, but only a small number of these people take the MRT to work.",
                 "Regardless of morning or after-work commutes, MRT Nangang Exhibition Hall Station has the greatest volume of passengers. We assume that those living in Xizhi and nearby districts board the MRT here to get to GNTP for work."
-            ],
-            p: "To increase the usage rate of public transportation, we need to understand what MRT, public buses, and YouBike currently have to deal with. Through the method of spatial analysis, we listed the demand hotspots for MRT, public buses, and MRT. From this, we can speculate that those taking public transit arrive in Neihu in the following order: After taking the MRT, disembark at nearby Xihu, Gangqian, or Songshan stations and either rent a YouBike or take the bus for the remainder of the trip to GNTP. Since MRT lines connecting to Xihu and Gangqian often require multiple transfers, many people were reluctant to use MRT. Commuters from Shilin station, for example, had to transfer at least three times between MRTs and buses and could be quite exhausted."
+            ]
         },
         step11:{
             title: "Where are Some of the Hotspots for Bus Commuters?",
             mapPointLabel: "O-D Hotspots",
-            mapLabel1: "捷運服務可及範圍",
-            mapLabel2: "捷運服務範圍外公車搭乘熱區",
+            mapLabel1: "MRT service area",
+            mapLabel2: "Bus hot spots outside of MRT service area",
             p1: "In addition to taking the bus directly to Neihu Technology Park, a large number of office workers take the MRT and transfer to the bus to get to their destinations. Statistics indicate that MRT Songshan Station is the most popular hub for transfers.",
             p2: "Due to the lack of MRT coverage, nearby areas such as Shilin, Neihu, Songshan, Nangang, Zhongshan, Xinzhuang, and Xizhi districts are hotspots for those commuting by bus."
         },
@@ -346,7 +352,7 @@ export const en = {
         step13:{
             title: "What are Some Opportunities to the Ease the Traffic Problems of GNTP?",
             p1: "The traffic problem of Neihu Science Park is at large degree constrained by existing urban planning and road network infrastructure, making a solution that fixes everything once-and-for-all would be rather unlikely. However, through the studies of commute patterns, we think there are some opportunities worth further exploration:",
-            p2: "若捷運環狀線完工，可服務的區域包括士林、北投、松山、信義、文山等。但佔最多內科通勤人口的內湖(37.6%)、及汐止(6.2%)的上班族沒有被環狀線服務到。",
+            p2: "Once the MRT Ring Line is complete, the service region extends to Shilin, Beitou, Songshan, Xinyi, Wenshan. However, the majority of Neihu Tech Park commuters coming from Neihu (38%) and Xizhi (6%) would not be covered.",
             p3: "Making Public Transportation More Convenient",
             list1: [
                 "Providing shuttle transfer service for demand hotspots.",
@@ -360,11 +366,11 @@ export const en = {
             ],
             p5: "Regulating or Easing the Total Volume of Traffic",
             list3: [
-                "The new global trend of “hybrid work mode” saw growing popularity in the post-pandemic era. This concept could help reduce the total traffic volume accessing Neihu Technology Park.",
-                "Some nations had rolled out designated low-carbon-emission urban zones to reduce traffic by imposing a higher cost of private driving, which could also be a possible measure."
+                "The new global trend of “hybrid work mode” saw growing popularity in the post-pandemic era. This concept could help reduce the total traffic volume accessing Neihu Technology Park.(*note: Tomtom research report)",
+                "Some nations had rolled out designated low-carbon-emission urban zones to reduce traffic by imposing a higher cost of private driving, which could also be a possible measure. (*Note: (UK) London’s ULEZ)"
             ],
-            annotationContent1: "交通數據公司TOMTOM在研究指出，各城市疫情解封總運量回到80-90%，在流量減少10-15%的情況下便能有效預防壅塞；更多細節可透過參考資料4的Tomtom研究報告連結查閱。",
-            annotationContent2: "倫敦市政府交通局設置超低碳排區，需支付12.50 英鎊的費用才能在該區域內行駛；更多細節可透過參考資料5的倫敦市政府研究報告連結查閱。"
+            annotationContent1: "The map service company TOMTOM pointed out that when the total traffic volume of cities returned to 80-90% in the post-pandemic time, traffic congestion can be effectively prevented when the flow rate is reduced by 10-15%; more details can be found in the Tomtom research report. See reference 4 for the link.",
+            annotationContent2: "London Government appointed ULEZs where drivers are required to pay £12.5 to drive within. More details can be found in the official report. See reference 5 for the link."
         },
     },
     box: {
@@ -372,7 +378,7 @@ export const en = {
             roadSpeed: "Road speed",
             filterRow: "Low",
         },
-        ratioLabel: "大於100%的情形，推測為有其他區域之通勤族至此區域轉乘。"
+        ratioLabel: "When exceeds 100%, its assummed to be including commuters transferring at the location from other region."
     },
     charts: {
         columnBasic: {
@@ -382,34 +388,32 @@ export const en = {
             stacked1: "Transport ratio"
         },
         columnBasicBike: {
-            name: "前10熱區",
-            title: "Youbike通勤前10熱區"
+            name: "Top 10 hot spots",
+            title: "Top 10 hot spots for YouBike commuters"
         },
         columnBasicBus: {
-            name: "前15熱區",
-            title: "公車通勤前15轉乘站點"
+            name: "Top 15 hot spots",
+            title: "Top 15 hot spots for bus commuters"
         },
         columnBasicMrt: {
-            name: "捷運轉乘佔比",
-            title3: "非木柵線Top20轉乘捷運站",
-            title4: "淡水信義線Top20轉乘捷運站",
-            title2: "捷運通勤前20轉乘站點",
+            name: "MRT tranfer rate",
+            title3: "Top 20 non-Mucha Line transferring stations",
+            title4: "Top 20 Xinyi Line transferring stations",
+            title2: "Top 20 MRT transferring stations",
         },
         donutBasic:{
             label: ['Zones A', 'Zones B', 'Zones C']
-        },
-        radialsBasic:{
-            label: ['Bus', 'MRT', 'Youbike']
         },
         radialsAll:{
             total: "working population"
         }
     },
+    ransportTypes: ['Bus', 'MRT', 'Youbike'],
     footer:{
         title1: "Reference Materials",
         linkHost1: "Invest Taipei Office",
-        linkTitle1: "大內湖科技園區",
-        linkHost2: "中華顧問工程司、中華民國管理科學學會",
+        linkTitle1: "The Greater Neihu Tech Park",
+        linkHost2: "China Engineering Consultants, Inc., Chinese Management Association.",
         linkTitle2: "2019 SmartCity Taiwan Forum",
         linkHost3: "Taipei City Department of Transportation",
         linkTitle3: "FY 2019 Taipei City Traffic Corridor Road Traffic Integration and Telecommunication Data Application Service Project",
