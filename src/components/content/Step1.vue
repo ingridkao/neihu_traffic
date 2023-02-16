@@ -2,7 +2,7 @@
     <div 
         id="aricle1"
         data-aos="fade-up"
-        data-aos-duration="1000"
+        data-aos-duration="800"
         :class="$i18n.locale"
     >
         <p>

@@ -256,7 +256,7 @@ export default {
     position: relative;
     width: 100%;
     height: 100vh;
-    @media screen and (min-width:600){  // For mobile
+    @media screen and (max-width:501px){  // For mobile
         height: 25rem;
         margin-top: 1rem;
     }

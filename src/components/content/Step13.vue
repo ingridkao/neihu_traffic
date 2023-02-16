@@ -1,7 +1,7 @@
 <template>
     <header
         data-aos="fade-down"
-        data-aos-duration="800"
+        data-aos-duration="400"
     >
         <h6>{{$t("article.step13.title")}}</h6>
         <p>{{$t("article.step13.p1")}}</p>
@@ -10,12 +10,12 @@
         <div class="bgBlock active">
             <RatioLabel 
                 data-aos="fade-up"
-                data-aos-duration="1600"
+                data-aos-duration="800"
             />
         </div>
         <p>{{$t("article.step13.p2")}}</p>
     </div>
-    <div data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">
+    <div data-aos="fade-up" data-aos-duration="800">
         <p>{{$t("article.step13.p3")}}：</p>
         <div class="list">
             <p>1. {{$t("article.step13.list1[0]")}}</p>
@@ -23,14 +23,14 @@
             <p>3. {{$t("article.step13.list1[2]")}}</p>
         </div>
     </div>
-    <div data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">
+    <div data-aos="fade-up" data-aos-duration="800">
         <p>{{$t("article.step13.p4")}}：</p>
         <div class="list">
             <p>1. {{$t("article.step13.list2[0]")}}</p>
             <p>2. {{$t("article.step13.list2[1]")}}</p>
         </div>
     </div>
-    <div data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">
+    <div data-aos="fade-up" data-aos-duration="800">
         <p>{{$t("article.step13.p5")}}：</p>
         <div class="list">
             <p>

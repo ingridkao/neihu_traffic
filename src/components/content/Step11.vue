@@ -30,21 +30,21 @@
             <div
                 v-if="articleShow1"
                 data-aos="fade-left"
-                data-aos-duration="800"
+                data-aos-duration="400"
             >
                 <p>{{$t("article.step11.p1")}}</p>
             </div>
             <div
                 v-if="chartShow"
                 data-aos="fade-left"
-                data-aos-duration="800"
+                data-aos-duration="400"
             >
                 <ColumnBasicBus />
             </div>
             <div
                 v-if="articleShow2"
                 data-aos="fade-left"
-                data-aos-duration="800"
+                data-aos-duration="400"
             >
                 <p>{{$t("article.step11.p2")}}</p>
                 
@@ -74,9 +74,9 @@ export default {
 			return this.$store.state.progres
 		},
         blockFixed(){
-            if(this.currStep < 10) return false
             if(this.currStep == 11) return this.currStepProgress <= 0.1
-            return this.currStepProgress >= 0.05
+            if(this.currStep == 10) return this.currStepProgress >= 0.05
+            return false
         },
         articleShow1(){
             if(this.currStep < 10)return true

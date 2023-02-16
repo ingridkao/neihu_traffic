@@ -63,7 +63,7 @@ $apexChartHeight: 25rem;
             top: 10rem;
             left: 1rem;
         }
-        @media screen and (min-width:600){  // For mobile
+        @media screen and (max-width:501px){  // For mobile
             &.top{top: 2.5rem;}
             &.right{right: 1rem;}
             &.middle3,&.bottom{bottom: 0.5rem;} 
@@ -191,7 +191,7 @@ $carouselTabBtnHeight: 3rem;
 .cardBox .mapLabel{
     background-color: rgba(255,255,255, 0.7);
     position: absolute;
-    top: 8rem;
+    top: 7rem;
     left: 1rem;
     @media screen and (max-width:1025px){
         display: none;

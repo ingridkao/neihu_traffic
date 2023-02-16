@@ -3,7 +3,7 @@
         <h6>{{$t("article.step7.title")}}</h6>
         <p
             data-aos="fade-down"
-            data-aos-duration="1800"
+            data-aos-duration="400"
         >
             <span>{{$t("article.step7.p1")}}</span>
             <AnnotationTrigger 
@@ -15,7 +15,7 @@
         </p>
         <p
             data-aos="fade-down"
-            data-aos-duration="1800"
+            data-aos-duration="800"
         >
             {{$t("article.step7.p3")}}
             <AnnotationContent

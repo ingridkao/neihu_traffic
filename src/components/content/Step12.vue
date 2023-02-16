@@ -3,6 +3,8 @@
         :class="{
             fixed: blockFixed
         }"
+        :data-currStep="currStep"
+        :data-currStepProgress="currStepProgress"
     >
         <div class="bgBlock imgCenter bg1 active"/>
     </div>
@@ -23,21 +25,21 @@
             <div
                 v-if="articleShow1"
                 data-aos="fade-left"
-                data-aos-duration="800"
+                data-aos-duration="400"
             >
                 {{$t("article.step12.p1")}}
             </div>
             <div
                 v-show="chartShow"
                 data-aos="fade-left"
-                data-aos-duration="800"
+                data-aos-duration="400"
             >
                 <ColumnBasicBike/>
             </div>
             <div
                 v-if="articleShow2"
                 data-aos="fade-left"
-                data-aos-duration="800"
+                data-aos-duration="400"
             >
                 {{$t("article.step12.p2")}}
                 
@@ -66,9 +68,9 @@ export default {
 			return this.$store.state.progres
 		},
         blockFixed(){
-            if(this.currStep < 11) return false
-            if(this.currStep == 12) return this.currStepProgress <= 0.1
-            return this.currStepProgress > 0.05
+            if(this.currStep == 11) return this.currStepProgress > 0.05
+            if(this.currStep == 12) return this.currStepProgress <= 0.05
+            return false
         },
         articleShow1(){
             if(this.currStep < 11)return true
