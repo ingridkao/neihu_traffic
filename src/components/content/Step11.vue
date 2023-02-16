@@ -76,7 +76,7 @@ export default {
         blockFixed(){
             if(this.currStep < 10) return false
             if(this.currStep == 11) return this.currStepProgress <= 0.1
-            return false
+            return this.currStepProgress >= 0.05
         },
         articleShow1(){
             if(this.currStep < 10)return true

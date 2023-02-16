@@ -94,6 +94,9 @@ header{
         position: relative;
         height:calc(100vh - 2.5rem);
         background-image: url('../../assets/img/epilogue/circular.jpeg');
+        @media screen and (max-width:501px){  // For mobile
+            height:30rem;
+        }
     }
     p{
         font-size: 0.75rem;
