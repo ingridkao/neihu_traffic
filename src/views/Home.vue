@@ -101,13 +101,9 @@ export default {
 		},
 		imgContainerFixed(){
 			if(this.currStep == 0)return false
-			if(this.mobileDevice){
-				if(this.currStep > 4)return false
-				return true
-			}else{
-				if(this.currStep > 3)return false
-				return this.$store.state.contentEnter
-			}
+			if(this.currStep > 4)return false
+			if(this.mobileDevice)return true
+			return this.$store.state.contentEnter
 		}
 	},
   	created() {

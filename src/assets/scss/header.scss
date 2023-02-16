@@ -87,6 +87,7 @@
 #aricle1{
     position: relative;
     width: $mapAsideWidth*1.2;
+    max-width: $mapAsideWidth*1.3;
 	&.en-US{
 		width: $mapAsideWidth*1.6;
 	}

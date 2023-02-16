@@ -66,8 +66,8 @@ main{
 		h6, p{
 			position: relative;
 			width: 100%;
+			max-width: $mapAsideWidth*2;
 			text-align: left;
-			
 		}
 		h6:not(:last-child),
 		p:not(:last-child){
@@ -96,6 +96,7 @@ main{
 			.articalBox{
 				@extend %contentPadding;
 				@extend %verticalCenter;
+				align-items: flex-start;
 				width: $mapAsideWidth;
 				padding-top: 4rem;
 				padding-bottom: 4rem;
@@ -126,14 +127,14 @@ main{
 		}
 		&.mapContainer{
 			@extend %horizontalCenter;
-			@media screen and (max-width:1025px){
+			@media screen and (max-width:845){  // For mobile
 				display: block;
 			}
 			aside{
 				flex-basis: $mapAsideWidth;
 				padding: 1rem;
 				height: calc(100vh - 2rem);
-				@media screen and (max-width:1025px){
+				@media screen and (max-width:845){  // For mobile
 					height: auto;
 				}
 				.chartContainer{
@@ -144,7 +145,7 @@ main{
 					width: 100%;
 					min-height: 13rem;
 					margin-bottom: 1rem;
-					@media screen and (max-width:1025px){
+					@media screen and (max-width:845){  // For mobile
 						min-height: auto;
 						margin-bottom: 2rem;
 					}

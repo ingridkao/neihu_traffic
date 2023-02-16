@@ -42,7 +42,7 @@
     }
 }
 
-$apexChartHeight: 24rem;
+$apexChartHeight: 25rem;
 .cardBox{
     @extend %absoluteLeftLayout; 
     width: 100%;
@@ -63,7 +63,7 @@ $apexChartHeight: 24rem;
             top: 10rem;
             left: 1rem;
         }
-        @media screen and (max-width:1025px){
+        @media screen and (max-width:845){  // For mobile
             &.top{top: 2.5rem;}
             &.right{right: 1rem;}
             &.middle3,&.bottom{bottom: 0.5rem;} 
@@ -75,7 +75,7 @@ $apexChartHeight: 24rem;
     }
     .title{
         padding: .5rem 3rem;
-        @media screen and (max-width:1025px){
+        @media screen and (max-width:845){  // For mobile
             padding: .5rem 0 .5rem 1.5rem;
         }
         h6{font-size: 1.2rem;margin-bottom: 0;font-weight: bold;}
@@ -281,16 +281,15 @@ $carouselTabBtnHeight: 3rem;
     align-items: flex-start;
     width: 100%;
     padding: 0;
-    margin-bottom: 1rem;
+    margin: 1rem 0;
     >div{
         padding-right: 1rem;
         button{
             height: 2rem;
         }
     }
-    @media screen and (max-width:1025px){
+    @media screen and (max-width:845px){ // For mobile
         flex-direction: column;
-        margin: 1rem;
         >div{
             &::before{
                 width: 4rem;
