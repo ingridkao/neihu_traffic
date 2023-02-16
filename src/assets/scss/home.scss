@@ -118,7 +118,7 @@ main{
 				.bgBlock{
 					height: 100vh;
 				}
-				@media screen and (max-width:1025px){
+				@media screen and (max-width:501px){  // For mobile
 					position: absolute;
 					width: 100vw !important;
 					z-index: 0;
@@ -127,14 +127,14 @@ main{
 		}
 		&.mapContainer{
 			@extend %horizontalCenter;
-			@media screen and (max-width:845){  // For mobile
+			@media screen and (max-width:501px){  // For mobile
 				display: block;
 			}
 			aside{
 				flex-basis: $mapAsideWidth;
 				padding: 1rem;
 				height: calc(100vh - 2rem);
-				@media screen and (max-width:845){  // For mobile
+				@media screen and (max-width:501px){  // For mobile
 					height: auto;
 				}
 				.chartContainer{
@@ -145,7 +145,7 @@ main{
 					width: 100%;
 					min-height: 13rem;
 					margin-bottom: 1rem;
-					@media screen and (max-width:845){  // For mobile
+					@media screen and (max-width:501px){  // For mobile
 						min-height: auto;
 						margin-bottom: 2rem;
 					}
