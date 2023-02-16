@@ -15,7 +15,7 @@
             <p 
                 v-if="articleShow2"
                 data-aos="fade-up"
-                data-aos-duration="800"
+                data-aos-duration="400"
             >
                 <span>{{$t("article.step4.p3")}}</span>
                 <AnnotationTrigger :key="'對比台北市建成區'" :toggle="annotationToggle2" :text="$t('article.step4.annotationTrigger2')" @update="updateToggle2"/>

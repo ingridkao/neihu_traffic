@@ -9,7 +9,7 @@
         </p>
         <p 
             data-aos="fade-up"
-            data-aos-duration="800"
+            data-aos-duration="400"
         >
             <span>
                 {{$t("article.step5.p2")}}
