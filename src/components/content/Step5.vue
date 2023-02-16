@@ -3,13 +3,13 @@
         <h6>{{$t("article.step5.title")}}</h6>
         <p
             data-aos="fade-up"
-            data-aos-duration="800"
+            data-aos-duration="400"
         >
             {{$t("article.step5.p1")}}
         </p>
         <p 
             data-aos="fade-up"
-            data-aos-duration="1600"
+            data-aos-duration="800"
         >
             <span>
                 {{$t("article.step5.p2")}}

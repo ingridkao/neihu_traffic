@@ -82,9 +82,9 @@ export default {
 			return this.$store.state.progres
 		},
         blockFixed(){
-            if(this.currStep < 9) return false
+            if(this.currStep == 9) return this.currStepProgress >= 0.05
             if(this.currStep == 10) return this.currStepProgress <= 0.1
-            return this.currStepProgress >= 0.05
+            return false
         },
         article(){
             if(this.currStep == 10)return 6

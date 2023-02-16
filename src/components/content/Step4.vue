@@ -5,7 +5,7 @@
                 <h6>{{$t("article.step4.title")}}</h6>
                 <p
                     data-aos="fade-up"
-                    data-aos-duration="800"
+                    data-aos-duration="400"
                 >
                     <span>{{$t("article.step4.p1")}}</span>
                     <AnnotationTrigger :key="'電信資料'" :toggle="annotationToggle1" :text="$t('telecom')" @update="updateToggle1"/>

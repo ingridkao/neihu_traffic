@@ -59,16 +59,15 @@ export default {
 		},
         textShow1(){
             if(!this.mobileDevice)return true
-            if(this.currStep != 1) return false
-            return this.currStepProgress < 0.25
+            if(this.currStep == 1)return this.currStepProgress < 0.3
         },
         textShow2(){
             if(this.currStep == 2) return true
             if(this.currStep != 1) return false
             if(this.mobileDevice){
-                return this.currStepProgress >= 0.25 && this.currStepProgress < 0.8
+                return this.currStepProgress >= 0.3 && this.currStepProgress < 0.8
             }else{
-                return this.currStepProgress >= 0.45
+                return this.currStepProgress >= 0.35
             }
         }
     },

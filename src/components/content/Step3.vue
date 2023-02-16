@@ -1,7 +1,7 @@
 <template>
     <div class="articalBox"
         data-aos="fade-up"
-        data-aos-duration="1600"
+        data-aos-duration="800"
     >
         <p>
             {{$t("article.step3")}}
