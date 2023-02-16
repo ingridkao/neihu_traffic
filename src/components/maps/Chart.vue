@@ -190,7 +190,7 @@ export default {
         p{
             height: 1rem;
             opacity: 0.8;
-            font-size: 30% !important;
+            font-size: 50% !important;
             margin-bottom: 0 !important;
         }
         h5{

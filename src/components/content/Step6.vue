@@ -12,7 +12,7 @@
             </p>
             <AnnotationContent
                 :dropdown="annotationToggle"
-                :fix="'bottom left'"
+                :fix="'top left'"
                 :text="$t('article.step6.annotationTrigger1')"
                 :content="$t('article.step6.annotationContent1')"
                 :content-img="'visMethods.jpeg'"

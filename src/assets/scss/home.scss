@@ -77,9 +77,9 @@ main{
 			}
 		}
 		&#chapter4{
-			padding: 7.5rem 2rem;
+			padding: 5rem 2rem 10rem 2rem;
 			@media screen and (max-width:1025px){
-				padding: 2.5rem 1rem;
+				padding: 10rem 1rem;
 			}
 		}
 		&.rowBox{
@@ -221,7 +221,7 @@ main{
 			&#chapter5{
 				height: 600%;
 				@media screen and (max-width:1025px){
-					height: 250%;
+					height: 300%;
 				}
 			}
 			.imgBox{
