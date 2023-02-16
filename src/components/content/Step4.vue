@@ -1,16 +1,17 @@
 <template>
     <div class="articalBox space-between">
         <div>
-            <h6>{{$t("article.step4.title")}}</h6>
-            <p
-                v-if="articleShow1"
-                data-aos="fade-up"
-                data-aos-duration="800"
-            >
-                <span>{{$t("article.step4.p1")}}</span>
-                <AnnotationTrigger :key="'電信資料'" :toggle="annotationToggle1" :text="$t('telecom')" @update="updateToggle1"/>
-                <span>{{$t("article.step4.p2")}}</span>
-            </p>
+            <template v-if="articleShow1">
+                <h6>{{$t("article.step4.title")}}</h6>
+                <p
+                    data-aos="fade-up"
+                    data-aos-duration="800"
+                >
+                    <span>{{$t("article.step4.p1")}}</span>
+                    <AnnotationTrigger :key="'電信資料'" :toggle="annotationToggle1" :text="$t('telecom')" @update="updateToggle1"/>
+                    <span>{{$t("article.step4.p2")}}</span>
+                </p>
+            </template>
             <p 
                 v-if="articleShow2"
                 data-aos="fade-up"
@@ -66,12 +67,12 @@ export default {
         articleShow1(){
             if(!this.mobileDevice)return true
             if(this.currStep == 2) return true
-            return this.currStep == 3 && this.currStepProgress < 0.3
+            return this.currStep == 3 && this.currStepProgress < 0.25
         },
         articleShow2(){
             if(!this.mobileDevice)return true
             if(this.currStep == 4) return true
-            return this.currStep == 3 && this.currStepProgress >= 0.3
+            return this.currStep == 3 && this.currStepProgress >= 0.25
         },
         telLabelShow(){
             return !this.mobileDevice

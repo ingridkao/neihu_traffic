@@ -1,12 +1,14 @@
 <template>
     <div class="articalBox space-between">
         <div>
-            <h6>{{$t("article.step2.title")}}</h6>
-            <p data-aos="fade-up" data-aos-duration="1600">
-                <span>{{$t("article.step2.p1")}}</span>
-                <AnnotationTrigger :toggle="annotationToggle1" :text="$t('article.step2.annotationTrigger1')" @update="updateToggle1"/>
-                <span>{{$t("article.step2.p2")}}</span>
-            </p>
+            <template v-if="textShow1">
+                <h6>{{$t("article.step2.title")}}</h6>
+                <p data-aos="fade-up" data-aos-duration="1600">
+                    <span>{{$t("article.step2.p1")}}</span>
+                    <AnnotationTrigger :toggle="annotationToggle1" :text="$t('article.step2.annotationTrigger1')" @update="updateToggle1"/>
+                    <span>{{$t("article.step2.p2")}}</span>
+                </p>
+            </template>
             <p v-if="textShow2" data-aos="fade-up" data-aos-duration="800">
                 <span>{{$t("article.step2.p3")}}</span>
                 <AnnotationTrigger :toggle="annotationToggle2" :text="$t('article.step2.annotationTrigger2')" @update="updateToggle2"/>
@@ -55,11 +57,16 @@ export default {
 		currStepProgress() {
 			return this.$store.state.progres
 		},
+        textShow1(){
+            if(!this.mobileDevice)return true
+            if(this.currStep == 2) return false
+            return this.currStep == 1 && this.currStepProgress < 0.3
+        },
         textShow2(){
             if(this.currStep < 1) return false
             if(this.currStep > 2) return false
             if(this.currStep == 2) return true
-            if(this.mobileDevice)return this.currStepProgress >= 0.35 && this.currStepProgress < 0.8
+            if(this.mobileDevice)return this.currStepProgress >= 0.3 && this.currStepProgress < 0.8
             return this.currStepProgress >= 0.45
         }
     },

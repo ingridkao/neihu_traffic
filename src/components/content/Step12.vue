@@ -66,17 +66,20 @@ export default {
 			return this.$store.state.progres
 		},
         blockFixed(){
-            if(this.currStep == 12)return true
-            return (this.currStep == 11 && this.currStepProgress > 0.05)
+            if(this.currStep < 11) return false
+            if(this.currStep == 12) return this.currStepProgress <= 0.1
+            return this.currStepProgress > 0.05
         },
         article(){
+            if(this.currStep < 11) return 1
             if(this.currStep == 12)return 2
-            return this.currStep == 11 && this.currStepProgress < 0.5 ? 1: 2
+            return this.currStep == 11 && this.currStepProgress < 0.35 ? 1: 2
         },
         chartShow(){
             if(this.mobileDevice) return false
             if(this.currStep == 12)return true
-            return this.currStep == 11 && this.currStepProgress >= 0.25
+            if(this.currStep < 11) return false
+            if(this.currStep == 11)return this.currStepProgress >= 0.25
         }
     }
 }

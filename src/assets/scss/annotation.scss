@@ -23,7 +23,6 @@ $annotationColor: lighten($textSubColor, 30);
     height: auto;
     font-size: .75rem;
     opacity: 0;
-    transition: opacity 1s;
     z-index: 1;
     @media screen and (max-width:1025px){ // For mobile
         display: none;
@@ -40,7 +39,6 @@ $annotationColor: lighten($textSubColor, 30);
     .annotationContent{
         position: relative;
         visibility: hidden;
-        transition: visibility 1s 0.5s;
         color: $annotationColor;
         background-color: lighten($whiteColor, 5);
         padding: 0.5rem;

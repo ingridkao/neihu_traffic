@@ -5,7 +5,7 @@
         }"
     >
         <div class="bgBlock imgCenter busbg1 active"/>
-        <div class="bgBlock imgCenter busbg2" :class="{active: article >= 2}"/>
+        <div class="bgBlock imgCenter busbg2" :class="{active: articleShow2}"/>
     </div>
     <div class="cardBox"
         :class="{
@@ -17,7 +17,7 @@
             <p>{{$t("article.step10.supTitle")}}</p>
             <div class="mapLabel">
                 <ChartLabel :text="$t('popularPick')"/>
-                <template v-if="article == 1" >
+                <template v-if="articleShow1" >
                     <MapPointLabel :text="$t('article.step11.mapPointLabel')" :gradient="['#fff', '#ee3c43']"/>
                 </template>
                 <template  v-else>
@@ -28,23 +28,24 @@
         </div>
         <div class="bottom right content">
             <div
-                v-if="!mobileDevice || article == 1"
+                v-if="articleShow1"
                 data-aos="fade-left"
                 data-aos-duration="800"
             >
+                111111111
                 <p>{{$t("article.step11.p1")}}</p>
             </div>
             <div
-                v-show="chartShow"
+                v-if="chartShow"
                 data-aos="fade-left"
                 data-aos-duration="800"
             >
                 <ColumnBasicBus />
             </div>
             <div
-                v-if="article == 2"
+                v-if="articleShow2"
                 data-aos="fade-left"
-                data-aos-duration="1600"
+                data-aos-duration="800"
             >
                 <p>{{$t("article.step11.p2")}}</p>
                 
@@ -74,16 +75,23 @@ export default {
 			return this.$store.state.progres
 		},
         blockFixed(){
-            return (this.currStep == 10 && this.currStepProgress > 0.05) || (this.currStep == 11 && this.currStepProgress <= 0.1)
+            if(this.currStep < 10) return false
+            if(this.currStep == 11) return this.currStepProgress <= 0.1
+            return this.currStepProgress > 0.05
         },
-        article(){
-            if(this.currStep == 11)return 2
-            return this.currStep == 10 && this.currStepProgress < 0.55 ? 1: 2
+        articleShow1(){
+            if(this.currStep < 10)return true
+            if(this.currStep == 11)return false
+            return this.currStepProgress < 0.35
+        },
+        articleShow2(){
+            if(this.currStep < 10)return false
+            if(this.currStep == 11)return true
+            return this.currStepProgress >= 0.4
         },
         chartShow(){
             if(this.mobileDevice) return false
-            if(this.currStep == 11)return true
-            return this.currStep == 10 && this.currStepProgress >= 0.3
+            return this.articleShow2
         }
     }
 }

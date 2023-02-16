@@ -82,16 +82,18 @@ export default {
 			return this.$store.state.progres
 		},
         blockFixed(){
-            return this.currStep == 9  || (this.currStep == 10 && this.currStepProgress <= 0.1)
+            if(this.currStep < 9) return false
+            if(this.currStep == 10) return this.currStepProgress <= 0.1
+            return this.currStepProgress >= 0.05
         },
         article(){
             if(this.currStep == 10)return 6
             if(this.currStep == 8)return 1
-            if(this.currStepProgress > 0.8)return 6
+            if(this.currStepProgress > 0.75)return 6
             if(this.currStepProgress > 0.6)return 5
-            if(this.currStepProgress > 0.4)return 4
-            if(this.currStepProgress > 0.2)return 3    
-            if(this.currStepProgress > 0.05)return 2
+            if(this.currStepProgress > 0.45)return 4
+            if(this.currStepProgress > 0.3)return 3    
+            if(this.currStepProgress > 0.15)return 2
             return 1
         }
     }
