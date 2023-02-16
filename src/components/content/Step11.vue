@@ -32,7 +32,6 @@
                 data-aos="fade-left"
                 data-aos-duration="800"
             >
-                111111111
                 <p>{{$t("article.step11.p1")}}</p>
             </div>
             <div
@@ -77,20 +76,21 @@ export default {
         blockFixed(){
             if(this.currStep < 10) return false
             if(this.currStep == 11) return this.currStepProgress <= 0.1
-            return this.currStepProgress > 0.05
+            return false
         },
         articleShow1(){
             if(this.currStep < 10)return true
             if(this.currStep == 11)return false
-            return this.currStepProgress < 0.35
+            if(this.currStep == 10)return this.currStepProgress < 0.35
         },
         articleShow2(){
             if(this.currStep < 10)return false
             if(this.currStep == 11)return true
-            return this.currStepProgress >= 0.4
+            if(this.currStep == 10)return this.currStepProgress >= 0.35
         },
         chartShow(){
             if(this.mobileDevice) return false
+            if(this.currStep == 10)return this.currStepProgress >= 0.25
             return this.articleShow2
         }
     }

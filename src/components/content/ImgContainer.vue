@@ -40,16 +40,31 @@ export default {
 			return this.$store.state.progres
 		},
         block2(){
-            if(this.mobileDevice)return this.currStep == 1 && this.currStepProgress >= 0.35 && this.currStepProgress < 0.8
-            return (this.currStep == 1 && this.currStepProgress >= 0.45 ) || (this.currStep == 2 && this.currStepProgress < 0.1) 
+            if(this.mobileDevice){
+                if(this.currStep == 1) return this.currStepProgress >= 0.35 && this.currStepProgress < 0.8
+            }else{
+                if(this.currStep == 1) return this.currStepProgress >= 0.45
+                if(this.currStep == 2) return this.currStepProgress < 0.1
+            }
         },
         block3(){
-            if(this.mobileDevice)return (this.currStep == 1 && this.currStepProgress >= 0.8) || (this.currStep == 2 && this.currStepProgress < 0.8)
-            return (this.currStep == 2 && this.currStepProgress >= 0.1) || (this.currStep == 3 && this.currStepProgress < 0.1)
+            if(this.mobileDevice){
+                if(this.currStep == 1) return this.currStepProgress >= 0.8
+                if(this.currStep == 2) return this.currStepProgress < 0.8
+            }else{
+                if(this.currStep == 2) return this.currStepProgress >= 0.1
+                if(this.currStep == 3) return this.currStepProgress < 0.1
+            }
         },
         block4(){
-            if(this.mobileDevice)return (this.currStep == 2 && this.currStepProgress >= 0.8) || (this.currStep > 2 && this.currStep <= 4)
-            return this.currStep == 3 && this.currStepProgress >= 0.1
+            if(this.currStep == 4) return true
+            if(this.mobileDevice){
+                if(this.currStep == 2) return this.currStepProgress >= 0.8
+                if(this.currStep == 3) return true
+                
+            }else{
+                if(this.currStep == 3) return this.currStepProgress >= 0.1
+            }
         }
     },
     data(){

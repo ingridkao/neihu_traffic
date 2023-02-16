@@ -21,7 +21,7 @@
         </div>
         <div class="bottom right content">
             <div
-                v-if="!mobileDevice || article == 1"
+                v-if="articleShow1"
                 data-aos="fade-left"
                 data-aos-duration="800"
             >
@@ -35,7 +35,7 @@
                 <ColumnBasicBike/>
             </div>
             <div
-                v-if="article == 2"
+                v-if="articleShow2"
                 data-aos="fade-left"
                 data-aos-duration="800"
             >
@@ -70,16 +70,20 @@ export default {
             if(this.currStep == 12) return this.currStepProgress <= 0.1
             return this.currStepProgress > 0.05
         },
-        article(){
-            if(this.currStep < 11) return 1
-            if(this.currStep == 12)return 2
-            return this.currStep == 11 && this.currStepProgress < 0.35 ? 1: 2
+        articleShow1(){
+            if(this.currStep < 11)return true
+            if(this.currStep == 12)return false
+            if(this.currStep == 11) return this.currStepProgress < 0.35
+        },
+        articleShow2(){
+            if(this.currStep < 11)return false
+            if(this.currStep == 12)return true
+            if(this.currStep == 11) return this.currStepProgress >= 0.35
         },
         chartShow(){
             if(this.mobileDevice) return false
-            if(this.currStep == 12)return true
-            if(this.currStep < 11) return false
             if(this.currStep == 11)return this.currStepProgress >= 0.25
+            return this.articleShow2            
         }
     }
 }
