@@ -161,6 +161,7 @@ export const zh = {
         columnBasic: {
             sort0: "私人運具",
             sort1: "大眾運輸",
+            sort0Abbr: "或步行",
             stacked0: "類型數量",
             stacked1: "運輸佔比"
         },
@@ -382,7 +383,8 @@ export const en = {
     },
     charts: {
         columnBasic: {
-            sort0: "Private vehicles or on-foot",
+            sort0: "Private vehicles",
+            sort0Abbr: "or on-foot",
             sort1: "Public transit",
             stacked0: "Counts",
             stacked1: "Percentage"

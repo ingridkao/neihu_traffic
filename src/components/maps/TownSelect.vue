@@ -18,7 +18,7 @@
         </svg>
         <ul>
             <li v-for="(item) in distric" :key="item.index" @click="clickLocation(item)" :class="{active: selectTown === item.index}">
-                {{item.name}}
+                {{$i18n.locale === 'zh-TW'? item.name: item.index}}
             </li>
         </ul>
     </header>
