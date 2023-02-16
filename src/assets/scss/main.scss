@@ -213,6 +213,9 @@ $carouselTabBtnHeight: 3rem;
 .svgHeader{
     @extend %horizontalCenter;
     justify-content: space-between;
+    ul li {
+        text-transform:capitalize;
+    }
     svg {
         width: 11rem;
         margin: auto;

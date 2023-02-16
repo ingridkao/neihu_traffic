@@ -23,16 +23,7 @@
 </template>
 
 <script>
-// import transportData, {PrivateT, PublicT} from '@/assets/js/transport.js'
 import {PrivateT, PublicT} from '@/assets/js/transport.js'
-// const seriesData = [{
-//     name: '大眾運輸',
-//     data: [44, 55, 57, 56, 61, 58, 63, 60, 66]
-// }, {
-//     name: '私人運具',
-//     data: [76, 85, 101, 98, 87, 105, 91, 114, 94]
-// }]
-// const Categories = ['內湖區', '汐止區', '士林區', '大安區', '中山區','松山區','信義區','北投區','南港區','文山區','三重區','中正區','板橋區','中和區','新莊區','蘆洲區','新店區','大同區','安樂區','永和區']
 export default {
     data(){
         return {
@@ -75,13 +66,11 @@ export default {
                     categories: this.categories,
                     labels: {
                         rotate: 0,
-                        hideOverlappingLabels: false,
-                    },
+                        hideOverlappingLabels: false
+                    }
                 },
                 yaxis: {
-                    max: (e)=>{
-                        return e
-                    }
+                    max: (e) => e
                 }
             }
             return {
@@ -89,7 +78,7 @@ export default {
                 dataLabels: {
                     enabled: true,
                     style: {
-                        fontSize: '8px',
+                        fontSize: '10px',
                         fontWeight: 'normal',
                         colors: ['#666']
                     },
@@ -140,7 +129,9 @@ export default {
                     data: this.transData.map(item => item[index])
                 })
             })
-            this.categories = this.transData.map(item => item['TOWNNAME'])
+            this.categories = this.transData.map(item => {
+                return this.$i18n.locale === 'zh-TW'? item['TOWNNAME']: item['TOWNENAME']
+            })
             this.chartValue = this.seriesData
             this.chartReload = true
 
@@ -171,7 +162,7 @@ export default {
 </style>
 <style lang="scss"> 
 .apexChartContainer.basic .vue-apexcharts{ 
-    width: 120rem;
+    width: 200rem;
     height: 100%;
     .apexcharts-legend{
         overflow: hidden;

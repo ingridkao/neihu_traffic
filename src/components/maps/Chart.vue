@@ -3,10 +3,12 @@
         <header :class="{langEn: !langZh}">
             <div>
                 <h6>{{$t('charts.columnBasic.sort0')}}</h6>
+                <p>{{$t('charts.columnBasic.sort0Abbr')}}</p>
                 <h5>{{ownership}}</h5>
             </div>
             <div>
                 <h6>{{$t('charts.columnBasic.sort1')}}</h6>
+                <p></p>
                 <h5>{{provision}}</h5>
             </div>
         </header>
@@ -185,6 +187,12 @@ export default {
             font-size: 1.1rem;
             margin-bottom: 0 !important;
         }
+        p{
+            height: 1rem;
+            opacity: 0.8;
+            font-size: 30% !important;
+            margin-bottom: 0 !important;
+        }
         h5{
             font-weight: normal;
             font-size: 1.5rem;
@@ -193,6 +201,9 @@ export default {
         }
         &.langEn{
             width: 80%;
+        }
+        >div{
+            max-width: 10rem;
         }
     }
 }
